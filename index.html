@@ -128,7 +128,7 @@
 						style="font-size: 1.2em"
 						id="testPHP"
 					></i
-					>&nbsp;<Text name="Setting">SETTINGS</Text>
+					>&nbsp;<Text trans="text+:Setting">SETTINGS</Text>
 				</h5>
 				<div>
 					<a href="guide.html">
@@ -155,11 +155,11 @@
 					<h6>
 						<i class="bi bi-tv"></i
 						><span class="text-primary"
-							>&nbsp;<Text name="General">General</Text></span
+							>&nbsp;<Text trans="text+:General">General</Text></span
 						>
 					</h6>
 					<span
-						><b><Text name="Lang">language</Text></b
+						><b><Text trans="text+:Lang">language</Text></b
 						>&nbsp;&nbsp;</span
 					>
 					<span>
@@ -175,20 +175,23 @@
 						</select> </span
 					><br />
 					<div style="margin-top: 0.3em">
-						<b><Text name="Tabs">Tab at startup</Text></b>
+						<b><Text trans="text+:Tabs">Tab at startup</Text></b>
 					</div>
 					<div class="d-flex flex-row justify-content-start align-items-center">
 						<span class="mt-2">
 							<select
-								name="select"
 								id="numTab"
 								class="d-inline form-select form-select-sm"
 								aria-label=".form-select-sm example"
 							>
-								<option selected value="0" name="ScheduleTab">Schedule</option>
-								<option value="1" name="FreeTab">Free</option>
-								<option value="2" name="BusyTab">Busy</option>
-								<option value="3" name="FullTab">Schedule fullscreen</option>
+								<option selected value="0" trans="text+:ScheduleTab">
+									Schedule
+								</option>
+								<option value="1" trans="text+:FreeTab">Free</option>
+								<option value="2" trans="text+:BusyTab">Busy</option>
+								<option value="3" trans="text+:FullTab">
+									Schedule fullscreen
+								</option>
 							</select> </span
 						><br />
 						<span
@@ -203,7 +206,7 @@
 								checked
 							/>
 							<label class="form-check-label" for="checkSaveNumTab">
-								<Text name="CheckSaveNumTab">Save in storage</Text>
+								<Text trans="text+:CheckSaveNumTab">Save in storage</Text>
 							</label>
 						</span>
 					</div>
@@ -215,7 +218,7 @@
 -->
 
 					<div class="mt-2">
-						<b><Text name="Storage">Storage</Text></b>
+						<b><Text trans="text+:Storage">Storage</Text></b>
 					</div>
 
 					<div class="form-check">
@@ -227,7 +230,7 @@
 							checked
 						/>
 						<label class="form-check-label" for="flexRadioDefault1">
-							<Text name="LcStor"> In the device's local storage</Text>
+							<Text trans="text+:LcStor"> In the device's local storage</Text>
 						</label>
 					</div>
 					<div class="form-check">
@@ -239,17 +242,17 @@
 							id="flexRadioDefault2"
 						/>
 						<label class="form-check-label" for="flexRadioDefault2">
-							<Text name="RtStor"> In the remote database </Text>
+							<Text trans="text+:RtStor"> In the remote database </Text>
 						</label>
 					</div>
 
 					<div>
-						<b><Text name="addData">Data</Text></b>
+						<b><Text trans="text+:addData">Data</Text></b>
 					</div>
 
 					<div style="font-size: 0.85em">
 						<label
-							><Text name="ToCreateCurse"
+							><Text trans="text+:ToCreateCurse"
 								><b>To create a course</b></Text
 							></label
 						>
@@ -272,10 +275,11 @@
 								font-size: 1em;
 							"
 						>
-							<i class="bi bi-plus" name="disable"></i>&nbsp;Add
+							<i class="bi bi-plus" name="disable"></i>&nbsp;
+							<span trans="text+:clickAdd">add</span>
 						</button>
 
-						<Text name="List" style="font-weight: 700"
+						<Text trans="text+:List" style="font-weight: 700"
 							>&nbsp; List&nbsp;&nbsp;
 						</Text>
 
@@ -290,7 +294,8 @@
 								font-size: 1em;
 							"
 						>
-							<i class="bi bi-download" name="disable"></i>&nbsp;load
+							<i class="bi bi-download" name="disable"></i>&nbsp;
+							<span trans="text+:clickLoad">load</span>
 						</button>
 
 						<button
@@ -304,7 +309,8 @@
 								font-size: 1em;
 							"
 						>
-							<i class="bi bi-upload" name="disable"></i>&nbsp;Update
+							<i class="bi bi-upload" name="disable"></i>&nbsp;
+							<span trans="text+:clickUpdate">Update</span>
 						</button>
 
 						<button
@@ -318,12 +324,13 @@
 								font-size: 1em;
 							"
 						>
-							<i class="bi bi-x" name="disable"></i>&nbsp;Delete
+							<i class="bi bi-x" name="disable"></i>&nbsp;
+							<span trans="text+:clickDel">Delete</span>
 						</button>
 					</div>
 					<div style="font-size: 0.85em; margin-top: 10px; margin-bottom: 10px">
 						<label
-							><Text name="ToCreateGrade"
+							><Text trans="text+:ToCreateGrade"
 								><b>To create a grade.</b></Text
 							></label
 						>
@@ -345,10 +352,11 @@
 								font-size: 1em;
 							"
 						>
-							<i class="bi bi-plus" name="disable"></i>&nbsp;Add
+							<i class="bi bi-plus" name="disable"></i>&nbsp;
+							<span trans="text+:clickAdd">Add</span>
 						</button>
 
-						<Text name="List" style="font-weight: 700"
+						<Text trans="text+:List" style="font-weight: 700"
 							>&nbsp;List&nbsp;&nbsp;
 						</Text>
 
@@ -363,7 +371,8 @@
 								font-size: 1em;
 							"
 						>
-							<i class="bi bi-download" name="disable"></i>&nbsp;load
+							<i class="bi bi-download" name="disable"></i>&nbsp;
+							<span trans="text+:clickLoad">load</span>
 						</button>
 
 						<button
@@ -377,7 +386,8 @@
 								font-size: 1em;
 							"
 						>
-							<i class="bi bi-upload" name="disable"></i>&nbsp;Update
+							<i class="bi bi-upload" name="disable"></i>&nbsp;
+							<span trans="text+:clickUpdate">Update</span>
 						</button>
 
 						<button
@@ -391,7 +401,8 @@
 								font-size: 1em;
 							"
 						>
-							<i class="bi bi-x" name="disable"></i>&nbsp;Delete
+							<i class="bi bi-x" name="disable"></i>&nbsp;
+							<span trans="text+:clickDel">Delete</span>
 						</button>
 					</div>
 				</div>
@@ -406,7 +417,7 @@
 					<h6>
 						<i class="bi bi-table mr-1"></i
 						><span class="text-primary my-0"
-							>&nbsp;<Text name="Schedule">Schedule</Text></span
+							>&nbsp;<Text trans="text+:Schedule;">Schedule</Text></span
 						>
 					</h6>
 					<div class="form-check form-switch">
@@ -417,7 +428,7 @@
 							checked
 						/>
 						<label class="form-check-label" for="flexSwitchCheckChecked"
-							><Text name="ShSchedule"
+							><Text trans="text+:ShSchedule"
 								>Show the schedule when loading</Text
 							></label
 						>
@@ -444,7 +455,9 @@
 					<h6>
 						<i class="bi bi-clock text-success mr-1"></i
 						><span class="text-primary my-0"
-							>&nbsp;<Text name="Datamaintenance">Data maintenance</Text></span
+							>&nbsp;<Text trans="text+:Datamaintenance"
+								>Data maintenance</Text
+							></span
 						>
 					</h6>
 
@@ -462,7 +475,7 @@
 						"
 					>
 						<i class="bi bi-download" name="disable"></i
-						><text name="btnImport">&nbsp; Import to remote base</text>
+						><text trans="text+:btnImport">&nbsp; Import to remote base</text>
 					</button>
 				</div>
 
@@ -512,7 +525,7 @@
 				<div class="rounded-1 modal-content-enter">
 					<div class="modal-header border-bottom border-dark">
 						<h3 class="modal-title" style="font-size: 1.2em" id="alerterLabel">
-							<Text name="ModalEnter">Заголовок алерта</Text>
+							<Text trans="text+:ModalEnter">Заголовок алерта</Text>
 						</h3>
 						<button
 							type="button"
@@ -575,7 +588,7 @@
 							style="font-size: 1.2em"
 							id="modalEnterLabel"
 						>
-							<Text name="ModalEnter">Вход в личный кабинет</Text>
+							<Text trans="text+:ModalEnter">Вход в личный кабинет</Text>
 						</h3>
 						<button
 							type="button"
@@ -586,7 +599,7 @@
 						<div>
 							<input
 								type="text"
-								name="login"
+								trans="placeholder:login"
 								id="InputLogin"
 								aria-describedby="nameHelp"
 								placeholder="Login "
@@ -597,7 +610,7 @@
 
 							<input
 								type="password"
-								name="password"
+								trans="placeholder:password"
 								id="InputPassword"
 								aria-describedby="nameHelp"
 								placeholder="Password "
@@ -608,7 +621,7 @@
 
 							<input
 								type="password"
-								name="password2"
+								trans="placeholder:password2"
 								id="InputPassword2"
 								aria-describedby="nameHelp2"
 								placeholder="Password 2 "
@@ -639,7 +652,7 @@
 								checked
 							/>
 							<label class="form-check-label" for="login"
-								><Text name="RadioEnter">Вход</Text></label
+								><Text trans="text+:RadioEnter">Вход</Text></label
 							>
 						</div>
 						<div class="form-check form-check-inline">
@@ -651,7 +664,7 @@
 								value="singin"
 							/>
 							<label class="form-check-label" for="singin"
-								><Text name="RadioReg">Регистрация</Text></label
+								><Text trans="text+:RadioReg">Регистрация</Text></label
 							>
 						</div>
 					</div>
@@ -660,7 +673,7 @@
 						<div>
 							<button
 								type="button"
-								name="MEnterOut"
+								trans="text+:MEnterOut"
 								class="btn btn-sm ml-0 mt-4 mb-1"
 								id="logout"
 								style="
@@ -676,7 +689,7 @@
 						<div>
 							<button
 								type="button"
-								name="Close"
+								trans="text+:Close"
 								class="btn btn-secondary btn-sm btnCloseEnter m-2 mt-4 mb-1"
 								style="font-weight: 500; color: white; font-size: 1em"
 							>
@@ -684,7 +697,7 @@
 							</button>
 							<button
 								type="button"
-								name="MEnter"
+								trans="text+:MEnter"
 								class="btn btn-sm m-2 mt-4 mb-1"
 								id="buttonEnter"
 								style="
@@ -764,7 +777,7 @@
 						"
 					>
 						<Text
-							name="FreeTime"
+							trans="text+:FreeTime"
 							id="dataTitle"
 							style="text-transform: uppercase"
 						>
@@ -777,14 +790,14 @@
 							<select name="select" id="timeSelect">
 								<option
 									style="font-size: 0.8em"
-									name="FreeTime"
+									trans="text+:FreeTime"
 									value="freeTime"
 								>
 									FreeTime
 								</option>
 								<option
 									style="font-size: 0.8em"
-									name="BusyTime"
+									trans="text+:BusyTime"
 									value="busyTime"
 								>
 									BusyTime
@@ -1491,13 +1504,13 @@
 										width="22"
 										class="mx-1"
 										style="margin-top: -3px; margin-left: 5px; color: black"
-									/><Text name="FindTime">FindTime!</Text>
+									/><Text trans="text+:FindTime">FindTime!</Text>
 								</a>
 								<div
 									class="text-primary d-none d-sm-block"
 									style="font-weight: 600"
 								>
-									<Text name="TimeForStudy"
+									<Text trans="text+:TimeForStudy"
 										>Time for study, work and life!</Text
 									>
 								</div>
@@ -1589,7 +1602,7 @@
 									>
 										<h5>
 											<i class="bi bi-table"></i
-											><Text name="Schedule">&nbsp; Schedule</Text>
+											><Text trans="text+:Schedule">&nbsp; Schedule</Text>
 										</h5>
 									</button>
 									<button
@@ -1604,7 +1617,7 @@
 									>
 										<h5>
 											<i class="bi bi-clock text-success"></i
-											><Text name="FreeTime">&nbsp; Free time &nbsp; </Text>
+											><Text trans="text+:FreeTime">&nbsp; Free time &nbsp; </Text>
 										</h5>
 									</button>
 									<button
@@ -1623,7 +1636,7 @@
 												class="bi bi-clock text-orange"
 												style="color: orangered"
 											></i
-											><Text name="BusyTime">&nbsp; Busy time &nbsp;</Text>
+											><Text trans="text+:BusyTime">&nbsp; Busy time &nbsp;</Text>
 										</h5>
 									</button>
 								</div>
@@ -1645,7 +1658,7 @@
 											class="d-flex flex-row align-items-center justify-content-start"
 										>
 											<button
-												class="mt-0"
+												class="mt-0 btnOnPhoneLeft"
 												id="btnSaveTableSchedule"
 												value="Clear font-weight-bold "
 												style="
@@ -1653,6 +1666,7 @@
 													border-width: 0px;
 													margin-right: 0.4em;
 													margin-left: 10px;
+													margin-top: 5px;
 													background-color: #23c6c8;
 													color: black;
 												"
@@ -1661,10 +1675,11 @@
 													class="bi bi-upload font-weight-bold mx-0"
 													style="font-size: 1em; margin-top: 0.75em"
 												></i>
+												<span trans="text+:btnSave;">сохранить</span>
 											</button>
 
 											<button
-												class=""
+												class="btnOnPhoneLeft"
 												id="btnLoadTableSchedule"
 												value="Clear font-weight-bold "
 												style="
@@ -1679,6 +1694,7 @@
 													class="bi bi-download font-weight-bold mx-0"
 													style="font-size: 1em; margin-top: 0.75em"
 												></i>
+												<span trans="text+:clickLoad">загрузить</span>
 											</button>
 
 											<!--
@@ -1690,7 +1706,7 @@
 											<button
 												value="Clear font-weight-bold "
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-primary btnOnPhoneLeft"
 												data-bs-toggle="modal"
 												data-bs-target="#legend"
 												style="
@@ -1708,6 +1724,7 @@
 													class="bi bi-list-task font-weight-bold mx-0"
 													style="font-size: 1em; margin-top: 0.85em"
 												></i>
+												<span trans="text+:legends">легенды</span>
 											</button>
 
 											<div
@@ -1727,7 +1744,7 @@
 																class="modal-title fs-6"
 																id="staticBackdropLabel"
 															>
-																<Text name="legend"> Легенда расписания </Text>
+																<Text trans="text+:legend"> Легенда расписания </Text>
 															</h5>
 															<button
 																type="button"
@@ -1738,7 +1755,7 @@
 														</div>
 														<div class="modal-body">
 															<b
-																><Text name="FreeTime">
+																><Text trans="text+:FreeTime">
 																	Свободное время</Text
 																></b
 															><br />
@@ -1756,7 +1773,7 @@
 																		font-weight: 600;
 																	"
 																	>2</span
-																><Text name="legendMatches">
+																><Text trans="text+:legendMatches">
 																	Совпадение по времени (2 человека)</Text
 																>
 															</div>
@@ -1775,11 +1792,11 @@
 																		font-weight: 600;
 																	"
 																	>5</span
-																><Text name="legendMaxMatches">
+																><Text trans="text+:legendMaxMatches">
 																	Максимум совпадений (5 человек)</Text
 																>
 															</div>
-															<Text name="legendColorPalette"
+															<Text trans="text+:legendColorPalette"
 																>Палитра цветов</Text
 															><br />
 															<div>
@@ -2000,7 +2017,7 @@
 																	"
 																></span>
 															</div>
-															<b><Text name="BusyTime">Занятое время</Text></b
+															<b><Text trans="text+:BusyTime">Занятое время</Text></b
 															><br />
 															<div>
 																<span
@@ -2016,7 +2033,7 @@
 																		font-weight: 600;
 																	"
 																	>&nbsp;</span
-																><Text name="BusyTime"> Занятое время</Text>
+																><Text trans="text+:BusyTime"> Занятое время</Text>
 															</div>
 															<div>
 																<span
@@ -2032,7 +2049,7 @@
 																		font-weight: 600;
 																	"
 																	>&nbsp;</span
-																><Text name="legendMatchesBusy">
+																><Text trans="text+:legendMatchesBusy">
 																	Совпадение по времени</Text
 																>
 															</div>
@@ -2042,7 +2059,7 @@
 																type="button"
 																class="btn btn-secondary"
 																data-bs-dismiss="modal"
-																name="Close"
+																trans="text+:Close"
 																style="font-size: 0.85rem"
 															>
 																Close
@@ -2055,7 +2072,7 @@
 											<button
 												value="Clear font-weight-bold "
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-primary btnOnPhoneLeft"
 												data-bs-toggle="modal"
 												data-bs-target="#full"
 												style="
@@ -2073,7 +2090,24 @@
 													class="bi bi-arrows-fullscreen font-weight-bold mx-0"
 													style="font-size: 1em; margin-top: 0.65em"
 												></i>
+												<span trans="text+:fullscreen;">весь день</span>
 											</button>
+
+											<style>
+												.btnOnPhoneLeft{
+													border-radius: 2px;
+													margin-top: 4px;
+													height: 28px;
+													text-align: center;
+													font-weight: 100;
+													font-size: 12px;
+												}
+												@media (max-width: 720px) {
+												.btnOnPhoneLeft span {
+													display: none;
+												}
+											}
+											</style>
 
 											<!--
                                         <button class="" id="btnShowFullSchedule" value="Clear font-weight-bold " style="font-size: 1em;  border-width: 0px;  margin-bottom: 2px; margin-right: 0.4em; background-color: #1AB395;color: white">
@@ -2090,7 +2124,7 @@
 											"
 										>
 											<button
-												name="EraseButton"
+											trans="value:EraseButton"
 												id="erase-button1"
 												class="nbtct btnOnPhone"
 												value="Clear text-danger font-weight-bold "
@@ -2128,7 +2162,9 @@
 													class="bi bi-plus"
 													style="font-size: 1.1em; font-weight: bold"
 												></i>
-												<span trans="text+:plusButtonBusyText;"> Добавить </span>
+												<span trans="text+:plusButtonBusyText;">
+													Добавить
+												</span>
 											</button>
 
 											<button
@@ -2163,6 +2199,7 @@
 											.btnOnPhone#erase-button1 span {
 												margin-right: 4px;
 											}
+											
 											@media (max-width: 540px) {
 												.btnOnPhone#create,
 												.btnOnPhone#erase-button1 {
@@ -2198,13 +2235,13 @@
 												<td width="9%">
 													<i class="bi bi-clock text-light mx-2"></i>
 												</td>
-												<td width="13%"><Text name="Mon">Mon</Text></td>
-												<td width="13%"><Text name="Tue">Tue</Text></td>
-												<td width="13%"><Text name="Wed">Wed</Text></td>
-												<td width="13%"><Text name="Thu">Thu</Text></td>
-												<td width="13%"><Text name="Fri">Fri</Text></td>
-												<td width="13%"><Text name="Sat">Sat</Text></td>
-												<td width="13%"><Text name="Sun">Sun</Text></td>
+												<td width="13%"><Text trans="text+:Mon">Mon</Text></td>
+												<td width="13%"><Text trans="text+:Tue">Tue</Text></td>
+												<td width="13%"><Text trans="text+:Wed">Wed</Text></td>
+												<td width="13%"><Text trans="text+:Thu">Thu</Text></td>
+												<td width="13%"><Text trans="text+:Fri">Fri</Text></td>
+												<td width="13%"><Text trans="text+:Sat">Sat</Text></td>
+												<td width="13%"><Text trans="text+:Sun">Sun</Text></td>
 											</tr>
 										</thead>
 									</table>
@@ -2549,7 +2586,7 @@
 														><i class="bi bi-table mr-1"></i>
 													</a>
 
-													<Text name="Schedule"> Расписание</Text>
+													<Text trans="text+:Schedule"> Расписание</Text>
 												</h5>
 												<span>
 													<button
@@ -2672,13 +2709,13 @@
 															<th width="9%">
 																<i class="bi bi-clock text-light mx-2"></i>
 															</th>
-															<th width="13%"><Text name="Mon">Mon</Text></th>
-															<th width="13%"><Text name="Tue">Tue</Text></th>
-															<th width="13%"><Text name="Wed">Wed</Text></th>
-															<th width="13%"><Text name="Thu">Thu</Text></th>
-															<th width="13%"><Text name="Fri">Fri</Text></th>
-															<th width="13%"><Text name="Sat">Sat</Text></th>
-															<th width="13%"><Text name="Sun">Sun</Text></th>
+															<th width="13%"><Text trans="text+:Mon">Mon</Text></th>
+															<th width="13%"><Text trans="text+:Tue">Tue</Text></th>
+															<th width="13%"><Text trans="text+:Wed">Wed</Text></th>
+															<th width="13%"><Text trans="text+:Thu">Thu</Text></th>
+															<th width="13%"><Text trans="text+:Fri">Fri</Text></th>
+															<th width="13%"><Text trans="text+:Sat">Sat</Text></th>
+															<th width="13%"><Text trans="text+:Sun">Sun</Text></th>
 														</tr>
 													</thead>
 
@@ -3031,7 +3068,7 @@
 							>
 								<div class="modal-body w-100 border-bottom-1 border-dark">
 									<h5 class="modal-title" id="staticBackdropLabel">
-										<Text name="ScSchedule">Schedule school</Text>
+										<Text trans="text+:ScSchedule">Schedule school</Text>
 									</h5>
 
 									<ul class="navbar-nav">
@@ -3050,17 +3087,16 @@
 												<input
 													type="checkbox"
 													id="autoLoad"
-													name="disable"
 													name="autoLoad"
-												/><Text name="UploadAtStartup">Upload at startup</Text>
+												/><Text trans="text+:UploadAtStartup">Upload at startup</Text>
 											</span>
 										</li>
 										<h5 class="modal-title" id="staticBackdropLabel">
-											<Text name="NewSchedule">New Schedule</Text>
+											<Text trans="text+:NewSchedule">New Schedule</Text>
 										</h5>
 
 										<h5 class="modal-title" id="staticBackdropLabel">
-											<Text name="FreeTime">Free time</Text>
+											<Text trans="text+:FreeTime">Free time</Text>
 										</h5>
 										<li class="nav-item my-1">
 											<span style="margin-left: 5px; text-align: center">
@@ -3071,7 +3107,7 @@
 													id="userSelector"
 												>
 													<option
-														name="NoStudent"
+													trans="text+:NoStudent"
 														value="Nothing"
 														selected
 														id="nobody"
@@ -3083,10 +3119,9 @@
 										</li>
 									</ul>
 									<span class="nav-item my-1">
-										<Text name="ChooseLanguage">Choose a language</Text>
+										<Text trans="text+:ChooseLanguage">Choose a language</Text>
 										<span style="margin-left: 5px">
 											<select
-												name="disable"
 												class="Inps"
 												style="margin-left: 0px"
 												id="Trans"

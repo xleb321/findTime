@@ -9,6 +9,16 @@
 		"en": "Clear",
 		"fr": "Clear"
 	},
+	"fullscreen": {
+		"ru": "Весь день",
+		"en": "fullscreen",
+		"fr": "fullscreen"
+	},
+	"legends": {
+		"ru": "легенды",
+		"en": "legends",
+		"fr": "legends"
+	},
 	"AboutTask6": {
 		"ru": "Обмен своими данными по свободному и занятому времени между пользователями системы.",
 		"en": "Exchange of their data on free and busy time between users of the system.",
