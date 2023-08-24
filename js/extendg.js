@@ -9,7 +9,7 @@ import { alerter } from './main.js';
 //alerter('<Text name="alertHead">Предупреждение</Text>', '<Text name="txtUnderConstraction">Руководство по работе с системой еще в разработке.</Text>', 'standart', 'info', 'slim')
 
 document
-	.getElementById('btnSaveTableSchedule')
+	.getElementById('btnSaveTableScheduleHelp')
 	.addEventListener('click', () => {
 		alerter(
 			'<Text trans="text+:GuideInfo;">Информация</Text>',
@@ -21,7 +21,7 @@ document
 	});
 
 document
-	.getElementById('btnLoadTableSchedule')
+	.getElementById('btnLoadTableScheduleHelp')
 	.addEventListener('click', () => {
 		alerter(
 			'<Text trans="text+:GuideInfo;">Информация</Text>',

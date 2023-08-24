@@ -4,11 +4,12 @@ $data = "";
 $login = "";
 
 /* Здесь проверяется существование переменных */
-if (isset($_REQUEST['data'])) {$data = $_REQUEST['data'];}
+
 if (isset($_REQUEST['login'])) {$login = $_REQUEST['login'];}
 if (isset($_REQUEST['item'])) {$item = $_REQUEST['item'];}
+if (isset($_REQUEST['data'])) {$data = $_REQUEST['data'];}
 
-if (!preg_match("#^[aA-zZ0-9\-_]+$#",$login)) {
+if (!preg_match('/^([а-яА-ЯЁёa-zA-Z0-9_]+)$/u',$login)) {
     $login='error122zaqwschsakieeeddvdsadefh'; 
 }
 

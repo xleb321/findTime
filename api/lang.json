@@ -1,23 +1,63 @@
 {
 	"main": {
-		"ru": "Найди время! | Система составления расписания и работы со временем!",
-		"en": "Find the time! | The system of scheduling and working with time!",
+		"ru": "ДелуВремя! | Система составления расписания и работы со временем!",
+		"en": "SetTime! | The system of scheduling and working with time!",
 		"fr": "Trouve le temps! / Système de planification et de travail avec le temps!"
 	},
 	"clear": {
 		"ru": "Очистить",
 		"en": "Clear",
-		"fr": "Clear"
+		"fr": "Clair"
 	},
 	"fullscreen": {
 		"ru": "Весь день",
-		"en": "fullscreen",
-		"fr": "fullscreen"
+		"en": "Fullscreen",
+		"fr": "Plein écran"
 	},
 	"legends": {
-		"ru": "легенды",
-		"en": "legends",
-		"fr": "legends"
+		"ru": "Легенда",
+		"en": "Legend",
+		"fr": "Légende"
+	},
+	"cntQuery": {
+		"ru": "Количество людей в запросе: ",
+		"en": "Number of people in the request: ",
+		"fr": "Nombre de personnes par requête: "
+	},
+	"maxNOM": {
+		"ru": "Максимум совпадений по времени: ",
+		"en": "Maximum time matches: ",
+		"fr": "Maximum time matches:"
+	},
+	"d1": {
+		"ru": "Данные по выбранному времени",
+		"en": "Data on the selected time",
+		"fr": "Données sur l'heure sélectionnée"
+	},
+	"d2": {
+		"ru": "Список людей для которых это время не свободно: ",
+		"en": "List of people for whom this time is not free: ",
+		"fr": "Liste des personnes pour lesquelles ce temps n'est pas libre: "
+	},
+	"MatchTimeText": {
+		"ru": "MatchTimeText",
+		"en": "",
+		"fr": ""
+	},
+	"NotMatched": {
+		"ru": "Для следующих людей выбранный период времени не свободен: ",
+		"en": "For the following people, the selected time period is not free: ",
+		"fr": "Pour les personnes suivantes, la période sélectionnée n'est pas libre: "
+	},
+	"yes": {
+		"ru": "<span style=\"color:#0d6efd\">КОЛИЧЕСТВО СОВПАДЕНИЙ МАКСИМАЛЬНО!</span>",
+		"en": "<span style=\"color:#0d6efd\">THE MAXIMUM NUMBER OF MATCHES!</span>",
+		"fr": "<span style=\"color:#0d6efd\">LE NOMBRE DE CORRESPONDANCES MAXIMUM!</span>"
+	},
+	"no": {
+		"ru": "Количество совпадений не максимально.",
+		"en": "The number of matches is not the maximum.",
+		"fr": "Le nombre de correspondances n'est pas maximal."
 	},
 	"AboutTask6": {
 		"ru": "Обмен своими данными по свободному и занятому времени между пользователями системы.",
@@ -25,14 +65,14 @@
 		"fr": "Partager vos données sur le temps libre et occupé entre les utilisateurs du système."
 	},
 	"HelpButton": {
-		"ru": "Руководство",
+		"ru": "Помощь",
 		"en": "Guide",
 		"fr": "Guide"
 	},
 	"plusButtonBusyText": {
-		"ru": "Добавить",
-		"en": "Add",
-		"fr": "Add"
+		"ru": "Добавить ",
+		"en": "Add ",
+		"fr": "Ajouter "
 	},
 	"filterButtonStyle": {
 		"ru": "width:8em; height:29px; margin:5px 145px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
@@ -95,9 +135,9 @@
 		"fr": "&nbsp; Listе&nbsp; "
 	},
 	"Schedule": {
-		"ru": "&nbsp; Расписание",
-		"en": "&nbsp; Schedule",
-		"fr": "&nbsp; Graphique"
+		"ru": "Расписание",
+		"en": "Schedule",
+		"fr": "Graphique"
 	},
 	"Tabs": {
 		"ru": "Показывать при старте",
@@ -130,9 +170,19 @@
 		"fr": "Auto Sauvegarde"
 	},
 	"FreeTime": {
-		"ru": "&nbsp; Свободноe время &nbsp; ",
-		"en": "&nbsp; Free time &nbsp; ",
-		"fr": "&nbsp; Temps Libre &nbsp;"
+		"ru": " Свободноe время",
+		"en": " Free time  ",
+		"fr": " Temps Libre "
+	},
+	"FreeTimeBrief": {
+		"ru": " Свободноe",
+		"en": " Free  ",
+		"fr": " Libre "
+	},
+	"BusyTimeBrief": {
+		"ru": "Занятое",
+		"en": "Busy",
+		"fr": "Occupé"
 	},
 	"AddTime": {
 		"ru": "&nbsp; Время &nbsp; ",
@@ -155,9 +205,9 @@
 		"fr": "Importer du temps libre"
 	},
 	"BusyTime": {
-		"ru": "&nbsp; Занятое время &nbsp;",
-		"en": "&nbsp; Busy time &nbsp;",
-		"fr": "&nbsp; Temps Occupé &nbsp;"
+		"ru": "Занятое время",
+		"en": "Busy time",
+		"fr": "Temps Occupé"
 	},
 	"ImpBusyTime": {
 		"ru": "Импортируйте время занятости",
@@ -224,10 +274,9 @@
 		"en": "Development team",
 		"fr": "Équipe de développement"
 	},
-
 	"FindTime": {
-		"ru": "НайдиВремя!",
-		"en": "FindTime!",
+		"ru": "ДелуВремя!",
+		"en": "SetTime!",
 		"fr": "Temps de recherche!"
 	},
 	"Mon": {
@@ -265,6 +314,41 @@
 		"en": "Sun",
 		"fr": "Dim"
 	},
+	"MonFull": {
+		"ru": "Понедельник",
+		"en": "Monday",
+		"fr": "Lundi"
+	},
+	"TueFull": {
+		"ru": "Вторник",
+		"en": "Monday",
+		"fr": "Mardi"
+	},
+	"WedFull": {
+		"ru": "Среда",
+		"en": "Wednesday",
+		"fr": "Environnement"
+	},
+	"ThuFull": {
+		"ru": "Четверг",
+		"en": "Thursday",
+		"fr": "Jeudi"
+	},
+	"FriFull": {
+		"ru": "Пятница",
+		"en": "Friday",
+		"fr": "Vendredi"
+	},
+	"SatFull": {
+		"ru": "Суббота",
+		"en": "Saturday",
+		"fr": "C'est samedi"
+	},
+	"SunFull": {
+		"ru": "Воскресенье",
+		"en": "Sunday",
+		"fr": "Dimanche"
+	},
 	"TimeForStudy": {
 		"ru": "Найди время для учёбы, работы и жизни!",
 		"en": "Find time for study, work and life!",
@@ -286,13 +370,13 @@
 		"fr": "Trier par: "
 	},
 	"EmptinessOfUsersList": {
-		"ru": "&nbsp;&nbsp;&nbsp;&nbsp;Данных нет!! <br><br><br>Добавьте данные по свободному времени, нажав кнопку с плюсом, или измените условия фильтра, нажав кнопку с воронкой.<br>Данные по свободному времени Вы можете передать любому участнику системы 'НайдиВремя!'",
-		"en": "&nbsp;&nbsp;&nbsp;&nbsp;There is no data.<br><br> <br>Add free time data by clicking the plus button, or change the filter conditions by clicking the funnel button.<br>You can transfer the free time data to any participant of the 'FindTime!' system.",
-		"fr": "&nbsp;&nbsp;&nbsp;&nbsp;Il n'y a pas de données dans la liste de temps libre. <br>Ajoutez des données de temps libre en cliquant sur le bouton plus ou modifiez les conditions de filtre en cliquant sur le bouton entonnoir.<br>les Données de temps libre Que vous pouvez transmettre à n'importe quel membre du système 'Trouverle 'Temps!"
+		"ru": "&nbsp;&nbsp;&nbsp;&nbsp;<br>Данных нет!! <br><br>Добавьте данные по свободному времени, нажав кнопку с плюсом, или измените условия фильтра, нажав кнопку с воронкой.",
+		"en": "&nbsp;&nbsp;&nbsp;&nbsp;<br>There is no data.<br><br>Add free time data by clicking the plus button, or change the filter conditions by clicking the funnel button.",
+		"fr": "&nbsp;&nbsp;&nbsp;&nbsp;<br>Il n'y a pas de données dans la liste de temps libre. <br>Ajoutez des données de temps libre en cliquant sur le bouton plus ou modifiez les conditions de filtre en cliquant sur le bouton entonnoir."
 	},
 	"EmptinessOfBusinessList": {
-		"ru": "&nbsp;&nbsp;&nbsp;&nbsp;Данных нет! <br><br><br>Добавьте данные по занятому времени, нажав кнопку с плюсом.<br>Данные по занятому времени Вы можете передать любому участнику системы 'НайдиВремя!'",
-		"en": "&nbsp;&nbsp;&nbsp;&nbsp;There is no data! <br><br><br>Add data on the occupied time by clicking the plus button.<br>You can transfer the data on the occupied time to any participant of the system 'Find the time!'",
+		"ru": "&nbsp;&nbsp;&nbsp;&nbsp;<br>Данных нет! <br><br>Добавьте данные по занятому времени, нажав кнопку с плюсом.<br>Данные по занятому времени Вы можете передать любому участнику системы 'ДелуВремя!'",
+		"en": "&nbsp;&nbsp;&nbsp;&nbsp;<brThere is no data! ><br><br>Add data on the occupied time by clicking the plus button.<br>You can transfer the data on the occupied time to any participant of the system 'SetTime!'",
 		"fr": "&nbsp;&nbsp;&nbsp;&nbsp;Il n'y a pas de données dans la liste des heures occupées! <br>Ajoutez les données de temps occupé en cliquant sur le bouton plus.<br>les Données sur le temps occupé, vous pouvez transmettre à n'importe quel membre du système 'Trouverle Temps!'"
 	},
 	"MatchTime": {
@@ -415,11 +499,6 @@
 		"en": "A guide under construction. Wait a little longer! ",
 		"fr": "Un guide en construction. Attendez encore un peu!"
 	},
-	"SendCode": {
-		"ru": "Данные кода времени отправлены на email пользователя системы.",
-		"en": "The time code data is sent to the system user's email.",
-		"fr": "Les données du code temporel sont envoyées à l'e-mail de l'utilisateur du système."
-	},
 	"Danger": {
 		"ru": "Внимание!",
 		"en": "Alert!",
@@ -430,13 +509,33 @@
 		"en": "Welcome!",
 		"fr": "Bienvenue!"
 	},
+	"WelcomeVerify": {
+		"ru": "Пользователь ",
+		"en": "The user ",
+		"fr": "Utilisateur"
+	},
+	"WelcomeVerify2": {
+		"ru": " активирован!",
+		"en": " is activated!",
+		"fr": "activé!"
+	},
+	"WelcomeVerify3": {
+		"ru": "Войдите в систему и Вам будут доступны дополнительные функции.",
+		"en": "Log in and additional features will be available to you",
+		"fr": "Connectez-vous et vous aurez accès à des fonctionnalités supplémentaires."
+	},
 	"InviteText": {
-		"ru": "Вы получили приглашение заполнить данные по Вашему свободному или занятому времени.  Введите пожалуйста свое имя и фамилию, отметьте в таблице время и нажмите кнопку 'Отправить'! Спасибо!",
-		"en": "You have received an invitation to fill in the data on your free or busy time.  Please enter your first and last name, mark the time in the table and click send! Thanks!",
-		"fr": "Vous avez reçu une invitation à remplir les détails de Votre temps libre ou occupé.  S'il vous plaît entrer votre nom et prénom, marquer l'heure dans le tableau et cliquez sur envoyer! Merci!"
+		"ru": "Вы получили приглашение от пользователя",
+		"en": "You have received an invitation from the user ",
+		"fr": "Vous avez reçu une invitation de l'utilisateur"
+	},
+	"InviteText2": {
+		"ru": " заполнить данные по Вашему свободному или занятому времени для составления расписания в системе <b>ДелуВремя!</b> <p>Введите пожалуйста свое имя и фамилию, отметьте в таблице время и нажмите кнопку <b class=\"text-primary\">'Отправить'</b>!<span style=\" font-weight:500\"> Спасибо!<span></p>",
+		"en": "fill in the data on your free or busy time for scheduling in the system <b>SetTime!</b> <p>Please enter your first and last name, mark the time in the table and click <b class=\"text-primary\">'Send'</b>!<span style=\" font-weight:500;\"> Thanks!<span></p>",
+		"fr": "remplissez les données sur Votre temps libre ou occupé pour la planification dans le système < B>trouver le Temps!</b> <p>veuillez Entrer votre prénom et votre nom, marquer l'heure dans le tableau et cliquer sur le bouton <B class=\"text-primary\">'Envoyer'</b>!<span style = \"font-weight:500;\"> Merci!<span></p>"
 	},
 	"AlertEmpty": {
-		"ru": "Прежде всего отметьте людей <img src='/img/check-square-fill.svg'> во вкладках <b>\"Cвободное время\"</b> и(или) <b>\"Занятое время\"</b> и затем вернитесь на вкладку <b>\"Расписание\"</b>. На ней будет отмечено совпадения по времени.<p style=\"text-align: justify;\">Перед началом работы, пожалуйста, ознакомьтесь c <a href=\"guide.html\"> <b>\"Руководством пользователя\".</b></a>",
+		"ru": "Прежде всего, отметьте людей флажком <img src='/img/check-square-fill.svg'> в левой части строки во вкладках <b>\"Cвободное время\"</b> и(или) <b>\"Занятое время\"</b>, а затем вернитесь на вкладку <b>\"Расписание\"</b>. На ней будет отмечено совпадения по времени.<p style=\"text-align: justify;\">Перед началом работы, пожалуйста, ознакомьтесь c <a href=\"guide.html\"> <b>\"Руководством пользователя\".</b></a>",
 		"en": "First of all, mark the people <img src='/img/check-square-fill.svg'> in the tabs <b>\"Free time\"</b> and(or) <b>\"Busy time\"</b> and then return to the tab <b>\"Schedule\"</b>. Coincidences in time will be marked on it.<p style=\"text-align: justify;\">Before getting started, please read <a href=\"guide.html \"> <b>\"User Manual\".</b></a>",
 		"fr": "Cochez d'abord les lignes <img src='/img/check-square-fill.svg'> dans les onglets <b>\"Temps Libre\"</b> et(ou) <b>\"Temps Occupé\"</b>, puis revenez à l'onglet <b>\"Horaire\" </b>. Elle sera marquée par des coïncidences dans le temps.<p style=\"text-align: justify;\">Avant de commencer, s'il vous plaît consulter <a href=\"guide.html\"> <b>\"Guide de l'utilisateur\".</b></a>"
 	},
@@ -475,6 +574,46 @@
 		"en": "Attention!",
 		"fr": "Attention!"
 	},
+	"AlertErrorlogin1": {
+		"ru": "Пустой логин.",
+		"en": "Login is empty",
+		"fr": "Connexion vide"
+	},
+	"AlertErrorlogin2": {
+		"ru": "Логин должен быть не менее 6 знаков.",
+		"en": "The login must be at least 6 characters.",
+		"fr": "Le login doit être d'au moins 6 caractères."
+	},
+	"AlertErrorlogin22": {
+		"ru": "В логине могут быть только буквы и цифры. Пробелы и другие символы использовать нельзя.",
+		"en": "The login can only contain letters and numbers. Spaces and other characters cannot be used.",
+		"fr": "Dans le login, il ne peut y avoir que des lettres et des chiffres. Vous ne pouvez pas utiliser d'espaces ni d'autres caractères."
+	},
+	"AlertErrorlogin3": {
+		"ru": "Пароль должен быть не менее 6 знаков.",
+		"en": "The password must be at least 6 characters.",
+		"fr": "Le mot de passe doit comporter au moins 6 caractères."
+	},
+	"AlertErrorlogin33": {
+		"ru": "В пароле могут быть только буквы и цифры. Пробелы и другие символы использовать нельзя.",
+		"en": "The password can only contain letters and numbers. Spaces and other characters cannot be used.",
+		"fr": "Le mot de passe ne peut contenir que des lettres et des chiffres. Vous ne pouvez pas utiliser d'espaces ni d'autres caractères."
+	},
+	"AlertErrorlogin4": {
+		"ru": "Не заполнено одно из полей с паролями",
+		"en": "One of the fields with passwords is empty",
+		"fr": "L'un des champs de mot de passe n'est pas rempli"
+	},
+	"AlertErrorlogin5": {
+		"ru": "Пароли не совпадают",
+		"en": "Passwords don't match",
+		"fr": "Les mots de passe ne correspondent pas"
+	},
+	"AlertErrorlogin6": {
+		"ru": "Пустой email",
+		"en": "Email is empty",
+		"fr": "Email vide"
+	},
 	"AlertAttentionBody1": {
 		"ru": "Введите или загрузите из хранилища данные по курсам",
 		"en": "Enter or download course data from the repository",
@@ -491,9 +630,9 @@
 		"fr": "Pas de données de code temporel! Formez - le en cliquant sur le bouton"
 	},
 	"sendCodeError2": {
-		"ru": "Нет данных по логину или email пользователя системы которому отправляем код времени. Введите его в поле ввода!",
-		"en": "There is no data on the login or email of the system user to whom we are sending the time code. Enter it in the input field!",
-		"fr": "Il n'y a pas de données sur le login ou l'email de l'utilisateur du système auquel nous envoyons le code de temps. Entrez-le dans le champ de saisie!"
+		"ru": "Нет данных по логину пользователя системы которому отправляем код времени. Введите его в поле ввода!",
+		"en": "There is no data on the login of the system user to whom we are sending the time code. Enter it in the input field!",
+		"fr": "Il n'y a pas de données sur le login de l'utilisateur du système auquel nous envoyons le code de temps. Entrez-le dans le champ de saisie!"
 	},
 	"sendCodeError3": {
 		"ru": "Не введен код времени. Импорт невозможен! Вставьте код в поле!",
@@ -881,8 +1020,8 @@
 		"fr": "Utilisation du système dans des exemples"
 	},
 	"WorkExample0": {
-		"ru": "Эффективность работы с любой информационной системой зависит от полноты данных. Также и система НайдиВремя! будет полезна при наличии полных данных по свободному и занятому времени. Только тогда можно получить максимальный эффект и Ваше расписание будет оптимальным и удобным для всех! В данном разделе показан порядок действий для решения конкретных задач по работе со временем на примере детской школы программирования.",
-		"en": "The effectiveness of working with any information system depends on the completeness of the data. Also, the Find the Time system! it will be useful if there is complete data on free and busy time. Only then can you get the maximum effect and your schedule will be optimal and convenient for everyone! This section shows the procedure for solving specific tasks for working with time on the example of a children's programming school.",
+		"ru": "Эффективность работы с любой информационной системой зависит от полноты данных. Также и система ДелуВремя! будет полезна при наличии полных данных по свободному и занятому времени. Только тогда можно получить максимальный эффект и Ваше расписание будет оптимальным и удобным для всех! В данном разделе показан порядок действий для решения конкретных задач по работе со временем на примере детской школы программирования.",
+		"en": "The effectiveness of working with any information system depends on the completeness of the data. Also, the SetTime system! it will be useful if there is complete data on free and busy time. Only then can you get the maximum effect and your schedule will be optimal and convenient for everyone! This section shows the procedure for solving specific tasks for working with time on the example of a children's programming school.",
 		"fr": "L'efficacité de tout système d'information dépend de l'exhaustivité des données. Aussi le système Trouvez le Temps! sera utile si vous avez des données complètes sur le temps libre et occupé. Alors seulement, vous pouvez obtenir le maximum d'effet et Votre horaire sera optimal et pratique pour tout le monde! Cette section présente les étapes à suivre pour résoudre des problèmes spécifiques de travail au fil du temps à l'aide de l'exemple de l'école de programmation pour enfants."
 	},
 	"WorkTask": {
@@ -1205,7 +1344,6 @@
 		"en": "Apply",
 		"fr": "Appliquer"
 	},
-
 	"Save": {
 		"ru": "Сохранить",
 		"en": "Save",
@@ -1227,14 +1365,14 @@
 		"fr": "Filtrer"
 	},
 	"EraseButton": {
-		"ru": "Фильтр",
-		"en": "Filter",
-		"fr": "Filtrer"
+		"ru": "Очистить",
+		"en": "Clear",
+		"fr": "Nettoyer"
 	},
 	"PlusButton": {
-		"ru": "Фильтр",
-		"en": "Filter",
-		"fr": "Filtrer"
+		"ru": "Добавить",
+		"en": "Add",
+		"fr": "Ajouter"
 	},
 	"ConfirmerOK": {
 		"ru": "Ok ru",
@@ -1256,11 +1394,6 @@
 		"en": "How old are you ?",
 		"fr": "Quel âge as-tu?"
 	},
-	"FreeTime": {
-		"ru": "Свободное время",
-		"en": "FreeTime",
-		"fr": "Temps Libre"
-	},
 	"FreeTab": {
 		"ru": "Вкладка Свободное время",
 		"en": "FreeTime tab",
@@ -1280,11 +1413,6 @@
 		"ru": "Вкладка Расписание",
 		"en": "Schedule tab",
 		"fr": "Onglet Graphique"
-	},
-	"BusyTime": {
-		"ru": "Занятое время",
-		"en": "BusyTime",
-		"fr": "Temps Occupé"
 	},
 	"Course": {
 		"ru": "Курс",
@@ -1355,5 +1483,105 @@
 		"ru": "&#8593; описания по уб",
 		"en": "&#8593; desc desc",
 		"fr": "&#8593; par ordre décroissant"
+	},
+	"total": {
+		"ru": "Итого: ",
+		"en": "Total: ",
+		"fr": "Total: "
+	},
+	"person": {
+		"ru": "человек(а)",
+		"en": "person(s)",
+		"fr": "personne(s)"
+	},
+	"records": {
+		"ru": "записи(ей)",
+		"en": "record(s)",
+		"fr": "enregistrement(s)"
+	},
+	"scheduleA": {
+		"ru": "Вы первый раз запустили систему составления расписания и работы со временем - <b style='color:blue'>ДелуВремя!</b>",
+		"en": "This is the first time you have launched a system for scheduling and working with time - <b style='color:blue'>BusinessTime!</b>",
+		"fr": "Pour la première fois, vous avez lancé le système de planification et de travail avec le temps - <b style='color:blue'>Temps D'Affaires!</b>"
+	},
+	"ConnexionSystème": {
+		"ru": "Логин пользователя системы",
+		"en": "Login of the system user",
+		"fr": "Connexion utilisateur du système"
+	},
+	"ErrorGo": {
+		"ru": "Что-то пошло не так. Повторите вашу попытку позже",
+		"en": "Something went wrong. Try again later",
+		"fr": "Quelque chose a mal tourné. Réessayez plus tard"
+	},
+	"TodoIsAlreadyDisplayed": {
+		"ru": "Список дел другого(их) пользователей уже выводится в расписание",
+		"en": "The to-do list of the other (their) users is already displayed in the schedule",
+		"fr": "La liste des tâches de l'autre(leurs) utilisateurs est déjà affichée dans le calendrier"
+	},
+	"WeekDay": {
+		"ru": "День недели",
+		"en": "Day of the week",
+		"fr": "Jour de la semaine"
+	},
+	"Beginning": {
+		"ru": "Начало",
+		"en": "Beginning",
+		"fr": "Début"
+	},
+	"Fin": {
+		"ru": "Конец",
+		"en": "The end",
+		"fr": "Fin"
+	},
+	"TypeEmployment": {
+		"ru": "Тип занятости",
+		"en": "Type of employment",
+		"fr": "Type d'emploi"
+	},
+	"Personal": {
+		"ru": "Личное",
+		"en": "Personal",
+		"fr": "Personnel"
+	},
+	"Rest": {
+		"ru": "Отдых",
+		"en": "Rest",
+		"fr": "Détente"
+	},
+	"ThrowOff": {
+		"ru": "Сбросить",
+		"en": "Throw off",
+		"fr": "Réinitialiser"
+	},
+	"FillRequired": {
+		"ru": "Заполните обязательные поля",
+		"en": "Fill in the required fields",
+		"fr": "Remplissez les champs obligatoires"
+	},
+	"EditingСase": {
+		"ru": "Редактирование дела",
+		"en": "Editing a case",
+		"fr": "Édition de l'affaire"
+	},
+	"DisplaySchedule": {
+		"ru": "Выводить список дел в расписание",
+		"en": "Display the to-do list in the schedule",
+		"fr": "Afficher la liste des tâches dans le calendrier"
+	},
+	"toDoList": {
+		"ru": "список дел",
+		"en": "to-do list",
+		"fr": "rôle"
+	},
+	"userWith": {
+		"ru": "Пользователь с таким же именем, курсом и уровнем уже существует. Либо измените данные, либо обновите уже существующего пользователя",
+		"en": "A user with the same name, course, and level already exists. Either change the data or update an existing user",
+		"fr": "Un utilisateur avec le même nom, le même cours et le même niveau existe déjà. Modifiez les données ou mettez à jour un utilisateur existant"
+	},
+	"start2Net": {
+		"ru": "&nbsp;&nbsp;Входить в сетевое хранилище при входе",
+		"en": "&nbsp;&nbsp;Log in to the network storage when logging in",
+		"fr": "&nbsp;&nbsp;Se connecter au NAS lors de la connexion"
 	}
 }

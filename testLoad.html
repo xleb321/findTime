@@ -6,6 +6,9 @@
 </head>
 
 <body>
+
+    
+
     <button id="btn1" value="загрузить" type="button"> Загрузить из локального хранилища </button>
     <button id="btn2" value="загрузить" type="button"> Загрузить из сетевой папки</button>
     <hr width=100%>
@@ -29,11 +32,11 @@
             return JSON.parse(dataFromRemote);
         }
 
-        function loadFromRemote(globalLogin, item, apikey) {
+        function loadFromRemote(globalLogin, item) {
             var params = new URLSearchParams();
             params.set('login', globalLogin);
             params.set('item', item);
-            fetch('https://findtime.online/php/lload.php', {
+            fetch('https://settime.online/php/lload.php', {
                 method: 'POST',
                 body: params
             }).then(
@@ -54,7 +57,7 @@
 
         function getDataFrom(typeBase, globalLogin, item) {
             if (typeBase == "local") {
-              dataLoad = startLoadFromLocal(globalLogin, item);
+                dataLoad = startLoadFromLocal(globalLogin, item);
             } else if (typeBase == "remote") {
                 dataLoad = startLoadFromRemote(globalLogin, item, apikey);
             } else {

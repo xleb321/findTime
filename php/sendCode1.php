@@ -2,7 +2,7 @@
 $host = 'mysql.codologianovoch.myjino.ru';
 $user = 'codologianovoch';
 $password = 'Ybuth900';
-$db_name = 'codologianovoch_findtime';
+$db_name = 'codologianovoch_settime';
 
 $sendTimeCode="";
 $loginSendTimeCode="oleg";
@@ -34,8 +34,8 @@ if ($action=='sendCode2email'){
 	if ($n > 0) {
 	    $to = 'belozerov.o.s@yandex.ru';
 
-        $subject = 'Уведомление от системы FindTime!';
-        $from = 'no-reply@findtime.online';
+        $subject = 'Уведомление от системы Setime!';
+        $from = 'no-reply@settime.online';
 
         // Для отправки HTML-почты необходимо установить заголовок Content-type.
         $headers  = 'MIME-Version: 1.0' . "\r\n";

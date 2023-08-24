@@ -8,8 +8,8 @@ const nbtc = document.querySelector(".nbtc");
 const nbtct = document.querySelector(".nbtct");
 const nbtcl = document.querySelector(".nbtcl");
 const creatingButton = document.getElementById("create");
-//const creatingButton = document.getElementById("create");
 const showingCodeButton = document.getElementById("showingCodeButton");
+
 // const userSelect = document.getElementById("userSelector");
 const selectCourse = document.getElementById("courseSelector");
 const selectLevel = document.getElementById("levelSelector");
@@ -80,8 +80,17 @@ const colorStudent = [
 	"LightPink",
 	"LemonChiffon",
 ]; // Oleg
+
+//document.getElementById("btnTodo").style.display = "none";
+
 let cndCoincid = 0; // Oleg
 let numberStudent = 0; // Oleg
+
+function getRandomColor(min, max) {
+    min = Math.ceil(0);
+    max = Math.floor(colorStudent.length);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+}
 
 function allDaySelect(thisy) {
     let curDayWeek = thisy.getAttribute("lock");
@@ -93,6 +102,9 @@ function allDaySelect(thisy) {
     for (let i = 0; i < allDay.length; i++) {
         allDay[i].style.background = allColor;
     }
+    document.getElementById("importInput").value = fCompressCodeTime(
+        getTimeCode()
+    );
 }
 
 function checkDec() {
@@ -171,6 +183,7 @@ function clearEverything() {
     }
 
     importInput.value = "";
+    document.getElementById("loginSendTimeCode").value = "";
 
     nobodyIsSelected.selected = true;
     nocourseIsSelected.selected = true;
@@ -201,6 +214,16 @@ function setItems(currentUser, user = true) {
                 for (let j = 0; j < curDay.length; j++) {
                     if (binArray[i][j + 1] === "1") {
                         curDay[j].classList.add(currentUser.name.replace(/ /g, "%"));
+
+                        if (!curDay[j].getAttribute("ids")) {
+                            curDay[j].setAttribute("ids", currentUser.id);
+                        } else {
+                            let temp = Array(curDay[j].getAttribute("ids"));
+                            temp.push(currentUser.id);
+                            curDay[j].setAttribute("ids", temp);
+                        }
+
+                        curDay[j].setAttribute("maximum", 0);
                         if (curDay[j].style.background === "transparent") {
                             curDay[j].style.background = curColorStudent; // Oleg
                         } else if (curDay[j].style.background === "skyblue") {
@@ -216,18 +239,61 @@ function setItems(currentUser, user = true) {
                                 curDay[j].appendChild(matching);
                                 curDay[j].addEventListener("click", () => {
                                     let temp = [];
+                                    let ids = curDay[j]
+                                        .getAttribute("ids")
+                                        .split(",")
+                                        .map(Number);
                                     curDay[j].classList.forEach(item =>
-                                        //                                      temp.push(item.replace("%", " "))   
+                                        //                                      temp.push(item.replace("%", " "))
                                         temp.push(item.replace(/%/g, " "))
-
                                     );
 
-                                    alerter(
-                                        "<Text trans='text+:MatchTime;'>Is a match in time</Text>",
-                                        `<Text trans='text+:MatchTimeText;'>Names of those who matched at this time:<br><b></Text> ${temp
-											.slice(1)
-											.join(", ")}</b>`
-                                    );
+//alerter(
+//"<Text trans='text+:MatchTime;'></Text>",
+//`<div style="margin-top:10px;text-indent:0px;"><Text trans='text+:cntQuery;'>Количество людей в запросе: </Text><b>${usersToDisplay.length}</b><br><Text trans='text+:maxNOM;'>Максимум совпадений по времени: </Text><b>${findBestMatch()[0][0]} (${Math.round(findBestMatch()[0][0] * 100/usersToDisplay.length)}%)<b><div style="margin-top:5px;"><b><Text trans='text+:d1;'>Данные по выбранному времени</Text></b></div><div style="margin-top:5px;><Text trans='text+:MatchTimeText;'></Text><b style="color:#48c2a9">${temp.slice(1).join(", ")}</b></div>
+//
+//<div style="margin-top:5px;><Text trans='text+:d2;'></Text><b>${curDay[j].getAttribute("maximum") === "1"?'<Text trans="text+:yes;"></Text>': '<Text trans="text+:no;"></Text>'}</b>
+//<Text trans='text+:NotMatched;'></Text><b style="color:indianred">${usersToDisplay.filter(user => !ids.includes(user.id)
+//).map(user => user.name).join(", ")}</b></div>`
+//                                    );
+//                                    
+                              
+                                    
+                                    									alerter(
+										"<Text trans='text+:MatchTime;'></Text>",
+										`<div style="margin-top:10px;text-indent:0px;">
+                                            <Text trans='text+:cntQuery;'></Text><b>${
+																							usersToDisplay.length
+																						}</b><br>
+                                            <Text trans='text+:maxNOM;'></Text><b>${
+																							findBestMatch()[0][0]
+                                                                            
+																						}
+(${Math.round(findBestMatch()[0][0] * 100/usersToDisplay.length)}%)
+
+</b><br><div style="margin-top:7px;margin-bottom:7px;"><b><Text trans='text+:d1;'>Данные по выбранному времени</Text></b></div>
+                                            <Text trans='text+:MatchTimeText;'><br></Text>
+                                                <b style="color:#48c2a9; margin-bottom:7px;">${temp
+																									.slice(1)
+																									.join(", ")}</b><br>
+                                            <div style="margin-top:7px; margin-bottom:7px"><Text trans='text+:llll;'></Text><b>${
+																							curDay[j].getAttribute(
+																								"maximum"
+																							) === "1"
+																								? '<Text trans="text+:yes;"></Text>'
+																								: '<Text trans="text+:no;"></Text>'
+																						}</b></div>
+                                            <Text trans='text+:NotMatched;'></Text><b style="color:indianred;">${usersToDisplay
+																							.filter(
+																								user => !ids.includes(user.id)
+																							)
+																							.map(user => user.name)
+																							.join(", ")}</b>
+                                        </div>`
+									);
+                                    
+                                    
+                                    
                                 });
                             } else {
                                 curDay[j].firstChild.innerHTML = +curDay[j].firstChild.textContent + 1;
@@ -369,6 +435,9 @@ function clickColor() {
     } else {
         this.style.background = "seagreen";
     }
+    document.getElementById("importInput").value = fCompressCodeTime(
+        getTimeCode()
+    );
 }
 
 function getCurrentCourse(event) {
@@ -424,10 +493,18 @@ function checkOut() {
 }
 
 function loadStudentsTable() {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+	
+//    const users = JSON.parse(localStorage.getItem("users")) || [];
+//    const users1 = JSON.parse(getDataFrom(localStorage.getItem('typeBase'), globalLogin, 'users')) || [];
+	
+	const users1 = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'users')) || [];
 
-    const filteredUsers =
-        JSON.parse(localStorage.getItem("filteredUsers")) || users;
+//    const filteredUsers =
+//        JSON.parse(localStorage.getItem("filteredUsers")) || users;
+	
+	const filteredUsers = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredUsers')) || users;
+	
+	
 
     let rightToolBar = document.createElement("span");
 
@@ -435,49 +512,127 @@ function loadStudentsTable() {
 
     if (!document.getElementById("plus-button")) {
         const plusButton = document.createElement("button");
-        plusButton.setAttribute("trans", "text+:PlusButton;");
         plusButton.innerHTML = "";
         plusButton.style.boxSizing = "border-box";
-        plusButton.style.padding = "5px 3px 3px 3px";
         plusButton.style.borderRadius = "2px";
         plusButton.style.fontWeight = "300";
+        plusButton.style.fontSize = "1em";
         plusButton.style.borderWidth = "0px";
+        plusButton.style.margin = "5px 0px 0 0 ";
+        plusButton.style.width = "29px";
+        plusButton.style.height = "29px";
         plusButton.id = "plus-button";
         let plusButtonIcon = document.createElement("i");
         plusButtonIcon.setAttribute("class", "bi bi-plus");
         plusButtonIcon.style.color = "tean";
-        plusButtonIcon.style.fontSize = "1.1em";
-        plusButtonIcon.style.fontWeight = "bold";
+        plusButtonIcon.style.fontSize = "25px";
         plusButton.appendChild(plusButtonIcon);
-        plusButton.setAttribute("data-bs-toggle", "modal");
-        plusButton.setAttribute("data-bs-target", "#staticBackdrop");
+
         rightToolBar.append(plusButton);
         studentTableDiv.appendChild(rightToolBar);
+        plusButton.setAttribute("data-bs-toggle", "modal");
+        plusButton.setAttribute("data-bs-target", "#staticBackdrop");
+
+        if (document.documentElement.clientWidth > 540) {
+            let plusButtonText = document.createElement("span");
+            plusButtonText.setAttribute("trans", "text:plusButtonBusyText;");
+            plusButton.setAttribute("trans", "style:PlusButtonBusyStyle");
+            plusButton.appendChild(plusButtonText);
+        }
+
+        // plusButton.style.width = '5em'
+        // plusButton.style.padding = '3px 0.5em 3px 6px';
+        // let plusButtonText = document.createElement('span');
+        // plusButtonText.setAttribute('trans', 'text:PlusButton;');
+        // plusButton.appendChild(plusButtonText);
 
         document.getElementById("plus-button").addEventListener("click", () => {
+            currUser = null;
+            currBusiness = null;
             timeSelectorSpan.style.display = "block";
+            document.getElementById("dataTitle").display = "block";
+            document
+                .getElementById("dataTitle")
+                .setAttribute("trans", "text+:AddTime;");
+            document.getElementById("dataTitle").innerHTML = " ";
+            document.getElementById("YourName").value = "";
+            //            document.getElementById("dataTitle").display = "none";
+            clearEverything();
+            Translate();
         });
     }
     timeSelectorSpan.style.display = "block";
 
     if (!document.getElementById("filter-button")) {
         const filterButton = document.createElement("button");
-        filterButton.setAttribute("trans", "text+:FilterButton;");
+
         filterButton.innerHTML = "";
-        filterButton.style.padding = "5px 3px 3px 3px";
+        filterButton.style.padding = "0px 0px 0px 5px";
         filterButton.style.backgroundColor = "cornflowerblue";
         filterButton.style.borderRadius = "2px";
         filterButton.style.color = "white";
         filterButton.style.fontWeight = "100";
         filterButton.style.borderWidth = "0px";
+
+        filterButton.style.height = "29px";
+        filterButton.style.whiteSpace = "nowrap";
+        filterButton.style.margin = "5px 0px 0 0";
         filterButton.id = "filter-button";
+
         let filterButtonIcon = document.createElement("i");
-        filterButtonIcon.setAttribute("class", "bi bi-funnel-fill mx-1");
+        filterButtonIcon.setAttribute("class", "bi bi-funnel-fill");
         filterButtonIcon.style.fontSize = "1.1em";
+        filterButtonIcon.style.marginRight = "5px";
         filterButton.appendChild(filterButtonIcon);
+
+        // Стили + текст для 450 и более
+        if (document.documentElement.clientWidth > 540) {
+            let filterButtonText = document.createElement("span");
+            filterButton.setAttribute("trans", "style:filterButtonStyle;");
+            filterButtonText.setAttribute("trans", "text+:FilterButton;");
+            filterButton.appendChild(filterButtonText);
+            filterButtonText.style.fontSize = "1.1em";
+        }
+
+        // filterButton.style.padding = '0px 8px 0px 3px';
+
         rightToolBar.append(filterButton);
-        //alert("Filter-"+String(document.getElementById("numTab").value))
         filterButton.onclick = () => createModal();
+    }
+
+    //     <button name="PlusButton" id="create" class="help" style="color: white; background-color:deepskyblue;box-sizing: border-box; padding: 4px 3px 3px 4px; border-radius: 2px; border-width: 0px; font-size: 1.6em; font-weight: 200;"><i class="bi bi-question"></i></button
+
+    if (!document.getElementById("help-button")) {
+        let helpButton = document.createElement("button");
+        let helpButtonIcon = document.createElement("i");
+
+        helpButton.setAttribute("id", "create");
+        helpButton.setAttribute("id", "help-button");
+        helpButton.setAttribute("class", "help");
+        helpButton.setAttribute(
+            "style",
+            "width:3.5em; color: black; background-color:deepskyblue;box-sizing: border-box; padding: 0px 3px 2px 4px; border-radius: 2px; border-width: 0px; font-size: 1.05em; font-weight: 100;"
+        );
+        helpButton.style.margin = "5px 0 0 0";
+        helpButton.style.padding = "0 1px 0 0";
+        helpButton.style.width = "29px";
+        helpButton.style.height = "29px";
+        helpButton.style.fontSize = "1em";
+        helpButton.style.fontWeight = "100";
+
+        helpButtonIcon.style.fontSize = "20px";
+        helpButtonIcon.setAttribute("class", "bi bi-question");
+        helpButton.appendChild(helpButtonIcon);
+
+        if (document.documentElement.clientWidth > 540) {
+            let helpButtonText = document.createElement("span");
+            helpButtonText.setAttribute("trans", "text+:HelpButton;");
+            helpButton.setAttribute("trans", "style:HelpButtonStyle;");
+            helpButton.appendChild(helpButtonText);
+        }
+
+        rightToolBar.append(helpButton);
+        helpButton.onclick = () => (window.location.href = "guide.html");
     }
 
     //	document.getElementById("erase-button").style.display = "block"
@@ -505,13 +660,18 @@ function loadStudentsTable() {
 
         const div = document.createElement("div");
         const h6 = document.createElement("h6");
+
+        if (document.getElementById("EmptinessOfUsersList")) {
+            document.getElementById("EmptinessOfUsersList").remove();
+        }
+
         const text = document.createElement("Text");
-        text.innerHTML = "Unfortunately, the list of users' free time is empty";
+        text.innerHTML = "Unfortunately,\n the list of users' free time is empty";
         text.setAttribute("trans", "text+:EmptinessOfUsersList;");
         text.id = "EmptinessOfUsersList";
         h6.appendChild(text);
         h6.style.margin = "5px";
-        h6.style.width = "80%";
+        h6.style.width = "100%";
         h6.style.fontSize = "0.8em";
         h6.style.textAlign = "justify";
 
@@ -565,29 +725,29 @@ function loadStudentsTable() {
         select.style.fontWeight = "500";
 
         nameAscendingOption.value = "nameAscending";
-        nameAscendingOption.setAttribute("trans", "text+:NameAscending;");
+        nameAscendingOption.setAttribute("trans", "text+:NameAscending");
         nameAscendingOption.innerHTML = "&#8595; name asc";
         nameDescendingOption.value = "nameDescending";
-        nameDescendingOption.setAttribute("trans", "text+:NameDescending;");
+        nameDescendingOption.setAttribute("trans", "text+:NameDescending");
         nameDescendingOption.innerHTML = "&#8593; name desc";
         numAscendingOption.value = "numAscending";
         numAscendingOption.innerHTML = "&#8595; num asc";
-        numAscendingOption.setAttribute("trans", "text+:NumAscending;");
+        numAscendingOption.setAttribute("trans", "text+:NumAscending");
         numDescendingOption.value = "numDescending";
         numDescendingOption.innerHTML = "&#8593; num desc";
-        numDescendingOption.setAttribute("trans", "text+:NumDescending;");
+        numDescendingOption.setAttribute("trans", "text+:NumDescending");
         courseAscendingOption.value = "courseAscending";
         courseAscendingOption.innerHTML = "&#8595; course asc";
-        courseAscendingOption.setAttribute("trans", "text+:CourseAscending;");
+        courseAscendingOption.setAttribute("trans", "text+:CourseAscending");
         courseDescendingOption.value = "courseDescending";
         courseDescendingOption.innerHTML = "&#8593; course desc";
-        courseDescendingOption.setAttribute("trans", "text+:CourseDescending;");
+        courseDescendingOption.setAttribute("trans", "text+:CourseDescending");
         gradeAscendingOption.value = "gradeAscending";
         gradeAscendingOption.innerHTML = "&#8595; grade asc";
-        gradeAscendingOption.setAttribute("trans", "text+:GradeAscending;");
+        gradeAscendingOption.setAttribute("trans", "text+:GradeAscending");
         gradeDescendingOption.value = "gradeDescending";
         gradeDescendingOption.innerHTML = "&#8593; grade desc";
-        gradeDescendingOption.setAttribute("trans", "text+:GradeDescending;");
+        gradeDescendingOption.setAttribute("trans", "text+:GradeDescending");
 
         select.appendChild(numAscendingOption);
         select.appendChild(numDescendingOption);
@@ -621,7 +781,7 @@ function loadStudentsTable() {
 
         const bottomSpace = document.createElement("div");
         bottomSpace.style.height = "45px";
-        bottomSpace.style.backgroundColor = "orange";
+        bottomSpace.style.backgroundColor = "blue";
 
         const classesForSection = "s3 position-relative m-0 p-0 w-100";
         const classesForTable = "table table-bordered m-0 w-100";
@@ -771,10 +931,7 @@ function loadStudentsTable() {
 					item.currentLevel
 				}</span>]`;
             } else {
-                tableThirdTd.innerHTML = ` ${item.name} [
-                    <span style="color:RoyalBlue; font-weight:400;">${item.currentCourse}</span>] 
-                    [<span style="color:#48c2a9; font-weight:500;">${item.currentLevel}</span>]
-                `;
+                tableThirdTd.innerHTML = ` ${item.name} [<span style="color:RoyalBlue; font-weight:400;">${item.currentCourse}</span>] [<span style="color:#48c2a9; font-weight:500;">${item.currentLevel}</span>]`;
             }
 
             tableThirdTd.style.width = "61%";
@@ -931,7 +1088,8 @@ function sortUsers() {
 }
 
 function loadBusinessTable() {
-    const business = JSON.parse(localStorage.getItem("business")) || [];
+//    const business = JSON.parse(localStorage.getItem("business")) || [];
+	const business = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'business')) || [];
 
     if (business.length === 0) {
         if (businessTableDiv.querySelector("section")) {
@@ -946,7 +1104,7 @@ function loadBusinessTable() {
         div.style.display = "flex";
 
         let spanLeft = document.createElement("span");
-        spanLeft.style.width = "80%";
+        spanLeft.style.width = "100%";
 
         let spanRight = document.createElement("span");
         spanRight.style.width = "15%";
@@ -954,11 +1112,10 @@ function loadBusinessTable() {
         const h6 = document.createElement("h6");
         const text = document.createElement("Text");
         text.innerHTML =
-            "Unfortunately, the list of busy time is empty. Add busy time.";
-        text.setAttribute("trans", "text+:EmptinessOfBusinessList;");
+            "Unfortunately\n, the list of busy time is empty.\n Add busy time.";
+        text.setAttribute("trans", "text+:EmptinessOfBusinessList");
 
         //        alert("no busytime1")
-
 
         h6.appendChild(text);
         h6.style.margin = "5px";
@@ -973,38 +1130,64 @@ function loadBusinessTable() {
         //		rightToolBarBusy.classList.add = "reverseToolBar";
 
         if (!document.getElementById("plus-button-busy")) {
-
-            //            alert("no busytime2-",document.getElementById("plus-button-busy"))
-
-
-
             const plusButtonBusy = document.createElement("button");
-            plusButtonBusy.setAttribute("trans", "text+:PlusButtonBusy;");
+            plusButtonBusy.setAttribute("name", "PlusButtonBusy");
             plusButtonBusy.innerHTML = "";
             plusButtonBusy.style.boxSizing = "border-box";
             plusButtonBusy.style.margin = "5px 3px";
             plusButtonBusy.style.borderRadius = "2px";
             plusButtonBusy.style.fontWeight = "300";
             plusButtonBusy.style.borderWidth = "0px";
-            plusButtonBusy.style.width = "28px";
-            plusButtonBusy.style.height = "28px";
+            plusButtonBusy.style.height = "29px";
             plusButtonBusy.style.backgroundColor = "#48c2a9";
             plusButtonBusy.id = "plus-button-busy";
             let plusButtonIconBusy = document.createElement("i");
             plusButtonIconBusy.setAttribute("class", "bi bi-plus");
             plusButtonIconBusy.style.color = "black";
-            plusButtonIconBusy.style.fontSize = "1.0em";
+            plusButtonIconBusy.style.fontSize = "25px";
             plusButtonIconBusy.style.fontWeight = "bold";
+            plusButtonIconBusy.style.width = "2em";
             plusButtonBusy.appendChild(plusButtonIconBusy);
             plusButtonBusy.setAttribute("data-bs-toggle", "modal");
             plusButtonBusy.setAttribute("data-bs-target", "#staticBackdrop");
             rightToolBarBusy.appendChild(plusButtonBusy);
 
-            //            alert("button created!")
+            if (document.documentElement.clientWidth > 450) {
+                plusButtonBusy.style.margin = "5px 40px";
+            }
 
             plusButtonBusy.addEventListener("click", () => {
                 timeSelectorSpan.style.display = "block";
+                //                alert("plus1035")
+                document.getElementById("dataTitle").display = "block";
+                document
+                    .getElementById("dataTitle")
+                    .setAttribute("trans", "text+:AddTime;");
+                document.getElementById("dataTitle").innerHTML = "";
+                //                document.getElementById("dataTitle").display = "none";;
             });
+        }
+        Translate();
+
+        if (!document.getElementById("help-button-busy")) {
+            let helpButtonBusy = document.createElement("button");
+            let helpButtonIcon = document.createElement("i");
+            //               alert("help1busy")
+            helpButtonBusy.setAttribute("trans", "text+:PlusButton;");
+            //            helpButtonBusy.setAttribute("id", "create");
+            helpButtonBusy.setAttribute("id", "help-button-busy");
+            helpButtonBusy.setAttribute("class", "help");
+            helpButtonBusy.setAttribute(
+                "style",
+                "color: black; background-color:deepskyblue;box-sizing: border-box; padding: 0px 3px 2px 4px; border-radius: 2px; border-width: 0px; font-size: 1.05em; font-weight: 100;"
+            );
+            helpButtonIcon.style.fontSize = "20px";
+            helpButtonIcon.setAttribute("class", "bi bi-question");
+
+            helpButtonBusy.appendChild(helpButtonIcon);
+            rightToolBarBusy.append(helpButtonBusy);
+
+            helpButtonBusy.onclick = () => (window.location.href = "guide.html");
         }
 
         spanRight.appendChild(rightToolBarBusy);
@@ -1092,28 +1275,77 @@ function loadBusinessTable() {
 
         if (!document.getElementById("plus-button-Busy1")) {
             const plusButtonBusy = document.createElement("button");
-            plusButtonBusy.setAttribute("trans", "text+:PlusButtonBusy;");
+            plusButtonBusy.setAttribute("name", "PlusButtonBusy");
             plusButtonBusy.innerHTML = "";
             plusButtonBusy.style.boxSizing = "border-box";
-            plusButtonBusy.style.margin = "5px 3px";
             plusButtonBusy.style.borderRadius = "2px";
             plusButtonBusy.style.fontWeight = "300";
             plusButtonBusy.style.borderWidth = "0px";
+            plusButtonBusy.style.width = "29px";
+            plusButtonBusy.style.height = "29px";
             plusButtonBusy.style.backgroundColor = "#48c2a9";
+            plusButtonBusy.style.margin = "5px 2.5px 0 0";
             plusButtonBusy.id = "plus-button-Busy1";
             let plusButtonIconBusy = document.createElement("i");
             plusButtonIconBusy.setAttribute("class", "bi bi-plus");
             plusButtonIconBusy.style.color = "black";
-            plusButtonIconBusy.style.fontSize = "1.0em";
+            plusButtonIconBusy.style.fontSize = "25px";
             plusButtonIconBusy.style.fontWeight = "bold";
+
             plusButtonBusy.appendChild(plusButtonIconBusy);
             plusButtonBusy.setAttribute("data-bs-toggle", "modal");
             plusButtonBusy.setAttribute("data-bs-target", "#staticBackdrop");
+
+            if (document.documentElement.clientWidth > 450) {
+                let plusButtonBusyText = document.createElement("span");
+                plusButtonBusyText.setAttribute("trans", "text:plusButtonBusyText;");
+                plusButtonBusy.setAttribute("trans", "style:PlusButtonBusyStyle;");
+                plusButtonBusy.appendChild(plusButtonBusyText);
+            }
+
             rightToolBarBusy.appendChild(plusButtonBusy);
 
             plusButtonBusy.addEventListener("click", () => {
                 timeSelectorSpan.style.display = "block";
+                document.getElementById("dataTitle").display = "block";
+                document
+                    .getElementById("dataTitle")
+                    .setAttribute("trans", "text+:AddTime;");
+                document.getElementById("dataTitle").innerHTML = " ";
+                document.getElementById("YourName").value = "";
+                //document.getElementById("dataTitle").display = "none";
+                Translate();
             });
+        }
+
+        Translate();
+
+        if (!document.getElementById("help-button-busy2")) {
+            let helpButtonBusy = document.createElement("button");
+            let helpButtonIcon = document.createElement("i");
+            helpButtonBusy.style.borderColor = "white";
+            //            helpButtonBusy.setAttribute("id", "create");
+            helpButtonBusy.setAttribute("id", "help-button-busy2");
+            helpButtonBusy.setAttribute("class", "help");
+            helpButtonBusy.setAttribute(
+                "style",
+                " color: black; background-color:deepskyblue; box-sizing: border-box; padding: 0px 3px 2px 4px; border-radius: 2px; border-width: 0px; font-size: 1em; font-weight: 100;"
+            );
+            //            alert(helpButtonBusy.innerHTML)
+
+            helpButtonIcon.setAttribute("class", "bi bi-question");
+            helpButtonBusy.appendChild(helpButtonIcon);
+
+            if (document.documentElement.clientWidth > 450) {
+                helpButtonBusy.setAttribute("trans", "style:HelpButtonStyle;");
+                let helpButtonText = document.createElement("span");
+                helpButtonText.setAttribute("trans", "text:HelpButton; ");
+                helpButtonBusy.appendChild(helpButtonText);
+            }
+
+            rightToolBarBusy.append(helpButtonBusy);
+
+            helpButtonBusy.onclick = () => (window.location.href = "guide.html");
         }
 
         spanRight.appendChild(rightToolBarBusy);
@@ -1382,12 +1614,18 @@ function displayUsersAndBusiness() {
         const bestMatches = findBestMatch();
         // console.log(bestMatches);
         bestMatches.forEach(item => {
+            console.log(item);
             const el = document.getElementById(item[1]).querySelector(`.${item[2]}`);
-            el.style.background = "DarkOrange";
+            if (el.innerHTML.length == 0) {
+                el.style.background = colorStudent[getRandomColor];
+            } else {
+                el.style.background = "DarkOrange";
+            }
             el.style.boxSizing = "border-box";
             el.style.fontSize = "13px";
             el.style.fontWeight = "800";
             el.style.paddingBottom = "0";
+            el.setAttribute("maximum", 1);
         });
     }
 
@@ -1469,6 +1707,19 @@ function displayOneUserModal(currentUser) {
     currUser = currentUser;
 }
 
+function tempUserUpdate(user) {
+    // console.log(user);
+    const index = users.findIndex(what => what.id === user.id);
+    // console.log(index);
+    users[index] = user;
+    // console.log(users);
+    localStorage.setItem("users", JSON.stringify(users));
+    // console.log(users);
+    filterUsers();
+    $("#staticBackdrop").modal("hide");
+    Translate();
+}
+
 function saveUser() {
     const {
         decDay
@@ -1488,6 +1739,60 @@ function saveUser() {
 
             users[index] = updatedUser;
         } else {
+            const tempUser = users.find(
+                user =>
+                user.name === fullName.value &&
+                user.currentCourse === currentCourse &&
+                user.currentLevel === currentLevel
+            );
+            if (tempUser) {
+                // const button = document.createElement("button");
+                // const text = document.createElement("Text");
+                // text.innerHTML =
+                // 	"Пользователь с таким же именем, курсом и уровнем уже существует.\n";
+                // button.classList.add(
+                // 	"btn",
+                // 	"btn-success",
+                // 	"btn-sm",
+                // 	"btnCloseAlert",
+                // 	"m-2"
+                // );
+                // button.style.fontWeight = "500";
+                // button.style.color = "white";
+                // button.fontSize = "1em";
+                // button.innerHTML = "Обновить?";
+                // button.addEventListener("click", () => tempUserUpdate(userToFind));
+                // button.setAttribute("name", "disable");
+                // text.setAttribute("name", "disable");
+                // text.appendChild(button);
+                tempUser.days = decDay;
+                sessionStorage.setItem("tempUser", JSON.stringify(tempUser));
+                alerter(
+                    "<Text name='disable'>Предупреждение</Text>",
+                    `<Text name='disable'>
+						Пользователь с таким же именем, курсом и уровнем уже существует. Либо измените данные, либо обновите уже существующего пользователя.</Text>`,
+                    "standart",
+                    "warning",
+                    '<button type="button" class="btn btn-sm btnUpdate m-2 " style="font-weight: 500;color: black; font-size: 1em; background-color:#48c2a9;">Обновить</button>'
+                );
+                //                alerter(
+                //					"<Text name='disable'>Предупреждение</Text>",
+                //					`<Text name='disable'>
+                //						Пользователь с таким же именем, курсом и уровнем уже существует. Либо измените данные, либо обновите уже существующего пользователя.<br>
+                //						<button
+                //								type="button"
+                //								class="btn btn-success btn-sm btnUpdate m-2 "
+                //								style="font-weight: 500;color: white; font-size: 1em">
+                //								Обновить?
+                //						</button>
+                //					</Text>`,
+                //					"standart",
+                //					"warning",
+                //					"<button type=\"button\" class=\btn btn-success btn-sm btnUpdate m-2 \"	style=\"font-weight: 500;color: white; font-size: 1em\">Обновить?</button>"
+                //				);
+                return;
+            }
+
             let user = {
                 id: new Date().getTime(),
                 name: fullName.value,
@@ -1503,8 +1808,6 @@ function saveUser() {
         if (users.length === 1) {
             sortedUsers = [...users];
             sortedFilteredUsers = [...sortedUsers];
-        } else {
-            filterUsers();
         }
 
         importInput.value = "";
@@ -1514,7 +1817,13 @@ function saveUser() {
         $("#staticBackdrop").modal("hide");
         Translate();
     } else {
-        alerter("Error", "Fill needed information for FreeTime");
+        alerter(
+            '<Text trans="text+:AlertErrorHeader;">Ошибка</Text>',
+            '<Text trans="text+:AlertErrorBody1;">Информация введена не полностью. Введите курс, уровень и имя</Text>',
+            "standart",
+            "danger",
+            "standart"
+        );
     }
 }
 
@@ -1628,7 +1937,13 @@ function saveBusySchedule() {
         loadBusinessTable();
         $("#staticBackdrop").modal("hide");
     } else {
-        alerter("Error", "Fill needed information  for BusyTime");
+        alerter(
+            '<Text trans="text+:AlertErrorHeader;">Ошибка</Text>',
+            '<Text trans="text+:AlertErrorBody2;">Информация введена не полностью. Введите имя</Text>',
+            "standart",
+            "danger",
+            "standart"
+        );
     }
 }
 
@@ -1651,6 +1966,10 @@ function displayOneBusyModal(currentBusiness) {
     }
 
     fullName.value = currentBusiness.description;
+    document
+        .getElementById("btnTodo")
+        .setAttribute("data-id", currentBusiness.id);
+
     currBusiness = currentBusiness;
 }
 
@@ -1674,22 +1993,26 @@ function changeTimeSelector() {
         fullName.setAttribute("trans", "text+:name;");
         selectCourseSpan.style.display = "inline-block";
         selectLevelSpan.style.display = "inline-block";
-        document.getElementById("level1").style.display = "inline-block";
-        document.getElementById("level2").style.display = "inline-block";
+        //        document.getElementById("Level1").style.display = "inline-block";
+        //        document.getElementById("Level2").style.display = "inline-block";
 
-        document.getElementsByName("Level1").style.display = "inline-block";
-        document.getElementsByName("Level2").style.display = "inline-block";
+        document.getElementById("levelSelector").style.display = "inline-block";
+        document.getElementById("courseSelector").style.display = "inline-block";
+        document.getElementById("btnTodo").style.display = "none";
 
         nbts.removeEventListener("click", saveBusySchedule);
         nbts.addEventListener("click", saveUser);
     } else {
+        document.getElementById("btnTodo").style.display = "inline-block";
         fullName.setAttribute("trans", "text+:desc;");
-        document.getElementsByName("Level1").style.display = "none";
-        document.getElementsByName("Level2").style.display = "none";
+        //        document.getElementsByName("Level1").style.display = "none";
+        //        document.getElementsByName("Level2").style.display = "none";
         selectCourseSpan.style.display = "none";
         selectLevelSpan.style.display = "none";
-        document.getElementById("level1").style.display = "none";
-        document.getElementById("level2").style.display = "none";
+        //        document.getElementById("Level1").style.display = "none";
+        //        document.getElementById("Level2").style.display = "none";
+        document.getElementById("levelSelector").style.display = "none";
+        document.getElementById("courseSelector").style.display = "none";
         nbts.removeEventListener("click", saveUser);
         nbts.addEventListener("click", saveBusySchedule);
     }
@@ -1698,21 +2021,49 @@ function changeTimeSelector() {
 }
 
 function showUpdatingModal(type) {
+    document.getElementById("importInput").value = "";
+    document.getElementById("loginSendTimeCode").value = "";
+
     if (type === "freeTime") {
+        document.getElementById("btnTodo").style.display = "none";
+        document.getElementById("dataTitle").display = "block";
+        document
+            .getElementById("dataTitle")
+            .setAttribute("trans", "text+:FreeTime;");
+        //        document.getElementById("dataTitle").innerHTML = "СВОБОДНОЕ ВРЕМЯ";
         fullName.setAttribute("trans", "text+:name;");
         // fullName.placeholder = "Name";
         selectCourseSpan.style.display = "inline-block";
         selectLevelSpan.style.display = "inline-block";
+
+        //        document.getElementById("Level1").style.display = "inline-block";
+        //        document.getElementById("Level2").style.display = "inline-block";
+        document.getElementById("levelSelector").style.display = "inline-block";
+        document.getElementById("courseSelector").style.display = "inline-block";
+
         nbts.removeEventListener("click", saveBusySchedule);
         nbts.addEventListener("click", saveUser);
     } else {
+        document.getElementById("btnTodo").style.display = "inline-block";
         fullName.setAttribute("trans", "text+:desc;");
+        document.getElementById("dataTitle").display = "block";
+        document
+            .getElementById("dataTitle")
+            .setAttribute("trans", "text+:BusyTime;");
+        //        document.getElementById("dataTitle").innerHTML = "ЗАНЯТОЕ ВРЕМЯ";
         // fullName.placeholder = "Description";
         selectCourseSpan.style.display = "none";
         selectLevelSpan.style.display = "none";
+
+        //        document.getElementById("Level1").style.display = "none";
+        //        document.getElementById("Level2").style.display = "none";
+        document.getElementById("levelSelector").style.display = "none";
+        document.getElementById("courseSelector").style.display = "none";
+
         nbts.removeEventListener("click", saveUser);
         nbts.addEventListener("click", saveBusySchedule);
     }
+    Translate();
 
     timeSelectorSpan.style.display = "none";
     for (let i = 0; i < timeSelector.children.length; i++) {
@@ -1756,12 +2107,18 @@ function splittingCourses() {
     const text = courseText.value;
 
     // if ()
-    let courses = JSON.parse(localStorage.getItem("courses")) || [];
+//    let courses = JSON.parse(localStorage.getItem("courses")) || [];
+	
+	let courses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'courses')) || [];
+	
     // else
     // 	let course = удаленно
 
-    let filteredCourses =
-        JSON.parse(localStorage.getItem("filteredCourses")) || courses;
+//    let filteredCourses =
+//        JSON.parse(localStorage.getItem("filteredCourses")) || courses;
+	
+	let filteredCourses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredCourses')) || courses;
+	
     let options = text.split(",");
     options = [...new Set(options.map(item => item.trim()))];
 
@@ -1779,9 +2136,20 @@ function splittingCourses() {
 
 function splittingGrades() {
     const text = gradeText.value;
-    let grades = JSON.parse(localStorage.getItem("grades")) || [];
-    let filteredGrades =
-        JSON.parse(localStorage.getItem("filteredGrades")) || grades;
+//    let grades = JSON.parse(localStorage.getItem("grades")) || [];
+	
+	
+	let grades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades')) || [];
+	
+	
+	
+//    let filteredGrades =
+//        JSON.parse(localStorage.getItem("filteredGrades")) || grades;
+//	
+	
+	let filteredGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredGrades')) || grades;
+	
+	
     let options = text.split(",");
     options = [...new Set(options.map(item => item.trim()))];
 
@@ -1808,12 +2176,18 @@ function decodeTheTimeCode(value) {
             .map(bin => "0".repeat(8 - bin.length) + bin);
     } catch (e) {
         result = [];
-        alerter("Error", "Неверный формат");
+        alerter(
+            '<Text trans="text+:AlertErrorHeader;">Ошибка</Text>',
+            '<Text trans="text+:AlertErrorBody3;">Неверный формат</Text>',
+            "standart",
+            "danger",
+            "standart"
+        );
     }
     return result;
 }
 
-function fCompressCodeTime(codeTime) {
+export function fCompressCodeTime(codeTime) {
     let compressCodeTime = "";
     let abc28 = "0123456789ABCDEFGHIJKLMNOPQRS";
     let curSimbol = codeTime[0];
@@ -1836,7 +2210,7 @@ function fCompressCodeTime(codeTime) {
     return compressCodeTime;
 }
 
-function fDeCompressCodeTime(compressCodeTime) {
+export function fDeCompressCodeTime(compressCodeTime) {
     let codeTime = "";
     let abc28 = "0123456789ABCDEFGHIJKLMNOPQRS";
     if (compressCodeTime.length != abc28.length) {
@@ -1857,39 +2231,49 @@ function fDeCompressCodeTime(compressCodeTime) {
 }
 
 function importTime() {
-    clearModalTable();
-    let code = fDeCompressCodeTime(importInput.value).trim();
-    //	alert(fDeCompressCodeTime(importInput.value))
-    //	let code = importInput.value;
+    if (document.getElementById("importInput").value == "") {
+        alerter(
+            '<Text trans="text:AlertErrorHeader;">Ошибка</Text>',
+            '<Text trans="text+:sendCodeError3;">Не введен код времени. Импорт невозможен! Вставьте код в поле!</Text>',
+            "standart",
+            "danger",
+            "standart"
+        );
+    } else {
+        clearModalTable();
+        let code = fDeCompressCodeTime(importInput.value).trim();
+        //	alert(fDeCompressCodeTime(importInput.value))
+        //	let code = importInput.value;
 
-    let binCode = decodeTheTimeCode(code);
-    let res = [];
-    let str = "";
-    binCode.forEach((item, index) => {
-        if (index % 4 === 0) str += "1";
-        if ((index + 1) % 4 === 0) {
-            str += item[0];
-            res.push(str);
-            str = "";
-        } else {
-            str += item;
-        }
-    });
-    importInput.value = "";
-
-    for (let i = 0; i < 7; i++) {
-        let curObjDay = ".day" + String(i);
-        let curDay = document
-            .querySelector(".modal-content")
-            .querySelectorAll(curObjDay);
-
-        for (let j = 0; j < curDay.length; j++) {
-            if (res.length === 7) {
-                if (res[i][j + 1] === "1") {
-                    curDay[j].style.background = "seagreen";
-                }
+        let binCode = decodeTheTimeCode(code);
+        let res = [];
+        let str = "";
+        binCode.forEach((item, index) => {
+            if (index % 4 === 0) str += "1";
+            if ((index + 1) % 4 === 0) {
+                str += item[0];
+                res.push(str);
+                str = "";
             } else {
-                curDay[j].style.background = "transparent";
+                str += item;
+            }
+        });
+        //        importInput.value = "";
+
+        for (let i = 0; i < 7; i++) {
+            let curObjDay = ".day" + String(i);
+            let curDay = document
+                .querySelector(".modal-content")
+                .querySelectorAll(curObjDay);
+
+            for (let j = 0; j < curDay.length; j++) {
+                if (res.length === 7) {
+                    if (res[i][j + 1] === "1") {
+                        curDay[j].style.background = "seagreen";
+                    }
+                } else {
+                    curDay[j].style.background = "transparent";
+                }
             }
         }
     }
@@ -2064,12 +2448,18 @@ function createModal() {
             gradesDiv.removeChild(gradesDiv.lastElementChild);
         }
     }
+//
+//    courses = JSON.parse(localStorage.getItem("courses")) || [];
+//    grades = JSON.parse(localStorage.getItem("grades")) || [];
+//    filteredCourses = JSON.parse(localStorage.getItem("filteredCourses")) || [];
+//    filteredGrades = JSON.parse(localStorage.getItem("filteredGrades")) || [];
+//
+	courses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'courses')) || [];
+	grades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades')) || [];
+	filteredCourses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredCourses')) || [];
+	filteredGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredGrades')) || [];
 
-    courses = JSON.parse(localStorage.getItem("courses")) || [];
-    grades = JSON.parse(localStorage.getItem("grades")) || [];
-    filteredCourses = JSON.parse(localStorage.getItem("filteredCourses")) || [];
-    filteredGrades = JSON.parse(localStorage.getItem("filteredGrades")) || [];
-
+	
     let allCourses = ["All", ...courses];
     let allGrades = ["All", ...grades];
 
@@ -2189,7 +2579,7 @@ function createModal() {
     }
 }
 
-function getTimeCode() {
+export function getTimeCode() {
     const {
         binDay
     } = checkDec();
@@ -2218,17 +2608,57 @@ function getTimeCode() {
 }
 
 window.onload = () => {
-    users = JSON.parse(localStorage.getItem("users")) || [];
-    business = JSON.parse(localStorage.getItem("business")) || [];
-    courses = JSON.parse(localStorage.getItem("courses")) || [];
-    grades = JSON.parse(localStorage.getItem("grades")) || [];
+
+	
+	if (!localStorage.getItem('typeBase')){
+		localStorage.setItem('typeBase','local')
+	}
+	
+	
+	if (!sessionStorage.getItem('typeBase')){
+		sessionStorage.setItem('typeBase','local')
+	}
+//	
+//    sessionStorage.setItem('globalLogin', '');
+//    sessionStorage.setItem('globalAccess', 0);
+
+	
+	//    users = JSON.parse(localStorage.getItem("users")) || [];
+//    business = JSON.parse(localStorage.getItem("business")) || [];
+//    courses = JSON.parse(localStorage.getItem("courses")) || [];
+//    grades = JSON.parse(localStorage.getItem("grades")) || [];
+	
+	users = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'users')) || [];
+	business = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'business')) || [];
+	courses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'courses')) || [];
+	grades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades')) || [];
+
+//	alert(sessionStorage.getItem('typeBase'))
+//	alert(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'users'))
+//		alert(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'business'))
+//		alert(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'courses'))
+//		alert(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades'))
+//	
+	
     sortedBusiness = business;
     sortedUsers = users;
-    filteredUsers = JSON.parse(localStorage.getItem("filteredUsers")) || users;
+//    filteredUsers = JSON.parse(localStorage.getItem("filteredUsers")) || users;
+	
+	filteredUsers = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredUsers')) || users;
+	
     sortedFilteredUsers = filteredUsers;
-    filteredCourses =
-        JSON.parse(localStorage.getItem("filteredCourses")) || courses;
-    filteredGrades = JSON.parse(localStorage.getItem("filteredGrades")) || grades;
+	
+//    filteredCourses =
+//        JSON.parse(localStorage.getItem("filteredCourses")) || courses;
+	
+	filteredCourses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredCourses')) || courses;
+	
+//    filteredGrades = JSON.parse(localStorage.getItem("filteredGrades")) || grades;
+	
+	filteredGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredGrades')) || grades;
+
+	
+	
     allMatches = [];
 
     if (courses.length !== 0) {
@@ -2249,33 +2679,35 @@ window.onload = () => {
     nbts.addEventListener("click", saveUser);
     nbtcl.addEventListener("click", clearTable);
 
-    document.getElementById('btnDelFull2').addEventListener("click", clearTable)
-
-    //	alert(creatingButton);
-    //
+    document.getElementById("btnDelFull").addEventListener("click", clearTable);
 
     creatingButton.addEventListener("click", () => {
         currBusiness = null;
         currUser = null;
         timeSelectorSpan.style.display = "block";
+        document.getElementById("dataTitle").display = "block";
+        document
+            .getElementById("dataTitle")
+            .setAttribute("trans", "text+:AddTime;");
+        //        document.getElementById("dataTitle").innerHTML = " ";
+        //        document.getElementById("dataTitle").display = "none";
         clearEverything();
+        Translate();
     });
+    Translate();
 
+    goFromURL();
+
+    //Открытие окна добвления по ссылке из письма
 
     //    alert(document.getElementById('createFull'))
-    //    
+    //
     //    document.getElementById('createFull').addEventListener("click", () => {
     //        currBusiness = null;
     //        currUser = null;
     //        timeSelectorSpan.style.display = "block";
     //        clearEverything();
     //    });
-
-
-
-
-
-
 
     timeSelector.addEventListener("change", changeTimeSelector);
     gradeSubmittingButton.addEventListener("click", splittingGrades);
@@ -2296,9 +2728,20 @@ window.onload = () => {
     selectCourse.addEventListener("change", e => getCurrentCourse(e));
     fullName.addEventListener("change", changeName);
     importButton.addEventListener("click", importTime);
-    showingCodeButton.addEventListener("click", () =>
-        alerter("Timecode", "<b>" + fCompressCodeTime(getTimeCode()) + "<b>")
-    );
+
+    showingCodeButton.addEventListener("click", () => {
+        document.getElementById("importInput").value = fCompressCodeTime(
+            getTimeCode()
+        );
+        notifyer(
+            "Сформирован Ваш код времени! Можете его отправить пользователю системы",
+            500
+        );
+    });
+
+    //
+    //        <button class='btn btn-sm' id='sendCode' name='disable' style='font-size: 0.95em; font-weight: 700; background-color: lightskyblue; border-radius: 2px; margin-left: 12px'><i class='bi code-square' name='disable' title='Оправить код времени'></i> Отправить</button>
+    //
 
     gradeText = document.getElementById("gradeTextArea");
     courseText = document.getElementById("courseTextArea");
@@ -2310,8 +2753,6 @@ window.onload = () => {
     if (!loading) {
         scheduleLoadingCheckBox.checked = false;
     } else {
-
-
         //        Показывает в расписании только первое дело
         //        alert(sortedBusiness[0].id)
 
@@ -2327,17 +2768,11 @@ window.onload = () => {
 
         tbodySchedule.innerHTML = localStorage.getItem("tableSchedule");
 
-        alert(" Пытаюсь загрузить таблицу 2 ")
-        tbodyScheduleFull2.innerHTML = localStorage.getItem("tableSchedule");
+        //        alert(" Пытаюсь загрузить таблицу 2 ")
+        tbodyScheduleFull.innerHTML = localStorage.getItem("tableSchedule");
 
         //        notifyer("Данные загружены из хранилища!")
-
-
     }
-
-
-
-
 
     for (let i = 0; i < dayWeek.length; i++) {
         dayWeek[i].addEventListener("change", () => allDaySelect(dayWeek[i]));
@@ -2351,9 +2786,6 @@ window.onload = () => {
     }
 
     AddEventAllCheck();
-
-
-
 };
 
 //select all freetime and busytime
@@ -2433,7 +2865,13 @@ courseNameSubmitUpdate.addEventListener("click", () => {
             notifyer("Данные обновлены!");
         }
     } else {
-        alerter("Внимание!", "Введите или загрузите из хранилища данные по курсам");
+        alerter(
+            '<Text trans="text+:AlertAttention;">Внимание!</Text>',
+            '<Text trans="text+:AlertAttention1;">Введите или загрузите из хранилища данные по курсам</Text>',
+            "standart",
+            "warning",
+            "standart"
+        );
     }
 });
 
@@ -2447,20 +2885,21 @@ gradeNameSubmitUpdate.addEventListener("click", () => {
             notifyer("Данные обновлены!");
         }
     } else {
-        alerter("Внимание", "Введите или загрузите из хранилища данные по уровням");
+        alerter(
+            '<Text trans="text+:AlertAttention;">Внимание!</Text>',
+            '<Text trans="text+:AlertAttention2;">Введите или загрузите из хранилища данные по уровням</Text>',
+            "standart",
+            "warning",
+            "standart"
+        );
     }
 });
-//
-//notifyer("Идет обновление сервиса!");
 
-
-// WINDOWS 
-
-
+// WINDOWS
 //Окно уведомителя
 export function notifyer(
     text,
-    time = 1000,
+    time = 850,
     bgcolor = "MediumSeaGreen",
     textcolor = "white"
 ) {
@@ -2468,13 +2907,14 @@ export function notifyer(
     let textNotifyer = document.createTextNode(text);
     divNotifyer.classList.add("mainNotifyer");
     divNotifyer.style.position = "absolute";
-    divNotifyer.style.left = "36%";
     divNotifyer.style.top = "10px";
-    divNotifyer.style.lineHeight = "0.9em";
-    if (Number(window.innerWidth) < 400) {
-        divNotifyer.style.width = "35%";
+    divNotifyer.style.lineHeight = "1em";
+    if (Number(window.innerWidth) < 500) {
+        divNotifyer.style.width = "50%";
+        divNotifyer.style.left = "26%";
     } else {
-        divNotifyer.style.width = "15%";
+        divNotifyer.style.width = "20%";
+        divNotifyer.style.left = "36%";
     }
     divNotifyer.style.padding = "5px";
     divNotifyer.style.borderRadius = "3px";
@@ -2499,22 +2939,64 @@ export function notifyer(
 }
 
 //Окно своего алерта
-
-export function alerter(titleWin = " title", bodyWin = "body", footer = "") {
+export function alerter(
+    titleWin = " title",
+    bodyWin = "body",
+    footer = "standart",
+    aType = "standart",
+    aWidth = "standart"
+) {
     let alertWin = document.querySelector(".alertWin");
     alertWin.classList.add("alertinvs");
 
-    if (window.innerWidth < 400) alertWin.style.width = "320px";
-    else if (window.innerWidth < 600) alertWin.style.width = "400px";
-    else alertWin.style.width = "400px";
+    //    alert(footer+"-"+aType+"-"+aWidth)
+
+    if (aWidth == "standart") {
+        if (window.innerWidth < 400) alertWin.style.width = "320px";
+        else if (window.innerWidth < 600) alertWin.style.width = "400px";
+        else alertWin.style.width = "450px";
+    } else if (aWidth == "slim") {
+        if (window.innerWidth < 400) alertWin.style.width = "280px";
+        else if (window.innerWidth < 600) alertWin.style.width = "320px";
+        else alertWin.style.width = "320px";
+    } else {
+        if (window.innerWidth < 400) alertWin.style.width = "320px";
+        else if (window.innerWidth < 600) alertWin.style.width = "400px";
+        else alertWin.style.width = "450px";
+    }
 
     let labelAlert = document.getElementById("alerterLabel");
     labelAlert.innerHTML = titleWin;
+
     let bodyAlert = document.getElementById("modalBodyAlert");
     bodyAlert.innerHTML = bodyWin;
 
+    if (aType == "standart") labelAlert.style.color = "black";
+    else if (aType == "info") labelAlert.style.color = "royalBlue";
+    else if (aType == "warning") labelAlert.style.color = "darkorange";
+    else if (aType == "danger") labelAlert.style.color = "indianred";
+    else if (aType == "success") labelAlert.style.color = "#00c097";
+    else labelAlert.style.color = "black";
+
     let modalFooterAlert = document.getElementById("modalFooterAlert");
-    modalFooterAlert.innerHTML = `<div><button type="button" trans="text+:Close;" class="btn btn-secondary btn-sm btnCloseAlert m-2 " style="font-weight: 500;color: white; font-size: 1em">Close</button></div>`;
+
+    modalFooterAlert.innerHTML = "";
+
+    if (aWidth != "standart") {
+        modalFooterAlert.innerHTML = aWidth;
+    }
+
+    modalFooterAlert.innerHTML += /*html*/ `
+        <div>
+            <button 
+                type="button" 
+                trans="text+:Close;" 
+                class="btn btn-secondary btn-sm btnCloseAlert m-2 "
+                style="font-weight: 500;color: white; font-size: 1em; margin-left: 2em;">
+                Close
+            </button>
+        </div>
+    `;
 
     let btnCloseAlert = document.querySelectorAll(".btnCloseAlert");
     btnCloseAlert[0].addEventListener("click", () => {
@@ -2524,27 +3006,55 @@ export function alerter(titleWin = " title", bodyWin = "body", footer = "") {
         alertWin.classList.remove("alertinvs");
     });
 
+    if (document.querySelector(".btnUpdate")) {
+        document.querySelector(".btnUpdate").addEventListener("click", () => {
+            console.log("SoS");
+            let tempUser = JSON.parse(sessionStorage.getItem("tempUser"));
+            // console.log(tempUser);
+            if (
+                tempUser.name &&
+                tempUser.currentCourse &&
+                tempUser.currentLevel &&
+                tempUser.days
+            ) {
+                // console.log(tempUser);
+                tempUserUpdate(tempUser);
+            }
+            // tempUserUpdate(tempUser);
+            sessionStorage.removeItem("tempUser");
+            alertWin.classList.remove("alertinvs");
+        });
+    }
+
     Translate();
 }
-
-
-
 
 document.getElementById("F4Team").addEventListener("click", F4Team);
 
 function F4Team() {
     let titleWin = `<Text trans="text+:TeamDev;"> Группа разработки</Text>`;
-    let bodyWin = `<div class="pl-0" style="text-indent:0px;"> <b>Белозеров Олег</b> - front, desing, idea<br> <b>Бондаренко Николай</b> - JsDev (main programm)<br> <b>Сазонов Глеб</b> -  JsDev (translater)<br> <b>Антоненко Евгений</b> - PhPDev <br> <b>Кузнецов Владислав</b> - JsDev, PhPDev<br> <b>Фирсов Ярослав</b> - JsDev<br> <b>Гетман Данил</b> - PhPDev (verify)<br></div>`;
+    let bodyWin = /*html*/ `
+        <div class="pl-0" style="text-indent:0px;"> 
+            <b>Белозеров Олег</b> - front, desing, idea
+            <br> 
+            <b>Бондаренко Николай</b> - JsDev (main programm)
+            <br>
+            <b>Сазонов Глеб</b> -  JsDev (translater)
+            <br> 
+            <b>Антоненко Евгений</b> - PhPDev 
+            <br> 
+            <b>Кузнецов Владислав</b> - JsDev, PhPDev
+            <br> 
+            <b>Фирсов Ярослав</b> - JsDev
+        </div>
+    `;
+
     alerter(titleWin, bodyWin);
 }
 
-//Окно своего конфирма
 document
     .getElementById("testConfirmer")
     .addEventListener("click", confirmer.bind("тело", "заголовок"));
-
-//confirmer("<Text name='Warning'>Предупреждение!</Text>","<Text name='AreSure'>ты уверен?</Text>")
-
 export function confirmer(titleWinContent = " title", bodyWinContent) {
     //	alert(titleWinContent+"="+bodyWinContent)
 
@@ -2561,8 +3071,24 @@ export function confirmer(titleWinContent = " title", bodyWinContent) {
     bodyAlert.innerHTML = bodyWinContent;
 
     let modalFooterAlert = document.getElementById("modalFooterAlert");
-    modalFooterAlert.innerHTML = `<button type="button" trans="text+:ConfirmerOk;" id="ConfirmerOk"  class="btn btn-primary btn-sm m-2 " style="font-weight: 500; font-size: 1em">&nbsp;&nbsp;&nbsp;&nbsp;Oк&nbsp;&nbsp;&nbsp;&nbsp;</button>
-<button type="button" trans="text+:ConfirmerEsc;" id="ConfirmerEsc" class="btn btn-outline-secondary btn-sm  m-2 " style="font-weight: 500;font-size: 1em">Отмена</button>`;
+    modalFooterAlert.innerHTML = /*html*/ `
+        <button 
+            type="button" 
+            trans="text+:ConfirmerOk;"
+            id="ConfirmerOk" 
+            class="btn btn-primary btn-sm m-2 "
+            style="font-weight: 500; font-size: 1em"
+            >&nbsp;&nbsp;&nbsp;&nbsp;Oк&nbsp;&nbsp;&nbsp;&nbsp;
+        </button>
+        <button 
+            type="button" 
+            trans="text+:ConfirmerEsc;" 
+            id="ConfirmerEsc" 
+            class="btn btn-outline-secondary btn-sm  m-2 " 
+            style="font-weight: 500;font-size: 1em"
+            >Отмена
+        </button>
+    `;
     //
     //	Translate();
 
@@ -2586,7 +3112,174 @@ export function confirmer(titleWinContent = " title", bodyWinContent) {
     });
 }
 
+if (!localStorage.getItem("users") && !localStorage.getItem("business")) {
+    alerter(
+        "Добро пожаловать!",
+        '<p style="text-indent:20px;text-align: justify">Вы первый раз запустили систему составления расписания и работы со временем - <b style="color:blue">ДелуВремя!</b></p> <p style="text-indent:20px;text-align: justify">Для демонстрации работы системы загружены тестовые данные по свободному и занятому времени и сделана настройка. После тестирования эти данные Вы можете удалить, настроить систему для себя и продолжить работу! </p><p style="text-indent:20px;text-align: justify;">Перед началом работы, пожалуйста, ознакомьтесь c <a href="guide.html">"Руководством пользователя"</a>',
+        "standart",
+        "success",
+        "standart"
+    );
 
+    let users_demo =
+        '[{"id": 1662373008414,"name": "Иванов Семен (Demo)",    "currentCourse": "Scratch", "currentLevel": "1","days": [33554432, 33554656, 33554432, 33554432, 33554432, 33554432, 33554432]}, {"id": 1662374017631,   "name": "Степанов Иван (Demo)","currentCourse": "Scratch","currentLevel": "1",    "days": [33554432, 33554656, 33554432, 33554432, 33554432, 33554432, 33554432]}, {"id": 1662374546140,"name": "Саблин Дмитрий (Demo)","currentCourse": "WebStart","currentLevel": "1","days": [33554432, 33554880, 33554432, 33554432, 33554432, 33554432, 33554432]}, {"id": 1662374737036,"name": "Диденко Кирилл (Demo)","currentCourse": "JavaScript Start","currentLevel": "1","days": [33554432, 33556476, 33556476, 33556476, 33556476, 33556476, 33556476]}, {    "id": 1662375208126,    "name": "Дорохов Платон (Demo)","currentCourse": "Python Start","currentLevel": "1","days": [33554432, 33554686, 33554686, 33554686, 33554686, 33554686, 33554686]}]';
 
+    localStorage.setItem("users", users_demo);
+    localStorage.setItem("filteredUsers", users_demo);
 
+    let business_demo =
+        '[{"id":1662373691437,"description":"Класс  1(Demo)","days":[58720256,58720256,58720256,58720256,58720256,60784640,58720256]},{"id":1662373704669,"description":"Класс 2 (Demo)","days":[33554432,33554432,33554432,33554432,33554432,33554432,33554432]},{"id":1662374339780,"description":"Белозеров Олег (Demo)","days":[33685504,33556476,49815550,33556479,33677310,40910846,33554432]},{"id":1672065745981,"description":"Антоненко Евгений (Demo)","days":[67108863,67108608,67108608,67108608,67108608,67108863,58720255]}]';
+
+    localStorage.setItem("business", business_demo);
+
+    let courses_demo =
+        '["Пробное", "Kodu", "Scratch", "CoSpaces", "MitApp Inventor", "Pencil Code", "Python Start", "Godot", "WebStart", "JavaScript Start", "JavaScripts Front", "JavaScript Game", "PHP", "C# Start", "Unity", "Java Start", "Fusion 3D", "ОГЭ", "ЕГЭ", "Project Team", "Препод."]';
+
+    localStorage.setItem("courses", courses_demo);
+    localStorage.setItem("filteredCourses", courses_demo);
+
+    let grades_demo = '["1","2","3","4"]';
+
+    localStorage.setItem("grades", grades_demo);
+    localStorage.setItem("filteredGrades", grades_demo);
+    localStorage.setItem("LanguageLocal", "ru");
+    localStorage.setItem("numTab", 1);
+    localStorage.setItem("schedule-auto-saving", false);
+    localStorage.setItem("typeBase", "local");
+    localStorage.setItem("isLocal", true);
+
+    //    }
+}
 Translate();
+
+function goFromURL() {
+    const url = new URL(window.location.href);
+    let strUrl = String(url.searchParams);
+
+    if ( (url.searchParams.get("action")) || (strUrl.indexOf('invite=') != -1)) {
+ 
+        if ( strUrl.indexOf('invite=') != -1) {
+            //            alert(document.getElementById("loginSendTimeCode").value)
+            //            alert(url.searchParams.get('loginUser'))
+            document
+                .getElementById("dataTitle")
+                .setAttribute("trans", "text+:AddTime;");
+            document.getElementById("loginSendTimeCode").value =
+                url.searchParams.get("user");
+
+            let textInviteStr =
+                '<Text trans="text+:InviteText;">Вы получили приглашение от пользователя </Text><b class="text-primary"> ';
+            textInviteStr += String(url.searchParams.get("user"));
+            textInviteStr +=
+                '</b><Text trans="text+:InviteText2;">  заполнить данные по Вашему свободному или занятому времени.  Введите пожалуйста свое имя и фамилию, отметьте в таблице время и нажмите кнопку отправить! Спасибо!</Text>';
+
+            alerter(
+                '<Text trans="text+:Welcome;">Добро пожаловать!</Text>',
+                textInviteStr,
+                "standart",
+                "success",
+                "standart"
+            );
+
+            alert;
+            document.getElementById("courseSelector").style.display = "none";
+            document.getElementById("levelSelector").style.display = "none";
+            $("#staticBackdrop").modal("show");
+            Translate();
+        } else if (url.searchParams.get("action") == "sendCode2email") {
+            document
+                .getElementById("dataTitle")
+                .setAttribute("trans", "text+:AddTime;");
+            document.getElementById("timeSelect").name =
+                url.searchParams.get("typeTime");
+            document.getElementById("timeSelect").value =
+                url.searchParams.get("typeTime");
+
+            document.getElementById("YourName").value =
+                url.searchParams.get("nameUser");
+            document.getElementById("loginSendTimeCode").value =
+                url.searchParams.get("loginSendTimeCode");
+            document.getElementById("importInput").value =
+                url.searchParams.get("sendTimeCode");
+            importTime();
+            $("#staticBackdrop").modal("show");
+        } else if (url.searchParams.get("action") == "verify") {
+            let searchParams = new URLSearchParams();
+            searchParams.set("login", url.searchParams.get("loginUser"));
+            searchParams.set("key", url.searchParams.get("key"));
+
+            fetch("https://settime.online/php/verify.php", {
+                    method: "POST",
+                    body: searchParams,
+                })
+                .then(response => {
+                    return response.text();
+                })
+                .then(text => {
+                    let objectPHP = JSON.parse(text);
+
+                    let msg =
+                        '<span style="display: block; text-align:center"><Text trans="text+:WelcomeVerify;">Пользователь</Text><b> ';
+                    msg += objectPHP["login"];
+                    msg +=
+                        ' </b><Text trans="text+:WelcomeVerify2;"> активирован!</Text></span>';
+                    msg +=
+                        '<p style="margin-top:5px"><Text trans="text+:WelcomeVerify3;">Войдите в систему и Вам будут доступны дополнительные функции.</Text></p>';
+
+                    alerter(
+                        '<Text trans="text+:Welcome;">Добро пожаловать!</Text>',
+                        msg,
+                        "standart",
+                        "success",
+                        "standart"
+                    );
+                });
+        } else {
+            document.getElementById("courseSelector").style.display = "block";
+            document.getElementById("levelSelector").style.display = "block";
+        }
+        Translate();
+    }
+}
+
+function startLoadFromRemote(globalLogin, item) {
+            loadFromRemote(globalLogin, item)
+            let dataFromRemote = sessionStorage.getItem(item);
+            return dataFromRemote;
+        }
+
+function loadFromRemote(globalLogin, item) {
+            var params = new URLSearchParams();
+            params.set('login', globalLogin);
+            params.set('item', item);
+            fetch('https://settime.online/php/lload.php', {
+                method: 'POST',
+                body: params
+            }).then(
+                response => {
+                    return response.text();
+                }
+            ).then(
+                text => {
+                    sessionStorage.setItem(item, text);
+                }
+            );
+        }
+
+function startLoadFromLocal(item) {
+            return localStorage.getItem(item)
+        }
+
+function getDataFrom(typeBase, globalLogin, item) {
+			let dataLoad;
+            if (typeBase == "local") {
+                dataLoad = startLoadFromLocal(item);
+            } else if (typeBase == "remote") {
+                dataLoad = startLoadFromRemote(globalLogin, item);
+            } else {
+				dataLoad = startLoadFromLocal(item);
+//                alert("error typeBase")
+            }
+            return dataLoad
+        }
+
