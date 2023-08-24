@@ -40,9 +40,9 @@
 		"fr": "Liste des personnes pour lesquelles ce temps n'est pas libre: "
 	},
 	"MatchTimeText": {
-		"ru": "MatchTimeText",
-		"en": "",
-		"fr": ""
+		"ru": "Совпадающее время",
+		"en": "MatchTimeText",
+		"fr": "Temps coïncident"
 	},
 	"NotMatched": {
 		"ru": "Для следующих людей выбранный период времени не свободен: ",
