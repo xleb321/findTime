@@ -1,259 +1,434 @@
 <!DOCTYPE html>
 <html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="description"
+			content="Руководство по работе с системой составления расписания, планирования встреч и работы со временем. Для школ, развивающих центров, репетиторов и других организаций, работающих с клиентами. Формирование групп и определение времени встреч и занятий. Ведение списка дел. Онлайн. Бесплатно. Возможность работы без регистрации."
+		/>
+		<meta
+			name="keywords"
+			content="Система составления расписания, найди время!, найдивремя! settime!, ДелуВремя!, свободное время, занятое время , расписание, freetime, busytime"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
 
-<head>
-	<meta charset="utf-8" />
-	<meta name="description" content="Руководство по работе с системой составления расписания, планирования встреч и работы со временем. Для школ, развивающих центров, репетиторов и других организаций, работающих с клиентами. Формирование групп и определение времени встреч и занятий. Ведение списка дел. Онлайн. Бесплатно. Возможность работы без регистрации." />
-	<meta name="keywords" content="Система составления расписания, найди время!, найдивремя! settime!, ДелуВремя!, свободное время, занятое время , расписание, freetime, busytime" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta
+			property="og:title"
+			content="ДелуВремя! | Руководство пользователя системы составления расписания"
+		/>
+		<meta
+			property="og:description"
+			content="Руководство по работе с системой составления расписания, планирования встреч и работы со временем. Для школ, развивающих центров, репетиторов и других организаций, работающих с клиентами. Формирование групп и определение времени встреч и занятий. Ведение списка дел. Онлайн. Бесплатно. Возможность работы без регистрации."
+		/>
+		<meta
+			property="og:image"
+			content="https://settime.online/img/findTime1.png"
+		/>
 
-	<meta property="og:title" content="ДелуВремя! | Руководство пользователя системы составления расписания" />
-	<meta property="og:description" content="Руководство по работе с системой составления расписания, планирования встреч и работы со временем. Для школ, развивающих центров, репетиторов и других организаций, работающих с клиентами. Формирование групп и определение времени встреч и занятий. Ведение списка дел. Онлайн. Бесплатно. Возможность работы без регистрации." />
-	<meta property="og:image" content="https://settime.online/img/findTime1.png" />
+		<title trans="text:main;">
+			ДелуВремя! | Руководство пользователя системы составления расписания
+		</title>
 
-	<title trans="text:main;">
-		ДелуВремя! | Руководство пользователя системы составления расписания
-	</title>
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+		<link rel="icon" type="image/png" href="favicon.png" />
+		<link rel="apple-touch-icon" href="favicon.png" />
 
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-	<link rel="icon" type="image/png" href="favicon.png" />
-	<link rel="apple-touch-icon" href="favicon.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- Yandex.Metrika counter -->
 
-	<!-- Yandex.Metrika counter -->
-
-	<script type="text/javascript">
-		(function(m, e, t, r, i, k, a) {
-			m[i] = m[i] || function() {
-				(m[i].a = m[i].a || []).push(arguments)
-			};
-			m[i].l = 1 * new Date();
-			for (var j = 0; j < document.scripts.length; j++) {
-				if (document.scripts[j].src === r) {
-					return;
+		<script type="text/javascript">
+			(function (m, e, t, r, i, k, a) {
+				m[i] =
+					m[i] ||
+					function () {
+						(m[i].a = m[i].a || []).push(arguments);
+					};
+				m[i].l = 1 * new Date();
+				for (var j = 0; j < document.scripts.length; j++) {
+					if (document.scripts[j].src === r) {
+						return;
+					}
 				}
-			}
-			k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-		})
-		(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+				(k = e.createElement(t)),
+					(a = e.getElementsByTagName(t)[0]),
+					(k.async = 1),
+					(k.src = r),
+					a.parentNode.insertBefore(k, a);
+			})(
+				window,
+				document,
+				'script',
+				'https://mc.yandex.ru/metrika/tag.js',
+				'ym'
+			);
 
-		ym(94297055, "init", {
-			clickmap: true,
-			trackLinks: true,
-			accurateTrackBounce: true,
-			webvisor: true
-		});
-
-	</script>
-	<noscript>
-		<div><img src="https://mc.yandex.ru/watch/94297055" style="position:absolute; left:-9999px;" alt="" /></div>
-	</noscript>
-
-	<!--	 /Yandex.Metrika counter -->
-
-
-	<script src="js/popper.min.js"></script>
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
-	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap" rel="stylesheet" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
-	<link rel="stylesheet" href="css/style.css" />
-</head>
-
-<body>
-	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-		<div class="offcanvas-header py-1">
-			<h5 class="offcanvas-title" id="offcanvasRightLabel">
-				<i class="bi bi-gear mr-3 my-0 text-primary" style="font-size: 1.2em" id="testPHP"></i>&nbsp;<Text trans="text+:Setting;">SETTINGS</Text>
-			</h5>
+			ym(94297055, 'init', {
+				clickmap: true,
+				trackLinks: true,
+				accurateTrackBounce: true,
+				webvisor: true,
+			});
+		</script>
+		<noscript>
 			<div>
-				<a href="guide.html">
-					<i class="bi bi-question-circle" style="margin-right: 10px"></i></a>
-				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				<img
+					src="https://mc.yandex.ru/watch/94297055"
+					style="position: absolute; left: -9999px"
+					alt=""
+				/>
 			</div>
-		</div>
-		<div class="offcanvas-body py-1">
-			<div style="
+		</noscript>
+
+		<!--	 /Yandex.Metrika counter -->
+
+		<script src="js/popper.min.js"></script>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+			integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+			crossorigin="anonymous"
+		></script>
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<div
+			class="offcanvas offcanvas-end"
+			tabindex="-1"
+			id="offcanvasRight"
+			aria-labelledby="offcanvasRightLabel"
+		>
+			<div class="offcanvas-header py-1">
+				<h5 class="offcanvas-title" id="offcanvasRightLabel">
+					<i
+						class="bi bi-gear mr-3 my-0 text-primary"
+						style="font-size: 1.2em"
+						id="testPHP"
+					></i
+					>&nbsp;<Text trans="text+:Setting;">SETTINGS</Text>
+				</h5>
+				<div>
+					<a href="guide.html">
+						<i class="bi bi-question-circle" style="margin-right: 10px"></i
+					></a>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="offcanvas"
+						aria-label="Close"
+					></button>
+				</div>
+			</div>
+			<div class="offcanvas-body py-1">
+				<div
+					style="
 						width: 100%;
 						border-bottom: 1px solid black;
 						font-size: 0.85em;
 						border-top: 1px solid black;
 						padding-top: 0.3em;
-					">
-				<h6>
-					<i class="bi bi-tv"></i><span class="text-primary">&nbsp;<Text trans="text+:General;">General</Text></span>
-				</h6>
-				<span><b><Text trans="text+:Lang;">language</Text></b>&nbsp;&nbsp;</span>
-				<span>
-					<select name="disable" id="Trans" class="w-50 d-inline form-select form-select-sm" aria-label=".form-select-sm example">
-						<option value="en">English</option>
-						<option selected value="ru">Русский</option>
-						<option value="fr">Français</option>
-					</select> </span><br />
-				<div style="margin-top: 0.3em">
-					<b><Text trans="text+:Tabs;">Tab at startup</Text></b>
-				</div>
-				<div class="d-flex flex-row justify-content-start align-items-center">
-					<span class="mt-2">
-						<select id="numTab" class="d-inline form-select form-select-sm" aria-label=".form-select-sm example">
-							<option selected value="0" trans="text+:ScheduleTab;">
-								Schedule
-							</option>
-							<option value="1" trans="text+:FreeTab;">Free</option>
-							<option value="2" trans="text+:BusyTab;">Busy</option>
-							<option value="3" trans="text+:FullTab;">
-								Schedule fullscreen
-							</option>
-						</select> </span><br />
-					<span class="form-check" style="align-self: center; margin-left: 25px; padding-top: 13px">
-						<input class="form-check-input" type="checkbox" value="" id="checkSaveNumTab" checked />
-						<label class="form-check-label" for="checkSaveNumTab">
-							<Text trans="text+:CheckSaveNumTab;">Save in storage</Text>
-						</label>
-					</span>
-				</div>
-				<!--
+					"
+				>
+					<h6>
+						<i class="bi bi-tv"></i
+						><span class="text-primary"
+							>&nbsp;<Text trans="text+:General;">General</Text></span
+						>
+					</h6>
+					<span
+						><b><Text trans="text+:Lang;">language</Text></b
+						>&nbsp;&nbsp;</span
+					>
+					<span>
+						<select
+							name="disable"
+							id="Trans"
+							class="w-50 d-inline form-select form-select-sm"
+							aria-label=".form-select-sm example"
+						>
+							<option value="en">English</option>
+							<option selected value="ru">Русский</option>
+							<option value="fr">Français</option>
+						</select> </span
+					><br />
+					<div style="margin-top: 0.3em">
+						<b><Text trans="text+:Tabs;">Tab at startup</Text></b>
+					</div>
+					<div class="d-flex flex-row justify-content-start align-items-center">
+						<span class="mt-2">
+							<select
+								id="numTab"
+								class="d-inline form-select form-select-sm"
+								aria-label=".form-select-sm example"
+							>
+								<option selected value="0" trans="text+:ScheduleTab;">
+									Schedule
+								</option>
+								<option value="1" trans="text+:FreeTab;">Free</option>
+								<option value="2" trans="text+:BusyTab;">Busy</option>
+								<option value="3" trans="text+:FullTab;">
+									Schedule fullscreen
+								</option>
+							</select> </span
+						><br />
+						<span
+							class="form-check"
+							style="align-self: center; margin-left: 25px; padding-top: 13px"
+						>
+							<input
+								class="form-check-input"
+								type="checkbox"
+								value=""
+								id="checkSaveNumTab"
+								checked
+							/>
+							<label class="form-check-label" for="checkSaveNumTab">
+								<Text trans="text+:CheckSaveNumTab;">Save in storage</Text>
+							</label>
+						</span>
+					</div>
+					<!--
                 <div class="form-check form-switch " style="">
                     <input class="form-check-input" type="checkbox" id="scheduleAutoSaved" checked>
                     <label class="form-check-label" for="flexSwitchCheckChecked"><Text name=" ">Show full screen schedule at start</Text></label>
                 </div>
 -->
 
-				<div class="mt-2">
-					<b><Text trans="text+:Storage;">Storage</Text></b>
-				</div>
+					<div class="mt-2">
+						<b><Text trans="text+:Storage;">Storage</Text></b>
+					</div>
 
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="radioBase" id="flexRadioDefault1" checked />
-					<label class="form-check-label" for="flexRadioDefault1">
-						<Text trans="text+:LcStor;"> In the device's local storage</Text>
-					</label>
-				</div>
-				<div class="form-check">
-					<input disabled class="form-check-input" type="radio" name="radioBase" id="flexRadioDefault2" />
-					<label class="form-check-label" for="flexRadioDefault2">
-						<Text trans="text+:RtStor;"> In the remote database </Text>
-					</label>
-				</div>
+					<div class="form-check">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="radioBase"
+							id="flexRadioDefault1"
+							checked
+						/>
+						<label class="form-check-label" for="flexRadioDefault1">
+							<Text trans="text+:LcStor;"> In the device's local storage</Text>
+						</label>
+					</div>
+					<div class="form-check">
+						<input
+							disabled
+							class="form-check-input"
+							type="radio"
+							name="radioBase"
+							id="flexRadioDefault2"
+						/>
+						<label class="form-check-label" for="flexRadioDefault2">
+							<Text trans="text+:RtStor;"> In the remote database </Text>
+						</label>
+					</div>
 
-				<div>
-					<b><Text trans="text+:addData;">Data</Text></b>
-				</div>
+					<div>
+						<b><Text trans="text+:addData;">Data</Text></b>
+					</div>
 
-				<div style="font-size: 0.85em">
-					<label><Text trans="text+:ToCreateCurse;"><b>To create a course</b></Text></label>
-					<textarea rows="3" class="my-2 d-block w-100" trans="placeholder:InputCourseName;" placeholder="Input a course name with a comma as a separator" id="courseTextArea"></textarea>
+					<div style="font-size: 0.85em">
+						<label
+							><Text trans="text+:ToCreateCurse;"
+								><b>To create a course</b></Text
+							></label
+						>
+						<textarea
+							rows="3"
+							class="my-2 d-block w-100"
+							trans="placeholder:InputCourseName;"
+							placeholder="Input a course name with a comma as a separator"
+							id="courseTextArea"
+						></textarea>
 
-					<button id="courseNameSubmit" class="btn btn-sm my-1" style="
+						<button
+							id="courseNameSubmit"
+							class="btn btn-sm my-1"
+							style="
 								background-color: #48c2a9;
 								font-weight: 500;
 								color: black;
 								font-size: 1em;
-							">
-						<i class="bi bi-plus" name="disable"></i>&nbsp;
-						<span trans="text+:clickAdd;">Add</span>
-					</button>
+							"
+						>
+							<i class="bi bi-plus" name="disable"></i>&nbsp;
+							<span trans="text+:clickAdd;">Add</span>
+						</button>
 
-					<Text trans="text+:List;" style="font-weight: 700">&nbsp; List&nbsp;&nbsp;
-					</Text>
+						<Text trans="text+:List;" style="font-weight: 700"
+							>&nbsp; List&nbsp;&nbsp;
+						</Text>
 
-					<button id="courseNameSubmitLoad" class="btn btn-sm my-1" style="
+						<button
+							id="courseNameSubmitLoad"
+							class="btn btn-sm my-1"
+							style="
 								background-color: CornflowerBlue;
 								font-weight: 500;
 								color: white;
 								font-size: 1em;
-							">
-						<i class="bi bi-download" name="disable"></i>&nbsp;
-						<span trans="text+:clickLoad;">load</span>
-					</button>
+							"
+						>
+							<i class="bi bi-download" name="disable"></i>&nbsp;
+							<span trans="text+:clickLoad;">load</span>
+						</button>
 
-					<button id="courseNameSubmitUpdate" class="btn btn-sm my-1" style="
+						<button
+							id="courseNameSubmitUpdate"
+							class="btn btn-sm my-1"
+							style="
 								background-color: teal;
 								font-weight: 500;
 								color: white;
 								font-size: 1em;
-							">
-						<i class="bi bi-upload" name="disable"></i>&nbsp;
-						<span trans="text+:clickUpdate;">Update</span>
-					</button>
+							"
+						>
+							<i class="bi bi-upload" name="disable"></i>&nbsp;
+							<span trans="text+:clickUpdate;">Update</span>
+						</button>
 
-					<button id="courseNameSubmitDel" class="btn btn-sm my-1" style="
+						<button
+							id="courseNameSubmitDel"
+							class="btn btn-sm my-1"
+							style="
 								background-color: indianred;
 								font-weight: 500;
 								color: white;
 								font-size: 1em;
-							">
-						<i class="bi bi-x" name="disable"></i>&nbsp;
-						<span trans="text+:clickDel;">Delete</span>
-					</button>
-				</div>
-				<div style="font-size: 0.85em; margin-top: 10px; margin-bottom: 10px">
-					<label><Text trans="text+:ToCreateGrade;"><b>To create a grade.</b></Text></label>
-					<textarea class="my-2 d-block w-100" trans="placeholder:InputGradeName;" name="InputGradeName" placeholder="Input a grade name with a comma as a separator" id="gradeTextArea"></textarea>
+							"
+						>
+							<i class="bi bi-x" name="disable"></i>&nbsp;
+							<span trans="text+:clickDel;">Delete</span>
+						</button>
+					</div>
+					<div style="font-size: 0.85em; margin-top: 10px; margin-bottom: 10px">
+						<label
+							><Text trans="text+:ToCreateGrade;"
+								><b>To create a grade.</b></Text
+							></label
+						>
+						<textarea
+							class="my-2 d-block w-100"
+							trans="placeholder:InputGradeName;"
+							name="InputGradeName"
+							placeholder="Input a grade name with a comma as a separator"
+							id="gradeTextArea"
+						></textarea>
 
-					<button id="gradeNameSubmit" class="btn btn-sm my-1" style="
+						<button
+							id="gradeNameSubmit"
+							class="btn btn-sm my-1"
+							style="
 								background-color: #48c2a9;
 								font-weight: 500;
 								color: black;
 								font-size: 1em;
-							">
-						<i class="bi bi-plus"></i>&nbsp;
-						<span trans="text+:clickAdd;">Add</span>
-					</button>
+							"
+						>
+							<i class="bi bi-plus"></i>&nbsp;
+							<span trans="text+:clickAdd;">Add</span>
+						</button>
 
-					<Text trans="text+:List;" style="font-weight: 700">&nbsp;List&nbsp;&nbsp;
-					</Text>
+						<Text trans="text+:List;" style="font-weight: 700"
+							>&nbsp;List&nbsp;&nbsp;
+						</Text>
 
-					<button id="gradeNameSubmitLoad" class="btn btn-sm my-1" style="
+						<button
+							id="gradeNameSubmitLoad"
+							class="btn btn-sm my-1"
+							style="
 								background-color: CornflowerBlue;
 								font-weight: 500;
 								color: white;
 								font-size: 1em;
-							">
-						<i class="bi bi-download" name="disable"></i>&nbsp;
-						<span trans="text+:clickLoad;">load</span>
-					</button>
+							"
+						>
+							<i class="bi bi-download" name="disable"></i>&nbsp;
+							<span trans="text+:clickLoad;">load</span>
+						</button>
 
-					<button id="gradeNameSubmitUpdate" class="btn btn-sm my-1" style="
+						<button
+							id="gradeNameSubmitUpdate"
+							class="btn btn-sm my-1"
+							style="
 								background-color: teal;
 								font-weight: 500;
 								color: white;
 								font-size: 1em;
-							">
-						<i class="bi bi-upload"></i>&nbsp;
-						<span trans="text+:clickUpdate;">Update</span>
-					</button>
+							"
+						>
+							<i class="bi bi-upload"></i>&nbsp;
+							<span trans="text+:clickUpdate;">Update</span>
+						</button>
 
-					<button id="gradeNameSubmitDel" class="btn btn-sm my-1" style="
+						<button
+							id="gradeNameSubmitDel"
+							class="btn btn-sm my-1"
+							style="
 								background-color: indianred;
 								font-weight: 500;
 								color: white;
 								font-size: 1em;
-							">
-						<i class="bi bi-x"></i>&nbsp;
-						<span trans="text+:clickDel;">Delete</span>
-					</button>
+							"
+						>
+							<i class="bi bi-x"></i>&nbsp;
+							<span trans="text+:clickDel;">Delete</span>
+						</button>
+					</div>
 				</div>
-			</div>
-			<div style="
+				<div
+					style="
 						width: 100%;
 						border-bottom: 1px solid black;
 						padding-top: 0.3em;
 						font-size: 0.8em;
-					">
-				<h6>
-					<i class="bi bi-table mr-1"></i><span class="text-primary my-0">&nbsp;<Text trans="text+:Schedule;">Schedule</Text></span>
-				</h6>
-				<div class="form-check form-switch">
-					<input class="form-check-input" type="checkbox" id="scheduleLoaded" checked />
-					<label class="form-check-label" for="flexSwitchCheckChecked"><Text trans="text+:ShSchedule;">Show the schedule when loading</Text></label>
-				</div>
-				<!--
+					"
+				>
+					<h6>
+						<i class="bi bi-table mr-1"></i
+						><span class="text-primary my-0"
+							>&nbsp;<Text trans="text+:Schedule;">Schedule</Text></span
+						>
+					</h6>
+					<div class="form-check form-switch">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="scheduleLoaded"
+							checked
+						/>
+						<label class="form-check-label" for="flexSwitchCheckChecked"
+							><Text trans="text+:ShSchedule;"
+								>Show the schedule when loading</Text
+							></label
+						>
+					</div>
+					<!--
 
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="scheduleAutoSaved" checked>
@@ -262,225 +437,361 @@
                             storage</Text></label>
                 </div>
 -->
-			</div>
+				</div>
 
-			<div style="
+				<div
+					style="
 						width: 100%;
 						border-bottom: 1px solid black;
 						padding-top: 0.3em;
 						font-size: 0.85em;
-					">
-				<h6>
-					<i class="bi bi-clock text-success mr-1"></i><span class="text-primary my-0">&nbsp;<Text trans="text+:Datamaintenance;">Data maintenance</Text></span>
-				</h6>
+					"
+				>
+					<h6>
+						<i class="bi bi-clock text-success mr-1"></i
+						><span class="text-primary my-0"
+							>&nbsp;<Text trans="text+:Datamaintenance;"
+								>Data maintenance</Text
+							></span
+						>
+					</h6>
 
-				<button class="btn btn-sm" id="importButtonBase" name="ImportButtonBusy" style="
+					<button
+						class="btn btn-sm"
+						id="importButtonBase"
+						name="ImportButtonBusy"
+						style="
 							background-color: #48c2a9;
 							color: black;
 							font-size: 0.85em;
 							font-weight: 500;
 							margin-bottom: 0.7em;
-						">
-					<i class="bi bi-download" name="disable"></i><text trans="text+:btnImport;">&nbsp; Import to remote base</text>
-				</button>
-			</div>
+						"
+					>
+						<i class="bi bi-download" name="disable"></i
+						><text trans="text+:btnImport;">&nbsp; Import to remote base</text>
+					</button>
+				</div>
 
-			<!--
+				<!--
             <div style="height: 15%; width: 100%;; padding-top: .3em; font-size: 0.85em; margin-bottom: 0.3em">
                 <h6><i class="bi bi-clock text-orange mr-1" style="color: orangered"></i><span class="text-primary my-0">&nbsp;<Text name="BusyTime">BusyTime</Text></span></h6>
 
                 <button class=" btn btn-sm " id="importButtonBusy" name="ImportButtonBusy" style="background-color: #48c2a9;color: black; font-size: 0.85em; font-weight: 500;margin-bottom: 1em"><i class="bi bi-download" name="disable"></i><text name="btnImport">&nbsp; Import</text></button>
             </div>
 -->
-		</div>
-	</div>
-
-	<style>
-		.alertWin {
-			border-radius: 8px;
-			background-color: rgb(250, 250, 250);
-			font-size: 12px;
-
-			padding: 10px 20px 1px;
-			margin: 25px;
-			border: 1px solid black;
-			box-sizing: border-box;
-			position: fixed;
-			top: 7%;
-			max-height: 500px;
-
-			opacity: 0;
-			transform: translateY(-350px);
-			transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-			z-index: 1056;
-		}
-
-		.alertWin.alertinvs {
-			opacity: 1;
-			z-index: 1056;
-			transform: translateY(0px);
-			transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
-		}
-
-	</style>
-
-	<div style="width: 100%; display: flex; justify-content: center" class="w-sx-100 w-sm-100 w-lg-75 w-md-75 w-lx-75 bg-light">
-		<div class="alertWin">
-			<div class="rounded-1 modal-content-enter">
-				<div class="modal-header border-bottom border-dark">
-					<h3 class="modal-title" style="font-size: 1.2em" id="alerterLabel">
-						<Text trans="text+:ModalEnter;">Заголовок алерта</Text>
-					</h3>
-					<button type="button" class="btn-close btnCloseAlert mb-2 mr-1"></button>
-				</div>
-				<div class="modal-body mt-1" id="modalBodyAlert" style="text-align: justify; text-indent: 25px">
-					alerter !
-				</div>
-				<div class="modal-footer mt-3 border-top border-dark justify-content-center" id="modalFooterAlert"></div>
 			</div>
 		</div>
-	</div>
 
-	<style>
-		.moveWin {
-			border-radius: 8px;
-			background-color: white;
-			font-size: 12px;
+		<style>
+			.alertWin {
+				border-radius: 8px;
+				background-color: rgb(250, 250, 250);
+				font-size: 12px;
 
-			text-align: center;
-			padding: 10px;
-			margin: 25px;
-			border: 1px solid black;
-			box-sizing: border-box;
-			position: fixed;
-			top: 7%;
+				padding: 10px 20px 1px;
+				margin: 25px;
+				border: 1px solid black;
+				box-sizing: border-box;
+				position: fixed;
+				top: 7%;
+				max-height: 500px;
 
-			opacity: 0;
-			transform: translateY(-350px);
-			transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-			z-index: 100;
-		}
+				opacity: 0;
+				transform: translateY(-350px);
+				transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+				z-index: 1056;
+			}
 
-		.moveWin.invs {
-			opacity: 1;
-			transform: translateY(0px);
-			transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-		}
+			.alertWin.alertinvs {
+				opacity: 1;
+				z-index: 1056;
+				transform: translateY(0px);
+				transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+			}
+		</style>
 
-	</style>
-
-	<!--	Личный кабинет Personal cabinet-->
-
-	<div style="width: 100%; display: flex; justify-content: center" class="w-sx-100 w-sm-100 w-lg-75 w-md-75 w-lx-75">
-		<div class="moveWin">
-			<div class="bg-white rounded-1 modal-content-enter">
-				<div class="modal-header">
-					<h3 class="modal-title1" style="font-size: 1.2em" id="modalEnterLabel">
-						<Text trans="text+:ModalEnter;">Вход в личный кабинет</Text>
-					</h3>
-					<button type="button" class="btn-close btnCloseEnter mb-2 mr-1"></button>
-				</div>
-				<div class="modal-body" id="modalBody">
-					<div>
-						<input type="text" trans="text+:login;" id="InputLogin" aria-describedby="nameHelp" placeholder="Login " required class="form-control mt-0" style="font-size: 1em" />
-						<input type="password" trans="placeholder:password;" id="InputPassword" aria-describedby="nameHelp" placeholder="Password " required class="form-control mt-2" style="font-size: 1em" />
+		<div
+			style="width: 100%; display: flex; justify-content: center"
+			class="w-sx-100 w-sm-100 w-lg-75 w-md-75 w-lx-75 bg-light"
+		>
+			<div class="alertWin">
+				<div class="rounded-1 modal-content-enter">
+					<div class="modal-header border-bottom border-dark">
+						<h3 class="modal-title" style="font-size: 1.2em" id="alerterLabel">
+							<Text trans="text+:ModalEnter;">Заголовок алерта</Text>
+						</h3>
+						<button
+							type="button"
+							class="btn-close btnCloseAlert mb-2 mr-1"
+						></button>
 					</div>
+					<div
+						class="modal-body mt-1"
+						id="modalBodyAlert"
+						style="text-align: justify; text-indent: 25px"
+					>
+						alerter !
+					</div>
+					<div
+						class="modal-footer mt-3 border-top border-dark justify-content-center"
+						id="modalFooterAlert"
+					></div>
+				</div>
+			</div>
+		</div>
 
-					<div class="form-check form-check-inline my-2">
-						<input class="form-check-input" type="radio" name="inpRadioEnter" id="loginEnter" value="login" checked />
-						<label class="form-check-label" for="login"><Text trans="text+:RadioEnter;">Вход</Text></label>
+		<style>
+			.moveWin {
+				border-radius: 8px;
+				background-color: white;
+				font-size: 12px;
+
+				text-align: center;
+				padding: 10px;
+				margin: 25px;
+				border: 1px solid black;
+				box-sizing: border-box;
+				position: fixed;
+				top: 7%;
+
+				opacity: 0;
+				transform: translateY(-350px);
+				transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+				z-index: 100;
+			}
+
+			.moveWin.invs {
+				opacity: 1;
+				transform: translateY(0px);
+				transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+			}
+		</style>
+
+		<!--	Личный кабинет Personal cabinet-->
+
+		<div
+			style="width: 100%; display: flex; justify-content: center"
+			class="w-sx-100 w-sm-100 w-lg-75 w-md-75 w-lx-75"
+		>
+			<div class="moveWin">
+				<div class="bg-white rounded-1 modal-content-enter">
+					<div class="modal-header">
+						<h3
+							class="modal-title1"
+							style="font-size: 1.2em"
+							id="modalEnterLabel"
+						>
+							<Text trans="text+:ModalEnter;">Вход в личный кабинет</Text>
+						</h3>
+						<button
+							type="button"
+							class="btn-close btnCloseEnter mb-2 mr-1"
+						></button>
 					</div>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="inpRadioEnter" id="loginReg" value="singin" />
-						<label class="form-check-label" for="singin"><Text trans="text+:RadioReg;">Регистрация</Text></label>
+					<div class="modal-body" id="modalBody">
+						<div>
+							<input
+								type="text"
+								trans="text+:login;"
+								id="InputLogin"
+								aria-describedby="nameHelp"
+								placeholder="Login "
+								required
+								class="form-control mt-0"
+								style="font-size: 1em"
+							/>
+							<input
+								type="password"
+								trans="placeholder:password;"
+								id="InputPassword"
+								aria-describedby="nameHelp"
+								placeholder="Password "
+								required
+								class="form-control mt-2"
+								style="font-size: 1em"
+							/>
+						</div>
+
+						<div class="form-check form-check-inline my-2">
+							<input
+								class="form-check-input"
+								type="radio"
+								name="inpRadioEnter"
+								id="loginEnter"
+								value="login"
+								checked
+							/>
+							<label class="form-check-label" for="login"
+								><Text trans="text+:RadioEnter;">Вход</Text></label
+							>
+						</div>
+						<div class="form-check form-check-inline">
+							<input
+								class="form-check-input"
+								type="radio"
+								name="inpRadioEnter"
+								id="loginReg"
+								value="singin"
+							/>
+							<label class="form-check-label" for="singin"
+								><Text trans="text+:RadioReg;">Регистрация</Text></label
+							>
+						</div>
 					</div>
-				</div>
-				<div id="areaAnswer" style="font-size: 0.9em; text-align: justify; text-indent: 25px">
-					<p>
-						Окно регистрации в системе и входа в личный кабинет пользователя с
-						возможностью работы как с локальным хранилищем данных так и с
-						удаленной базой данных.
-					</p>
-					<p style="color: indianred; font-weight: 500">
-						Данное окно показывает только интерфейс входа, активна только
-						кнопка "Закрыть"! Войти в личный кабинет можно только с основной
-						страницы системы <a href="index.html">НайдиВремя!</a>
-					</p>
-				</div>
-				<div class="modal-footer justify-content-between">
-					<div>
-						<button type="button" trans="text+:MEnterOut;" class="btn btn-sm ml-0 mt-4 mb-1" id="logout" style="
+					<div
+						id="areaAnswer"
+						style="font-size: 0.9em; text-align: justify; text-indent: 25px"
+					>
+						<p>
+							Окно регистрации в системе и входа в личный кабинет пользователя с
+							возможностью работы как с локальным хранилищем данных так и с
+							удаленной базой данных.
+						</p>
+						<p style="color: indianred; font-weight: 500">
+							Данное окно показывает только интерфейс входа, активна только
+							кнопка "Закрыть"! Войти в личный кабинет можно только с основной
+							страницы системы <a href="index.html">НайдиВремя!</a>
+						</p>
+					</div>
+					<div class="modal-footer justify-content-between">
+						<div>
+							<button
+								type="button"
+								trans="text+:MEnterOut;"
+								class="btn btn-sm ml-0 mt-4 mb-1"
+								id="logout"
+								style="
 									background-color: #48c2a9;
 									font-weight: 500;
 									color: white;
 									font-size: 1em;
-								">
-							Log out
-						</button>
-					</div>
-					<div>
-						<button type="button" trans="text+:Close;" class="btn btn-secondary btn-sm btnCloseEnter m-2 mt-4 mb-1" style="font-weight: 500; color: white; font-size: 1em">
-							Close
-						</button>
-						<button type="button" trans="text+:MEnter;" class="btn btn-sm m-2 mt-4 mb-1" id="buttonEnter" style="
+								"
+							>
+								Log out
+							</button>
+						</div>
+						<div>
+							<button
+								type="button"
+								trans="text+:Close;"
+								class="btn btn-secondary btn-sm btnCloseEnter m-2 mt-4 mb-1"
+								style="font-weight: 500; color: white; font-size: 1em"
+							>
+								Close
+							</button>
+							<button
+								type="button"
+								trans="text+:MEnter;"
+								class="btn btn-sm m-2 mt-4 mb-1"
+								id="buttonEnter"
+								style="
 									background-color: CornflowerBlue;
 									font-weight: 500;
 									color: white;
 									font-size: 1em;
-								">
-							Enter
-						</button>
+								"
+							>
+								Enter
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<header class="fixed-top pb-1" style="background-color: lightgrey">
-		<div class="container-fluid pl-2 pr-0" style="background-color: white">
-			<div class="row">
-				<div class="col-12 px-0">
-					<nav class="navbar navbar-expand-sx navbar-dark pl-0 py-0 my-0">
-						<div class="container-fluid">
-							<a class="navbar-brand" style="
-                                margin-left: -0.3em;
-								font-size: 1.25em;
-								color: black;
-								margin-right: 0px;
-                                letter-spacing: -0.7px
-                                " href="https://settime.online"><img src="logo.svg" width="22" class="mx-1" style="margin-top: -3px; margin-left: 5px;"><Text trans="text+:FindTime;">FindTime!</Text>
-							</a>
-							<div class="text-primary d-none d-sm-block" style="font-weight: 600">
-								<Text trans="text+:Guide;">Guide</Text>
+		<header class="fixed-top pb-1" style="background-color: lightgrey">
+			<div class="container-fluid pl-2 pr-0" style="background-color: white">
+				<div class="row">
+					<div class="col-12 px-0">
+						<nav class="navbar navbar-expand-sx navbar-dark pl-0 py-0 my-0">
+							<div class="container-fluid">
+								<a
+									class="navbar-brand"
+									style="
+										margin-left: -0.3em;
+										font-size: 1.25em;
+										color: black;
+										margin-right: 0px;
+										letter-spacing: -0.7px;
+									"
+									href="https://settime.online"
+									><img
+										src="logo.svg"
+										width="22"
+										class="mx-1"
+										style="margin-top: -3px; margin-left: 5px"
+									/><Text trans="text+:FindTime;">FindTime!</Text>
+								</a>
+								<div
+									class="text-primary d-none d-sm-block"
+									style="font-weight: 600"
+								>
+									<Text trans="text+:Guide;">Guide</Text>
+								</div>
+								<div
+									style="text-align: left"
+									class="d-flex flex-row justify-content-end"
+								>
+									<button
+										type="button"
+										class="btn mr-0 my-0"
+										id="btnModalEnter"
+									>
+										<i
+											id="btnModalEnterIcon"
+											class="bi bi-box-arrow-in-right mr-1 my-0 mt-1"
+											style="font-size: 1.4em"
+										></i>
+									</button>
+									<button
+										class="btn ml-2 mr-4 my-0 font-weight-bold text-primary"
+										data-bs-toggle="offcanvas"
+										data-bs-target="#offcanvasRight"
+										aria-controls="offcanvasRight"
+									>
+										<i
+											class="bi bi-list mr-4 my-0 mt-1"
+											style="box-sizing: border-box; font-size: 1.4em"
+										></i>
+									</button>
+								</div>
 							</div>
-							<div style="text-align: left" class="d-flex flex-row justify-content-end">
-								<button type="button" class="btn mr-0 my-0" id="btnModalEnter">
-									<i id="btnModalEnterIcon" class="bi bi-box-arrow-in-right mr-1 my-0 mt-1" style="font-size: 1.4em"></i>
-								</button>
-								<button class="btn ml-2 mr-4 my-0 font-weight-bold text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-									<i class="bi bi-list mr-4 my-0 mt-1" style="box-sizing: border-box; font-size: 1.4em"></i>
-								</button>
-							</div>
-						</div>
-					</nav>
+						</nav>
+					</div>
 				</div>
 			</div>
-		</div>
-	</header>
+		</header>
 
-	<div class="modal fade" id="legend" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="font-size: 0.85rem">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title fs-6" id="staticBackdropLabel">
-						<Text trans="text+;legend;"> Легенда расписания </Text>
-					</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<b><Text trans="text+;FreeTime;"> Свободное время</Text></b><br />
-					<div>
-						<span style="
+		<div
+			class="modal fade"
+			id="legend"
+			data-bs-backdrop="static"
+			data-bs-keyboard="false"
+			tabindex="-1"
+			aria-labelledby="staticBackdropLabel"
+			aria-hidden="true"
+			style="font-size: 0.85rem"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title fs-6" id="staticBackdropLabel">
+							<Text trans="text+;legend;"> Легенда расписания </Text>
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<b><Text trans="text+;FreeTime;"> Свободное время</Text></b
+						><br />
+						<div>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -490,11 +801,15 @@
 									margin-top: 5px;
 									margin-right: 10px;
 									font-weight: 600;
-								">2</span><Text trans="text+:legendMatches;">
-							Совпадение по времени (2 человека)</Text>
-					</div>
-					<div>
-						<span style="
+								"
+								>2</span
+							><Text trans="text+:legendMatches;">
+								Совпадение по времени (2 человека)</Text
+							>
+						</div>
+						<div>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -505,12 +820,16 @@
 									margin-right: 10px;
 									margin-bottom: 10px;
 									font-weight: 600;
-								">5</span><Text trans="text+:legendMaxMatches;">
-							Максимум совпадений (5 человек)</Text>
-					</div>
-					<Text trans="text+:legendColorPalette;">Палитра цветов</Text><br />
-					<div>
-						<span style="
+								"
+								>5</span
+							><Text trans="text+:legendMaxMatches;">
+								Максимум совпадений (5 человек)</Text
+							>
+						</div>
+						<Text trans="text+:legendColorPalette;">Палитра цветов</Text><br />
+						<div>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -519,8 +838,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -529,8 +850,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -539,8 +862,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -549,8 +874,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -559,8 +886,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -569,8 +898,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -579,8 +910,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -589,8 +922,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -599,8 +934,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -609,8 +946,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -619,8 +958,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -629,8 +970,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -639,8 +982,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -649,8 +994,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -659,8 +1006,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -669,8 +1018,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -679,8 +1030,10 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-						<span style="
+								"
+							></span>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -689,11 +1042,14 @@
 									padding: 4px 3px 0 10px;
 									margin-top: 5px;
 									font-weight: 600;
-								"></span>
-					</div>
-					<b><Text trans="text+:BusyTime;">Занятое время</Text></b><br />
-					<div>
-						<span style="
+								"
+							></span>
+						</div>
+						<b><Text trans="text+:BusyTime;">Занятое время</Text></b
+						><br />
+						<div>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -703,10 +1059,13 @@
 									margin-top: 5px;
 									margin-right: 10px;
 									font-weight: 600;
-								">&nbsp;</span><Text trans="text+:BusyTime;"> Занятое время</Text>
-					</div>
-					<div>
-						<span style="
+								"
+								>&nbsp;</span
+							><Text trans="text+:BusyTime;"> Занятое время</Text>
+						</div>
+						<div>
+							<span
+								style="
 									box-sizing: border-box;
 									display: inline-block;
 									width: 28px;
@@ -716,103 +1075,185 @@
 									margin-top: 5px;
 									margin-right: 10px;
 									font-weight: 600;
-								">&nbsp;</span><Text trans="text+:legendMatchesBusy;">
-							Совпадение по времени</Text>
+								"
+								>&nbsp;</span
+							><Text trans="text+:legendMatchesBusy;">
+								Совпадение по времени</Text
+							>
+						</div>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" trans="text+:Close;" style="font-size: 0.85rem">
-						Close
-					</button>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+							trans="text+:Close;"
+							style="font-size: 0.85rem"
+						>
+							Close
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<style>
-		.nav-tabs .nav-link {
-			padding-top: 0;
-			margin-top: 1px;
-			margin-bottom: -5px;
-			font-size: 0.8em;
-			padding: 3px;
-			border-radius: 2px 2px 0 0;
-			border-width: 0;
-		}
+		<style>
+			.nav-tabs .nav-link {
+				padding-top: 0;
+				margin-top: 1px;
+				margin-bottom: -5px;
+				font-size: 0.8em;
+				padding: 3px;
+				border-radius: 2px 2px 0 0;
+				border-width: 0;
+			}
 
-		.nav-tabs .nav-link h5 {
-			margin-left: 13px;
-			font-size: 1em;
-		}
+			.nav-tabs .nav-link h5 {
+				margin-left: 13px;
+				font-size: 1em;
+			}
+		</style>
 
-	</style>
-
-	<section class="mt-5 w-100">
-		<div class="contaner-fluid" style="box-sizing: content-box">
-			<div class="row w-100 px-0 py-0">
-				<div class="col-12 px-0 py-0">
-					<nav>
-						<div class="nav d-flex flex-row justify-content-between nav-tabs" id="nav-tab" role="tablist" style="
+		<section class="mt-5 w-100">
+			<div class="contaner-fluid" style="box-sizing: content-box">
+				<div class="row w-100 px-0 py-0">
+					<div class="col-12 px-0 py-0">
+						<nav>
+							<div
+								class="nav d-flex flex-row justify-content-between nav-tabs"
+								id="nav-tab"
+								role="tablist"
+								style="
 									padding-left: 10px;
 									padding-right: 0;
 									background-color: lightgrey;
 									width: 100vw;
 									box-sizing: content-box;
 									font-size: 0.95em;
-								">
-							<div class="d-flex flex-row">
-								<button class="nav-link active mt-1" id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about" type="button" role="tab" aria-controls="nav-about" aria-selected="true">
-									<h5>
-										<i class="bi bi-table"></i><Text trans="text+:About;">&nbsp; About&nbsp;&nbsp;</Text>
-									</h5>
-								</button>
-								<button class="nav-link mt-1" id="nav-setup-tab" data-bs-toggle="tab" data-bs-target="#nav-setup" type="button" role="tab" aria-controls="nav-setup" aria-selected="false">
-									<h5>
-										<i class="bi bi-clock text-success"></i><Text trans="text+:Setup;">&nbsp; Setup &nbsp; &nbsp;&nbsp;</Text>
-									</h5>
-								</button>
-								<button class="nav-link mt-1" id="nav-work-tab" data-bs-toggle="tab" data-bs-target="#nav-work" type="button" role="tab" aria-controls="nav-work" aria-selected="false" style="box-sizing: content-box">
-									<h5>
-										<i class="bi bi-clock text-orange" style="color: orangered"></i><Text trans="text+:Work;">&nbsp; Work &nbsp;&nbsp;&nbsp;</Text>
-									</h5>
-								</button>
+								"
+							>
+								<div class="d-flex flex-row">
+									<button
+										class="nav-link active mt-1"
+										id="nav-about-tab"
+										data-bs-toggle="tab"
+										data-bs-target="#nav-about"
+										type="button"
+										role="tab"
+										aria-controls="nav-about"
+										aria-selected="true"
+									>
+										<h5>
+											<i class="bi bi-table"></i
+											><Text trans="text+:About;"
+												>&nbsp; About&nbsp;&nbsp;</Text
+											>
+										</h5>
+									</button>
+									<button
+										class="nav-link mt-1"
+										id="nav-setup-tab"
+										data-bs-toggle="tab"
+										data-bs-target="#nav-setup"
+										type="button"
+										role="tab"
+										aria-controls="nav-setup"
+										aria-selected="false"
+									>
+										<h5>
+											<i class="bi bi-clock text-success"></i
+											><Text trans="text+:Setup;"
+												>&nbsp; Setup &nbsp; &nbsp;&nbsp;</Text
+											>
+										</h5>
+									</button>
+									<button
+										class="nav-link mt-1"
+										id="nav-work-tab"
+										data-bs-toggle="tab"
+										data-bs-target="#nav-work"
+										type="button"
+										role="tab"
+										aria-controls="nav-work"
+										aria-selected="false"
+										style="box-sizing: content-box"
+									>
+										<h5>
+											<i
+												class="bi bi-clock text-orange"
+												style="color: orangered"
+											></i
+											><Text trans="text+:Work;"
+												>&nbsp; Work &nbsp;&nbsp;&nbsp;</Text
+											>
+										</h5>
+									</button>
+								</div>
 							</div>
-						</div>
-					</nav>
+						</nav>
 
-					<div class="tab-content" id="nav-tabContent">
-						<div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-							<div id="btnSet" style="border-bottom-width: thick">
-								<div class="d-flex flex-row align-items-center justify-content-between" style="background-color: white; margin-right: 10px">
-									<span class="d-flex flex-row align-items-center justify-content-start">
-										<button class="mt-0 btnOnPhoneLeft" id="btnSaveTableScheduleHelp" value="Clear font-weight-bold " style="
-													
+						<div class="tab-content" id="nav-tabContent">
+							<div
+								class="tab-pane fade show active"
+								id="nav-about"
+								role="tabpanel"
+								aria-labelledby="nav-about-tab"
+							>
+								<div id="btnSet" style="border-bottom-width: thick">
+									<div
+										class="d-flex flex-row align-items-center justify-content-between"
+										style="background-color: white; margin-right: 10px"
+									>
+										<span
+											class="d-flex flex-row align-items-center justify-content-start"
+										>
+											<button
+												class="mt-0 btnOnPhoneLeft"
+												id="btnSaveTableScheduleHelp"
+												value="Clear font-weight-bold "
+												style="
 													border-width: 0px;
 													margin-right: 0.4em;
 													margin-left: 5px;
 													background-color: #23c6c8;
 													color: black;
-                                                    padding: 0 8px;
-												">
-											<i class="bi bi-upload font-weight-bold mx-0" style="margin-top: 1em"></i>
-											<span trans="text+:btnSave;"> сохранить </span>
-										</button>
+													padding: 0 8px;
+												"
+											>
+												<i
+													class="bi bi-upload font-weight-bold mx-0"
+													style="margin-top: 1em"
+												></i>
+												<span trans="text+:btnSave;"> сохранить </span>
+											</button>
 
-										<button class="btnOnPhoneLeft" id="btnLoadTableScheduleHelp" value="Clear font-weight-bold " style="
-													
+											<button
+												class="btnOnPhoneLeft"
+												id="btnLoadTableScheduleHelp"
+												value="Clear font-weight-bold "
+												style="
 													border-width: 0px;
 													margin-right: 0.4em;
 													background-color: lightskyblue;
 													color: black;
-                                                    margin-top: 0;
-                                                    padding: 0 8px;
-												">
-											<i class="bi bi-download font-weight-bold mx-0" style="font-size: 1em; margin-top: 0.75em"></i>
-											<span trans="text+:clickLoad"> загрузить </span>
-										</button>
+													margin-top: 0;
+													padding: 0 8px;
+												"
+											>
+												<i
+													class="bi bi-download font-weight-bold mx-0"
+													style="font-size: 1em; margin-top: 0.75em"
+												></i>
+												<span trans="text+:clickLoad"> загрузить </span>
+											</button>
 
-										<button value="Clear font-weight-bold " type="button" class="btn btn-primary btnOnPhoneLeft" data-bs-toggle="modal" data-bs-target="#legend" style="
-													
+											<button
+												value="Clear font-weight-bold "
+												type="button"
+												class="btn btn-primary btnOnPhoneLeft"
+												data-bs-toggle="modal"
+												data-bs-target="#legend"
+												style="
 													border-radius: 0;
 													padding: 1px 6px;
 													border-width: 0px;
@@ -820,15 +1261,23 @@
 													margin-right: 0.4em;
 													background-color: #1c84c6;
 													color: white;
-                                                    margin-top: 0;
-                                                    padding: 0 7px;
-												">
-											<i class="bi bi-list-task font-weight-bold mx-0" style="font-size: 1.2em; margin-top: 0.85em"></i>
-											<span trans="text+:legends"> легенды </span>
-										</button>
+													margin-top: 0;
+													padding: 0 7px;
+												"
+											>
+												<i
+													class="bi bi-list-task font-weight-bold mx-0"
+													style="font-size: 1.2em; margin-top: 0.85em"
+												></i>
+												<span trans="text+:legends"> легенды </span>
+											</button>
 
-										<button value="Clear font-weight-bold" id="helpFull" type="button" class="btn btn-primary btnOnPhoneLeft" style="
-													
+											<button
+												value="Clear font-weight-bold"
+												id="helpFull"
+												type="button"
+												class="btn btn-primary btnOnPhoneLeft"
+												style="
 													border-radius: 0;
 													padding: 1px 6px;
 													border-width: 0px;
@@ -836,71 +1285,104 @@
 													margin-right: 0.4em;
 													background-color: #1ab395;
 													color: white;
-                                                    margin-top: 0;
-                                                    padding: 0 8px;
-												">
-											<i class="bi bi-arrows-fullscreen font-weight-bold mx-0" style="font-size: 1em; margin-top: 0.65em"></i>
-											<span trans="text+:fullscreen;"> весь день </span>
-										</button>
+													margin-top: 0;
+													padding: 0 8px;
+												"
+											>
+												<i
+													class="bi bi-arrows-fullscreen font-weight-bold mx-0"
+													style="font-size: 1em; margin-top: 0.65em"
+												></i>
+												<span trans="text+:fullscreen;"> весь день </span>
+											</button>
 
-										<style>
-											.btnOnPhoneLeft {
-												border-radius: 2px;
-												margin-top: 4px;
-												height: 28px;
-												text-align: center;
-												font-weight: 100;
-												font-size: 12px;
-												white-space: nowrap;
-											}
-
-											@media (max-width: 825px) {
-												.btnOnPhoneLeft span {
-													display: none;
+											<style>
+												.btnOnPhoneLeft {
+													border-radius: 2px;
+													margin-top: 4px;
+													height: 28px;
+													text-align: center;
+													font-weight: 100;
+													font-size: 12px;
+													white-space: nowrap;
 												}
-											}
 
-										</style>
-									</span>
+												@media (max-width: 825px) {
+													.btnOnPhoneLeft span {
+														display: none;
+													}
+												}
+											</style>
+										</span>
 
-									<p class="d-none d-xs-block d-sm-block w-100 text-center mb-0" style="
+										<p
+											class="d-none d-xs-block d-sm-block w-100 text-center mb-0"
+											style="
 												color: #0a58ca;
 												font-size: 1.1em;
 												background-color: white;
-											">
-										<b><Text trans="text+:AboutSystem;">Информация о системе</Text></b>
-									</p>
+											"
+										>
+											<b
+												><Text trans="text+:AboutSystem;"
+													>Информация о системе</Text
+												></b
+											>
+										</p>
 
-									<span style="
+										<span
+											style="
 												display: flex;
 												height: 38px;
 												padding: 1px 4px 5px;
 												margin-right: -10px;
-											">
-										<button id="erase-button1" class="nbtct btnOnPhone" trans="value:EraseButton;" value="Clear text-danger font-weight-bold " style="
+											"
+										>
+											<button
+												id="erase-button1"
+												class="nbtct btnOnPhone"
+												trans="value:EraseButton;"
+												value="Clear text-danger font-weight-bold "
+												style="
 													box-sizing: border-box;
 													padding: 5px 3px 3px;
 													border-radius: 2px;
 													font-weight: 300;
 													border-width: 0px;
-                                                    
-												" id="btnclear">
-											<i class="bi bi-eraser-fill mx-1" style="font-size: 1.1em"></i>
-											<span trans="text+:clear;"> Очистить </span>
-										</button>
+												"
+												id="btnclear"
+											>
+												<i
+													class="bi bi-eraser-fill mx-1"
+													style="font-size: 1.1em"
+												></i>
+												<span trans="text+:clear;"> Очистить </span>
+											</button>
 
-										<button class="btnOnPhone" name="PlusButton" id="create" style="
+											<button
+												class="btnOnPhone"
+												name="PlusButton"
+												id="create"
+												style="
 													box-sizing: border-box;
 													border-radius: 2px;
 													font-weight: 300;
 													border-width: 0px;
-                                                    padding: 0 2px;
-												">
-											<i class="bi bi-plus" style="font-size: 25px; font-weight: bold"></i>
-											<span trans="text+:plusButtonBusyText;">Добавить</span>
-										</button>
+													padding: 0 2px;
+												"
+											>
+												<i
+													class="bi bi-plus"
+													style="font-size: 25px; font-weight: bold"
+												></i>
+												<span trans="text+:plusButtonBusyText;">Добавить</span>
+											</button>
 
-										<button id="create" class="filtr btnOnPhone" name="PlusButton" style="
+											<button
+												id="create"
+												class="filtr btnOnPhone"
+												name="PlusButton"
+												style="
 													color: aliceblue;
 													background-color: cornflowerblue;
 													box-sizing: border-box;
@@ -908,170 +1390,245 @@
 													border-radius: 2px;
 													font-weight: 200;
 													border-width: 0px;
-                                                    padding: 0 7px;
-												">
-											<i class="bi bi-funnel-fill" style="font-size: 1.1em; font-weight: 100"></i>
-											<span trans="text+:FilterButton;">Фильтр</span>
-										</button>
-										<style>
-											.btnOnPhone#create,
-											.btnOnPhone#erase-button1 {
-												width: auto;
-											}
-
-											.btnOnPhone#create span,
-											.btnOnPhone#erase-button1 span {
-												margin-right: 4px;
-											}
-
-											@media (max-width: 540px) {
+													padding: 0 7px;
+												"
+											>
+												<i
+													class="bi bi-funnel-fill"
+													style="font-size: 1.1em; font-weight: 100"
+												></i>
+												<span trans="text+:FilterButton;">Фильтр</span>
+											</button>
+											<style>
+												.btnOnPhone#create,
+												.btnOnPhone#erase-button1 {
+													width: auto;
+												}
 
 												.btnOnPhone#create span,
 												.btnOnPhone#erase-button1 span {
-													display: none;
+													margin-right: 4px;
 												}
-											}
 
-										</style>
-									</span>
+												@media (max-width: 540px) {
+													.btnOnPhone#create span,
+													.btnOnPhone#erase-button1 span {
+														display: none;
+													}
+												}
+											</style>
+										</span>
+									</div>
 								</div>
-							</div>
 
-							<!--начало первого таба-->
+								<!--начало первого таба-->
 
-							<div style="border-top: 1px solid whitesmoke; padding: 0px">
-								<p class="d-block d-sx-none d-sm-none w-100 text-center mb-0" style="
+								<div style="border-top: 1px solid whitesmoke; padding: 0px">
+									<p
+										class="d-block d-sx-none d-sm-none w-100 text-center mb-0"
+										style="
 											color: #0a58ca;
 											font-size: 1.1em;
 											background-color: whitesmoke;
 											padding-top: 10px;
-										">
-									<b><Text trans="text+:AboutSystem;">Информация о системе</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+:AboutSystem;"
+												>Информация о системе</Text
+											></b
+										>
+									</p>
 
-								<p class="w-100 mb-0 pt-2" style="
+									<p
+										class="w-100 mb-0 pt-2"
+										style="
 											text-align: left;
 											padding-left: 2%;
 											padding-bottom: 10px;
 											background-color: WhiteSmoke;
-										">
-									<b><Text trans="text+:AboutTasks;">Задачи которая выполняет система</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+:AboutTasks;"
+												>Задачи которая выполняет система</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText1" style="
+									<div
+										class="aboutText1"
+										style="
 											display: flex;
 											flex-direction: row;
 											flex-wrap: wrap;
 											justify-content: center;
 											background-color: WhiteSmoke;
-										">
-									<div class="help1left">
-										<ul class="" style="font-size: 0.9em; text-align: left">
-											<li>
-												<Text trans="text+:AboutTask1;">Составление оптимального расписания.</Text>
-											</li>
-											<li>
-												<Text trans="text+:AboutTask2;">Работа со свободным и занятым временем клиентов и
-													сотрудников.</Text>
-											</li>
-											<li>
-												<Text trans="text+:AboutTask3;">Поиск одинакового свободного времени у нескольких
-													клиентов для составления групп.</Text>
-											</li>
-											<li>
-												<Text trans="text+:AboutTask4;">Поиск свободного времени у сотрудника и поиск
-													помещения.
-												</Text>
-											</li>
-											<li>
-												<Text trans="text+:AboutTask5;">Ведение личного расписания.
-												</Text>
-											</li>
-											<li>
-												<Text trans="text+:AboutTask6;">Обмен своими данными по свободному и занятому
-													времени между пользователями системы.</Text>
-											</li>
-										</ul>
+										"
+									>
+										<div class="help1left">
+											<ul class="" style="font-size: 0.9em; text-align: left">
+												<li>
+													<Text trans="text+:AboutTask1;"
+														>Составление оптимального расписания.</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+:AboutTask2;"
+														>Работа со свободным и занятым временем клиентов и
+														сотрудников.</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+:AboutTask3;"
+														>Поиск одинакового свободного времени у нескольких
+														клиентов для составления групп.</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+:AboutTask4;"
+														>Поиск свободного времени у сотрудника и поиск
+														помещения.
+													</Text>
+												</li>
+												<li>
+													<Text trans="text+:AboutTask5;"
+														>Ведение личного расписания.
+													</Text>
+												</li>
+												<li>
+													<Text trans="text+:AboutTask6;"
+														>Обмен своими данными по свободному и занятому
+														времени между пользователями системы.</Text
+													>
+												</li>
+											</ul>
+										</div>
+										<div class="help1right">
+											<img
+												src="img/findTime1.png"
+												width="90%"
+												class="aboutImg1"
+											/>
+										</div>
 									</div>
-									<div class="help1right">
-										<img src="img/findTime1.png" width="90%" class="aboutImg1" />
-									</div>
-								</div>
 
-								<p class="w-100 mb-0" style="
+									<p
+										class="w-100 mb-0"
+										style="
 											text-align: left;
 											padding-left: 2%;
 											padding-bottom: 10px;
 											padding-top: 15px;
 											background-color: White;
-										">
-									<b><Text trans="text+:AboutPrinciple;">Принципы работы с системой</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+:AboutPrinciple;"
+												>Принципы работы с системой</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText2" style="
+									<div
+										class="aboutText2"
+										style="
 											display: flex;
 											flex-direction: row-reverse;
 											flex-wrap: wrap;
 											justify-content: center;
 											background-color: white;
 											padding-top: 20px;
-										">
-									<div class="help2right">
-										<ol class="" style="
+										"
+									>
+										<div class="help2right">
+											<ol
+												class=""
+												style="
 													font-size: 0.9em;
 													line-height: 1.4em;
 													text-align: justify;
-												">
-											<p style="text-indent: 20px">
-												<Text trans="text+:AboutPrinciple0;">Система позволяет составить расписание для
-													организаций и частных лиц с различными видами
-													деятельности, но в примере показан алгоритм работы
-													со временем для детской школы
-													программирования.</Text>
-											</p>
+												"
+											>
+												<p style="text-indent: 20px">
+													<Text trans="text+:AboutPrinciple0;"
+														>Система позволяет составить расписание для
+														организаций и частных лиц с различными видами
+														деятельности, но в примере показан алгоритм работы
+														со временем для детской школы
+														программирования.</Text
+													>
+												</p>
 
-											<li>
-												<Text trans="text+:AboutPrinciple1-1;"><b>Ввод данных.</b> Вводим свободное или занятое
-													время, нажав на кнопку </Text><button id="create" style="
+												<li>
+													<Text trans="text+:AboutPrinciple1-1;"
+														><b>Ввод данных.</b> Вводим свободное или занятое
+														время, нажав на кнопку </Text
+													><button
+														id="create"
+														style="
 															display: inline;
 															box-sizing: border-box;
 															padding: 5px 3px 3px;
 															border-radius: 2px;
 															font-weight: 300;
 															border-width: 0px;
-														">
-													<i class="bi bi-plus" style="font-size: 1.1em; font-weight: bold"></i></button><Text trans="text+:AboutPrinciple1-2;">
-													на любой вкладке системы ("Расписание", "Свободное
-													время", "Занятое время").</Text><br />
-											</li>
-											<li>
-												<Text trans="text+:AboutPrinciple2;"><b>Вкладка "<i class="bi bi-clock text-orange" style="color: orangered"></i>
-														Свободное время"</b>. Это список учеников и преподавателей с указанием
-													Фио, курса, уровня и данными по свободному времени.
-													На вкладке можно отсортировать этот список по всем
-													параметрам. Также при необходимости можно изменить
-													график свободного времени или совсем удалить данные
-													из списка. В режиме редактирования есть возможность
-													импортировать код времени и переслать его другому
-													участнику системы (например ученику отправить
-													администратору своё свободное время).</Text><br />
-											</li>
-											<li>
-												<Text trans="text+:AboutPrinciple3;"><b>Вкладка "<i class="bi bi-clock text-success"></i>
-														Занятое время".</b>
-													Это список учеников, преподавателей и классов с
-													указанием Фио и данными по занятому времени. На
-													вкладке можно отсортировать список по номерам и
-													описанию. Также есть возможность отредактировать
-													график занятого времени и удалить из списка. В
-													режиме редактирования можно импортировать код
-													занятого времени и переслать его другому участнику
-													системы (например преподавателю отправить своё
-													занятое время ученику).</Text><br />
-											</li>
-											<li>
-												<Text trans="text+:AboutPrinciple4-1;"><b>Установка фильтра.</b> Во вкладке "Свободное
-													время", нажав кнопку </Text><button name="PlusButton" id="create" class="filtr" style="
+														"
+													>
+														<i
+															class="bi bi-plus"
+															style="font-size: 1.1em; font-weight: bold"
+														></i></button
+													><Text trans="text+:AboutPrinciple1-2;">
+														на любой вкладке системы ("Расписание", "Свободное
+														время", "Занятое время").</Text
+													><br />
+												</li>
+												<li>
+													<Text trans="text+:AboutPrinciple2;"
+														><b
+															>Вкладка "<i
+																class="bi bi-clock text-orange"
+																style="color: orangered"
+															></i>
+															Свободное время"</b
+														>. Это список учеников и преподавателей с указанием
+														Фио, курса, уровня и данными по свободному времени.
+														На вкладке можно отсортировать этот список по всем
+														параметрам. Также при необходимости можно изменить
+														график свободного времени или совсем удалить данные
+														из списка. В режиме редактирования есть возможность
+														импортировать код времени и переслать его другому
+														участнику системы (например ученику отправить
+														администратору своё свободное время).</Text
+													><br />
+												</li>
+												<li>
+													<Text trans="text+:AboutPrinciple3;"
+														><b
+															>Вкладка "<i class="bi bi-clock text-success"></i>
+															Занятое время".</b
+														>
+														Это список учеников, преподавателей и классов с
+														указанием Фио и данными по занятому времени. На
+														вкладке можно отсортировать список по номерам и
+														описанию. Также есть возможность отредактировать
+														график занятого времени и удалить из списка. В
+														режиме редактирования можно импортировать код
+														занятого времени и переслать его другому участнику
+														системы (например преподавателю отправить своё
+														занятое время ученику).</Text
+													><br />
+												</li>
+												<li>
+													<Text trans="text+:AboutPrinciple4-1;"
+														><b>Установка фильтра.</b> Во вкладке "Свободное
+														время", нажав кнопку </Text
+													><button
+														name="PlusButton"
+														id="create"
+														class="filtr"
+														style="
 															color: aliceblue;
 															background-color: cornflowerblue;
 															display: inline;
@@ -1080,164 +1637,267 @@
 															border-radius: 2px;
 															font-weight: 200;
 															border-width: 0px;
-														">
-													<i class="bi bi-funnel-fill" style="font-size: 1.1em; font-weight: 100"></i></button><Text trans="text+:AboutPrinciple4-2;">устанавливаем фильтр по курсам и уровням у которых
-													мы хотим найти совпадения по времени. Курсы и уровни
-													настраиваются в режиме "Настройка".</Text><br />
-											</li>
-											<li>
-												<Text trans="text+:AboutPrinciple5;"><b>Выбор записей во вкладках.</b> После установки
-													фильтра мы отмечаем те записи из списков "Свободное
-													время" и "Занятое время", у которых будем искать
-													общее свободное время для занятий, и переходим на
-													вкладку "Расписание".</Text><br />
-											</li>
-											<li>
-												<Text trans="text+:AboutPrinciple6;"><b>Вкладка "<i class="bi bi-table"></i>
-														Расписание".</b>
-													При переходе на эту вкладку будут показаны
-													совмещенные графики свободного и занятого времени
-													для анализа. При совпадении в ячейке времени
-													отмечается цветом и ставится цифра у скольких время
-													совпало. Число на оранжевом фоне показывает
-													максимальное количество совпадений свободного
-													времени и это оптимальное время для формирования
-													группы.</Text>
-											</li>
-										</ol>
-									</div>
-									<div class="help2left">
-										<!--для смартфонов-->
-										<img src="img/interface2smart.png" width="90%" class="aboutImg2 d-xs-none d-sm-none" style="
+														"
+													>
+														<i
+															class="bi bi-funnel-fill"
+															style="font-size: 1.1em; font-weight: 100"
+														></i></button
+													><Text trans="text+:AboutPrinciple4-2;"
+														>устанавливаем фильтр по курсам и уровням у которых
+														мы хотим найти совпадения по времени. Курсы и уровни
+														настраиваются в режиме "Настройка".</Text
+													><br />
+												</li>
+												<li>
+													<Text trans="text+:AboutPrinciple5;"
+														><b>Выбор записей во вкладках.</b> После установки
+														фильтра мы отмечаем те записи из списков "Свободное
+														время" и "Занятое время", у которых будем искать
+														общее свободное время для занятий, и переходим на
+														вкладку "Расписание".</Text
+													><br />
+												</li>
+												<li>
+													<Text trans="text+:AboutPrinciple6;"
+														><b
+															>Вкладка "<i class="bi bi-table"></i>
+															Расписание".</b
+														>
+														При переходе на эту вкладку будут показаны
+														совмещенные графики свободного и занятого времени
+														для анализа. При совпадении в ячейке времени
+														отмечается цветом и ставится цифра у скольких время
+														совпало. Число на оранжевом фоне показывает
+														максимальное количество совпадений свободного
+														времени и это оптимальное время для формирования
+														группы.</Text
+													>
+												</li>
+											</ol>
+										</div>
+										<div class="help2left">
+											<!--для смартфонов-->
+											<img
+												src="img/interface2smart.png"
+												width="90%"
+												class="aboutImg2 d-xs-none d-sm-none"
+												style="
 													text-align: center;
 													margin: 5px;
 													margin-left: 15px;
 													border: 0px solid grey;
-												" />
-										<!--для планшетов и десктопов-->
-										<img src="img/interface2.png" width="90%" class="aboutImg2 d-none d-xs-block d-sm-block" style="
+												"
+											/>
+											<!--для планшетов и десктопов-->
+											<img
+												src="img/interface2.png"
+												width="90%"
+												class="aboutImg2 d-none d-xs-block d-sm-block"
+												style="
 													text-align: center;
 													margin: 5px;
 													margin-left: 15px;
 													border: 0px solid grey;
-												" />
+												"
+											/>
+										</div>
 									</div>
-								</div>
-								<div class="w-100" style="
+									<div
+										class="w-100"
+										style="
 											text-align: left;
 											padding-left: 2%;
 											background-color: white;
 											padding-bottom: 15px;
-										">
-									<p style="
+										"
+									>
+										<p
+											style="
 												font-size: 0.9em;
 												padding-top: 5px;
 												padding-right: 10px;
 												text-align: justify;
 												text-indent: 20px;
-											">
-										<Text trans="text+:AboutPrincipleExample;"><b style="color: #0a58ca">Пример:</b> На скриншотах
-											показан порядок действий при подборе оптимального
-											времени и формирование группы по курсу JsFront с уровнем
-											4. У преподавателя и у 3-х учеников из списка
-											оптимальное время для занятий вторник 17:30-19-00.</Text>
-									</p>
-								</div>
-								<p class="w-100 mb-0" style="
+											"
+										>
+											<Text trans="text+:AboutPrincipleExample;"
+												><b style="color: #0a58ca">Пример:</b> На скриншотах
+												показан порядок действий при подборе оптимального
+												времени и формирование группы по курсу JsFront с уровнем
+												4. У преподавателя и у 3-х учеников из списка
+												оптимальное время для занятий вторник 17:30-19-00.</Text
+											>
+										</p>
+									</div>
+									<p
+										class="w-100 mb-0"
+										style="
 											text-align: left;
 											padding-left: 2%;
 											padding-bottom: 10px;
 											padding-top: 15px;
 											background-color: WhiteSmoke;
-										">
-									<b><Text trans="text+:AboutTechSpec;">Технические характеристики системы</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+:AboutTechSpec;"
+												>Технические характеристики системы</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText1" style="
+									<div
+										class="aboutText1"
+										style="
 											display: flex;
 											flex-direction: row;
 											flex-wrap: wrap;
 											justify-content: center;
 											background-color: WhiteSmoke;
 											padding-bottom: 20px;
-										">
-									<div class="help1left" style="background-color: WhiteSmoke">
-										<ul class="" style="font-size: 0.9em" ;>
-											<li>
-												<Text trans="text+:AboutTechSpec1;">Адаптированный дизайн под различные
-													устройства.</Text>
-											</li>
-											<li>
-												<Text trans="text+:AboutTechSpec2;">Хранение данных в хранилище устройства и в
-													сети.</Text>
-											</li>
-											<li>
-												<Text trans="text+:AboutTechSpec3;">Мультиязычность.</Text>
-											</li>
-											<li>
-												<Text trans="text+:AboutTechSpec4;">Гибкая настройка интерфейса и данных помогут Вам
-													настроить систему под себя.
-												</Text>
-											</li>
-											<li>
-												<Text trans="text+:AboutTechSpec5;">Обмен свободным и занятым временем между
-													участниками системы.
-												</Text>
-											</li>
-										</ul>
+										"
+									>
+										<div class="help1left" style="background-color: WhiteSmoke">
+											<ul class="" style="font-size: 0.9em" ;>
+												<li>
+													<Text trans="text+:AboutTechSpec1;"
+														>Адаптированный дизайн под различные
+														устройства.</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+:AboutTechSpec2;"
+														>Хранение данных в хранилище устройства и в
+														сети.</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+:AboutTechSpec3;"
+														>Мультиязычность.</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+:AboutTechSpec4;"
+														>Гибкая настройка интерфейса и данных помогут Вам
+														настроить систему под себя.
+													</Text>
+												</li>
+												<li>
+													<Text trans="text+:AboutTechSpec5;"
+														>Обмен свободным и занятым временем между
+														участниками системы.
+													</Text>
+												</li>
+											</ul>
+										</div>
+										<div
+											class="help1right"
+											style="background-color: WhiteSmoke"
+										>
+											<img
+												src="img/findTime2.png"
+												width="90%"
+												class="aboutImg1"
+											/>
+										</div>
 									</div>
-									<div class="help1right" style="background-color: WhiteSmoke">
-										<img src="img/findTime2.png" width="90%" class="aboutImg1" />
-									</div>
+
+									<p
+										class="w-100 text-center mt-1"
+										style="color: #0a58ca; font-size: 0.9em; margin-top: 15px"
+									>
+										<br /><Text trans="text+:AboutQuoteBacon;"
+											><b
+												>"Выбрать время — значит сберечь время, а что сделано
+												несвоевременно, сделано понапрасну."</b
+											><br />
+											<span
+												class="text-dark"
+												style="font-size: 0.85em; font-weight: 700"
+												>(Фрэнсис Бэкон - Британский философ XVI века)</span
+											></Text
+										>
+										<br /><br /><br />
+									</p>
+
+									<!--конец первого таба-->
 								</div>
-
-								<p class="w-100 text-center mt-1" style="color: #0a58ca; font-size: 0.9em; margin-top: 15px">
-									<br /><Text trans="text+:AboutQuoteBacon;"><b>"Выбрать время — значит сберечь время, а что сделано
-											несвоевременно, сделано понапрасну."</b><br />
-										<span class="text-dark" style="font-size: 0.85em; font-weight: 700">(Фрэнсис Бэкон - Британский философ XVI века)</span></Text>
-									<br /><br /><br />
-								</p>
-
-								<!--конец первого таба-->
 							</div>
-						</div>
 
-						<!--конец 1 таба					-->
-						<!--начало второго таба							-->
-						<div class="tab-pane fade p-1" id="nav-setup" role="tabpanel" aria-labelledby="nav-setup-tab" style="text-align: center; padding: 3px">
-							<div style="padding: 3px">
-								<p class="text-center mb-0" style="
+							<!--конец 1 таба					-->
+							<!--начало второго таба							-->
+							<div
+								class="tab-pane fade p-1"
+								id="nav-setup"
+								role="tabpanel"
+								aria-labelledby="nav-setup-tab"
+								style="text-align: center; padding: 3px"
+							>
+								<div style="padding: 3px">
+									<p
+										class="text-center mb-0"
+										style="
 											color: #0a58ca;
 											font-size: 1.1em;
 											padding-bottom: 8px;
-										">
-									<b><Text trans="text+;SetupSystem;">Настройка системы</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+;SetupSystem;"
+												>Настройка системы</Text
+											></b
+										>
+									</p>
 
-								<p class="w-100 my-0 px-3" style="
+									<p
+										class="w-100 my-0 px-3"
+										style="
 											text-indent: 20px;
 											font-size: 0.9em;
 											text-align: justify;
 											line-height: 0.9em;
 											background-color: WhiteSmoke;
 											padding-top: 10px;
-										">
-									<Text trans="text+;Setup0-1;">Для перехода в настройку системы нажмите знак</Text>&nbsp;&nbsp;<button class="btn font-weight-bold p-0 text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-										<i class="bi bi-list my-0" style="box-sizing: border-box; font-size: 1.4em"></i></button>&nbsp;&nbsp;<Text trans="text+;Setup0-2;">в правом верхнем углу.</Text>
-								</p>
+										"
+									>
+										<Text trans="text+;Setup0-1;"
+											>Для перехода в настройку системы нажмите знак</Text
+										>&nbsp;&nbsp;<button
+											class="btn font-weight-bold p-0 text-primary"
+											data-bs-toggle="offcanvas"
+											data-bs-target="#offcanvasRight"
+											aria-controls="offcanvasRight"
+										>
+											<i
+												class="bi bi-list my-0"
+												style="box-sizing: border-box; font-size: 1.4em"
+											></i></button
+										>&nbsp;&nbsp;<Text trans="text+;Setup0-2;"
+											>в правом верхнем углу.</Text
+										>
+									</p>
 
-								<p style="
+									<p
+										style="
 											width: 100%;
 											text-align: left;
 											text-indent: 25px;
 											padding-bottom: 5px;
 											padding-top: 15px;
 											background-color: WhiteSmoke;
-										">
-									<b><Text trans="text+;SetupInterface;">Настройки интерфейса</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+;SetupInterface;"
+												>Настройки интерфейса</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText1" style="
+									<div
+										class="aboutText1"
+										style="
 											display: flex;
 											flex-direction: row;
 											flex-wrap: wrap;
@@ -1245,255 +1905,370 @@
 											padding-bottom: 20px;
 											padding-top: 15px;
 											background-color: WhiteSmoke;
-										">
-									<div class="help1left">
-										<ul class="" style="
+										"
+									>
+										<div class="help1left">
+											<ul
+												class=""
+												style="
 													font-size: 0.9em;
 													text-align: justify;
 													list-style: square;
-												">
-											<li>
-												<Text trans="text+;SetupInterface1;">Выберите язык интерфейса. Выбор языка автоматически
-													сохраняется и при следующем входе в систему
-													интерфейс будет уже на этом языке.</Text>
-											</li>
-											<li>
-												<Text trans="text+;SetupInterface2;">Выберите вкладку или полноэкранное расписание и это
-													будет открываться при старте программы. При
-													установленном флаге автосохранения Ваш выбор будет
-													автоматически сохраняться.</Text>
-											</li>
-											<li>
-												<Text trans="text+;SetupInterface3;">В разделе "Расписание" можно включить и отключить
-													показ при старте сохраненного расписания.</Text>
-											</li>
-										</ul>
+												"
+											>
+												<li>
+													<Text trans="text+;SetupInterface1;"
+														>Выберите язык интерфейса. Выбор языка автоматически
+														сохраняется и при следующем входе в систему
+														интерфейс будет уже на этом языке.</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+;SetupInterface2;"
+														>Выберите вкладку или полноэкранное расписание и это
+														будет открываться при старте программы. При
+														установленном флаге автосохранения Ваш выбор будет
+														автоматически сохраняться.</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+;SetupInterface3;"
+														>В разделе "Расписание" можно включить и отключить
+														показ при старте сохраненного расписания.</Text
+													>
+												</li>
+											</ul>
+										</div>
+										<div class="help1right">
+											<img src="img/setup.png" width="40%" class="aboutImg1" />
+										</div>
 									</div>
-									<div class="help1right">
-										<img src="img/setup.png" width="40%" class="aboutImg1" />
-									</div>
-								</div>
 
-								<p style="
+									<p
+										style="
 											width: 100%;
 											text-align: left;
 											text-indent: 25px;
 											background-color: White;
 											padding-top: 15px;
 											padding-bottom: 20px;
-										">
-									<b><Text trans="text+:SetupData;">Настройка данных</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+:SetupData;">Настройка данных</Text></b
+										>
+									</p>
 
-								<div class="aboutText2" style="
+									<div
+										class="aboutText2"
+										style="
 											display: flex;
 											flex-direction: row-reverse;
 											flex-wrap: wrap;
 											justify-content: center;
 											background-color: White;
-										">
-									<div class="help2right" style="text-indent: 25px">
-										<ol class="" style="
+										"
+									>
+										<div class="help2right" style="text-indent: 25px">
+											<ol
+												class=""
+												style="
 													font-size: 0.9em;
 													line-height: 1.3em;
 													text-align: justify;
 													list-style: none;
-												">
-											<li>
-												<Text trans="text+;SetupData0;">Для гибкой настройки системы используются два
-													уровня данных. В данной системе демонстрация её
-													работы приведена с настойками под детскую школу
-													программирования (курсы и уровень подготовки ребят).
-													Вы можете настроить свои данные.</Text>
-											</li>
-											<li>
-												<b class="text-primary"><Text trans="text+;SetupData1;">1 уровень данных.</Text></b>
-											</li>
-											<li>
-												<Text trans="text+;SetupData1-1;">Внесите в список, через запятую, первый уровень
-													данных по которым можно разделить клиентов и
-													сотрудников. Эти данные во вкладке "Свободное время"
-													можно будет выбрать, установив фильтр или настроив
-													сортировку. Например:</Text>
-											</li>
-											<li>
-												<ul style="
+												"
+											>
+												<li>
+													<Text trans="text+;SetupData0;"
+														>Для гибкой настройки системы используются два
+														уровня данных. В данной системе демонстрация её
+														работы приведена с настойками под детскую школу
+														программирования (курсы и уровень подготовки ребят).
+														Вы можете настроить свои данные.</Text
+													>
+												</li>
+												<li>
+													<b class="text-primary"
+														><Text trans="text+;SetupData1;"
+															>1 уровень данных.</Text
+														></b
+													>
+												</li>
+												<li>
+													<Text trans="text+;SetupData1-1;"
+														>Внесите в список, через запятую, первый уровень
+														данных по которым можно разделить клиентов и
+														сотрудников. Эти данные во вкладке "Свободное время"
+														можно будет выбрать, установив фильтр или настроив
+														сортировку. Например:</Text
+													>
+												</li>
+												<li>
+													<ul
+														style="
 															font-size: 0.95em;
 															text-align: justify;
 															list-style-type: square;
-														">
-													<li>
-														<Text trans="text+;SetupData1-1-1;"><b>Школы, образовательные и развивающие
-																органиции, репетиторы:</b>
-															курсы и направления занятий, классы (1,2,3...),
-															школьные предметы</Text>
-													</li>
-													<li>
-														<Text trans="text+:SetupData1-1-2;"><b>Салоны красоты, барбершопы:</b>
-															специализация маcтеров</Text>
-													</li>
-													<li>
-														<Text trans="text+;SetupData1-1-3;"><b>SPA-салоны, сауны:</b> список процедур</Text>
-													</li>
-													<li>
-														<Text trans="text+:SetupData1-1-4;"><b>Медицинские центры, косметологические
-																кабинеты, частный прием врачей :</b>
-															специализация врачей, перечень процедур</Text>
-													</li>
-													<li>
-														<Text trans="text+;SetupData1-1-5;"><b>Авторемонтные мастерские:</b> специализация
-															мастеров, услуги
-														</Text>
-													</li>
-												</ul>
-											</li>
-											<li>
-												<b class="text-primary"><Text trans="text+:SetupData2;">2 уровень данных.</Text></b>
-											</li>
-											<li>
-												<Text trans="text+;SetupData2-1;">При необходимости внесите в список, через запятую,
-													второй уровень данных (уровень, возраст, опыт
-													работы, номера кабинетов и т.д. Эти данные можно
-													будет выбрать, установив фильтр во вкладке
-													"Свободное время". Например:</Text>
-											</li>
-											<li>
-												<ul style="
+														"
+													>
+														<li>
+															<Text trans="text+;SetupData1-1-1;"
+																><b
+																	>Школы, образовательные и развивающие
+																	органиции, репетиторы:</b
+																>
+																курсы и направления занятий, классы (1,2,3...),
+																школьные предметы</Text
+															>
+														</li>
+														<li>
+															<Text trans="text+:SetupData1-1-2;"
+																><b>Салоны красоты, барбершопы:</b>
+																специализация маcтеров</Text
+															>
+														</li>
+														<li>
+															<Text trans="text+;SetupData1-1-3;"
+																><b>SPA-салоны, сауны:</b> список процедур</Text
+															>
+														</li>
+														<li>
+															<Text trans="text+:SetupData1-1-4;"
+																><b
+																	>Медицинские центры, косметологические
+																	кабинеты, частный прием врачей :</b
+																>
+																специализация врачей, перечень процедур</Text
+															>
+														</li>
+														<li>
+															<Text trans="text+;SetupData1-1-5;"
+																><b>Авторемонтные мастерские:</b> специализация
+																мастеров, услуги
+															</Text>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<b class="text-primary"
+														><Text trans="text+:SetupData2;"
+															>2 уровень данных.</Text
+														></b
+													>
+												</li>
+												<li>
+													<Text trans="text+;SetupData2-1;"
+														>При необходимости внесите в список, через запятую,
+														второй уровень данных (уровень, возраст, опыт
+														работы, номера кабинетов и т.д. Эти данные можно
+														будет выбрать, установив фильтр во вкладке
+														"Свободное время". Например:</Text
+													>
+												</li>
+												<li>
+													<ul
+														style="
 															font-size: 0.95em;
 															text-align: justify;
 															list-style-type: square;
-														">
-													<li>
-														<Text trans="text+;SetupData2-1-1;"><b>Школы, образовательные и развивающие
-																органиции, репетиторы:</b>
-															грейды (1,2,3,4), возраст (8-10 лет, 11-13 лет),
-															сколько лет занимаются (1год, 2 года, 3 года),
-															номера классов.</Text>
-													</li>
-													<li>
-														<Text trans="text+:SetupData2-1-2;"><b>Салоны красоты, барбершопы:</b> номера
-															рабочих мест</Text>
-													</li>
-													<li>
-														<Text trans="text+;SetupData2-1-3;"><b>SPA-салоны, сауны:</b> длительность
-															выбранной услуги</Text>
-													</li>
-													<li>
-														<Text trans="text+;SetupData2-1-4;"><b>Медицинские центры, косметологические
-																кабинеты, частный прием:</b>
-															номера кабинетов, длительность процедуры</Text>
-													</li>
-													<li>
-														<Text trans="text+;SetupData2-1-5;"><b>Авторемонтные мастерские:</b> номера рабочих
-															боксов.</Text>
-													</li>
-												</ul>
-											</li>
-										</ol>
-									</div>
-									<div class="help2left">
-										<!--для смартфонов-->
-										<img src="img/setssmart.png" width="90%" class="aboutImg2 d-xs-none d-sm-none" style="
+														"
+													>
+														<li>
+															<Text trans="text+;SetupData2-1-1;"
+																><b
+																	>Школы, образовательные и развивающие
+																	органиции, репетиторы:</b
+																>
+																грейды (1,2,3,4), возраст (8-10 лет, 11-13 лет),
+																сколько лет занимаются (1год, 2 года, 3 года),
+																номера классов.</Text
+															>
+														</li>
+														<li>
+															<Text trans="text+:SetupData2-1-2;"
+																><b>Салоны красоты, барбершопы:</b> номера
+																рабочих мест</Text
+															>
+														</li>
+														<li>
+															<Text trans="text+;SetupData2-1-3;"
+																><b>SPA-салоны, сауны:</b> длительность
+																выбранной услуги</Text
+															>
+														</li>
+														<li>
+															<Text trans="text+;SetupData2-1-4;"
+																><b
+																	>Медицинские центры, косметологические
+																	кабинеты, частный прием:</b
+																>
+																номера кабинетов, длительность процедуры</Text
+															>
+														</li>
+														<li>
+															<Text trans="text+;SetupData2-1-5;"
+																><b>Авторемонтные мастерские:</b> номера рабочих
+																боксов.</Text
+															>
+														</li>
+													</ul>
+												</li>
+											</ol>
+										</div>
+										<div class="help2left">
+											<!--для смартфонов-->
+											<img
+												src="img/setssmart.png"
+												width="90%"
+												class="aboutImg2 d-xs-none d-sm-none"
+												style="
 													text-align: center;
 													margin: 5px;
 													margin-left: 15px;
 													border: 0px solid grey;
-												" />
-										<!--для планшетов и десктопов-->
-										<img src="img/sets.png" width="90%" class="aboutImg2 d-none d-xs-block d-sm-block" style="
+												"
+											/>
+											<!--для планшетов и десктопов-->
+											<img
+												src="img/sets.png"
+												width="90%"
+												class="aboutImg2 d-none d-xs-block d-sm-block"
+												style="
 													text-align: center;
 													margin: 5px;
 													margin-left: 25px;
 													border: 0px solid grey;
-												" />
+												"
+											/>
+										</div>
 									</div>
-								</div>
 
-								<div style="
+									<div
+										style="
 											width: 100%;
 											text-align: left;
 											text-indent: 25px;
 											background-color: White;
 											padding-top: 15px;
 											padding-bottom: 20px;
-										">
-									<b><Text trans="text+;SetupButtons;">Кнопки работы с данными</Text></b>
+										"
+									>
+										<b
+											><Text trans="text+;SetupButtons;"
+												>Кнопки работы с данными</Text
+											></b
+										>
 
-									<ul style="list-style: none; margin-top: 15px">
-										<li>
-											<button name="clickAdd" id="" class="btn btn-sm my-1" style="
+										<ul style="list-style: none; margin-top: 15px">
+											<li>
+												<button
+													name="clickAdd"
+													id=""
+													class="btn btn-sm my-1"
+													style="
 														background-color: #48c2a9;
 														padding: 2px 6px;
 														font-weight: 500;
 														color: black;
 														font-size: 0.65em;
-													">
-												<i class="bi bi-plus" name="disable"></i>&nbsp;Add
-											</button>
-											-
-											<Text trans="text+:SetupButton1;">добавить к существующему списку данные которые
-												указаны в поле.</Text>
-										</li>
-										<li>
-											<button id="" class="btn btn-sm my-1" style="
+													"
+												>
+													<i class="bi bi-plus" name="disable"></i>&nbsp;Add
+												</button>
+												-
+												<Text trans="text+:SetupButton1;"
+													>добавить к существующему списку данные которые
+													указаны в поле.</Text
+												>
+											</li>
+											<li>
+												<button
+													id=""
+													class="btn btn-sm my-1"
+													style="
 														background-color: CornflowerBlue;
 														padding: 2px 6px;
 														font-weight: 500;
 														color: white;
 														font-size: 0.7em;
-													">
-												<i class="bi bi-download" name="disable"></i>&nbsp;
-												<span trans="text+:clickLoad;">load</span>
-											</button>
-											-
-											<Text trans="text+;SetupButton2;">выгрузить из хранилища и показать данные
-												уровня.</Text>
-										</li>
-										<li>
-											<button id="" class="btn btn-sm my-1" style="
+													"
+												>
+													<i class="bi bi-download" name="disable"></i>&nbsp;
+													<span trans="text+:clickLoad;">load</span>
+												</button>
+												-
+												<Text trans="text+;SetupButton2;"
+													>выгрузить из хранилища и показать данные
+													уровня.</Text
+												>
+											</li>
+											<li>
+												<button
+													id=""
+													class="btn btn-sm my-1"
+													style="
 														background-color: teal;
 														padding: 2px 6px;
 														font-weight: 500;
 														color: white;
 														font-size: 0.7em;
-													">
-												<i class="bi bi-upload" name="disable"></i>&nbsp;
-												<span trans="text+;clickUpdate;">Update</span>
-											</button>
-											-
-											<Text trans="text+;SetupButton3;">загрузить в хранилище данные указанные в поле и
-												обновить данные по этому уровню.</Text>
-										</li>
-										<li>
-											<button name="" id="" class="btn btn-sm my-1" style="
+													"
+												>
+													<i class="bi bi-upload" name="disable"></i>&nbsp;
+													<span trans="text+;clickUpdate;">Update</span>
+												</button>
+												-
+												<Text trans="text+;SetupButton3;"
+													>загрузить в хранилище данные указанные в поле и
+													обновить данные по этому уровню.</Text
+												>
+											</li>
+											<li>
+												<button
+													name=""
+													id=""
+													class="btn btn-sm my-1"
+													style="
 														background-color: indianred;
 														padding: 2px 6px;
 														font-weight: 500;
 														color: white;
 														font-size: 0.7em;
-													">
-												<i class="bi bi-x" name="disable"></i>&nbsp;
-												<span trans="text+:clickDel;">Delete</span>
-											</button>
-											-
-											<Text trans="text+;SetupButton4;">удалить все данные из хралилища по этому
-												уровню.</Text>
-										</li>
-									</ul>
-								</div>
+													"
+												>
+													<i class="bi bi-x" name="disable"></i>&nbsp;
+													<span trans="text+:clickDel;">Delete</span>
+												</button>
+												-
+												<Text trans="text+;SetupButton4;"
+													>удалить все данные из хралилища по этому
+													уровню.</Text
+												>
+											</li>
+										</ul>
+									</div>
 
-								<p style="
+									<p
+										style="
 											width: 100%;
 											text-align: left;
 											text-indent: 25px;
 											padding-bottom: 5px;
 											padding-top: 15px;
 											background-color: WhiteSmoke;
-										">
-									<b><Text trans="text+;SetupLogIn;">Регистрация и вход в личный кабинет</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+;SetupLogIn;"
+												>Регистрация и вход в личный кабинет</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText1" style="
+									<div
+										class="aboutText1"
+										style="
 											display: flex;
 											flex-direction: row;
 											flex-wrap: wrap;
@@ -1501,86 +2276,124 @@
 											padding-bottom: 20px;
 											padding-top: 15px;
 											background-color: WhiteSmoke;
-										">
-									<div class="help1left">
-										<ul style="
+										"
+									>
+										<div class="help1left">
+											<ul
+												style="
 													font-size: 0.9em;
 													line-height: 1.5em;
 													text-align: justify;
 													list-style: square;
 													text-indent: 25px;
-												">
-											<Text trans="text+;SetupLogIn0;">В системе можно работать и без входа в личный
-												кабинет. Все функции по выбору оптимального расписания
-												и отправки своего времени будут работать. При таком
-												варианте работы данные сохраняются в локальном
-												устройстве (смартфон, планшет или персональный
-												компьютер) на котором будет происходить работа в
-												системе. </Text><br /><br />&nbsp;&nbsp;
-											<Text trans="text+;SetupLogIn1;">При регистрации и входе в систему доступны следующие
-												дополнительные функции:</Text>
-											<li>
-												<Text trans="text+:SetupLogIn1-1;">Возможность выбора типа хранения данных: локально
-													или в сети</Text>
-											</li>
-											<li>
-												<Text trans="text+;SetupLogIn1-2;">При сетевой работе данные после входа в систему
-													можно получить с любого устройства</Text>
-											</li>
-											<li>
-												<Text trans="text+;SetupLogIn1-3;">При сетевой работе можно организовать свою работу
-													таким образом, что за ведение расписания сотрудников
-													будет отвечать тайм-менеджер или администратор. Он
-													будет составлять и поддерживать расписание в
-													актуальном виде, а сотрудники будут видеть при
-													подключении в систему свои графики работы.</Text>
-											</li>
-											<li>
-												<Text trans="text+;SetupLogIn1-4;">При сетевой работе возможно переносить данные из
-													локальной базы в удаленное хранилище и обратно в
-													локальное</Text>
-											</li>
-											<li>
-												<Text trans="text+:SetupLogIn1-5;">После регистрации в системе можно обмениваться
-													своим свободным или занятым временем между
-													участниками системы. Отправить свое время может
-													любой, даже не зарегистрированный пользователь, а
-													получить данные можно только после
-													регистрации.</Text>
-											</li>
-										</ul>
-									</div>
+												"
+											>
+												<Text trans="text+;SetupLogIn0;"
+													>В системе можно работать и без входа в личный
+													кабинет. Все функции по выбору оптимального расписания
+													и отправки своего времени будут работать. При таком
+													варианте работы данные сохраняются в локальном
+													устройстве (смартфон, планшет или персональный
+													компьютер) на котором будет происходить работа в
+													системе. </Text
+												><br /><br />&nbsp;&nbsp;
+												<Text trans="text+;SetupLogIn1;"
+													>При регистрации и входе в систему доступны следующие
+													дополнительные функции:</Text
+												>
+												<li>
+													<Text trans="text+:SetupLogIn1-1;"
+														>Возможность выбора типа хранения данных: локально
+														или в сети</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+;SetupLogIn1-2;"
+														>При сетевой работе данные после входа в систему
+														можно получить с любого устройства</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+;SetupLogIn1-3;"
+														>При сетевой работе можно организовать свою работу
+														таким образом, что за ведение расписания сотрудников
+														будет отвечать тайм-менеджер или администратор. Он
+														будет составлять и поддерживать расписание в
+														актуальном виде, а сотрудники будут видеть при
+														подключении в систему свои графики работы.</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+;SetupLogIn1-4;"
+														>При сетевой работе возможно переносить данные из
+														локальной базы в удаленное хранилище и обратно в
+														локальное</Text
+													>
+												</li>
+												<li>
+													<Text trans="text+:SetupLogIn1-5;"
+														>После регистрации в системе можно обмениваться
+														своим свободным или занятым временем между
+														участниками системы. Отправить свое время может
+														любой, даже не зарегистрированный пользователь, а
+														получить данные можно только после
+														регистрации.</Text
+													>
+												</li>
+											</ul>
+										</div>
 
-									<div class="help1right" style="padding-top: 25px; padding-bottom: 25px">
-										<!--для смартфонов-->
-										<img src="img/screenLoginsmart.png" width="90%" class="aboutImg2 d-xs-none d-sm-none" style="
+										<div
+											class="help1right"
+											style="padding-top: 25px; padding-bottom: 25px"
+										>
+											<!--для смартфонов-->
+											<img
+												src="img/screenLoginsmart.png"
+												width="90%"
+												class="aboutImg2 d-xs-none d-sm-none"
+												style="
 													text-align: center;
 													margin: 5px;
 													margin-left: 15px;
 													border: 0px solid grey;
-												" />
-										<!--для планшетов и десктопов-->
-										<img src="img/screenLogin.png" width="90%" class="aboutImg2 d-none d-xs-block d-sm-block" style="
+												"
+											/>
+											<!--для планшетов и десктопов-->
+											<img
+												src="img/screenLogin.png"
+												width="90%"
+												class="aboutImg2 d-none d-xs-block d-sm-block"
+												style="
 													text-align: center;
 													margin: 5px;
 													margin-left: 25px;
 													border: 0px solid grey;
-												" />
+												"
+											/>
+										</div>
 									</div>
-								</div>
 
-								<p style="
+									<p
+										style="
 											width: 100%;
 											text-align: left;
 											text-indent: 25px;
 											padding-bottom: 5px;
 											padding-top: 15px;
 											background-color: WhiteSmoke;
-										">
-									<b><Text trans="text+;SetupLogStatusIn;">Статусы входа в личный кабинет</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+;SetupLogStatusIn;"
+												>Статусы входа в личный кабинет</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText1 w-100" style="
+									<div
+										class="aboutText1 w-100"
+										style="
 											display: flex;
 											flex-direction: row;
 											flex-wrap: wrap;
@@ -1589,62 +2402,111 @@
 											padding-bottom: 45px;
 											padding-right: 8px;
 											background-color: WhiteSmoke;
-										">
-									<div class="help4left1">
-										<ul class="" style="
+										"
+									>
+										<div class="help4left1">
+											<ul
+												class=""
+												style="
 													font-size: 0.9em;
 													text-align: justify;
 													list-style: none;
-												">
-											<li>
-												<i class="bi bi-box-arrow-in-right mr-1 my-0 mt-1" style="font-size: 1.4em"></i>&nbsp;-&nbsp;<Text trans="text+:SetupLogStatusIn1;">Вход в систему не выполнен. Войдите в систему или
-													зарегистрируйтесь! Данные будут храниться только в
-													локальном хранилище!</Text>
-											</li>
+												"
+											>
+												<li>
+													<i
+														class="bi bi-box-arrow-in-right mr-1 my-0 mt-1"
+														style="font-size: 1.4em"
+													></i
+													>&nbsp;-&nbsp;<Text trans="text+:SetupLogStatusIn1;"
+														>Вход в систему не выполнен. Войдите в систему или
+														зарегистрируйтесь! Данные будут храниться только в
+														локальном хранилище!</Text
+													>
+												</li>
 
-											<li>
-												<i class="bi bi-person-lock text-dark mr-1 my-0 mt-1" style="font-size: 1.4em"></i>&nbsp;-&nbsp;<Text trans="text+;SetupLogStatusIn2;">Пользователь зарегистрирован в системе, но данные
-													не подтверждены. Перейдите по ссылке в полученном
-													письме и активизируйте доступ.</Text>
-											</li>
+												<li>
+													<i
+														class="bi bi-person-lock text-dark mr-1 my-0 mt-1"
+														style="font-size: 1.4em"
+													></i
+													>&nbsp;-&nbsp;<Text trans="text+;SetupLogStatusIn2;"
+														>Пользователь зарегистрирован в системе, но данные
+														не подтверждены. Перейдите по ссылке в полученном
+														письме и активизируйте доступ.</Text
+													>
+												</li>
 
-											<li>
-												<i class="bi bi-person-exclamation text-primary mr-1 my-0 mt-1" style="font-size: 1.4em"></i>&nbsp;-&nbsp;<Text trans="text+;SetupLogStatusIn3;">Вход в систему выполнен. Тестовый доступ к сетевым
-													данным разрешён. В личном кабинете Вам будет
-													сообщаться до какого числа предоставлен тестовый
-													доступ.</Text>
-											</li>
+												<li>
+													<i
+														class="bi bi-person-exclamation text-primary mr-1 my-0 mt-1"
+														style="font-size: 1.4em"
+													></i
+													>&nbsp;-&nbsp;<Text trans="text+;SetupLogStatusIn3;"
+														>Вход в систему выполнен. Тестовый доступ к сетевым
+														данным разрешён. В личном кабинете Вам будет
+														сообщаться до какого числа предоставлен тестовый
+														доступ.</Text
+													>
+												</li>
 
-											<li>
-												<i class="bi bi-person-slash text-danger mr-1 my-0 mt-1" style="font-size: 1.4em"></i>&nbsp;-&nbsp;<Text trans="text+:SetupLogStatusIn4;">Такой логин в системе есть, но доступ к сетевому
-													хранилищу запрещен, так как закончился тестовый
-													период. Продлите доступ в систему.</Text>
-											</li>
+												<li>
+													<i
+														class="bi bi-person-slash text-danger mr-1 my-0 mt-1"
+														style="font-size: 1.4em"
+													></i
+													>&nbsp;-&nbsp;<Text trans="text+:SetupLogStatusIn4;"
+														>Такой логин в системе есть, но доступ к сетевому
+														хранилищу запрещен, так как закончился тестовый
+														период. Продлите доступ в систему.</Text
+													>
+												</li>
 
-											<li>
-												<i class="bi bi-person-check text-success mr-1 my-0 mt-1" style="font-size: 1.4em"></i>&nbsp;-&nbsp;<Text trans="text+:SetupLogStatusIn5;">Вход в систему выполнен. Доступ к данным в сети
-													разрешён. В личном кабинете Вам будет сообщаться до
-													какого числа предоставлен доступ.</Text>
-											</li>
-										</ul>
+												<li>
+													<i
+														class="bi bi-person-check text-success mr-1 my-0 mt-1"
+														style="font-size: 1.4em"
+													></i
+													>&nbsp;-&nbsp;<Text trans="text+:SetupLogStatusIn5;"
+														>Вход в систему выполнен. Доступ к данным в сети
+														разрешён. В личном кабинете Вам будет сообщаться до
+														какого числа предоставлен доступ.</Text
+													>
+												</li>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
-						<div class="tab-pane fade text-center" id="nav-work" role="tabpanel" aria-labelledby="nav-work-tab" style="text-align: center; padding: 3px">
-							<!-- начало 3 таба					-->
+							<div
+								class="tab-pane fade text-center"
+								id="nav-work"
+								role="tabpanel"
+								aria-labelledby="nav-work-tab"
+								style="text-align: center; padding: 3px"
+							>
+								<!-- начало 3 таба					-->
 
-							<div style="padding: 3px">
-								<p class="text-center mb-0" style="
+								<div style="padding: 3px">
+									<p
+										class="text-center mb-0"
+										style="
 											color: #0a58ca;
 											font-size: 1.1em;
 											padding-bottom: 8px;
-										">
-									<b><Text trans="text+:WorkExample;">Работа с системой на примерах</Text></b>
-								</p>
+										"
+									>
+										<b
+											><Text trans="text+:WorkExample;"
+												>Работа с системой на примерах</Text
+											></b
+										>
+									</p>
 
-								<p class="" style="
+									<p
+										class=""
+										style="
 											text-indent: 25px;
 											font-size: 0.9em;
 											text-align: justify;
@@ -1652,17 +2514,21 @@
 											padding-left: 15px;
 											background-color: WhiteSmoke;
 											width: 100%;
-										">
-									<Text trans="text+:WorkExample0;">Эффективность работы с любой информационной системой
-										зависит от полноты данных. Также и система НайдиВремя!
-										будет полезна при наличии полных данных по свободному и
-										занятому времени. Только тогда можно получить максимальный
-										эффект и Ваше расписание будет оптимальным и удобным для
-										всех! В данном разделе показан порядок действий для
-										решения конкретных задач по работе со временем на примере
-										детской школы программирования.</Text>
-								</p>
-								<ul style="
+										"
+									>
+										<Text trans="text+:WorkExample0;"
+											>Эффективность работы с любой информационной системой
+											зависит от полноты данных. Также и система НайдиВремя!
+											будет полезна при наличии полных данных по свободному и
+											занятому времени. Только тогда можно получить максимальный
+											эффект и Ваше расписание будет оптимальным и удобным для
+											всех! В данном разделе показан порядок действий для
+											решения конкретных задач по работе со временем на примере
+											детской школы программирования.</Text
+										>
+									</p>
+									<ul
+										style="
 											text-align: left;
 											padding-top: 15px;
 											padding-bottom: 15px;
@@ -1670,74 +2536,120 @@
 											font-size: 0.9em;
 											background-color: WhiteSmoke;
 											list-style: none;
-										">
-									<li style="text-align: justify">
-										<a href="#task1"><b><Text trans="text+:WorkTask;">Задача</Text> 1:</b><span style="color: darkcyan"><Text trans="text+:WorkTask1;">
-													Для старших ребят (уровень 4) на курсе JsFront
-													подобрать группу и оптимальное время.</Text></span></a>
-									</li>
-									<li style="text-align: justify">
-										<a href="#task2"><b><Text trans="text+:WorkTask;">Задача</Text> 2:</b>
-											<span style="color: darkcyan">
-												<Text trans="text+:WorkTask2;">Для ребят на курсе PHP (уровень 3-4) подобрать
-													группу и время с учетом расписания
-													преподавателя.</Text></span></a>
-									</li>
-									<li style="text-align: justify">
-										<a href="#task3"><b><Text trans="text+:WorkTask;">Задача</Text> 3:</b>
-											<span style="color: darkcyan">
-												<Text trans="text+:WorkTask3;">Сформировать группу для курса "CoSpaces" с уровнем
-													2. Найти преподавателя и свободный класс для
-													группы.</Text></span></a>
-									</li>
-									<li style="text-align: justify">
-										<a href="#task4"><b><Text trans="text+:WorkTask;">Задача</Text> 4:</b><span style="color: darkcyan">
-												<Text trans="text+:WorkTask4;">Ведение своего расписания и вывод его на полный
-													экран смартфона для входе в систему.</Text></span></a>
-									</li>
-									<a name="task1"></a>
-									<li style="text-align: justify">
-										<a href="#task5"><b><Text trans="text+:WorkTask;">Задача</Text> 5:</b><span style="color: darkcyan">
-												<Text trans="text+:WorkTask5;">Отправить занятое или свободное время участнику
-													системы.</Text></span></a>
-									</li>
-								</ul>
+										"
+									>
+										<li style="text-align: justify">
+											<a href="#task1"
+												><b><Text trans="text+:WorkTask;">Задача</Text> 1:</b
+												><span style="color: darkcyan"
+													><Text trans="text+:WorkTask1;">
+														Для старших ребят (уровень 4) на курсе JsFront
+														подобрать группу и оптимальное время.</Text
+													></span
+												></a
+											>
+										</li>
+										<li style="text-align: justify">
+											<a href="#task2"
+												><b><Text trans="text+:WorkTask;">Задача</Text> 2:</b>
+												<span style="color: darkcyan">
+													<Text trans="text+:WorkTask2;"
+														>Для ребят на курсе PHP (уровень 3-4) подобрать
+														группу и время с учетом расписания
+														преподавателя.</Text
+													></span
+												></a
+											>
+										</li>
+										<li style="text-align: justify">
+											<a href="#task3"
+												><b><Text trans="text+:WorkTask;">Задача</Text> 3:</b>
+												<span style="color: darkcyan">
+													<Text trans="text+:WorkTask3;"
+														>Сформировать группу для курса "CoSpaces" с уровнем
+														2. Найти преподавателя и свободный класс для
+														группы.</Text
+													></span
+												></a
+											>
+										</li>
+										<li style="text-align: justify">
+											<a href="#task4"
+												><b><Text trans="text+:WorkTask;">Задача</Text> 4:</b
+												><span style="color: darkcyan">
+													<Text trans="text+:WorkTask4;"
+														>Ведение своего расписания и вывод его на полный
+														экран смартфона для входе в систему.</Text
+													></span
+												></a
+											>
+										</li>
+										<a name="task1"></a>
+										<li style="text-align: justify">
+											<a href="#task5"
+												><b><Text trans="text+:WorkTask;">Задача</Text> 5:</b
+												><span style="color: darkcyan">
+													<Text trans="text+:WorkTask5;"
+														>Отправить занятое или свободное время участнику
+														системы.</Text
+													></span
+												></a
+											>
+										</li>
+									</ul>
 
-								<!--111111111111111111111111111111111111111-->
+									<!--111111111111111111111111111111111111111-->
 
-								<p style="
+									<p
+										style="
 											width: 100%;
 											text-align: justify;
 											text-indent: 25px;
 											padding-top: 10px;
 											padding-bottom: 20px;
 											padding-left: 20px;
-										">
-									<b><Text trans="text+:WorkTask;">Задача</Text> 1:</b><b style="color: darkcyan">
-										<Text trans="text+;WorkTask1;">Для старших ребят (уровень 4) на курсе JsFront
-											подобрать группу и оптимальное время.</Text></b>
-								</p>
+										"
+									>
+										<b><Text trans="text+:WorkTask;">Задача</Text> 1:</b
+										><b style="color: darkcyan">
+											<Text trans="text+;WorkTask1;"
+												>Для старших ребят (уровень 4) на курсе JsFront
+												подобрать группу и оптимальное время.</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText1" style="
+									<div
+										class="aboutText1"
+										style="
 											display: flex;
 											flex-direction: row;
 											flex-wrap: wrap;
 											justify-content: center;
 											padding-bottom: 20px;
 											padding-left: 20px;
-										">
-									<div class="helpTask1Txt">
-										<ol style="
+										"
+									>
+										<div class="helpTask1Txt">
+											<ol
+												style="
 													text-align: left;
 													padding-top: 5px;
 													line-height: 1.4em;
 													font-size: 0.9em;
-												">
-											<li style="text-align: justify">
-												<Text trans="text+;WorkTask1-1;">Во вкладке "Свободное время" надо отметить ребят,
-													для которых подбираем группу и время. Для этого
-													устанавливаем фильтр</Text>
-												<button name="PlusButton" id="create" class="filtr" style="
+												"
+											>
+												<li style="text-align: justify">
+													<Text trans="text+;WorkTask1-1;"
+														>Во вкладке "Свободное время" надо отметить ребят,
+														для которых подбираем группу и время. Для этого
+														устанавливаем фильтр</Text
+													>
+													<button
+														name="PlusButton"
+														id="create"
+														class="filtr"
+														style="
 															color: aliceblue;
 															background-color: cornflowerblue;
 															display: inline;
@@ -1746,67 +2658,94 @@
 															border-radius: 2px;
 															font-weight: 200;
 															border-width: 0px;
-														">
-													<i class="bi bi-funnel-fill" style="font-size: 1.1em; font-weight: 100"></i>
-												</button>
-												<Text trans="text+;WorkTask1-1-1;">по курсу JsFront и по уровню 4</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask1-2;">После применения фильтра отмечаем тех учеников,
-													которые нам нужны (устанавливаем флажки слева от
-													имени). В данном примере нам подходят все четверо.
-													Все записи можно отметить, нажав на флажок в
-													заголовке таблицы над первым столбцом слева</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask1-3;">После этого переходим во вкладку "Расписание". В
-													этом разделе производится наложение графиков
-													свободного времени каждого и отмечается цветом и
-													цифрами количество совпадений. Оранжевым цветом
-													отмечено максимальное совпадение по времени. У троих
-													человек таких временных отрезков получилось два:
-													вторник с 17:00 до 19:00 и четверг с 18:00 до 19:00.
-													Так как занятие длится 1,5 часа, то подойдет время
-													только вторника</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask1-4;">Можно также разбить на группы по 2 человека во
-													вторник и четверг</Text>
-											</li>
-										</ol>
-									</div>
-									<div class="helpTask1Pic">
-										<img src="img/task1.png" class="helpTask1Img" style="margin-bottom: 20px" />
-									</div>
-									<p style="
+														"
+													>
+														<i
+															class="bi bi-funnel-fill"
+															style="font-size: 1.1em; font-weight: 100"
+														></i>
+													</button>
+													<Text trans="text+;WorkTask1-1-1;"
+														>по курсу JsFront и по уровню 4</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask1-2;"
+														>После применения фильтра отмечаем тех учеников,
+														которые нам нужны (устанавливаем флажки слева от
+														имени). В данном примере нам подходят все четверо.
+														Все записи можно отметить, нажав на флажок в
+														заголовке таблицы над первым столбцом слева</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask1-3;"
+														>После этого переходим во вкладку "Расписание". В
+														этом разделе производится наложение графиков
+														свободного времени каждого и отмечается цветом и
+														цифрами количество совпадений. Оранжевым цветом
+														отмечено максимальное совпадение по времени. У троих
+														человек таких временных отрезков получилось два:
+														вторник с 17:00 до 19:00 и четверг с 18:00 до 19:00.
+														Так как занятие длится 1,5 часа, то подойдет время
+														только вторника</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask1-4;"
+														>Можно также разбить на группы по 2 человека во
+														вторник и четверг</Text
+													>
+												</li>
+											</ol>
+										</div>
+										<div class="helpTask1Pic">
+											<img
+												src="img/task1.png"
+												class="helpTask1Img"
+												style="margin-bottom: 20px"
+											/>
+										</div>
+										<p
+											style="
 												width: 95%;
 												text-align: justify;
 												text-indent: 25px;
 												line-height: 1.4em;
 												font-size: 0.9em;
-											">
-										<Text trans="text+;WorkTask1Analis;"><b>Анализ:</b> У нас только один ученик не попадал в
-											группу со временем: вторник 17:00-19:00. Предложили его
-											родителям расмотреть расписание на это время и они
-											согласились.</Text>
-									</p>
-									<a name="task2"></a>
-									<p style="
+											"
+										>
+											<Text trans="text+;WorkTask1Analis;"
+												><b>Анализ:</b> У нас только один ученик не попадал в
+												группу со временем: вторник 17:00-19:00. Предложили его
+												родителям расмотреть расписание на это время и они
+												согласились.</Text
+											>
+										</p>
+										<a name="task2"></a>
+										<p
+											style="
 												width: 95%;
 												text-align: justify;
 												text-indent: 25px;
 												line-height: 1.4em;
 												font-size: 0.9em;
-											">
-										<Text trans="text+:WorkTask1Result;"><b> Результат:</b><span style="color: blue; font-weight: 600">
-												Собрана группа на курс JsFront из 4-х человек во
-												вторник 17:00-18:30</span></Text>
-									</p>
-								</div>
+											"
+										>
+											<Text trans="text+:WorkTask1Result;"
+												><b> Результат:</b
+												><span style="color: blue; font-weight: 600">
+													Собрана группа на курс JsFront из 4-х человек во
+													вторник 17:00-18:30</span
+												></Text
+											>
+										</p>
+									</div>
 
-								<!--22222222222222222222222222222222222         -->
+									<!--22222222222222222222222222222222222         -->
 
-								<p style="
+									<p
+										style="
 											width: 100%;
 											text-align: justify;
 											text-indent: 25px;
@@ -1814,14 +2753,20 @@
 											padding-bottom: 20px;
 											padding-left: 25px;
 											background-color: WhiteSmoke;
-										">
-									<b><Text trans="text+:WorkTask;">Задача</Text> 2:</b>
-									<b style="color: darkcyan">
-										<Text trans="text+:WorkTask2;">Для ребят на курсе PHP (уровень 3-4) подобрать группу и
-											время с учетом расписания преподавателя.</Text></b>
-								</p>
+										"
+									>
+										<b><Text trans="text+:WorkTask;">Задача</Text> 2:</b>
+										<b style="color: darkcyan">
+											<Text trans="text+:WorkTask2;"
+												>Для ребят на курсе PHP (уровень 3-4) подобрать группу и
+												время с учетом расписания преподавателя.</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText2" style="
+									<div
+										class="aboutText2"
+										style="
 											display: flex;
 											flex-direction: row-reverse;
 											flex-wrap: wrap;
@@ -1830,21 +2775,34 @@
 											padding-bottom: 20px;
 											padding-left: 20px;
 											width: 100%;
-										">
-									<div class="helpTask1Txt">
-										<ol style="
+										"
+									>
+										<div class="helpTask1Txt">
+											<ol
+												style="
 													text-align: left;
 													padding: 5px 10px 0 10px;
 													line-height: 1.4em;
 													font-size: 0.9em;
-												">
-											<b><Text trans="text+:WorkTask2-v1;">Вариант 1: По данным свободного времени
-													преподавателя.</Text></b>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask2-v1-1;">Также как в задаче 1 во вкладке "Свободное время"
-													надо отметить ребят для которых подбираем группу и
-													время. Также надо выбрать в фильтре</Text>
-												<button name="PlusButton" id="create" class="filtr" style="
+												"
+											>
+												<b
+													><Text trans="text+:WorkTask2-v1;"
+														>Вариант 1: По данным свободного времени
+														преподавателя.</Text
+													></b
+												>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask2-v1-1;"
+														>Также как в задаче 1 во вкладке "Свободное время"
+														надо отметить ребят для которых подбираем группу и
+														время. Также надо выбрать в фильтре</Text
+													>
+													<button
+														name="PlusButton"
+														id="create"
+														class="filtr"
+														style="
 															color: aliceblue;
 															background-color: cornflowerblue;
 															display: inline;
@@ -1853,32 +2811,51 @@
 															border-radius: 2px;
 															font-weight: 200;
 															border-width: 0px;
-														">
-													<i class="bi bi-funnel-fill" style="font-size: 1.1em; font-weight: 100"></i>
-												</button>
-												<Text trans="text+:WorkTask2-v1-1-1;">и преподавателей. Устанавливаем фильтр по курсу PHP
-													и "препод." и по уровню 3 и 4.</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask2-v1-2;">Далее анализируем совпадения по времени, только с
-													обязательным совпадение со свободным временем
-													преподавателя.</Text>
-											</li>
-										</ol>
-										<ol style="
+														"
+													>
+														<i
+															class="bi bi-funnel-fill"
+															style="font-size: 1.1em; font-weight: 100"
+														></i>
+													</button>
+													<Text trans="text+:WorkTask2-v1-1-1;"
+														>и преподавателей. Устанавливаем фильтр по курсу PHP
+														и "препод." и по уровню 3 и 4.</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask2-v1-2;"
+														>Далее анализируем совпадения по времени, только с
+														обязательным совпадение со свободным временем
+														преподавателя.</Text
+													>
+												</li>
+											</ol>
+											<ol
+												style="
 													text-align: left;
 													line-height: 1.4em;
 													font-size: 0.9em;
 													padding: 5px 10px 0 10px;
-												">
-											<b><Text trans="text+;WorkTask2-v2;">Вариант 2: По данным занятого времени
-													преподавателя</Text>
-											</b>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask2-v2-1;">Во вкладке "Свободное время" надо отметить ребят
-													для которых подбираем группу и время. Для этого
-													устанавливаем фильтр</Text>
-												<button name="PlusButton" id="create" class="filtr" style="
+												"
+											>
+												<b
+													><Text trans="text+;WorkTask2-v2;"
+														>Вариант 2: По данным занятого времени
+														преподавателя</Text
+													>
+												</b>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask2-v2-1;"
+														>Во вкладке "Свободное время" надо отметить ребят
+														для которых подбираем группу и время. Для этого
+														устанавливаем фильтр</Text
+													>
+													<button
+														name="PlusButton"
+														id="create"
+														class="filtr"
+														style="
 															color: aliceblue;
 															background-color: cornflowerblue;
 															display: inline;
@@ -1887,101 +2864,142 @@
 															border-radius: 2px;
 															font-weight: 200;
 															border-width: 0px;
-														">
-													<i class="bi bi-funnel-fill" style="font-size: 1.1em; font-weight: 100"></i>
-												</button>
-												<Text trans="text+:WorkTask2-v2-1-2;">по курсу PHP и по уровню 3-4.</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask2-v2-2">Во вкладке "Занятое время" выбираем преподавателя
-													который ведёт этот курс, отметив его флагом слева от
-													имени
-												</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask2-v2-3">Переходим на вкладку "Расписание". Также как и в
-													задаче 1, происходит совмещение свободного времени
-													учеников. Дополнительно накладывается занятое время
-													у преподавателя (данные вкладки "Занятое время").
-													Если свободное время накладывается на занятое время
-													преподавателя, то оно помечается красным. Если нет,
-													то цвет не меняется. Оптимальный выбор это ячейки с
-													оранжевым цветом и цифрой. В это время максимальное
-													число учеников совпало по свободному времени и это
-													время не занято у преподавателя.</Text>
-											</li>
-										</ol>
-									</div>
-									<div class="helpTask1Pic">
-										<img src="img/task2.png" width="40%" class="helpTask1Img" style="margin-bottom: 25px" />
-									</div>
+														"
+													>
+														<i
+															class="bi bi-funnel-fill"
+															style="font-size: 1.1em; font-weight: 100"
+														></i>
+													</button>
+													<Text trans="text+:WorkTask2-v2-1-2;"
+														>по курсу PHP и по уровню 3-4.</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask2-v2-2"
+														>Во вкладке "Занятое время" выбираем преподавателя
+														который ведёт этот курс, отметив его флагом слева от
+														имени
+													</Text>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask2-v2-3"
+														>Переходим на вкладку "Расписание". Также как и в
+														задаче 1, происходит совмещение свободного времени
+														учеников. Дополнительно накладывается занятое время
+														у преподавателя (данные вкладки "Занятое время").
+														Если свободное время накладывается на занятое время
+														преподавателя, то оно помечается красным. Если нет,
+														то цвет не меняется. Оптимальный выбор это ячейки с
+														оранжевым цветом и цифрой. В это время максимальное
+														число учеников совпало по свободному времени и это
+														время не занято у преподавателя.</Text
+													>
+												</li>
+											</ol>
+										</div>
+										<div class="helpTask1Pic">
+											<img
+												src="img/task2.png"
+												width="40%"
+												class="helpTask1Img"
+												style="margin-bottom: 25px"
+											/>
+										</div>
 
-									<p style="
+										<p
+											style="
 												width: 95%;
 												text-align: justify;
 												text-indent: 25px;
 												line-height: 1.4em;
 												font-size: 0.9em;
 												padding: 0 10px;
-											">
-										<Text trans="text+:WorkTask2Analis"><b>Анализ:</b> Из 6-ти отмеченных учеников максимальное
-											совпадение по свободному времени и незанятому времени
-											преподавателя это среда 17:30-19:00 и пятница
-											17:30-19:30. Если сделаем тоже самое, но для двух
-											оставшихся ребят, то у них найдем общее свободное время
-											четверг 16:30-18:00.</Text>
-									</p>
-									<a name="task3"></a>
-									<p style="
+											"
+										>
+											<Text trans="text+:WorkTask2Analis"
+												><b>Анализ:</b> Из 6-ти отмеченных учеников максимальное
+												совпадение по свободному времени и незанятому времени
+												преподавателя это среда 17:30-19:00 и пятница
+												17:30-19:30. Если сделаем тоже самое, но для двух
+												оставшихся ребят, то у них найдем общее свободное время
+												четверг 16:30-18:00.</Text
+											>
+										</p>
+										<a name="task3"></a>
+										<p
+											style="
 												width: 95%;
 												text-align: justify;
 												text-indent: 25px;
 												line-height: 1.4em;
 												font-size: 0.9em;
 												padding: 0 10px;
-											">
-										<Text trans="text+:WorkTask2Result"><b> Результат:</b><span style="color: blue; font-weight: 600">
-												Собрана 1-я группа на курс PHP из 4-х человек в
-												пятницу 18:00-19:30 и 2-я группа на этот же курс из
-												2-х человек в четверг 16:30-18:00.</span></Text>
-									</p>
-								</div>
+											"
+										>
+											<Text trans="text+:WorkTask2Result"
+												><b> Результат:</b
+												><span style="color: blue; font-weight: 600">
+													Собрана 1-я группа на курс PHP из 4-х человек в
+													пятницу 18:00-19:30 и 2-я группа на этот же курс из
+													2-х человек в четверг 16:30-18:00.</span
+												></Text
+											>
+										</p>
+									</div>
 
-								<!--333333333333333333333333333-->
+									<!--333333333333333333333333333-->
 
-								<p style="
+									<p
+										style="
 											width: 100%;
 											text-align: justify;
 											text-indent: 25px;
 											padding-top: 10px;
 											padding-bottom: 20px;
 											padding-left: 20px;
-										">
-									<b><Text trans="text+:WorkTask;">Задача</Text> 3:</b><b style="color: darkcyan">
-										<Text trans="text+:WorkTask3">Сформировать группу для курса "CoSpaces" с уровнем 2.
-											Найти преподавателя и свободный класс для группы.</Text></b>
-								</p>
+										"
+									>
+										<b><Text trans="text+:WorkTask;">Задача</Text> 3:</b
+										><b style="color: darkcyan">
+											<Text trans="text+:WorkTask3"
+												>Сформировать группу для курса "CoSpaces" с уровнем 2.
+												Найти преподавателя и свободный класс для группы.</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText1" style="
+									<div
+										class="aboutText1"
+										style="
 											display: flex;
 											flex-direction: row;
 											flex-wrap: wrap;
 											justify-content: center;
 											padding-bottom: 20px;
 											padding-left: 20px;
-										">
-									<div class="helpTask1Txt">
-										<ol style="
+										"
+									>
+										<div class="helpTask1Txt">
+											<ol
+												style="
 													text-align: left;
 													padding-top: 5px;
 													line-height: 1.4em;
 													font-size: 0.9em;
-												">
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask3-1">Во вкладке "Свободное время" надо отметить ребят,
-													для которых подбираем группу и время. Для этого
-													устанавливаем фильтр</Text>
-												<button name="PlusButton" id="create" class="filtr" style="
+												"
+											>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask3-1"
+														>Во вкладке "Свободное время" надо отметить ребят,
+														для которых подбираем группу и время. Для этого
+														устанавливаем фильтр</Text
+													>
+													<button
+														name="PlusButton"
+														id="create"
+														class="filtr"
+														style="
 															color: aliceblue;
 															background-color: cornflowerblue;
 															display: inline;
@@ -1990,69 +3008,94 @@
 															border-radius: 2px;
 															font-weight: 200;
 															border-width: 0px;
-														">
-													<i class="bi bi-funnel-fill" style="font-size: 1.1em; font-weight: 100"></i>
-												</button>
-												<Text trans="text+:WorkTask3-1-1">по курсу CoSpaces и при необходимости отмечаем
-													нужные записи после установки фильтра. См. Задача
-													1</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask3-2">На вкладке "Занятое время" отмечаем занятое время
-													преподавателя и затем по очереди занятое время
-													классов. Например сначала "Класс 1" для проверки, а
-													затем "Класс 2". Все записи можно отметить, нажав на
-													флажок в заголовке таблицы над первым столбцом
-													слева</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask3-3">После заполнения вкладок со временем переходим во
-													вкладку "Расписание". В этом разделе производится
-													наложение графиков свободного времени и занятого
-													времени преподавателя и класса. Если свободное время
-													накладывается на занятое время класса и (или)
-													преподавателя, то оно помечается красным. Если нет,
-													то цвет не меняется. Оптимальный выбор это ячейки с
-													оранжевым цветом и цифрой. В это время максимальное
-													число учеников совпало по свободному времени, и в
-													это время и преподаватель не занят и класс.</Text>
-											</li>
-										</ol>
-									</div>
-									<div class="helpTask1Pic">
-										<img src="img/task3.png" class="helpTask1Img" style="margin-bottom: 20px" />
-									</div>
-									<p style="
+														"
+													>
+														<i
+															class="bi bi-funnel-fill"
+															style="font-size: 1.1em; font-weight: 100"
+														></i>
+													</button>
+													<Text trans="text+:WorkTask3-1-1"
+														>по курсу CoSpaces и при необходимости отмечаем
+														нужные записи после установки фильтра. См. Задача
+														1</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask3-2"
+														>На вкладке "Занятое время" отмечаем занятое время
+														преподавателя и затем по очереди занятое время
+														классов. Например сначала "Класс 1" для проверки, а
+														затем "Класс 2". Все записи можно отметить, нажав на
+														флажок в заголовке таблицы над первым столбцом
+														слева</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask3-3"
+														>После заполнения вкладок со временем переходим во
+														вкладку "Расписание". В этом разделе производится
+														наложение графиков свободного времени и занятого
+														времени преподавателя и класса. Если свободное время
+														накладывается на занятое время класса и (или)
+														преподавателя, то оно помечается красным. Если нет,
+														то цвет не меняется. Оптимальный выбор это ячейки с
+														оранжевым цветом и цифрой. В это время максимальное
+														число учеников совпало по свободному времени, и в
+														это время и преподаватель не занят и класс.</Text
+													>
+												</li>
+											</ol>
+										</div>
+										<div class="helpTask1Pic">
+											<img
+												src="img/task3.png"
+												class="helpTask1Img"
+												style="margin-bottom: 20px"
+											/>
+										</div>
+										<p
+											style="
 												width: 95%;
 												text-align: justify;
 												text-indent: 25px;
 												line-height: 1.4em;
 												font-size: 0.9em;
-											">
-										<Text trans="text+:WorkTask3Analis"><b>Анализ:</b> У нас два класса. При выборе во вкладке
-											"Занятое время" преподавателя и "Класс 1" у нас совсем
-											не было свободного времени, ни у преподавателя, ни
-											свободного класса. При выборе "Класс 2" определили, что
-											такое время есть и оно показано оранжевым цветом. И оно
-											нам подходит по длительности!</Text>
-									</p>
-									<a name="task4"></a>
-									<p style="
+											"
+										>
+											<Text trans="text+:WorkTask3Analis"
+												><b>Анализ:</b> У нас два класса. При выборе во вкладке
+												"Занятое время" преподавателя и "Класс 1" у нас совсем
+												не было свободного времени, ни у преподавателя, ни
+												свободного класса. При выборе "Класс 2" определили, что
+												такое время есть и оно показано оранжевым цветом. И оно
+												нам подходит по длительности!</Text
+											>
+										</p>
+										<a name="task4"></a>
+										<p
+											style="
 												width: 95%;
 												text-align: justify;
 												text-indent: 25px;
 												line-height: 1.4em;
 												font-size: 0.9em;
-											">
-										<Text trans="text+:WorkTask3Result"><b> Результат:</b><span style="color: blue; font-weight: 600">
-												Собрана группа на курсе "CoSpaces" с уровнем 2 с
-												оптимальным временем: вторник 17:30-19:00 в классе №2
-												и определенным преподавателем.</span></Text>
-									</p>
-								</div>
-								<!--44444444444444444444444-->
+											"
+										>
+											<Text trans="text+:WorkTask3Result"
+												><b> Результат:</b
+												><span style="color: blue; font-weight: 600">
+													Собрана группа на курсе "CoSpaces" с уровнем 2 с
+													оптимальным временем: вторник 17:30-19:00 в классе №2
+													и определенным преподавателем.</span
+												></Text
+											>
+										</p>
+									</div>
+									<!--44444444444444444444444-->
 
-								<p style="
+									<p
+										style="
 											width: 100%;
 											text-align: justify;
 											text-indent: 25px;
@@ -2060,14 +3103,20 @@
 											padding-bottom: 20px;
 											padding-left: 20px;
 											background-color: WhiteSmoke;
-										">
-									<b><Text trans="text+:WorkTask">Задача</Text> 4:</b>
-									<b style="color: darkcyan">
-										<Text trans="text+:WorkTask4">Ведение личного расписания и вывод его на полный экран
-											смартфона для входе в систему.</Text></b>
-								</p>
+										"
+									>
+										<b><Text trans="text+:WorkTask">Задача</Text> 4:</b>
+										<b style="color: darkcyan">
+											<Text trans="text+:WorkTask4"
+												>Ведение личного расписания и вывод его на полный экран
+												смартфона для входе в систему.</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText2" style="
+									<div
+										class="aboutText2"
+										style="
 											display: flex;
 											flex-direction: row-reverse;
 											flex-wrap: wrap;
@@ -2076,32 +3125,55 @@
 											padding-bottom: 20px;
 											padding-left: 20px;
 											width: 100%;
-										">
-									<div class="helpTask1Txt">
-										<ol style="
+										"
+									>
+										<div class="helpTask1Txt">
+											<ol
+												style="
 													text-align: left;
 													padding: 5px 10px 0 10px;
 													line-height: 1.4em;
 													font-size: 0.9em;
-												">
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask4-1">Отмечаем во вкладке свое расписание, т.е. занятое
-													время и сохраняем данные.</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask4-2-1">Далее переходим в настройки системы, нажав на
-													иконку </Text>&nbsp;<button class="btn font-weight-bold p-0 text-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-													<i class="bi bi-list my-0" style="box-sizing: border-box; font-size: 1.4em"></i></button>&nbsp;
-												<Text trans="text+;WorkTask4-2-2">в верхнем правом углу экрана. В разделе "Общие" -
-													"Показывать при старте" ставим "Расписание
-													полностью" и в разделе "Расписание" включаем
-													"Показывать сохранённое расписание при
-													открытии".</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+;WorkTask4-3">Переходим во вкладку "Расписание" или в
-													полноэкранном режиме</Text>
-												<button type="button" class="btn btn-primary" style="
+												"
+											>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask4-1"
+														>Отмечаем во вкладке свое расписание, т.е. занятое
+														время и сохраняем данные.</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask4-2-1"
+														>Далее переходим в настройки системы, нажав на
+														иконку </Text
+													>&nbsp;<button
+														class="btn font-weight-bold p-0 text-primary"
+														data-bs-toggle="offcanvas"
+														data-bs-target="#offcanvasRight"
+														aria-controls="offcanvasRight"
+													>
+														<i
+															class="bi bi-list my-0"
+															style="box-sizing: border-box; font-size: 1.4em"
+														></i></button
+													>&nbsp;
+													<Text trans="text+;WorkTask4-2-2"
+														>в верхнем правом углу экрана. В разделе "Общие" -
+														"Показывать при старте" ставим "Расписание
+														полностью" и в разделе "Расписание" включаем
+														"Показывать сохранённое расписание при
+														открытии".</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+;WorkTask4-3"
+														>Переходим во вкладку "Расписание" или в
+														полноэкранном режиме</Text
+													>
+													<button
+														type="button"
+														class="btn btn-primary"
+														style="
 															font-size: 1em;
 															border-radius: 0;
 															padding: 1px 6px;
@@ -2110,250 +3182,375 @@
 															margin-right: 0.4em;
 															background-color: #1ab395;
 															color: white;
-														">
-													<i class="bi bi-arrows-fullscreen font-weight-bold mx-0" style="font-size: 1em; margin-top: 0.65em"></i>
-												</button>
-												<Text trans="text+;WorkTask4-3-2">и нажимаем кнопку</Text>
+														"
+													>
+														<i
+															class="bi bi-arrows-fullscreen font-weight-bold mx-0"
+															style="font-size: 1em; margin-top: 0.65em"
+														></i>
+													</button>
+													<Text trans="text+;WorkTask4-3-2"
+														>и нажимаем кнопку</Text
+													>
 
-												<button class="mt-0" style="
+													<button
+														class="mt-0"
+														style="
 															font-size: 1em;
 															border-width: 0px;
 															margin-right: 0.4em;
 															margin-left: 10px;
 															background-color: #23c6c8;
 															color: black;
-														">
-													<i class="bi bi-upload font-weight-bold mx-0" style="font-size: 1em; margin-top: 0.75em"></i></button>.
-												<Text trans="text+:WorkTask4-3-3">Данные сохранятся в локальном хранилище устройства
-													и будут показываться сразу при старте (если вы
-													настроили как в пункте 2) или их можно будет в любой
-													момент загрузить из памяти и показать во вкладке
-													"Расписание" или полноэкранном расписании, нажав
-													кнопку </Text><button class="" value="Clear font-weight-bold " style="
+														"
+													>
+														<i
+															class="bi bi-upload font-weight-bold mx-0"
+															style="font-size: 1em; margin-top: 0.75em"
+														></i></button
+													>.
+													<Text trans="text+:WorkTask4-3-3"
+														>Данные сохранятся в локальном хранилище устройства
+														и будут показываться сразу при старте (если вы
+														настроили как в пункте 2) или их можно будет в любой
+														момент загрузить из памяти и показать во вкладке
+														"Расписание" или полноэкранном расписании, нажав
+														кнопку </Text
+													><button
+														class=""
+														value="Clear font-weight-bold "
+														style="
 															font-size: 1em;
 															border-width: 0px;
 															margin-right: 0.4em;
 															background-color: lightskyblue;
 															color: black;
-														">
-													<i class="bi bi-download font-weight-bold mx-0" style="font-size: 1em; margin-top: 0.75em"></i></button>.
-											</li>
-										</ol>
-									</div>
-									<div class="helpTask1Pic">
-										<img src="img/task4.png" width="40%" class="helpTask1Img" style="margin-bottom: 25px" />
-									</div>
+														"
+													>
+														<i
+															class="bi bi-download font-weight-bold mx-0"
+															style="font-size: 1em; margin-top: 0.75em"
+														></i></button
+													>.
+												</li>
+											</ol>
+										</div>
+										<div class="helpTask1Pic">
+											<img
+												src="img/task4.png"
+												width="40%"
+												class="helpTask1Img"
+												style="margin-bottom: 25px"
+											/>
+										</div>
 
-									<p style="
+										<p
+											style="
 												width: 95%;
 												text-align: justify;
 												text-indent: 25px;
 												line-height: 1.4em;
 												font-size: 0.9em;
 												padding: 0 10px;
-											">
-										<Text trans="text+:WorkTask4Result"><b> Результат:</b><span style="color: blue; font-weight: 600">
-												Расписание сохранено в локальном хранилище устройства
-												и появляется при старте приложения в полноэкранном
-												режиме. Используйте его как быстрое напоминание о
-												своих делах и для контроля времени.
-											</span></Text>
-									</p>
-								</div>
+											"
+										>
+											<Text trans="text+:WorkTask4Result"
+												><b> Результат:</b
+												><span style="color: blue; font-weight: 600">
+													Расписание сохранено в локальном хранилище устройства
+													и появляется при старте приложения в полноэкранном
+													режиме. Используйте его как быстрое напоминание о
+													своих делах и для контроля времени.
+												</span></Text
+											>
+										</p>
+									</div>
 
-								<!--555555555555555555555-->
-								<a name="task5"></a>
+									<!--555555555555555555555-->
+									<a name="task5"></a>
 
-								<p style="
+									<p
+										style="
 											width: 100%;
 											text-align: justify;
 											text-indent: 25px;
 											padding-top: 10px;
 											padding-bottom: 20px;
 											padding-left: 20px;
-										">
-									<b><Text trans="text+:WorkTask">Задача</Text> 5:</b><b style="color: darkcyan">
-										<Text trans="text+:WorkTask5">Отправить занятое или свободное время участнику
-											системы.</Text></b>
-								</p>
+										"
+									>
+										<b><Text trans="text+:WorkTask">Задача</Text> 5:</b
+										><b style="color: darkcyan">
+											<Text trans="text+:WorkTask5"
+												>Отправить занятое или свободное время участнику
+												системы.</Text
+											></b
+										>
+									</p>
 
-								<div class="aboutText1" style="
+									<div
+										class="aboutText1"
+										style="
 											display: flex;
 											flex-direction: row;
 											flex-wrap: wrap;
 											justify-content: center;
 											padding-bottom: 20px;
 											padding-left: 20px;
-										">
-									<div class="helpTask1Txt">
-										<ol style="
+										"
+									>
+										<div class="helpTask1Txt">
+											<ol
+												style="
 													text-align: left;
 													padding-top: 5px;
 													line-height: 1.4em;
 													font-size: 0.9em;
-												">
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask5-1">Во вкладках "Свободное время" и "Занятое время"
-													открываем редактирование, нажав на иконку
-													<i class="bi bi-calendar3"></i> , и вводим или
-													редактируем данные по времени. Тоже самое можно
-													сделать и при вводе новой записи, нажимая
-													кнопку</Text>
-												<button class="btn btn-sm my-1" style="
+												"
+											>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask5-1"
+														>Во вкладках "Свободное время" и "Занятое время"
+														открываем редактирование, нажав на иконку
+														<i class="bi bi-calendar3"></i> , и вводим или
+														редактируем данные по времени. Тоже самое можно
+														сделать и при вводе новой записи, нажимая
+														кнопку</Text
+													>
+													<button
+														class="btn btn-sm my-1"
+														style="
 															background-color: #48c2a9;
 															font-weight: 500;
 															color: black;
 															font-size: 1em;
-														">
-													<i class="bi bi-plus"></i></button>.
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask5-1-2">Нажав на иконку</Text>
+														"
+													>
+														<i class="bi bi-plus"></i></button
+													>.
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask5-1-2"
+														>Нажав на иконку</Text
+													>
 
-												<span>
-													<button class="btn btn-sm" id="showingCodeButton" name="disable" style="
+													<span>
+														<button
+															class="btn btn-sm"
+															id="showingCodeButton"
+															name="disable"
+															style="
 																box-sizing: border-box;
 																font-size: 1em;
 																font-weight: bold;
 																background-color: lightskyblue;
 																border-radius: 2px;
 																margin-left: 12px;
-															">
-														<i class="bi bi-send" title="load" name="disable"></i>
-													</button> </span>,
-												<Text trans="text+:WorkTask5-1-3">откроется окно в котором мы увидим код времени
-													который можно передать другому участнику системы и
-													он сможет внести его в свои данные. Для этого нужно
-													ввести логин пользователя системы или его email и
-													нажать кнопку</Text><span>
-													<button class="btn btn-sm" id="showingCodeButton" name="disable" style="
+															"
+														>
+															<i
+																class="bi bi-send"
+																title="load"
+																name="disable"
+															></i>
+														</button> </span
+													>,
+													<Text trans="text+:WorkTask5-1-3"
+														>откроется окно в котором мы увидим код времени
+														который можно передать другому участнику системы и
+														он сможет внести его в свои данные. Для этого нужно
+														ввести логин пользователя системы или его email и
+														нажать кнопку</Text
+													><span>
+														<button
+															class="btn btn-sm"
+															id="showingCodeButton"
+															name="disable"
+															style="
 																box-sizing: border-box;
 																font-size: 1em;
 																font-weight: bold;
 																background-color: lightskyblue;
 																border-radius: 2px;
 																margin-left: 12px;
-															">
-														<i class="bi bi-envelope" title="load" name="disable"></i>
-													</button> </span>.
-												<Text trans="text+:WorkTask5-1-4">Также можно скопировать код времени и передать иным
-													способом, например через мессенджеры.</Text>
-											</li>
-											<li style="text-align: justify">
-												<Text trans="text+:WorkTask5-2-1">Мы можем импортировать код времени в систему,
-													получив его от другого пользователя. Полученный код
-													вносим в поле в окне редактирования времени и
-													нажимаем кнопку импорта</Text>
-												<button class="ml-3 mr-2 btn btn-sm" id="importButton" name="ImportButton" style="
+															"
+														>
+															<i
+																class="bi bi-envelope"
+																title="load"
+																name="disable"
+															></i>
+														</button> </span
+													>.
+													<Text trans="text+:WorkTask5-1-4"
+														>Также можно скопировать код времени и передать иным
+														способом, например через мессенджеры.</Text
+													>
+												</li>
+												<li style="text-align: justify">
+													<Text trans="text+:WorkTask5-2-1"
+														>Мы можем импортировать код времени в систему,
+														получив его от другого пользователя. Полученный код
+														вносим в поле в окне редактирования времени и
+														нажимаем кнопку импорта</Text
+													>
+													<button
+														class="ml-3 mr-2 btn btn-sm"
+														id="importButton"
+														name="ImportButton"
+														style="
 															background-color: #48c2a9;
 															color: black;
 															font-size: 0.95em;
 															font-weight: 700;
 															border-radius: 2px;
-														">
-													<i class="bi bi-download" name="disable" title="download"></i></button>.
-												<Text trans="text+:WorkTask5-2-2">Также можно внести данные от пользователя системы
-													если перейти по ссылке в полученном письме. В
-													таблице времени отметится занятое или свободное
-													время которое зашифровано в коде.</Text>
-											</li>
-										</ol>
-									</div>
-									<div class="helpTask1Pic">
-										<img src="img/task5.png" class="helpTask1Img" style="margin-bottom: 20px" />
-									</div>
-									<p style="
+														"
+													>
+														<i
+															class="bi bi-download"
+															name="disable"
+															title="download"
+														></i></button
+													>.
+													<Text trans="text+:WorkTask5-2-2"
+														>Также можно внести данные от пользователя системы
+														если перейти по ссылке в полученном письме. В
+														таблице времени отметится занятое или свободное
+														время которое зашифровано в коде.</Text
+													>
+												</li>
+											</ol>
+										</div>
+										<div class="helpTask1Pic">
+											<img
+												src="img/task5.png"
+												class="helpTask1Img"
+												style="margin-bottom: 20px"
+											/>
+										</div>
+										<p
+											style="
 												width: 95%;
 												text-align: justify;
 												text-indent: 25px;
 												line-height: 1.4em;
 												font-size: 0.9em;
-											">
-										<Text trans="text+:WorkTask5Result"><b> Результат:</b><span style="color: blue; font-weight: 600">
-												Данные по свободному времени пользователя системы
-												переданы другому участнику, а также импортированы в
-												систему данные из полученного кода.</span></Text>
-									</p>
+											"
+										>
+											<Text trans="text+:WorkTask5Result"
+												><b> Результат:</b
+												><span style="color: blue; font-weight: 600">
+													Данные по свободному времени пользователя системы
+													переданы другому участнику, а также импортированы в
+													систему данные из полученного кода.</span
+												></Text
+											>
+										</p>
+									</div>
+									<!--конец задач-->
 								</div>
-								<!--конец задач-->
+								<br /><br />
 							</div>
-							<br /><br />
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<footer class="fixed-bottom pt-1 bg-muted border-top" style="background-color: lightgray">
-		<div class="container-fluid" style="background-color: white">
-			<div class="row">
-				<div class="col-12 text-center pb-1">
-					<span class="text-center my-1" style="font-size: 0.7em">
-						&copy; <a href="https://intermir.ru">InterМИР</a>&nbsp;&nbsp;&nbsp;&nbsp;|
-						<span class="" id="F4Team">&nbsp;&nbsp;&nbsp;devTeam</span>
-						<b id="testConfirmer" class="mx-1">1.34.1&nbsp;</b><span id="testPHP">22.08.2023</span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span style="margin-left: 5px; color: #367deb">Оферта</span>
-					</span>
+		<footer
+			class="fixed-bottom pt-1 bg-muted border-top"
+			style="background-color: lightgray"
+		>
+			<div class="container-fluid" style="background-color: white">
+				<div class="row">
+					<div class="col-12 text-center pb-1">
+						<span class="text-center my-1" style="font-size: 0.7em">
+							&copy;
+							<a href="https://intermir.ru">InterМИР</a
+							>&nbsp;&nbsp;&nbsp;&nbsp;|
+							<span class="" id="F4Team">&nbsp;&nbsp;&nbsp;devTeam</span>
+							<b id="testConfirmer" class="mx-1">1.34.1&nbsp;</b
+							><span id="testPHP">22.08.2023</span
+							>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span
+								style="margin-left: 5px; color: #367deb"
+								>Оферта</span
+							>
+						</span>
+					</div>
 				</div>
 			</div>
+		</footer>
+
+		<style>
+			.sphere {
+				z-index: 3000;
+				width: 45px;
+				height: 45px;
+				border-radius: 30px;
+				background-color: blueviolet;
+
+				color: aliceblue;
+				font-size: 25px;
+				font-weight: bold;
+				text-align: center;
+				padding-top: 4px;
+				box-sizing: border-box;
+				text-decoration: none;
+
+				position: fixed;
+				bottom: 1%;
+				right: 2%;
+
+				opacity: 0;
+				transform: translateY(90px);
+				transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+			}
+
+			.sphere:hover {
+				cursor: pointer;
+			}
+
+			.sphere.invs {
+				opacity: 1;
+				transform: translateY(0px);
+				transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+			}
+		</style>
+
+		<div
+			class="sphere"
+			id="arrow"
+			onclick="window.scroll(0,0) "
+			onpointerdown="window.scroll(0,0) "
+		>
+			<i
+				class="bi bi-arrow-up-short"
+				aria-hidden="true"
+				data-toggle="tooltip"
+				data-placement="top"
+				title="Наверх"
+			></i>
 		</div>
-	</footer>
 
-	<style>
-		.sphere {
-			z-index: 3000;
-			width: 45px;
-			height: 45px;
-			border-radius: 30px;
-			background-color: blueviolet;
+		<script>
+			import { Translate } from './js/translator.js';
 
-			color: aliceblue;
-			font-size: 25px;
-			font-weight: bold;
-			text-align: center;
-			padding-top: 4px;
-			box-sizing: border-box;
-			text-decoration: none;
+			// Если произошло какое либо изменение в документе
+			document.addEventListener('DOMSubtreeModified', function () {
+				Translate();
+			});
 
-			position: fixed;
-			bottom: 1%;
-			right: 2%;
+			let arr = document.getElementById('arrow');
+			window.addEventListener('scroll', scroller);
 
-			opacity: 0;
-			transform: translateY(90px);
-			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-		}
+			function scroller() {
+				if (pageYOffset > 170) arr.classList.add('invs');
+				else arr.classList.remove('invs');
+			}
+		</script>
 
-		.sphere:hover {
-			cursor: pointer;
-		}
-
-		.sphere.invs {
-			opacity: 1;
-			transform: translateY(0px);
-			transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-		}
-
-	</style>
-
-	<div class="sphere" id="arrow" onclick="window.scroll(0,0) " onpointerdown="window.scroll(0,0) ">
-		<i class="bi bi-arrow-up-short" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Наверх"></i>
-	</div>
-
-	<script>
-		let arr = document.getElementById('arrow');
-		window.addEventListener('scroll', scroller);
-
-		function scroller() {
-			if (pageYOffset > 170) arr.classList.add('invs');
-			else arr.classList.remove('invs');
-		}
-
-	</script>
-
-	<script type="module" src="js/translator.js"></script>
-	<script type="module" src="js/guide22222222.js"></script>
-	<script type="module" src="js/extendg.js"></script>
-</body>
-
+		<script type="module" src="js/translator.js"></script>
+		<script type="module" src="js/guide22222222.js"></script>
+		<script type="module" src="js/extendg.js"></script>
+	</body>
 </html>
