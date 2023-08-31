@@ -189,7 +189,7 @@ btnTodo.addEventListener('click', () => {
     // Делегирование
     todo.addEventListener('click', todoActions);
     
-    Translate();
+    // Translate();
 
     //<FUNCTIONS>==============================================================================
 

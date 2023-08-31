@@ -1,0 +1,12 @@
+до 30/08/23(
+  1. Перевод Глеба
+  2. Множественный выбор вывода списка дел(закомментировал 207 - 213)
+  3. Вызов alerter на 225:
+    alerter(
+      '<span trans="text+:Danger">Внимание</span>',
+      '<div trans="text+:TodoIsAlreadyDisplayed;" style="text-indent: 0;">Список дел другого(их) пользователей уже выводится в расписание</div>',
+      'standart',
+      'info',
+      'slim'
+    );
+)
