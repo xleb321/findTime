@@ -3318,7 +3318,7 @@
 		<script type="module" src="js/extend.js"></script>
 
 		<script>
-			import { Translate } from './js/translator.js';
+			// import { Translate } from './js/translator.js';
 
 			window.addEventListener('load', () => {
 				let flag = localStorage.getItem('numTab');
@@ -3339,9 +3339,9 @@
 			});
 
 			// Если произошло какое либо изменение в документе
-			document.addEventListener('DOMSubtreeModified', function () {
+			/* document.addEventListener('DOMSubtreeModified', function () {
 				Translate();
-			});
+			}); */
 		</script>
 	</body>
 </html>
