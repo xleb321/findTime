@@ -13,12 +13,11 @@
 
 31/08/23 (
   index.html
-    1. Закомментировал 3321, 3341-3344
+    Закомментировал 3321, 3341-3344
   guide.html:
-    1. Закомментировал 3536-3541
+    Закомментировал 3536-3541
   
   js/todo.js:
-    1. 
       // Настройка времени
       const timeSetting = {
         start: '8:00',
@@ -27,6 +26,19 @@
       };
 
   api/todo.json:
-    1. Очистил базу
+    Очистил базу
 
+)
+
+01/09/23 (
+  index.html:
+    3320. <script> --->>> <script type="module">
+  guide.html:
+    3535. <script> --->>> <script type="module">
+  js/todo.js:
+    Динамический padding-left у layers__body (1059-1068)
+  css/todo.css:
+    Маленькие правки
+  api/lang.json:
+    Поправил некоторые переводы
 )

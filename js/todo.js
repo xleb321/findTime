@@ -188,7 +188,7 @@ btnTodo.addEventListener('click', () => {
   // Делегирование
   todo.addEventListener('click', todoActions);
 
-  // Translate();
+  Translate();
 
   //<FUNCTIONS>==============================================================================
 
@@ -713,6 +713,8 @@ btnTodo.addEventListener('click', () => {
         option.setAttribute('selected', '');
       }
     });
+    
+    Translate();
 
     // Анимация открытия окна редактирования дела
     setTimeout(() => {
@@ -1044,19 +1046,26 @@ export async function loadTodoLayers(table, id) {
 
             </div>
         </div>
-    `;
+  `;
 
-  layersHtml = parser
-    .parseFromString(layersHtml, 'text/html')
-    .querySelector('.layers');
+  layersHtml = parser.parseFromString(layersHtml, 'text/html').querySelector('.layers');
   layersHtml.dataset.id = id;
   table.append(layersHtml);
 
   table.style.position = 'relative';
 
-  let layersBody = table
-    .querySelector(`.layers[data-id="${id}"]`)
-    .querySelector('.layers__body');
+  let layersBody = table.querySelector(`.layers[data-id="${id}"]`).querySelector('.layers__body');
+
+  // Динамический padding-left у layers__body
+  window.addEventListener('resize', function (e) {
+    if (window.innerWidth <= 573) {
+      console.log('resized; width <= 573px');
+      layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
+    } else {
+      console.log('resized; width > 573px');
+      layersBody.style.paddingLeft = "9%";
+    }
+  });
 
   if (await idFolderExist(id)) {
     let response = await fetch('api/todo.json', {
@@ -1068,9 +1077,7 @@ export async function loadTodoLayers(table, id) {
         userTodo = todoJson.todo[id];
 
       // Высота 1й минуты (в px)
-      const oneMinuteHeight =
-        table.querySelector('tbody').children[0].getBoundingClientRect()
-        .height / 30;
+      const oneMinuteHeight = table.querySelector('tbody').children[0].getBoundingClientRect().height / 30;
 
       for (let i = 0; i < userTodo.length; i++) {
         const item = userTodo[i];
@@ -1078,10 +1085,7 @@ export async function loadTodoLayers(table, id) {
         // Расчет высоты наслоения
         let [endTimeHour, endTimeMinutes] = splitTimeString(item.endTime);
         let [startTimeHour, startTimeMinutes] = splitTimeString(item.startTime);
-        let layerHeight =
-          ((endTimeHour - startTimeHour) * 60 +
-            (endTimeMinutes - startTimeMinutes) +
-            30) *
+        let layerHeight = ((endTimeHour - startTimeHour) * 60 + (endTimeMinutes - startTimeMinutes) + 30) *
           oneMinuteHeight;
 
         // Расчет отступа сверху (значение top)
@@ -1115,16 +1119,16 @@ export async function loadTodoLayers(table, id) {
         let colorsValue = colors[item.type];
 
         layersBody.innerHTML += /* html */ `
-                    <div class="layers__item layers-item ${+item.checked ? '_checked' : ''}" style="z-index: ${i + 1}; height: ${layerHeight - 4}px; top: ${topValue}px; margin-left: ${marginLeftValue}%; background-color: ${colorsValue.color} !important; box-shadow: 0 4px 0 ${colorsValue.dark} !important; border: 1.5px solid ${colorsValue.dark} !important; border-bottom: none;">
-                        <div class="layers-item__body">
-                            <div class="layers-item__time" title="${item.startTime} - ${item.endTime}">
-                                <i class="bi bi-clock"></i>
-                                <span>${item.startTime}</span>
-                            </div>
-                            <div class="layers-item__description" title="${item.description}">${item.description}</div>
-                        </div>
-                    </div>
-                `;
+          <div class="layers__item layers-item ${+item.checked ? '_checked' : ''}" style="z-index: ${i + 1}; height: ${layerHeight - 4}px; top: ${topValue}px; margin-left: ${marginLeftValue}%; background-color: ${colorsValue.color} !important; box-shadow: 0 4px 0 ${colorsValue.dark} !important; border: 1.5px solid ${colorsValue.dark} !important; border-bottom: none;">
+            <div class="layers-item__body">
+              <div class="layers-item__time" title="${item.startTime} - ${item.endTime}">
+                <i class="bi bi-clock"></i>
+                <span>${item.startTime}</span>
+              </div>
+              <div class="layers-item__description" title="${item.description}">${item.description}</div>
+            </div>
+          </div>
+        `;
       }
     } else {
       alerter(

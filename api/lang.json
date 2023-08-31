@@ -321,7 +321,7 @@
 	},
 	"TueFull": {
 		"ru": "Вторник",
-		"en": "Monday",
+		"en": "Tuesday",
 		"fr": "Mardi"
 	},
 	"WedFull": {
@@ -481,12 +481,12 @@
 	},
 	"Work": {
 		"ru": "&nbsp;Работа",
-		"en": "&nbsp;&nbsp;Work",
+		"en": "Work",
 		"fr": "&nbsp;Travail"
 	},
 	"work": {
 		"ru": "&nbsp;Работа",
-		"en": "&nbsp;&nbsp;Work",
+		"en": "Work",
 		"fr": "&nbsp;Travail"
 	},
 	"alertHead": {
@@ -1521,22 +1521,22 @@
 	},
 	"WeekDay": {
 		"ru": "День недели",
-		"en": "Day of the week",
+		"en": "Day of Week",
 		"fr": "Jour de la semaine"
 	},
 	"Beginning": {
 		"ru": "Начало",
-		"en": "Beginning",
+		"en": "Start",
 		"fr": "Début"
 	},
 	"Fin": {
 		"ru": "Конец",
-		"en": "The end",
+		"en": "End",
 		"fr": "Fin"
 	},
 	"TypeEmployment": {
 		"ru": "Тип занятости",
-		"en": "Type of employment",
+		"en": "Employment type",
 		"fr": "Type d'emploi"
 	},
 	"Personal": {
@@ -1551,7 +1551,7 @@
 	},
 	"ThrowOff": {
 		"ru": "Сбросить",
-		"en": "Throw off",
+		"en": "Reset",
 		"fr": "Réinitialiser"
 	},
 	"FillRequired": {
