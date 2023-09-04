@@ -3131,9 +3131,10 @@ export function alerter(
 
     modalFooterAlert.innerHTML = '';
 
-    if (aWidth != 'standart') {
+    /* if (aWidth != 'standart') {
         modalFooterAlert.innerHTML = aWidth;
-    }
+    } */
+    
     if (!hideClose) {
         modalFooterAlert.innerHTML += /*html*/ `
         <div>

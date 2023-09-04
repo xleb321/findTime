@@ -18,27 +18,69 @@
     Закомментировал 3536-3541
   
   js/todo.js:
-      // Настройка времени
-      const timeSetting = {
-        start: '8:00',
-        end: '20:00',
-        step: '0:05', ---->>>> step: '0:30',
-      };
+    // Настройка времени
+    const timeSetting = {
+      start: '8:00',
+      end: '20:00',
+      step: '0:05', --->>> step: '0:30',
+    };
 
   api/todo.json:
     Очистил базу
-
 )
 
 01/09/23 (
   index.html:
-    3320. <script> --->>> <script type="module">
+    1. (3324) <script> --->>> <script type="module">
+    2. Подключение стилей для tippy.js
+		  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light-border.css">
+    3. Добавил нужные импорты (3326-3330)
+      import {
+				getLocalStorageData,
+				closeTodoLayers,
+				loadTodoLayers
+			} from './js/todo.js';
+    4. Вывод наслоения списка дел (3347-3375)
+    5. Подключение библиотеки tippy.js (3316-3318)
+      <script src="https://unpkg.com/@popperjs/core@2"></script>
+		  <script src="https://unpkg.com/tippy.js@6"></script>
+
   guide.html:
-    3535. <script> --->>> <script type="module">
-  js/todo.js:
-    Динамический padding-left у layers__body (1059-1068)
+    (3535) <script> --->>> <script type="module">
+
   css/todo.css:
     Маленькие правки
+
   api/lang.json:
     Поправил некоторые переводы
+
+  js/main.js:
+    1. Закомментировал код (3134-3136)
+      if (aWidth != 'standart') {
+        modalFooterAlert.innerHTML = aWidth;
+      }
+  
+  js/todo.js:
+    1. Расчет padding-left у layers__body (1003-1018):
+    
+      if (window.innerWidth <= 573) {
+        layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
+      } else {
+        layersBody.style.paddingLeft = "9%";
+      }
+      
+      // Динамический padding-left у layers__body
+      window.addEventListener('resize', function () {
+        if (window.innerWidth <= 573) {
+          layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
+        } else {
+          layersBody.style.paddingLeft = "9%";
+        }
+      });
+
+    2. Объединил вызовы alerter() в одну функцию showAlert()
+    3. Отступ от всех краев каждого слоя дела в табице (1082-1111)
+    4. Доработал формулу расчета высоты слоя дела (1037)
+    5. Подсказки на tippy.js
+
 )

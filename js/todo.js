@@ -369,23 +369,11 @@ btnTodo.addEventListener('click', () => {
         loadTodo(userId);
         todoForm.classList.remove('_sending');
       } else {
-        alerter(
-          '<span trans="text+:AlertErrorHeader">Ошибка</span>',
-          '<div trans="text+:ErrorGo;" style="text-indent: 0;">Что-то пошло не так. Повторите вашу попытку позже</div>',
-          'standart',
-          'danger',
-          'slim'
-        );
+        showAlert('error');
         todoForm.classList.remove('_sending');
       }
     } else {
-      alerter(
-        '<span trans="text+:Danger">Внимание</span>',
-        '<div trans="text+:FillRequired" style="text-indent: 0;">Заполните обязательные поля</div>',
-        'standart',
-        'warning',
-        'slim'
-      );
+      showAlert('form');
     }
   }
 
@@ -461,13 +449,7 @@ btnTodo.addEventListener('click', () => {
         `;
       }
     } else {
-      alerter(
-        '<span trans="text+:AlertErrorHeader">Ошибка</span>',
-        '<div trans="text+:ErrorGo;" style="text-indent: 0;">Что-то пошло не так. Повторите вашу попытку позже</div>',
-        'standart',
-        'danger',
-        'slim'
-      );
+      showAlert('error');
     }
   }
 
@@ -505,13 +487,7 @@ btnTodo.addEventListener('click', () => {
         }
       }
     } else {
-      alerter(
-        '<span trans="text+:AlertErrorHeader">Ошибка</span>',
-        '<div trans="text+:ErrorGo;" style="text-indent: 0;">Что-то пошло не так. Повторите вашу попытку позже</div>',
-        'standart',
-        'danger',
-        'slim'
-      );
+      showAlert('error');
     }
   }
 
@@ -529,13 +505,7 @@ btnTodo.addEventListener('click', () => {
     if (response.ok) {
       loadTodo(id);
     } else {
-      alerter(
-        '<span trans="text+:AlertErrorHeader">Ошибка</span>',
-        '<div trans="text+:ErrorGo;" style="text-indent: 0;">Что-то пошло не так. Повторите вашу попытку позже</div>',
-        'standart',
-        'danger',
-        'slim'
-      );
+      showAlert('error');
     }
   }
 
@@ -553,13 +523,7 @@ btnTodo.addEventListener('click', () => {
       if (response.ok) {
         loadTodo(id);
       } else {
-        alerter(
-          '<span trans="text+:AlertErrorHeader">Ошибка</span>',
-          '<div trans="text+:ErrorGo;" style="text-indent: 0;">Что-то пошло не так. Повторите вашу попытку позже</div>',
-          'standart',
-          'danger',
-          'slim'
-        );
+        showAlert('error');
       }
     }
   }
@@ -773,23 +737,11 @@ btnTodo.addEventListener('click', () => {
           closeEditPopup();
           loadTodo(userId);
         } else {
-          alerter(
-            '<span trans="text+:AlertErrorHeader">Ошибка</span>',
-            '<div trans="text+:ErrorGo;" style="text-indent: 0;">Что-то пошло не так. Повторите вашу попытку позже</div>',
-            'standart',
-            'danger',
-            'slim'
-          );
+          showAlert('error');
           todoForm.classList.remove('_sending');
         }
       } else {
-        alerter(
-          '<span trans="text+:Danger">Внимание</span>',
-          '<div trans="text+:FillRequired" style="text-indent: 0;">Заполните обязательные поля</div>',
-          'standart',
-          'warning',
-          'slim'
-        );
+        showAlert('form')
       }
     }
 
@@ -970,18 +922,16 @@ btnTodo.addEventListener('click', () => {
 let btnFullScreen = document.querySelector('#btnFullScreen4orange');
 
 btnFullScreen.addEventListener('click', () => {
-  let checkedUsers = document.querySelectorAll(
-    '.checkBusyBtn.bi-check-square-fill'
-  );
-  let idArray = [];
+  let checkedUsers = document.querySelectorAll('.checkBusyBtn.bi-check-square-fill');
   let localStorageID = getLocalStorageData('todoID') || [];
+  let idArray = [];
   let finalArray = [];
 
   closeTodoLayers(
     document.querySelector('#full').querySelector('#tableScheduleBodyFull')
   );
 
-  if (checkedUsers.length !== 0 && localStorageID.length !== 0) {
+  if (checkedUsers.length && localStorageID.length) {
     checkedUsers.forEach((user) => {
       idArray.push(user.parentElement.attributes.id.value);
     });
@@ -995,20 +945,14 @@ btnFullScreen.addEventListener('click', () => {
 
       finalArray.forEach((id) => {
         loadTodoLayers(
-          document
-          .querySelector('#full')
-          .querySelector('#tableScheduleBodyFull'),
+          document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
           id
         );
       });
 
-      let tableFullLayers = document
-        .querySelector('#full')
-        .querySelectorAll('.layers');
-      // let thead = document.querySelector('#full').querySelector('#tableScheduleBodyFull').querySelector('thead');
+      let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
 
       tableFullLayers.forEach((layer) => {
-        // layer.style.paddingTop = `${thead.offsetHeight}px`;
         layer.style.paddingTop = `24.11px`;
       });
     }, 150);
@@ -1041,11 +985,11 @@ export async function loadTodoLayers(table, id) {
 
   // Генерируем контейнер для слоев
   let layersHtml = /* html */ `
-        <div class="layers">
-            <div class="layers__body">
+    <div class="layers">
+      <div class="layers__body">
 
-            </div>
-        </div>
+      </div>
+    </div>
   `;
 
   layersHtml = parser.parseFromString(layersHtml, 'text/html').querySelector('.layers');
@@ -1056,13 +1000,18 @@ export async function loadTodoLayers(table, id) {
 
   let layersBody = table.querySelector(`.layers[data-id="${id}"]`).querySelector('.layers__body');
 
+  // Расчет padding-left у layers__body
+  if (window.innerWidth <= 573) {
+    layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
+  } else {
+    layersBody.style.paddingLeft = "9%";
+  }
+  
   // Динамический padding-left у layers__body
-  window.addEventListener('resize', function (e) {
+  window.addEventListener('resize', function () {
     if (window.innerWidth <= 573) {
-      console.log('resized; width <= 573px');
       layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
     } else {
-      console.log('resized; width > 573px');
       layersBody.style.paddingLeft = "9%";
     }
   });
@@ -1085,59 +1034,95 @@ export async function loadTodoLayers(table, id) {
         // Расчет высоты наслоения
         let [endTimeHour, endTimeMinutes] = splitTimeString(item.endTime);
         let [startTimeHour, startTimeMinutes] = splitTimeString(item.startTime);
-        let layerHeight = ((endTimeHour - startTimeHour) * 60 + (endTimeMinutes - startTimeMinutes) + 30) *
-          oneMinuteHeight;
+        let layerHeight = ((endTimeHour - startTimeHour) * 60 + (endTimeMinutes - startTimeMinutes)) * oneMinuteHeight;
 
         // Расчет отступа сверху (значение top)
         let [firstTimeHour, firstTimeMinutes] = splitTimeString(
           timeSetting.start
         );
-        let topValue =
-          ((startTimeHour - firstTimeHour) * 60 +
-            (startTimeMinutes - firstTimeMinutes)) *
-          oneMinuteHeight;
+
+        let topValue = ((startTimeHour - firstTimeHour) * 60 + (startTimeMinutes - firstTimeMinutes)) * oneMinuteHeight;
+        
+        // Расчет множителя для отступа слева (для margin-left)
+        let marginLeftValue = 12.99;
 
         // Расчет отступа слева (значение margin-left)
-        let marginLeftValue;
-
-        if (item.day === 'Понедельник') {
-          marginLeftValue = 0;
-        } else if (item.day === 'Вторник') {
-          marginLeftValue = 13;
-        } else if (item.day === 'Среда') {
-          marginLeftValue = 13 * 2;
-        } else if (item.day === 'Четверг') {
-          marginLeftValue = 13 * 3;
-        } else if (item.day === 'Пятница') {
-          marginLeftValue = 13 * 4;
-        } else if (item.day === 'Суббота') {
-          marginLeftValue = 13 * 5;
-        } else if (item.day === 'Воскресенье') {
-          marginLeftValue = 13 * 6;
+        switch (item.day) {
+          case 'Понедельник':
+            marginLeftValue = 0;
+            break;
+        
+          case 'Вторник':
+            marginLeftValue *= 1;
+            break;
+        
+          case 'Среда':
+            marginLeftValue *= 2;
+            break;
+        
+          case 'Четверг':
+            marginLeftValue *= 3;
+            break;
+        
+          case 'Пятница':
+            marginLeftValue *= 4;
+            break;
+        
+          case 'Суббота':
+            marginLeftValue *= 5;
+            break;
+        
+          case 'Воскресенье':
+            marginLeftValue *= 6;
+            break;
         }
 
         let colorsValue = colors[item.type];
 
-        layersBody.innerHTML += /* html */ `
-          <div class="layers__item layers-item ${+item.checked ? '_checked' : ''}" style="z-index: ${i + 1}; height: ${layerHeight - 4}px; top: ${topValue}px; margin-left: ${marginLeftValue}%; background-color: ${colorsValue.color} !important; box-shadow: 0 4px 0 ${colorsValue.dark} !important; border: 1.5px solid ${colorsValue.dark} !important; border-bottom: none;">
-            <div class="layers-item__body">
-              <div class="layers-item__time" title="${item.startTime} - ${item.endTime}">
+        layersBody.innerHTML += /*html*/`
+          <div class="layers__item layers-item ${+item.checked ? '_checked' : ''}" 
+            style="
+              z-index: ${i + 1};
+              height: ${layerHeight - 4}px;
+              top: ${topValue}px;
+              margin-left: ${marginLeftValue}%;
+            "
+            data-tippy-content="
+              <span>${item.startTime} - ${item.endTime}</span>
+              <br>
+              <span style='word-break: break-all;'>${item.description}</span>
+            "
+          >
+            <div class="layers-item__body"
+              style="
+                background-color: ${colorsValue.color} !important; 
+                box-shadow: 0 4px 0 ${colorsValue.dark} !important;
+                border: 1.5px solid ${colorsValue.dark} !important; 
+                border-bottom: none !important;
+              "
+            >
+              <div class="layers-item__time">
                 <i class="bi bi-clock"></i>
                 <span>${item.startTime}</span>
               </div>
-              <div class="layers-item__description" title="${item.description}">${item.description}</div>
+              <div class="layers-item__description">${item.description}</div>
             </div>
           </div>
         `;
+
       }
+      
+      tippy("[data-tippy-content]", {
+        allowHTML: true,
+        theme: 'light-border',
+        placement: 'right',
+        followCursor: 'vertical',
+        maxWidth: 180,
+        duration: [500, 0],
+      });
+      
     } else {
-      alerter(
-        '<span trans="text+:AlertErrorHeader;">Ошибка</span>',
-        '<div trans="text+:ErrorGo;" style="text-indent: 0;">Что-то пошло не так. Повторите вашу попытку позже</div>',
-        'standart',
-        'danger',
-        'slim'
-      );
+      showAlert('error');
     }
   }
 }
@@ -1210,8 +1195,32 @@ function setLocalStorageData(name, data) {
   localStorage.setItem(name, JSON.stringify(data));
 }
 
-function getLocalStorageData(name) {
+export function getLocalStorageData(name) {
   return JSON.parse(localStorage.getItem(name));
+}
+
+function showAlert(type) {
+  switch (type) {
+    case 'error':
+      alerter(
+        '<span trans="text+:AlertErrorHeader;">Ошибка</span>',
+        '<div trans="text+:ErrorGo;" style="text-indent: 0;">Что-то пошло не так. Повторите вашу попытку позже</div>',
+        'standart',
+        'danger',
+        'slim'
+      );
+      break;
+      
+    case 'form':
+      alerter(
+        '<span trans="text+:Danger">Внимание</span>',
+        '<div trans="text+:FillRequired" style="text-indent: 0;">Заполните обязательные поля</div>',
+        'standart',
+        'warning',
+        'slim'
+      );
+      break;
+  }
 }
 
 //</FUNCTIONS>==============================================================================

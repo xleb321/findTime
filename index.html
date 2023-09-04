@@ -121,6 +121,7 @@
 		/>
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/todo.css" />
+		<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light-border.css">
 	</head>
 
 	<body>
@@ -3312,6 +3313,9 @@
 			</div>
 		</footer>
 
+		<script src="https://unpkg.com/@popperjs/core@2"></script>
+		<script src="https://unpkg.com/tippy.js@6"></script>
+
 		<script type="module" src="js/translator.js"></script>
 		<script type="module" src="js/todo.js"></script>
 		<script type="module" src="js/main.js"></script>
@@ -3319,6 +3323,11 @@
 
 		<script type="module">
 			// import { Translate } from './js/translator.js';
+			import {
+				getLocalStorageData,
+				closeTodoLayers,
+				loadTodoLayers
+			} from './js/todo.js';
 
 			window.addEventListener('load', () => {
 				let flag = localStorage.getItem('numTab');
@@ -3335,6 +3344,35 @@
 						{}
 					);
 					myModal2.show();
+
+					//<Вывод наслоения списка дел>======================================================
+					
+					setTimeout(() => {
+						let localStorageID = getLocalStorageData('todoID') || [];
+						let fullTable = document.querySelector('#full').querySelector('#tableScheduleBodyFull');
+
+						console.log(fullTable.children);
+
+						closeTodoLayers(fullTable);
+
+						if (localStorageID.length && fullTable.children) {
+								closeTodoLayers(fullTable);
+
+								localStorageID.forEach((id) => {
+									loadTodoLayers(fullTable, id);
+								});
+
+								let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
+
+								tableFullLayers.forEach((layer) => {
+									layer.style.paddingTop = `24.11px`;
+								});
+						} else {
+							console.log('NO DATA');
+						}
+					}, 150);
+
+					//</Вывод наслоения списка дел>======================================================
 				}
 			});
 
