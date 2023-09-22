@@ -29,8 +29,9 @@ import {
 	saveDataTo
 } from './main.js';
 import {
-	getDataFrom
+	splittingGrades
 } from './main.js';
+
 
 //save&load schedule
 
@@ -76,14 +77,6 @@ function loadTableSchedule() {
 	}
 }
 
-
-
-
-
-
-
-
-
 //work with grades&courses
 
 let gradeNameSubmitLoad = document.getElementById('gradeNameSubmitLoad');
@@ -92,45 +85,87 @@ function listGrades() {
 	//    let listGrades = JSON.parse(localStorage.getItem('grades'));
 	let listGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades'));
 
+
 	let strokeGrades = '';
 	for (let i = 0; i < listGrades.length; i++) {
 		strokeGrades += String(listGrades[i]) + ',';
 	}
 	document.getElementById('gradeTextArea').value = strokeGrades;
 }
+
 gradeNameSubmitLoad.addEventListener('click', listGrades);
+
+//listGrades();
+
+//let gradeNameSubmitDel = document.getElementById('gradeNameSubmitDel');
+//gradeNameSubmitDel.addEventListener('click', () => {
+//	if (confirm('В хранилище есть данные по уровням. Удалить?')) {
+//		localStorage.removeItem('grades');
+//		notifyer('grades delete in local storage');
+//	}
+//});
 
 let gradeNameSubmitDel = document.getElementById('gradeNameSubmitDel');
 gradeNameSubmitDel.addEventListener('click', () => {
-	if (confirm('В хранилище есть данные по уровням!!!!!!!!!!!!!!. Удалить?')) {
+	if (confirm('В хранилище есть данные по уровням. Удалить?')) {
 
-		localStorage.removeItem('grades');
-		
-		
-//		if ((sessionStorage.getItem("typeBase") == "remote") && (sessionStorage.getItem("globalAccess") == 7)) {
-//			sessionStorage.setItem('grades', );
-//
-//			saveDataTo(
-//				sessionStorage.getItem('typeBase'),
-//				sessionStorage.getItem('globalLogin'),
-//				'grades', []
-//			);
-//
-//			alert("deleted!!!")
-//
-//		} else {
-//			localStorage.removeItem('grades');
-//		}
-//
-//		let listGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades'));
-//		alert(listGrades)
-//		document.getElementById('gradeTextArea').value = "";		notifyer('grades delete in local storage');
+		let grades_null = '["1"]';
+		if ((sessionStorage.getItem("typeBase") == "remote") && (sessionStorage.getItem("globalAccess") == 7)) {
+			sessionStorage.setItem('grades', grades_null);
+			sessionStorage.setItem('filteredGrades', grades_null);
+
+			saveDataTo(
+				sessionStorage.getItem('typeBase'),
+				sessionStorage.getItem('globalLogin'),
+				'grades', grades_null);
+			saveDataTo(
+				sessionStorage.getItem('typeBase'),
+				sessionStorage.getItem('globalLogin'),
+				'filteredGrades', grades_null);
+			alert("deleted!!!")
+
+		} else if (sessionStorage.getItem("typeBase") == "local") {
+			localStorage.setItem('grades', grades_null);
+			localStorage.setItem('filteredGrades', grades_null);
+		}
+
+		let listGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades'));
+		JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredGrades'));
+		document.getElementById('gradeTextArea').value = listGrades;
+		notifyer('grades delete in local storage');
 	}
 });
+
+
+let gradeNameSubmitUpdate = document.getElementById('gradeNameSubmitUpdate');
+gradeNameSubmitUpdate.addEventListener('click', () => {
+	//	alert(document.getElementById("gradeTextArea").value.length)
+	if (document.getElementById('gradeTextArea').value.length > 0) {
+		if (confirm('Есть данные в хранилище. Обновить?')) {
+			localStorage.removeItem('grades');
+			splittingGrades();
+			notifyer('Данные обновлены!');
+		}
+	} else {
+		alerter(
+			'<Text trans="text+:AlertAttention;">Внимание!</Text>',
+			'<Text trans="text+:AlertAttention2;">Введите или загрузите из хранилища данные по уровням</Text>',
+			'standart',
+			'warning',
+			'standart'
+		);
+	}
+});
+
+
+
+
 
 function listCourses() {
 	//    let listCourses = JSON.parse(localStorage.getItem('courses'));
 	let listCourses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'courses'));
+
+
 
 	let strokeCourses = '';
 	if (listCourses) {
@@ -148,21 +183,10 @@ courseNameSubmitLoad.addEventListener('click', listCourses);
 let courseNameSubmitDel = document.getElementById('courseNameSubmitDel');
 courseNameSubmitDel.addEventListener('click', () => {
 	if (confirm('В хранилище есть данные по курсам. Удалить?')) {
-
-
-
 		localStorage.removeItem('courses');
 		notifyer('course delete in local storage');
 	}
 });
-
-
-
-
-
-
-
-
 
 //Work with tabs
 if (!localStorage.getItem('numTab')) {
@@ -481,7 +505,7 @@ buttonEnter.addEventListener("click", async () => {
 		const json = await (await loadDataEnter(params, '../php/enter4.php', 'POST')).json()
 		areaAnswer.innerHTML = genContentWinEnter(json);
 
-		if (document.getElementById('start2Net').checked) {
+		if (document.getElementById('start2Net').checked && globalAccess == 7) {
 
 			localStorage.setItem("typeBase", "remote");
 			sessionStorage.setItem("typeBase", "remote");
@@ -652,14 +676,13 @@ function genContentWinEnter(text) {
 			'</b></div>';
 
 		contentWinEnter +=
-			'<div style="width:95%; text-align:left;margin-left:10px; margin-top:10px;"><b>Ваша ссылка-приглашение:<br><a id="invite" style="font-size:0.9em;font-weight:500;" href="';
+			'<div style="width:95%; text-align:left;margin-left:10px; margin-top:10px;"><b>Ваша ссылка-приглашение:<br><a id="invite" style="font-size:1em;font-weight:500;" href="';
 		contentWinEnter +=
-			'https://settime.online?invite&user=' + globalLogin;
+			'https://settime.online?invite=' + globalLogin;
 		contentWinEnter += '">';
 		contentWinEnter +=
-			'https://settime.online?invite&user=' + globalLogin;
+			'https://settime.online?invite=' + globalLogin;
 		contentWinEnter += '</a>';
-
 		contentWinEnter += `<span id="clipboardPlus2" style="font-size: 1.7em; margin: 10px 15px 0 3px; color: #1AB395; cursor: pointer; padding-top: 12px; vertical-align: -3px;"><i class="bi bi-clipboard-plus"></i></span>`;
 
 
@@ -1068,9 +1091,19 @@ document.getElementById('clipboardPlus1').addEventListener('click', (e) => {
 
 
 document.getElementById('clipboardLinkBusy').addEventListener('click', (e) => {
+
 	let txtLink = "";
-	txtLink += `https://settime.online/?action=sendCode2email&nameUser=`;
-	txtLink += document.getElementById('YourName').value;
+
+
+	txtLink += `Добрый день! Вам отправлено приглашение от пользователя `;
+	txtLink += globalLogin;
+	txtLink += ` заполнить данные по Вашему свободному времени для составления оптимального расписания в системе "ДелуВремя!". Перейдите пожалуйста по ссылке, отметьте в таблице время для занятий и нажмите кнопку 'ОТПРАВИТЬ'! Спасибо!
+`;
+
+	txtLink += `https://settime.online/?invite=`;
+	txtLink += globalLogin;
+	txtLink += `&nameUser=`;
+	txtLink += document.getElementById('YourName').value.replace(/\s+/g, '_');
 	txtLink += `&sendTimeCode=`;
 	txtLink += document.getElementById('importInput').value;
 	txtLink += `&typeTime=`;
@@ -1144,19 +1177,19 @@ function loadFromRemote(globalLogin, item) {
 	);
 }
 
-//function startLoadFromLocal(item) {
-//	return localStorage.getItem(item)
-//}
-//
-//function getDataFrom(typeBase, globalLogin, item) {
-//	let dataLoad;
-//	if (typeBase == "local") {
-//		dataLoad = startLoadFromLocal(item);
-//	} else if (typeBase == "remote") {
-//		dataLoad = startLoadFromRemote(globalLogin, item);
-//	} else {
-//		dataLoad = startLoadFromLocal(item);
-//		//                alert("error typeBase")
-//	}
-//	return dataLoad
-//}
+function startLoadFromLocal(item) {
+	return localStorage.getItem(item)
+}
+
+function getDataFrom(typeBase, globalLogin, item) {
+	let dataLoad;
+	if (typeBase == "local") {
+		dataLoad = startLoadFromLocal(item);
+	} else if (typeBase == "remote") {
+		dataLoad = startLoadFromRemote(globalLogin, item);
+	} else {
+		dataLoad = startLoadFromLocal(item);
+		//                alert("error typeBase")
+	}
+	return dataLoad
+}

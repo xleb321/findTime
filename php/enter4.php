@@ -85,12 +85,11 @@ if ($action=='login'){
 }
 
 if ($action=='singin'){
-    $query = "SELECT COUNT(*) FROM enter WHERE login='".$login."' and password = '".$hash."'";
+    $query = "SELECT * FROM enter WHERE login='".$login."'";
     $result = mysqli_query($link,$query);
-    $check= mysqli_fetch_array($result);
-    
-        
-    if ($check[0] == 0){
+    $n = mysqli_num_rows ($result);	
+            
+    if ($n == 0){
         
         $s = "INSERT INTO `enter` (`id`, `login`, `password`, `regdate`, `date`, `email`) VALUES (NULL, '".$login."', '".$hash."', '".$today."', '".$newDate."','".$email."')";
         mysqli_query($link,$s);
@@ -155,9 +154,9 @@ if ($action=='singin'){
             
         }
     else{
-//        $str="[8]-".$login."|".$today."|".$expiredDate."|".$interval->days." дней";
-//        $str.=" \n";
-//        fwrite($fn,$str); 
+		
+		$stroke = '{"login":"'.$login.'","access":8,"answer":"noUser","txtMsg":"Такой логин уже есть в системе. Придумайте другой и повторите ввод данных!"}';
+		echo $stroke;
 
     };
 }
