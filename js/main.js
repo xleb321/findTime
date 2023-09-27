@@ -6,7 +6,8 @@ import {
 } from './extend.js';
 import {
 	loadTodoLayers,
-	closeTodoLayers
+	closeTodoLayers,
+	isLayersCanBeDisplayed
 } from './todo.js';
 
 const body = document.querySelector('body');
@@ -1416,6 +1417,8 @@ function loadBusinessTable() {
 					.setAttribute('trans', 'text+:AddTime;');
 				document.getElementById('dataTitle').innerHTML = ' ';
 				document.getElementById('YourName').value = '';
+				document.getElementById('briefName').innerHTML = '';
+
 				//document.getElementById("dataTitle").display = "none";
 				Translate();
 			});
@@ -1574,10 +1577,15 @@ function loadBusinessTable() {
 				closeTodoLayers(
 					document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
 				);
-				loadTodoLayers(
+				isLayersCanBeDisplayed(
 					document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
-					document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
-				);
+					document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id,
+					loadTodoLayers
+				)
+				// loadTodoLayers(
+				// 	document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+				// 	document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
+				// )
 			}, 150);
 
 			//</Наслоение дел>=========================================================
@@ -1602,17 +1610,17 @@ function loadBusinessTable() {
 
 			setTimeout(() => {
 				closeTodoLayers(
-					document
-					.querySelector('#staticBackdrop')
-					.querySelector('.modal-content').children[2].children[0]
+					document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
 				);
-				loadTodoLayers(
-					document
-					.querySelector('#staticBackdrop')
-					.querySelector('.modal-content').children[2].children[0],
-					document.querySelector('#staticBackdrop').querySelector('#btnTodo')
-					.dataset.id
-				);
+				isLayersCanBeDisplayed(
+					document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+					document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id, 
+					loadTodoLayers
+				)
+				// loadTodoLayers(
+				// 	document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+				// 	document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
+				// );
 			}, 150);
 
 			//</Наслоение дел>==============================================================================
@@ -2334,11 +2342,11 @@ function findBestMatch() {
 document
 	.getElementById('btnFullScreen4orange')
 	.addEventListener('click', () => {
-	
-	
-	
-	
-	
+
+
+
+
+
 		let tdFull = document.querySelectorAll('.fullTable td');
 		let bestMatch = sessionStorage.getItem('BestMatch');
 		for (let i = 0; i < tdFull.length; i++) {

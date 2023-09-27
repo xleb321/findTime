@@ -502,7 +502,7 @@
 
 	<!-- Modal -->
 	<div class="modal fade pb-0" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down">
 			<div class="modal-content pb-0">
 				<div class="modal-header justify-content-beetwen p-2 px-2" style="
 							color: black;
@@ -527,9 +527,9 @@
 							</option>
 						</select>
 					</span>
+					<span id="briefName" style="margin-left: 3px; color: darkblue;"></span>
 
-
-					<span id="" style="font-size: 0.9em; margin-left: 15px">
+					<span id="" style="font-size: 0.9em; margin-left: 10px">
 						<button type="button" class="btn btn-primary ml-3 mr-1 btn btn-sm" id="btnTodo" name="btnTodo" style="	background-color: cornflowerblue;
 									color: white;
 									padding: 1px 5px; border-color: cornflowerblue;
@@ -551,7 +551,7 @@
 -->
 
 
-						<button value="Clear font-weight-bold " id="btnFullScreenBusy" type="button" class="btn btn-primary" style="
+						<button value="Clear font-weight-bold " data-target="full" id="btnFullScreenBusy" type="button" class="btn btn-primary" style="
 													border-radius: 0;
 													height: 25px;
 													padding: 0px 6px;
@@ -561,27 +561,8 @@
 													color: white;
 													font-size: 1em;
 												">
-							<i class="bi bi-arrows-fullscreen font-weight-bold mx-0" style="margin-top: 0.65em"></i>
+							<i class="bi bi-arrows-expand font-weight-bold mx-0" style="margin-top: 0.65em"></i>
 						</button>
-
-
-						<script>
-							//							document.getElementById("btnFullScreenBusy").addEventListener('click', () => {
-							//
-							// var myModalEl = document.getElementById('myModalFull33')
-							// var modal = bootstrap.Modal.getInstance(myModalEl)
-							// modal.hide()
-
-							//								$('#staticBackdrop').modal('hide');
-							//								$('#myModalFull33').modal('toggle');
-							//							$('#fullmyModalFull33').modal('show');
-							//							})
-
-						</script>
-
-
-
-
 
 						<button type="button" class="btn btn-primary ml-3 mr-1 btn btn-sm" id="clipboardLinkBusy" name="clipboardLinkBusy" title="Скопировать сообщение" style="background-color: lightskyblue;color: black;padding: 1px 5px; border-color: lightskyblue;margin-left: 3px;border-radius: 2px;">
 							<i class="bi bi-envelope-plus" name="disable"></i>
@@ -595,105 +576,106 @@
 					</span>
 				</div>
 
-				<div class="mt-2">
-					<span><Text name="Name" style="font-size: 0.75em;margin-top: 10px; margin-left: 10px;font-weight:600">Имя:</Text></span>
-					<span class="nav-item text-left w-25 my-0" style="margin: 0px 2px; font-size: 0.75em; margin-left: 10px">
-						<input required name="name" class="Inps my-1" type="text" size="15" value="" id="YourName" placeholder="Name" />
-					</span>
-					<i class="bi bi-arrow-right-short" style="color:#1c84c6;font-weight: 800;"></i>
-					<i class="bi bi-envelope-at" style="color:#1c84c6;font-weight: 800;"></i>
-					<span>
-						<input style="margin-left: 5px;margin-right: 10px;width:23%;font-weight: 400;font-size: 0.8em;" class="" id="loginSendTimeCode" type="text" placeholder="Логин пользователя системы" />
-					</span>
-
-					<div>
-
-						<span class="nav-item my-2" id="courseSelectorSpan" style="font-size: 0.75em;margin-top: 5px;margin-left: 10px;margin-right: 15px;"><b><Text name="Level1" class="mr-2">1:</Text></b>
-							<select name="select" class="Inps" name="user_profile_color_1" id="courseSelector">
-								<option name="Course" value="Nothing" id="nocourse">
-									Course
-								</option>
-								<option name="Any" value="Any" id="any">Any</option>
-							</select>
+				<div>
+					<div id="editDataHeader">
+						<span><Text name="Name" style="font-size: 0.75em;margin-top: 10px; margin-left: 10px;font-weight:600">Имя:</Text></span>
+						<span class="nav-item text-left w-25 my-0" style="margin: 0px 2px; font-size: 0.75em; margin-left: 10px">
+							<input required name="name" class="Inps my-1" type="text" size="15" value="" id="YourName" placeholder="Name" />
 						</span>
-
-						<span class="my-2" id="levelSelectorSpan" style="font-size: 0.75em; margin-bottom: 10px"><b><Text name="Level2" class="mr-2">2:</Text></b>
-							<select name="select" class="Inps" style="margin-left: 0px" id="levelSelector">
-								<option name="Grabe" value="Nothing" selected id="nolevel">
-									Grade
-								</option>
-								<option name="Any" value="Any">Any</option>
-							</select>
-						</span>
-					</div>
-
-					<div class="mt-0" id="importSpan" style="font-size: 0.75em;padding-left: 0px;font-weight: 600;">
-						<span><Text name="Name" style="margin-left: 10px;font-weight:600">Код:</Text></span>
+						<i class="bi bi-arrow-right-short" style="color:#1c84c6;font-weight: 800;"></i>
+						<i class="bi bi-envelope-at" style="color:#1c84c6;font-weight: 800;"></i>
 						<span>
-							<input style="margin-left: 0px;margin-right: 8px;width: 55%;font-weight: 400;color: #1c84c6;" class="" id="importInput" type="text" name="ImportInput" placeholder="Код времени" />
-
-							<button class="ml-3 mr-1 btn btn-sm" id="showingCodeButton" name="ImportButton" style="color: #1ab395;
-									padding: 2px 5px;font-size: 1.4em;font-weight: 900;	margin-left: 2px;" title="Сгенерировать код">
-								<i class="bi  bi-code-square" name="disable"></i>
-							</button>
-
-							<button class="mr-1 btn btn-sm" id="importButton" name="ImportButton" style="
-									color: #1ab395;padding: 2px 5px;font-size: 1.4em;font-weight: 900;margin-left: 0px;" title="Импортировать код">
-								<i class="bi bi-download" name="disable"></i>
-							</button>
-
-							<span id="clipboardPlus1" style="font-size: 1.7em;margin: 2px 10px 0 2px;color: #1ab395;cursor: pointer;padding-top: 12px;vertical-align: -3px;" title="Скопировать в память"><i class="bi bi-clipboard-plus-fill"></i></span>
+							<input style="margin-left: 5px;margin-right: 10px;width:23%;font-weight: 400;font-size: 0.8em;" class="" id="loginSendTimeCode" type="text" placeholder="Логин пользователя системы" />
 						</span>
 
+						<div>
+
+							<span class="nav-item my-2" id="courseSelectorSpan" style="font-size: 0.75em;margin-top: 5px;margin-left: 10px;margin-right: 15px;"><b><Text name="Level1" class="mr-2">1:</Text></b>
+								<select name="select" class="Inps" name="user_profile_color_1" id="courseSelector">
+									<option name="Course" value="Nothing" id="nocourse">
+										Course
+									</option>
+									<option name="Any" value="Any" id="any">Any</option>
+								</select>
+							</span>
+
+							<span class="my-2" id="levelSelectorSpan" style="font-size: 0.75em; margin-bottom: 10px"><b><Text name="Level2" class="mr-2">2:</Text></b>
+								<select name="select" class="Inps" style="margin-left: 0px" id="levelSelector">
+									<option name="Grabe" value="Nothing" selected id="nolevel">
+										Grade
+									</option>
+									<option name="Any" value="Any">Any</option>
+								</select>
+							</span>
+						</div>
+
+						<div class="mt-0" id="importSpan" style="font-size: 0.75em;padding-left: 0px;font-weight: 600;">
+							<span><Text name="Name" style="margin-left: 10px;font-weight:600">Код:</Text></span>
+							<span>
+								<input style="margin-left: 0px;margin-right: 8px;width: 55%;font-weight: 400;color: #1c84c6;" class="" id="importInput" type="text" name="ImportInput" placeholder="Код времени" />
+
+								<button class="ml-3 mr-1 btn btn-sm" id="showingCodeButton" name="ImportButton" style="color: #1ab395;
+									padding: 2px 5px;font-size: 1.4em;font-weight: 900;	margin-left: 2px;" title="Сгенерировать код">
+									<i class="bi  bi-code-square" name="disable"></i>
+								</button>
+
+								<button class="mr-1 btn btn-sm" id="importButton" name="ImportButton" style="
+									color: #1ab395;padding: 2px 5px;font-size: 1.4em;font-weight: 900;margin-left: 0px;" title="Импортировать код">
+									<i class="bi bi-download" name="disable"></i>
+								</button>
+
+								<span id="clipboardPlus1" style="font-size: 1.7em;margin: 2px 10px 0 2px;color: #1ab395;cursor: pointer;padding-top: 12px;vertical-align: -3px;" title="Скопировать в память"><i class="bi bi-clipboard-plus-fill"></i></span>
+							</span>
 
 
 
+						</div>
 
 					</div>
 
-					<table class="table table-bordered m-0 mt-2 w-100" style="background-color: gray; font-size: 0.8em">
+					<table id="tableDays" class="table table-bordered m-0 mt-2 w-100" style="background-color: gray; font-size: 0.8em">
 						<thead>
 							<tr>
-								<td width="9%" class="mb-1 align-middle">
+								<td width="9%" class="align-middle">
 									<i class="bi bi-clock text-light mx-2"></i>
 								</td>
 								<td width="13%">
-									<Text name="Mon">Пн</Text><br /><input type="checkbox" class="allday" name="disable" lock="day1" />
+									<Text name="Mon">Пн</Text> <input type="checkbox" class="allday" name="disable" lock="day1" />
 								</td>
 								<td width="13%">
-									<Text name="Tue">Вт</Text><br /><input type="checkbox" class="allday" name="disable" lock="day2" />
+									<Text name="Tue">Вт</Text> <input type="checkbox" class="allday" name="disable" lock="day2" />
 								</td>
 								<td width="13%">
-									<Text name="Wed">Ср</Text><br /><input type="checkbox" class="allday" name="disable" lock="day3" />
+									<Text name="Wed">Ср</Text> <input type="checkbox" class="allday" name="disable" lock="day3" />
 								</td>
 								<td width="13%">
-									<Text name="Thu">Чт</Text><br /><input type="checkbox" class="allday" name="disable" lock="day4" />
+									<Text name="Thu">Чт</Text> <input type="checkbox" class="allday" name="disable" lock="day4" />
 								</td>
 								<td width="13%">
-									<Text name="Fri">Пт</Text><br /><input type="checkbox" class="allday" name="disable" lock="day5" />
+									<Text name="Fri">Пт</Text> <input type="checkbox" class="allday" name="disable" lock="day5" />
 								</td>
 								<td width="13%">
-									<Text name="Sat">Сб</Text><br /><input type="checkbox" class="allday" name="disable" lock="day6" />
+									<Text name="Sat">Сб</Text> <input type="checkbox" class="allday" name="disable" lock="day6" />
 								</td>
 								<td width="13%">
-									<Text name="Sun">Вс</Text><br /><input type="checkbox" class="allday" name="disable" lock="day0" />
+									<Text name="Sun">Вс</Text> <input type="checkbox" class="allday" name="disable" lock="day0" />
 								</td>
 							</tr>
 						</thead>
 					</table>
 				</div>
 				<div class="modal-body p-0" style="overflow-x: hidden">
-					<table class="table table-bordered table text-dark">
+					<table class="table table-bordered table text-dark" id="tableUser">
 						<tbody>
 							<tr>
-								<td width="9%">08:00</td>
-								<td width="13%" align="center" class="day1" style="height: 25px"></td>
-								<td width="13%" align="center" class="day2" style="height: 25px"></td>
-								<td width="13%" align="center" class="day3" style="height: 25px"></td>
-								<td width="13%" align="center" class="day4" style="height: 25px"></td>
-								<td width="13%" align="center" class="day5" style="height: 25px"></td>
-								<td width="13%" align="center" class="day6" style="height: 25px"></td>
-								<td width="13%" align="center" class="day0" style="height: 25px"></td>
+								<td width="9%" class="obj">08:00</td>
+								<td width="13%" class="day1"></td>
+								<td width="13%" class="day2"></td>
+								<td width="13%" class="day3"></td>
+								<td width="13%" class="day4"></td>
+								<td width="13%" class="day5"></td>
+								<td width="13%" class="day6"></td>
+								<td width="13%" class="day0"></td>
 							</tr>
 							<tr>
 								<td>
@@ -1183,7 +1165,7 @@
 													color: white;
                                                     padding: 0 8px;
 												">
-											<i class="bi bi-list-task font-weight-bold mx-0" style="margin-top: 0.85em"></i>
+											<i class="bi bi-palette font-weight-bold mx-0" style="margin-top: 0.85em"></i>
 											<span trans="text+:legends">Легенда</span>
 										</button>
 
@@ -2394,7 +2376,7 @@
 					<span class="text-center my-1" style="font-size: 0.7em">
 						&copy; <a href="https://intermir.ru">InterМИР</a>&nbsp;&nbsp;&nbsp;&nbsp;|
 						<span class="" id="F4Team">&nbsp;&nbsp;&nbsp;devTeam</span>
-						<b id="testConfirmer" class="mx-1">1.35.5&nbsp;</b><span id="testPHP">04.09.2023</span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span style="margin-left: 5px; color: #367deb">Оферта</span>
+						<b id="testConfirmer" class="mx-1">1.36.2&nbsp;</b><span id="testPHP">10.09.2023</span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<span style="margin-left: 5px; color: #367deb">Оферта</span>
 					</span>
 				</div>
 			</div>
@@ -2428,33 +2410,30 @@
 					alert('Сохраненных данных нет');
 				}
 				var myModal2 = new bootstrap.Modal(
-					document.getElementById('full'),
-					{}
+					document.getElementById('full'), {}
 				);
 				myModal2.show();
 
 				//<Вывод наслоения списка дел>======================================================
-				
+
 				setTimeout(() => {
 					let localStorageID = getLocalStorageData('todoID') || [];
 					let fullTable = document.querySelector('#full').querySelector('#tableScheduleBodyFull');
 
-					console.log(fullTable.children);
-
 					closeTodoLayers(fullTable);
 
 					if (localStorageID.length && fullTable.children) {
-							closeTodoLayers(fullTable);
+						closeTodoLayers(fullTable);
 
-							localStorageID.forEach((id) => {
-								loadTodoLayers(fullTable, id);
-							});
+						localStorageID.forEach((id) => {
+							loadTodoLayers(fullTable, id);
+						});
 
-							let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
+						let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
 
-							tableFullLayers.forEach((layer) => {
-								layer.style.paddingTop = `24.11px`;
-							});
+						tableFullLayers.forEach((layer) => {
+							layer.style.paddingTop = `24.11px`;
+						});
 					} else {
 						console.log('NO DATA');
 					}
@@ -2468,6 +2447,7 @@
 		/* document.addEventListener('DOMSubtreeModified', function () {
 			Translate();
 		}); */
+
 	</script>
 </body>
 

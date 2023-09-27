@@ -31,6 +31,11 @@ import {
 import {
 	splittingGrades
 } from './main.js';
+import {
+	closeTodoLayers,
+	loadTodoLayers,
+	isLayersCanBeDisplayed
+} from './todo.js';
 
 
 //save&load schedule
@@ -1192,4 +1197,63 @@ function getDataFrom(typeBase, globalLogin, item) {
 		//                alert("error typeBase")
 	}
 	return dataLoad
+}
+
+//Открытие таблицы времени клиента на полный экран и свёрнутый
+
+btnFullScreenBusy.addEventListener('click', fullBreif)
+
+function fullBreif() {
+	let btnFullScreenBusy = document.getElementById("btnFullScreenBusy")
+	let briefName = document.getElementById("briefName")
+	let tds = document.querySelectorAll("#tableUser td");
+	let tdsDays = document.querySelectorAll("#tableDays td");
+	//let tabledDays = document.querySelectorAll("#tableDays");
+	if (btnFullScreenBusy.dataset.target == "full") {
+		btnFullScreenBusy.setAttribute("data-target", "brief")
+		btnFullScreenBusy.innerHTML = `<i class="bi bi-arrows-collapse font-weight-bold mx-0" style="margin-top: 0.65em"></i>`
+		document.getElementById("editDataHeader").style.display = "none";
+		if (Number(window.innerWidth) < 400) {
+			briefName.innerHTML = document.getElementById("YourName").value.slice(0, 10) + "..."
+		} else {
+			briefName.innerHTML = document.getElementById("YourName").value
+		}
+		for (let i = 0; i < tds.length; i++) {
+			tds[i].style.padding = "0px 2px";
+			//tds[i].style.fontSize = "0.75em";
+		}
+		for (let i = 0; i < tdsDays.length; i++) {
+			tdsDays[i].style.padding = "0px 3px";
+			//tds[i].style.fontSize = "0.75em";
+		}
+	} else {
+		btnFullScreenBusy.setAttribute("data-target", "full")
+		btnFullScreenBusy.innerHTML = `<i class="bi bi-arrows-expand font-weight-bold mx-0" style="margin-top: 0.65em"></i>`
+		//tabledDays.style.marginTop = "0px";
+		//tabledDays.style.marginTop = "0px";
+		document.getElementById("editDataHeader").style.display = "block";
+		briefName.innerHTML = ""
+		for (let i = 0; i < tds.length; i++) {
+			tds[i].style.padding = "8px 1.6px"
+			//tds[i].style.fontSize = "0.9em";
+		}
+		for (let i = 0; i < tdsDays.length; i++) {
+			tdsDays[i].style.padding = "8px 1.6px";
+			//tds[i].style.fontSize = "0.9em";
+		}
+	}
+
+	closeTodoLayers(
+		document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
+	);
+	isLayersCanBeDisplayed(
+		document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+		document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id,
+		loadTodoLayers
+	)
+	// loadTodoLayers(
+	// 	document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+	// 	document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
+	// );
+
 }

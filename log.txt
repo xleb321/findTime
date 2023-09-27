@@ -86,4 +86,63 @@
 
 22/09/23 (
   Объединил с версией Олега за 07.09.23
+  js/extend.js:
+    1. Изменил импорт в начале файлы
+      import {
+        closeTodoLayers,
+        loadTodoLayers,
+        isLayersCanBeDisplayed
+      } from './todo.js';
+    2. 1246-1257:
+      closeTodoLayers(
+        document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
+      );
+      isLayersCanBeDisplayed(
+        document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+        document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id,
+        loadTodoLayers
+      )
+      // loadTodoLayers(
+      // 	document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+      // 	document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
+      // );
+  js/main.js:
+    1. Изменил импорт в начале файлы
+      import {
+        closeTodoLayers,
+        loadTodoLayers,
+        isLayersCanBeDisplayed
+      } from './todo.js';
+    2. 1576-1589 и 1611-1624:
+      setTimeout(() => {
+				closeTodoLayers(
+					document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
+				);
+				isLayersCanBeDisplayed(
+					document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+					document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id,
+					loadTodoLayers
+				)
+				// loadTodoLayers(
+				// 	document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+				// 	document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
+				// )
+			}, 150);
+  js/todo.js:
+    1. 285-293 - поменял вызов функции:
+      isLayersCanBeDisplayed(
+        btnTodo.closest('.modal-content').children[2].children[0],
+        userId,
+        loadTodoLayers
+      )
+      // loadTodoLayers(
+      //   btnTodo.closest('.modal-content').children[2].children[0],
+      //   userId
+      // );
+    2. 1143-1187 - новая функция:
+      export function isLayersCanBeDisplayed(table, id, callback) {
+        let localStorageID = getLocalStorageData('todoID') || [];
+        console.log(localStorageID.includes(id), id);
+        if (localStorageID.includes(id)) callback(table, id);
+      }
 )

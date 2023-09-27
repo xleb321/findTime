@@ -282,10 +282,15 @@ btnTodo.addEventListener('click', () => {
       closeTodoLayers(
         btnTodo.closest('.modal-content').children[2].children[0]
       );
-      loadTodoLayers(
+      isLayersCanBeDisplayed(
         btnTodo.closest('.modal-content').children[2].children[0],
-        userId
-      );
+        userId,
+        loadTodoLayers
+      )
+      // loadTodoLayers(
+      //   btnTodo.closest('.modal-content').children[2].children[0],
+      //   userId
+      // );
 
       closeTodoWindow();
     }
@@ -873,28 +878,28 @@ btnTodo.addEventListener('click', () => {
   function generateSelectStartTime(timeline, select) {
     /* Генерация selectStartTime */
     select.innerHTML = /* html */ `
-            <option trans="text+:Beginning" value=''>Начало</option>
-        `;
+      <option trans="text+:Beginning" value=''>Начало</option>
+    `;
 
     for (let i = 0; i < timeline.length; i++) {
       const elem = timeline[i];
       select.innerHTML += /* html */ `
-                <option value='${elem}'>${elem}</option>
-            `;
+        <option value='${elem}'>${elem}</option>
+      `;
     }
   }
 
   function generateSelectEndTime(timeline, select) {
     /* Генерация selectEndTime */
     select.innerHTML = /* html */ `
-            <option trans="text+:Fin;" value=''>Конец</option>
-        `;
+      <option trans="text+:Fin;" value=''>Конец</option>
+    `;
 
     for (let i = 0; i < timeline.length; i++) {
       const elem = timeline[i];
       select.innerHTML += /* html */ `
-                <option value='${elem}'>${elem}</option>
-            `;
+        <option value='${elem}'>${elem}</option>
+      `;
     }
   }
 
@@ -987,7 +992,6 @@ export async function loadTodoLayers(table, id) {
   let layersHtml = /* html */ `
     <div class="layers">
       <div class="layers__body">
-
       </div>
     </div>
   `;
@@ -1129,11 +1133,17 @@ export async function loadTodoLayers(table, id) {
 
 export function closeTodoLayers(table) {
   let layers = table.querySelectorAll('.layers');
-  if (layers.length != 0) {
+  if (layers.length) {
     for (let i = 0; i < layers.length; i++) {
       layers[i].remove();
     }
   }
+}
+
+export function isLayersCanBeDisplayed(table, id, callback) {
+  let localStorageID = getLocalStorageData('todoID') || [];
+  console.log(localStorageID.includes(id), id);
+  if (localStorageID.includes(id)) callback(table, id);
 }
 
 //</Наслоение дел>==============================================================================
