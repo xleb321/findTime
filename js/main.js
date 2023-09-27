@@ -944,6 +944,7 @@ function loadStudentsTable() {
 
 			tableThirdTd.addEventListener("click", () => {
 				showUpdatingModal("freeTime");
+				document.getElementById("briefName").innerHTML = "";
 				displayOneUserModal(item);
 				document.getElementById('importInput').value = fCompressCodeTime(getTimeCode())
 
@@ -1568,6 +1569,7 @@ function loadBusinessTable() {
 
 		tableThirdTd.addEventListener("click", () => {
 			showUpdatingModal("busyTime");
+			document.getElementById("briefName").innerHTML = "";
 			displayOneBusyModal(sortedBusiness[i]);
 			document.getElementById('importInput').value = fCompressCodeTime(getTimeCode())
 

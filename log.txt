@@ -146,3 +146,7 @@
         if (localStorageID.includes(id)) callback(table, id);
       }
 )
+
+27/09/23 (
+  Объединил с версией Олега за 10.09.2023
+)
