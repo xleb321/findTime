@@ -167,6 +167,7 @@ if ($TYPE == 'newIdFolder') {
             $json_decoded['todo'][$userId][$i]['endTime'] = $todoEditedEnd;
             $json_decoded['todo'][$userId][$i]['description'] = $todoEditedDesc;
             $json_decoded['todo'][$userId][$i]['type'] = $todoEditedType;
+            break;
         }
     }
     

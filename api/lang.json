@@ -280,37 +280,37 @@
 		"fr": "Temps de recherche!"
 	},
 	"Mon": {
-		"ru": "Пн.",
+		"ru": "Пн",
 		"en": "Mon",
 		"fr": "Lun"
 	},
 	"Tue": {
-		"ru": "Вт.",
+		"ru": "Вт",
 		"en": "Tue",
 		"fr": "Mar"
 	},
 	"Wed": {
-		"ru": "Ср.",
+		"ru": "Ср",
 		"en": "Wed",
 		"fr": "Env"
 	},
 	"Thu": {
-		"ru": "Чт.",
+		"ru": "Чт",
 		"en": "Thu",
 		"fr": "Jeu"
 	},
 	"Fri": {
-		"ru": "Пт.",
+		"ru": "Пт",
 		"en": "Fri",
 		"fr": "Ven"
 	},
 	"Sat": {
-		"ru": "Сб.",
+		"ru": "Сб",
 		"en": "Sat",
 		"fr": "Sam"
 	},
 	"Sun": {
-		"ru": "Вс.",
+		"ru": "Вс",
 		"en": "Sun",
 		"fr": "Dim"
 	},
@@ -480,7 +480,7 @@
 		"fr": "&nbsp;Réglage"
 	},
 	"Work": {
-		"ru": "&nbsp;Работа",
+		"ru": "Работа",
 		"en": "Work",
 		"fr": "&nbsp;Travail"
 	},
@@ -1520,9 +1520,9 @@
 		"fr": "La liste des tâches de l'autre(leurs) utilisateurs est déjà affichée dans le calendrier"
 	},
 	"WeekDay": {
-		"ru": "День недели",
-		"en": "Day of Week",
-		"fr": "Jour de la semaine"
+		"ru": "День",
+		"en": "Day",
+		"fr": "Jour"
 	},
 	"Beginning": {
 		"ru": "Начало",
@@ -1535,9 +1535,9 @@
 		"fr": "Fin"
 	},
 	"TypeEmployment": {
-		"ru": "Тип занятости",
-		"en": "Employment type",
-		"fr": "Type d'emploi"
+		"ru": "Тип",
+		"en": "Type",
+		"fr": "Type"
 	},
 	"Personal": {
 		"ru": "Личное",

@@ -58,8 +58,13 @@ td {
 	transition: opacity 0.6s, transform 0.6s;
 }
 
+tr td:last-child {
+	border-right: 0;
+}
 
-
+.tableDaysInner {
+	background-color: gray;
+}
 
 .table2 {
 	color: black;

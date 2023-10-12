@@ -22,10 +22,20 @@ import {
 
 // Настройка времени
 const timeSetting = {
-  start: '8:00',
+  start: '08:00',
   end: '20:00',
   step: '0:30',
 };
+
+const days = {
+  1: "Пн",
+  2: "Вт",
+  3: "Ср",
+  4: "Чт",
+  5: "Пт",
+  6: "Сб",
+  7: "Вс",
+}
 
 // HTML-парсер
 let parser = new DOMParser();
@@ -45,73 +55,85 @@ btnTodo.addEventListener('click', () => {
   let btnClose = modalContent.querySelector('.btn-close');
   let todoHtml = /* html */ `
     <div class="todo">
-        <div class="todo__body">
-            <div trans="text+:toDoList;" class="todo__title">Список дел</div>
-            <div class="todo__options">
-                <form action="#" class="todo__form todo-form" id="todoForm">
-                    <div class="todo-form__selects">
-                        <select name="day" id="todoDayOfWeek" tabindex="1" class="todo-form__select _req">
-                            <option trans="text+:WeekDay;" value="">День недели</option>
-                            <option trans="text+:MonFull;" value="Понедельник">Понедельник</option>
-                            <option trans="text+:TueFull;" value="Вторник">Вторник</option>
-                            <option trans="text+:WedFull;" value="Среда">Среда</option>
-                            <option trans="text+:ThuFull;" value="Четверг">Четверг</option>
-                            <option trans="text+:FriFull;" value="Пятница">Пятница</option>
-                            <option trans="text+:SatFull;" value="Суббота">Суббота</option>
-                            <option trans="text+:SunFull;" value="Воскресенье">Воскресенье</option>
-                        </select>
-                        <select name="start" id="todoStartTime" tabindex="2" class="todo-form__select _req">
-                            <option trans="text+:Beginning;" value="">Начало</option>
-                        </select>
-                        <select name="end" id="todoEndTime" tabindex="3" class="todo-form__select _req">
-                            <option trans="text+:Fin;" value="">Конец</option>
-                        </select>
-                        <select name="todoType" id="todoType" tabindex="4" class="todo-form__select _req">
-                            <option trans="text+:TypeEmployment;" value="">Тип занятости</option>
-                            <option trans="text+:Work;" value="work">Работа</option>
-                            <option trans="text+:Personal;" value="personal">Личное</option>
-                            <option trans="text+:Rest;" value="rest">Отдых</option>
-                        </select>
-                    </div>
-                    <div class="todo-form__textarea" data-symbols="">
-                        <textarea trans="placeholder:Description" name="description" id="todoDescription" tabindex="5" class="todo-form__description _req" placeholder="Описание" maxlength="100"></textarea>
-                    </div>
-                    <div class="todo-form__btns">
-                        <button class="todo-form__button todo-form__submit" tabindex="6" type="submit">
-                            <i class="bi bi-plus"></i>
-                            <span trans="text+:plusButtonBusyText">Добавить</span>
-                        </button>
-                        <button class="todo-form__button todo-form__reset" tabindex="7" type="reset">
-                            <i class="bi bi-arrow-repeat"></i>
-                            <span trans="text+:ThrowOff">Сбросить</span>
-                        </button>
-                    </div>
-                </form>
+      <div class="todo__body">
+        <div trans="text+:toDoList;" class="todo__title">Список дел</div>
+        <div class="todo__options">
+          <form action="#" class="todo__form todo-form" id="todoForm">
+            <div class="todo-form__selects">
+              <select name="day" id="todoDayOfWeek" tabindex="1" class="todo-form__select _req">
+                <option trans="text+:WeekDay;" value="">День</option>
+                <option trans="text+:Mon;" value="1">Пн</option>
+                <option trans="text+:Tue;" value="2">Вт</option>
+                <option trans="text+:Wed;" value="3">Ср</option>
+                <option trans="text+:Thu;" value="4">Чт</option>
+                <option trans="text+:Fri;" value="5">Пт</option>
+                <option trans="text+:Sat;" value="6">Сб</option>
+                <option trans="text+:Sun;" value="7">Вс</option>
+              </select>
+              <select name="start" id="todoStartTime" tabindex="2" class="todo-form__select _req">
+                <option trans="text+:Beginning;" value="">Начало</option>
+              </select>
+              <select name="end" id="todoEndTime" tabindex="3" class="todo-form__select _req">
+                <option trans="text+:Fin;" value="">Конец</option>
+              </select>
+              <select name="todoType" id="todoType" tabindex="4" class="todo-form__select _req">
+                <option trans="text+:TypeEmployment;" value="">Тип</option>
+                <option trans="text+:Work;" value="work">Работа</option>
+                <option trans="text+:Personal;" value="personal">Личное</option>
+                <option trans="text+:Rest;" value="rest">Отдых</option>
+              </select>
             </div>
-            <div class="todo__deals todo-deals">
-                <div class="todo-deals__items" id="todoDealsBody">
-                    <!-- <div class="todo-deals__empty">
-                        <span>Список дел пуст...</span>
-                    </div> -->
-                </div>
+            <div class="todo-form__footer">
+              <div class="todo-form__textarea" data-symbols="">
+                <textarea trans="placeholder:Description" name="description" id="todoDescription" tabindex="5" class="todo-form__description _req" placeholder="Описание" maxlength="100"></textarea>
+              </div>
+              <div class="todo-form__btns">
+                <button class="todo-form__button todo-form__submit" tabindex="6" type="submit">
+                  <i class="bi bi-plus"></i>
+                  <span trans="text+:plusButtonBusyText">Добавить</span>
+                </button>
+                <button class="todo-form__button todo-form__reset" tabindex="7" type="reset">
+                  <i class="bi bi-arrow-repeat"></i>
+                  <span trans="text+:ThrowOff">Сбросить</span>
+                </button>
+              </div>
             </div>
-            <div class="todo__checkbox">
-                <label>
-                    <input id="todoCheckbox" data-id="${userId}" type="checkbox" class="form-check-input" tabindex="8">
-                    <span trans="text+:DisplaySchedule">Выводить список дел в расписание</span>
-                </label>
-            </div>
-            <div class="todo__btns todo-btns">
-                <div class="todo-btns__left">
-                    <button class="todo-btns__button todo-btns__delete" id="todoDeleteAll" tabindex="9" title="Удалить все дела">
-                        <i class="bi bi-eraser-fill" style="color: indianred"></i>
-                    </button>
-                </div>
-                <div class="todo-btns__right">
-                    <button trans="text+:Close;" class="todo-btns__button todo-btns__escape" id="todoClose" tabindex="10">Закрыть</button>
-                </div>
-            </div>
+          </form>
         </div>
+        <div class="todo__filters todo-filters">
+          <div data-day="0" class="todo-filters__filter _active">Все</div>
+          <div data-day="1" class="todo-filters__filter">Пн</div>
+          <div data-day="2" class="todo-filters__filter">Вт</div>
+          <div data-day="3" class="todo-filters__filter">Ср</div>
+          <div data-day="4" class="todo-filters__filter">Чт</div>
+          <div data-day="5" class="todo-filters__filter">Пт</div>
+          <div data-day="6" class="todo-filters__filter">Сб</div>
+          <div data-day="7" class="todo-filters__filter">Вс</div>
+        </div>
+        <div class="todo__deals todo-deals">
+          <div class="todo-deals__items" id="todoDealsBody">
+            <!-- <div class="todo-deals__empty">
+                <span>Список дел пуст...</span>
+            </div> -->
+          </div>
+        </div>
+        <div class="todo__checkbox">
+          <label>
+            <input id="todoCheckbox" data-id="${userId}" type="checkbox" class="form-check-input" tabindex="8">
+            <span trans="text+:DisplaySchedule">Выводить список дел в расписание</span>
+          </label>
+        </div>
+        <div class="todo__btns todo-btns">
+          <div class="todo-btns__left">
+            <button class="todo-btns__button todo-btns__delete" id="todoDeleteAll" tabindex="9" title="Удалить все дела">
+              <i class="bi bi-eraser-fill" style="color: indianred"></i>
+            </button>
+          </div>
+          <div class="todo-btns__right">
+            <button trans="text+:Close;" class="todo-btns__button todo-btns__escape" id="todoClose" tabindex="10">Закрыть</button>
+          </div>
+        </div>
+      </div>
     </div>
   `;
   todoHtml = parser
@@ -296,8 +318,8 @@ btnTodo.addEventListener('click', () => {
     }
 
     // Редактирование дела
-    if (targetElement.closest('.todo-buttons__edit')) {
-      let editBtn = targetElement.closest('.todo-buttons__edit');
+    if (targetElement.closest('.todo-buttons__edit') || targetElement.closest('.todo-item__info')) {
+      let editBtn = targetElement.closest('.todo-buttons__edit') ?? targetElement.closest('.todo-item__info');
       let editItemData = {
         id: editBtn.dataset.id,
         day: editBtn.dataset.day,
@@ -307,6 +329,20 @@ btnTodo.addEventListener('click', () => {
         type: editBtn.dataset.type,
       };
       todoEditItem(userId, editItemData);
+    }
+
+    // Фильтр
+    if (targetElement.closest('.todo-filters__filter')) {
+      let currentFilter = targetElement.closest('.todo-filters__filter');
+      if (!currentFilter.classList.contains('_active')) {
+        // Убираем стили с бывшего "активного" фильтра
+        document.querySelector('.todo-filters__filter._active').classList.remove('_active');
+        currentFilter.classList.add('_active');
+
+        let currentFilterDay = currentFilter.dataset.day;
+
+        loadTodo(userId, currentFilterDay);
+      }
     }
   }
 
@@ -332,24 +368,23 @@ btnTodo.addEventListener('click', () => {
 
       // Определение ID элемента
       let responseGetID = await fetch('api/todo.json', {
-          method: 'POST',
-        }),
-        maximum = 0,
-        todoId;
+        method: 'POST',
+      }), maximum = 0, todoId;
 
       if (responseGetID.ok) {
         let todoJson = await responseGetID.json(),
           userTodo = todoJson.todo[userId];
 
-        if (userTodo.length == 0) {
+        if (!userTodo.length) {
           todoId = 1;
         } else {
           for (let i = 0; i < userTodo.length; i++) {
             const todo = userTodo[i];
 
-            if (todo.id > maximum) {
-              maximum = todo.id;
+            if (+todo.id > maximum) {
+              maximum = +todo.id;
             }
+            
           }
 
           todoId = +maximum + 1;
@@ -382,7 +417,7 @@ btnTodo.addEventListener('click', () => {
     }
   }
 
-  async function loadTodo(id) {
+  async function loadTodo(id, filteredDay = document.querySelector('.todo-filters__filter._active').dataset.day) {
     let response = await fetch('api/todo.json', {
       method: 'POST',
     });
@@ -392,51 +427,80 @@ btnTodo.addEventListener('click', () => {
 
       if ((await idFolderExist(id)) && todoJson.todo[id].length !== 0) {
         let userJson = todoJson.todo[id];
-
         todoDealsBody.innerHTML = '';
 
-        for (let i = 0; i < userJson.length; i++) {
-          const item = userJson[i];
+        if (+filteredDay !== 0) {
+          userJson = userJson.filter(item => item.day === filteredDay);
+        }
 
-          todoDealsBody.innerHTML += /* html */ `
-            <div class="todo-deals__item todo-item" data-id="${item.id}">
+        userJson.sort((a, b) => {
+          return a.day.localeCompare(b.day) || a.startTime.localeCompare(b.startTime);
+        });
+
+        if (userJson.length) {
+          for (let i = 0; i < userJson.length; i++) {
+            const item = userJson[i];
+  
+            todoDealsBody.innerHTML += /* html */ `
+              <div class="todo-deals__item todo-item" data-id="${item.id}">
                 <div class="todo-item__body">
-                    <div class="todo-item__checkbox ${+item.checked ? '_checked' : ''}" data-id="${item.id}" title="${+item.checked ? 'Выполнено' : 'Невыполнено'}">
-                        <i class="bi bi-check-lg"></i>
-                    </div>
-                    <div class="todo-item__content">
-                        <div class="todo-item__header">
-
-                            <div class="todo-item__info todo-info">
-                                <div class="todo-info__item todo-info__day">${item.day}</div>
-                                <div class="todo-info__item todo-info__time">
-                                    ${item.startTime} - ${item.endTime}
-                                </div>
-                            </div>
-                            <div class="todo-item__buttons todo-buttons">
-                                <div class="todo-buttons__btn todo-buttons__edit" title="Редактировать дело" 
-                                    data-id="${item.id}"
-                                    data-day="${item.day}"
-                                    data-starttime="${item.startTime}"
-                                    data-endtime="${item.endTime}"
-                                    data-description="${item.description}"
-                                    data-type="${item.type}"
-                                >
-                                    <i class="bi bi-pencil-square"></i>
-                                </div>
-                                <div class="todo-buttons__btn todo-buttons__del" data-id="${item.id}" title="Удалить дело">
-                                    <i class="bi bi-trash"></i>
-                                </div>
-                            </div>
-
+                  <div class="todo-item__checkbox ${+item.checked ? '_checked' : ''}" 
+                    data-id="${item.id}" 
+                    title="${+item.checked ? 'Выполнено' : 'Невыполнено'}"
+                  >
+                      <i class="bi bi-check-lg"></i>
+                  </div>
+                  <div class="todo-item__content">
+  
+                      <div class="todo-item__info todo-info" style="cursor: pointer;"
+                        data-id="${item.id}"
+                        data-day="${item.day}"
+                        data-starttime="${item.startTime}"
+                        data-endtime="${item.endTime}"
+                        data-description="${item.description}"
+                        data-type="${item.type}"
+                      >
+                        <div class="todo-info__date">
+                          <span class="todo-info__item todo-info__day">${days[item.day]}</span>
+                          <span class="todo-info__item todo-info__time">
+                            ${item.startTime} - ${item.endTime}
+                          </span>
                         </div>
-                        <div class="todo-item__footer">
-                            <div class="todo-item__description">
-                                ${item.description}
-                            </div>
+                        <div class="todo-item__description">
+                          <!-- ${item["description"].slice(0, 17)}... -->
+                          ${item.description}
                         </div>
-                    </div>
+                      </div>
+  
+                      <div class="todo-item__buttons todo-buttons">
+                        <div class="todo-buttons__btn todo-buttons__edit" title="Редактировать дело" 
+                          data-id="${item.id}"
+                          data-day="${item.day}"
+                          data-starttime="${item.startTime}"
+                          data-endtime="${item.endTime}"
+                          data-description="${item.description}"
+                          data-type="${item.type}"
+                        >
+                          <i class="bi bi-pencil-square"></i>
+                        </div>
+                        <div class="todo-buttons__btn todo-buttons__del" data-id="${item.id}" title="Удалить дело">
+                          <i class="bi bi-trash"></i>
+                        </div>
+                      </div>
+  
+                  </div>
                 </div>
+              </div>
+            `;
+
+            /* let description = document.querySelector(`.todo-item__description[data-id="${item.id}"]`);
+            description.style.maxWidth = description.getBoundingClientRect().width-10 + 'px'; */
+
+          }
+        } else {
+          todoDealsBody.innerHTML = /* html */ `
+            <div class="todo-deals__empty">
+              <span>Пусто...</span>
             </div>
           `;
         }
@@ -537,65 +601,66 @@ btnTodo.addEventListener('click', () => {
     // Генерируем окно редактирования дела
     let editPopupHtml = /* html */ `
       <div class="todo__edit todo-edit">
-          <div class="todo-edit__body">
-              <div class="todo-edit__content">
-                  <div trans="text+:EditingСase;" class="todo-edit__title">Редактирование дела</div>
-                  <div class="todo-edit__options">
-                      <form action="#" class="todo-edit__form edit-form" id="todoEditForm">
-                          <div class="edit-form__selects">
-                              <select name="editedDay" id="editedDayOfWeek" tabindex="1" class="edit-form__select _req">
-                                  <option trans="text+:WeekDay;" value="">День недели</option>
-                                  <option trans="text+:MonFull;" value="Понедельник">Понедельник</option>
-                                  <option trans="text+:TueFull" value="Вторник">Вторник</option>
-                                  <option trans="text+:WedFull" value="Среда">Среда</option>
-                                  <option trans="text+:ThuFull" value="Четверг">Четверг</option>
-                                  <option trans="text+:FriFull" value="Пятница">Пятница</option>
-                                  <option trans="text+:SatFull" value="Суббота">Суббота</option>
-                                  <option trans="text+:SunFull" value="Воскресенье">Воскресенье</option>
-                              </select>
-                              <select name="editedStart" id="editedStartTime" tabindex="2" class="edit-form__select _req">
-                                  <option trans="text+:Beginning" value="">Начало</option>
-                              </select>
-                              <select name="editedEnd" id="editedEndTime" tabindex="3" class="edit-form__select _req">
-                                  <option trans="text+:Fin;" value="">Конец</option>
-                              </select>
-                              <select name="editedTodoType" id="editedTodoType" tabindex="4" class="edit-form__select _req">
-                                  <option trans="text+:TypeEmployment" value="">Тип занятости</option>
-                                  <option trans="text+:Work" value="work">Работа</option>
-                                  <option trans="text+:Personal" value="personal">Личное</option>
-                                  <option trans="text+:Rest" value="rest">Отдых</option>
-                              </select>
-                          </div>
-                          <div class="edit-form__textarea" data-symbols="">
-                              <textarea name="editedDescription" id="editedDescription" tabindex="4" class="_req" placeholder="Описание" maxlength=""></textarea>
-                          </div>
-                          <div class="edit-form__btns edit-buttons">
-                              <div class="edit-buttons__left">
-                                  <button class="edit-buttons__btn edit-buttons__submit" tabindex="5" type="submit">
-                                      <i class="bi bi-save"></i>
-                                      <span trans="text+:Save">Сохранить</span>
-                                  </button>
-                                  <button class="edit-buttons__btn edit-buttons__reset" tabindex="6" type="reset">
-                                      <i class="bi bi-arrow-repeat"></i>
-                                      <span trans="text+:ThrowOff">Сбросить</span>
-                                  </button>
-                              </div>
-                              <div class="edit-buttons__right">
-                                  <button class="edit-buttons__btn edit-buttons__escape" tabindex="7" type="button">
-                                      <span trans="text+:Close">Закрыть</span>
-                                  </button>
-                              </div>
-                          </div>
-                      </form>
+        <div class="todo-edit__body">
+          <div class="todo-edit__content">
+            <div trans="text+:EditingСase;" class="todo-edit__title">Редактирование дела</div>
+            <div class="todo-edit__options">
+              <form action="#" class="todo-edit__form edit-form" id="todoEditForm">
+                <div class="edit-form__selects">
+                  <select name="editedDay" id="editedDayOfWeek" tabindex="11" class="edit-form__select _req">
+                    <option trans="text+:WeekDay;" value="">День</option>
+                    <option trans="text+:Mon;" value="1">Пн</option>
+                    <option trans="text+:Tue;" value="2">Вт</option>
+                    <option trans="text+:Wed;" value="3">Ср</option>
+                    <option trans="text+:Thu;" value="4">Чт</option>
+                    <option trans="text+:Fri;" value="5">Пт</option>
+                    <option trans="text+:Sat;" value="6">Сб</option>
+                    <option trans="text+:Sun;" value="7">Вс</option>
+                  </select>
+                  <select name="editedStart" id="editedStartTime" tabindex="12" class="edit-form__select _req">
+                      <option trans="text+:Beginning" value="">Начало</option>
+                  </select>
+                  <select name="editedEnd" id="editedEndTime" tabindex="13" class="edit-form__select _req">
+                      <option trans="text+:Fin;" value="">Конец</option>
+                  </select>
+                  <select name="editedTodoType" id="editedTodoType" tabindex="14" class="edit-form__select _req">
+                      <option trans="text+:TypeEmployment" value="">Тип</option>
+                      <option trans="text+:Work" value="work">Работа</option>
+                      <option trans="text+:Personal" value="personal">Личное</option>
+                      <option trans="text+:Rest" value="rest">Отдых</option>
+                  </select>
+                </div>
+                <div class="edit-form__textarea" data-symbols="">
+                    <textarea name="editedDescription" id="editedDescription" tabindex="15" class="_req" placeholder="Описание" maxlength=""></textarea>
+                </div>
+                <div class="edit-form__btns edit-buttons">
+                  <div class="edit-buttons__left">
+                    <button class="edit-buttons__btn edit-buttons__submit" tabindex="16" type="submit">
+                      <i class="bi bi-save"></i>
+                      <span trans="text+:Save">Сохранить</span>
+                    </button>
+                    <button class="edit-buttons__btn edit-buttons__reset" tabindex="17" type="reset">
+                      <i class="bi bi-arrow-repeat"></i>
+                      <span trans="text+:ThrowOff">Сбросить</span>
+                    </button>
                   </div>
-              </div>
+                  <div class="edit-buttons__right">
+                    <button class="edit-buttons__btn edit-buttons__escape" tabindex="18" type="button">
+                      <span trans="text+:Close">Закрыть</span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
+        </div>
       </div>
     `;
 
     editPopupHtml = parser
       .parseFromString(editPopupHtml, 'text/html')
       .querySelector('.todo__edit');
+    
     modalContent.append(editPopupHtml);
 
     // Переменные редактирования дела
@@ -661,7 +726,7 @@ btnTodo.addEventListener('click', () => {
       maxSymbols
     );
 
-    editedDaySelect.value = data.day;
+    editedDaySelect.value = +data.day;
     editedTypeSelect.value = data.type;
 
     editedSelectStartTime.value = data.startTime;
@@ -813,13 +878,10 @@ btnTodo.addEventListener('click', () => {
     let [stepHours, stepMinutes] = splitTimeString(settings.step); // Распаковываем шаг
 
     while (isTimeSmaller(timeline[timeline.length - 1], settings.end)) {
-      let newMinutes = 0,
-        newHour = 0;
-      let [startHour, startMinutes] = splitTimeString(
-        timeline[timeline.length - 1]
-      );
+      let newMinutes = 0, newHour = 0;
+      let [startHour, startMinutes] = splitTimeString(timeline[timeline.length - 1]);
 
-      /* Работает с минутами */
+      /* Работаем с минутами */
       let minutesSummary = startMinutes + stepMinutes;
 
       if (minutesSummary > 60) {
@@ -847,6 +909,10 @@ btnTodo.addEventListener('click', () => {
       let hoursSummary = startHour + stepHours;
       newHour += hoursSummary;
 
+      if (newHour < 10) {
+        newHour = `0${newHour}`;
+      }
+
       let newTimeString = `${newHour}:${newMinutes}`;
 
       if (
@@ -859,20 +925,20 @@ btnTodo.addEventListener('click', () => {
       }
     }
 
-    function isTimeSmaller(string1, string2) {
-      let [startHour, startMinutes] = splitTimeString(string1);
-      let [endHour, endMinutes] = splitTimeString(string2);
-
-      if (startHour < endHour) {
-        return true;
-      } else if (startMinutes < endMinutes && startHour == endHour) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
     return timeline;
+  }
+
+  function isTimeSmaller(string1, string2) {
+    let [startHour, startMinutes] = splitTimeString(string1);
+    let [endHour, endMinutes] = splitTimeString(string2);
+
+    if (startHour < endHour) {
+      return true;
+    } else if (startMinutes < endMinutes && startHour == endHour) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   function generateSelectStartTime(timeline, select) {
@@ -1052,31 +1118,31 @@ export async function loadTodoLayers(table, id) {
 
         // Расчет отступа слева (значение margin-left)
         switch (item.day) {
-          case 'Понедельник':
+          case '1':
             marginLeftValue = 0;
             break;
         
-          case 'Вторник':
+          case '2':
             marginLeftValue *= 1;
             break;
         
-          case 'Среда':
+          case '3':
             marginLeftValue *= 2;
             break;
         
-          case 'Четверг':
+          case '4':
             marginLeftValue *= 3;
             break;
         
-          case 'Пятница':
+          case '5':
             marginLeftValue *= 4;
             break;
         
-          case 'Суббота':
+          case '6':
             marginLeftValue *= 5;
             break;
         
-          case 'Воскресенье':
+          case '7':
             marginLeftValue *= 6;
             break;
         }
@@ -1142,7 +1208,6 @@ export function closeTodoLayers(table) {
 
 export function isLayersCanBeDisplayed(table, id, callback) {
   let localStorageID = getLocalStorageData('todoID') || [];
-  console.log(localStorageID.includes(id), id);
   if (localStorageID.includes(id)) callback(table, id);
 }
 

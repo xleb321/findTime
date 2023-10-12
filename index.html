@@ -633,36 +633,38 @@
 
 					</div>
 
-					<table id="tableDays" class="table table-bordered m-0 mt-2 w-100" style="background-color: gray; font-size: 0.8em">
-						<thead>
-							<tr>
-								<td width="9%" class="align-middle">
-									<i class="bi bi-clock text-light mx-2"></i>
-								</td>
-								<td width="13%">
-									<Text name="Mon">Пн</Text> <input type="checkbox" class="allday" name="disable" lock="day1" />
-								</td>
-								<td width="13%">
-									<Text name="Tue">Вт</Text> <input type="checkbox" class="allday" name="disable" lock="day2" />
-								</td>
-								<td width="13%">
-									<Text name="Wed">Ср</Text> <input type="checkbox" class="allday" name="disable" lock="day3" />
-								</td>
-								<td width="13%">
-									<Text name="Thu">Чт</Text> <input type="checkbox" class="allday" name="disable" lock="day4" />
-								</td>
-								<td width="13%">
-									<Text name="Fri">Пт</Text> <input type="checkbox" class="allday" name="disable" lock="day5" />
-								</td>
-								<td width="13%">
-									<Text name="Sat">Сб</Text> <input type="checkbox" class="allday" name="disable" lock="day6" />
-								</td>
-								<td width="13%">
-									<Text name="Sun">Вс</Text> <input type="checkbox" class="allday" name="disable" lock="day0" />
-								</td>
-							</tr>
-						</thead>
-					</table>
+					<div class="tableDaysInner">
+						<table id="tableDays" class="table table-bordered m-0 mt-2 w-100" style="background-color: gray; font-size: 0.8em">
+							<thead>
+								<tr>
+									<td width="9%" class="align-middle">
+										<i class="bi bi-clock text-light mx-2"></i>
+									</td>
+									<td width="13%">
+										<Text name="Mon">Пн</Text> <input type="checkbox" class="allday" name="disable" lock="day1" />
+									</td>
+									<td width="13%">
+										<Text name="Tue">Вт</Text> <input type="checkbox" class="allday" name="disable" lock="day2" />
+									</td>
+									<td width="13%">
+										<Text name="Wed">Ср</Text> <input type="checkbox" class="allday" name="disable" lock="day3" />
+									</td>
+									<td width="13%">
+										<Text name="Thu">Чт</Text> <input type="checkbox" class="allday" name="disable" lock="day4" />
+									</td>
+									<td width="13%">
+										<Text name="Fri">Пт</Text> <input type="checkbox" class="allday" name="disable" lock="day5" />
+									</td>
+									<td width="13%">
+										<Text name="Sat">Сб</Text> <input type="checkbox" class="allday" name="disable" lock="day6" />
+									</td>
+									<td width="13%">
+										<Text name="Sun">Вс</Text> <input type="checkbox" class="allday" name="disable" lock="day0" />
+									</td>
+								</tr>
+							</thead>
+						</table>
+					</div>
 				</div>
 				<div class="modal-body p-0" style="overflow-x: hidden">
 					<table class="table table-bordered table text-dark" id="tableUser">
@@ -2382,6 +2384,15 @@
 			</div>
 		</div>
 	</footer>
+
+	<script>
+
+	let tableDaysInners = document.querySelectorAll('.tableDaysInner');
+	tableDaysInners.forEach(tableDaysInner => {
+		tableDaysInner.style.paddingRight = window.innerWidth - document.documentElement.clientWidth + 'px';
+	});
+
+	</script>
 
 	<script src="https://unpkg.com/@popperjs/core@2"></script>
 	<script src="https://unpkg.com/tippy.js@6"></script>
