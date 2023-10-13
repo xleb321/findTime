@@ -35,7 +35,26 @@ const days = {
   5: "Пт",
   6: "Сб",
   7: "Вс",
-}
+};
+
+const colors = {
+  rest: {
+    color: 'rgb(243, 255, 255)',
+    dark: 'rgb(135, 174, 174)',
+  },
+  personal: {
+    color: 'rgb(252, 240, 252)',
+    dark: 'rgb(171, 142, 171)',
+  },
+  work: {
+    color: 'rgb(255, 233, 214)',
+    dark: 'rgb(211, 165, 125)',
+  },
+  // LemonChiffon: {
+  //     color: 'rgb(255, 251, 216)',
+  //     dark: 'rgb(204, 170, 71)'
+  // },
+};
 
 // HTML-парсер
 let parser = new DOMParser();
@@ -337,7 +356,7 @@ btnTodo.addEventListener('click', () => {
       if (!currentFilter.classList.contains('_active')) {
         // Убираем стили с бывшего "активного" фильтра
         document.querySelector('.todo-filters__filter._active').classList.remove('_active');
-        currentFilter.classList.add('_active');
+        currentFilter.classList.add('_active'); // Делаем "активным" выбранный день
 
         let currentFilterDay = currentFilter.dataset.day;
 
@@ -524,9 +543,8 @@ btnTodo.addEventListener('click', () => {
 
   async function checkTodoItem(checkbox, id) {
     let response = await fetch('api/todo.json', {
-        method: 'POST',
-      }),
-      todoId = checkbox.dataset.id;
+      method: 'POST',
+    }), todoId = checkbox.dataset.id;
 
     if (response.ok) {
       let todoJson = await response.json(),
@@ -1010,10 +1028,6 @@ btnFullScreen.addEventListener('click', () => {
     finalArray = idArray.filter((element) => localStorageID.includes(element));
 
     setTimeout(() => {
-      closeTodoLayers(
-        document.querySelector('#full').querySelector('#tableScheduleBodyFull')
-      );
-
       finalArray.forEach((id) => {
         loadTodoLayers(
           document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
@@ -1026,7 +1040,7 @@ btnFullScreen.addEventListener('click', () => {
       tableFullLayers.forEach((layer) => {
         layer.style.paddingTop = `24.11px`;
       });
-    }, 150);
+    }, 200);
   }
 });
 
@@ -1035,25 +1049,6 @@ btnFullScreen.addEventListener('click', () => {
 //<Наслоение дел>==============================================================================
 
 export async function loadTodoLayers(table, id) {
-  const colors = {
-    rest: {
-      color: 'rgb(243, 255, 255)',
-      dark: 'rgb(135, 174, 174)',
-    },
-    personal: {
-      color: 'rgb(252, 240, 252)',
-      dark: 'rgb(171, 142, 171)',
-    },
-    work: {
-      color: 'rgb(255, 233, 214)',
-      dark: 'rgb(211, 165, 125)',
-    },
-    // LemonChiffon: {
-    //     color: 'rgb(255, 251, 216)',
-    //     dark: 'rgb(204, 170, 71)'
-    // },
-  };
-
   // Генерируем контейнер для слоев
   let layersHtml = /* html */ `
     <div class="layers">
@@ -1107,9 +1102,7 @@ export async function loadTodoLayers(table, id) {
         let layerHeight = ((endTimeHour - startTimeHour) * 60 + (endTimeMinutes - startTimeMinutes)) * oneMinuteHeight;
 
         // Расчет отступа сверху (значение top)
-        let [firstTimeHour, firstTimeMinutes] = splitTimeString(
-          timeSetting.start
-        );
+        let [firstTimeHour, firstTimeMinutes] = splitTimeString(timeSetting.start);
 
         let topValue = ((startTimeHour - firstTimeHour) * 60 + (startTimeMinutes - firstTimeMinutes)) * oneMinuteHeight;
         
@@ -1179,7 +1172,6 @@ export async function loadTodoLayers(table, id) {
             </div>
           </div>
         `;
-
       }
       
       tippy("[data-tippy-content]", {
