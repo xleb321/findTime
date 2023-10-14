@@ -2,22 +2,7 @@ import {
   Translate
 } from './translator.js';
 import {
-  notifyer
-} from './main.js';
-import {
   alerter
-} from './main.js';
-import {
-  confirmer
-} from './main.js';
-import {
-  fCompressCodeTime
-} from './main.js';
-import {
-  fDeCompressCodeTime
-} from './main.js';
-import {
-  getTimeCode
 } from './main.js';
 
 // Настройка времени
@@ -155,6 +140,7 @@ btnTodo.addEventListener('click', () => {
       </div>
     </div>
   `;
+
   todoHtml = parser
     .parseFromString(todoHtml, 'text/html')
     .querySelector('.todo');
@@ -373,26 +359,38 @@ btnTodo.addEventListener('click', () => {
     if (errors === 0) {
       todoForm.classList.add('_sending');
 
-      // Если у id нет созданных дел - создаем пустую 'папку'
-      if (!(await idFolderExist(userId))) {
-        let idFormData = new FormData();
-        idFormData.append('type', 'newIdFolder');
-        idFormData.append('userId', userId);
-
-        await fetch('php/todo.php', {
-          method: 'POST',
-          body: idFormData,
-        });
-      }
-
-      // Определение ID элемента
-      let responseGetID = await fetch('api/todo.json', {
+      let response = await fetch('api/todo.json', {
         method: 'POST',
-      }), maximum = 0, todoId;
+      })
 
-      if (responseGetID.ok) {
-        let todoJson = await responseGetID.json(),
-          userTodo = todoJson.todo[userId];
+      if (response.ok) {
+        let todoJson = await response.json();
+
+        // Если у id нет созданных дел - создаем пустую 'папку'
+        if (!idFolderExist(todoJson, userId)) {
+          let formData = new FormData();
+          formData.append('type', 'newIdFolder');
+          formData.append('userId', userId);
+
+          let responsePHP = await fetch('php/todo.php', {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (responsePHP.ok) {
+            let response = await fetch('api/todo.json', {
+              method: 'POST',
+            })
+
+            todoJson = await response.json();
+          } else {
+            showAlert('error')
+          }
+        }
+
+        // Определение ID элемента
+        let maximum = 0, todoId;
+        let userTodo = todoJson.todo[userId];
 
         if (!userTodo.length) {
           todoId = 1;
@@ -403,33 +401,35 @@ btnTodo.addEventListener('click', () => {
             if (+todo.id > maximum) {
               maximum = +todo.id;
             }
-            
           }
 
           todoId = +maximum + 1;
         }
-      }
 
-      let formData = new FormData(todoForm);
-      formData.append('type', 'newTodo');
-      formData.append('userId', userId);
-      formData.append('todoId', todoId);
+        let formData = new FormData(todoForm);
+        formData.append('type', 'newTodo');
+        formData.append('userId', userId);
+        formData.append('todoId', todoId);
 
-      let response = await fetch('php/todo.php', {
-        method: 'POST',
-        body: formData,
-      });
+        let responsePHP = await fetch('php/todo.php', {
+          method: 'POST',
+          body: formData,
+        });
 
-      if (response.ok) {
-        todoForm.reset();
-        changeDescriptionLimit(todoDescription, 0, maxSymbols);
-        generateSelectStartTime(timeline, selectStartTime);
-        generateSelectEndTime(timeline, selectEndTime);
-        loadTodo(userId);
-        todoForm.classList.remove('_sending');
+        if (responsePHP.ok) {
+          todoForm.reset();
+          changeDescriptionLimit(todoDescription, 0, maxSymbols);
+          generateSelectStartTime(timeline, selectStartTime);
+          generateSelectEndTime(timeline, selectEndTime);
+          loadTodo(userId);
+          todoForm.classList.remove('_sending');
+        } else {
+          showAlert('error');
+          todoForm.classList.remove('_sending');
+        }
+        
       } else {
         showAlert('error');
-        todoForm.classList.remove('_sending');
       }
     } else {
       showAlert('form');
@@ -442,10 +442,11 @@ btnTodo.addEventListener('click', () => {
     });
 
     if (response.ok) {
-      let todoJson = await response.json();
+      let todoJson = await response.json(),
+        userJson = todoJson.todo[id];
 
-      if ((await idFolderExist(id)) && todoJson.todo[id].length !== 0) {
-        let userJson = todoJson.todo[id];
+      // Если есть папка и дела
+      if (idFolderExist(todoJson, id) && userJson.length) {
         todoDealsBody.innerHTML = '';
 
         if (+filteredDay !== 0) {
@@ -511,10 +512,6 @@ btnTodo.addEventListener('click', () => {
                 </div>
               </div>
             `;
-
-            /* let description = document.querySelector(`.todo-item__description[data-id="${item.id}"]`);
-            description.style.maxWidth = description.getBoundingClientRect().width-10 + 'px'; */
-
           }
         } else {
           todoDealsBody.innerHTML = /* html */ `
@@ -523,12 +520,6 @@ btnTodo.addEventListener('click', () => {
             </div>
           `;
         }
-      } else if ((await idFolderExist(id)) && todoJson.todo[id].length === 0) {
-        todoDealsBody.innerHTML = /* html */ `
-          <div class="todo-deals__empty">
-            <span>Список дел пуст...</span>
-          </div>
-        `;
       } else {
         todoDealsBody.innerHTML = /* html */ `
           <div class="todo-deals__empty">
@@ -584,12 +575,12 @@ btnTodo.addEventListener('click', () => {
     formData.append('userId', id);
     formData.append('todoId', todoId);
 
-    let response = await fetch('php/todo.php', {
+    let responsePHP = await fetch('php/todo.php', {
       method: 'POST',
       body: formData,
     });
 
-    if (response.ok) {
+    if (responsePHP.ok) {
       loadTodo(id);
     } else {
       showAlert('error');
@@ -597,21 +588,31 @@ btnTodo.addEventListener('click', () => {
   }
 
   async function todoDeleteAll(id) {
-    if (await idFolderExist(id)) {
-      let formData = new FormData();
-      formData.append('type', 'deleteAll');
-      formData.append('userId', id);
-
-      let response = await fetch('php/todo.php', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        loadTodo(id);
-      } else {
-        showAlert('error');
+    let response = await fetch('api/todo.json', {
+      method: 'POST',
+    });
+    
+    if (response.ok) {
+      let todoJson = await response.json();
+      
+      if (idFolderExist(todoJson, id)) {
+        let formData = new FormData();
+        formData.append('type', 'deleteAll');
+        formData.append('userId', id);
+  
+        let responsePHP = await fetch('php/todo.php', {
+          method: 'POST',
+          body: formData,
+        });
+  
+        if (responsePHP.ok) {
+          loadTodo(id);
+        } else {
+          showAlert('error');
+        }
       }
+    } else {
+      showAlert('error');
     }
   }
 
@@ -815,12 +816,12 @@ btnTodo.addEventListener('click', () => {
         formData.append('userId', id);
         formData.append('todoId', data.id);
 
-        let response = await fetch('php/todo.php', {
+        let responsePHP = await fetch('php/todo.php', {
           method: 'POST',
           body: formData,
         });
 
-        if (response.ok) {
+        if (responsePHP.ok) {
           todoForm.classList.remove('_sending');
           closeEditPopup();
           loadTodo(userId);
@@ -1081,15 +1082,15 @@ export async function loadTodoLayers(table, id) {
     }
   });
 
-  if (await idFolderExist(id)) {
-    let response = await fetch('api/todo.json', {
-      method: 'POST',
-    });
+  let response = await fetch('api/todo.json', {
+    method: 'POST',
+  });
 
-    if (response.ok) {
-      let todoJson = await response.json(),
-        userTodo = todoJson.todo[id];
+  if (response.ok) {
+    let todoJson = await response.json(),
+      userTodo = todoJson.todo[id];
 
+    if (idFolderExist(todoJson, id)) {
       // Высота 1й минуты (в px)
       const oneMinuteHeight = table.querySelector('tbody').children[0].getBoundingClientRect().height / 30;
 
@@ -1182,10 +1183,9 @@ export async function loadTodoLayers(table, id) {
         maxWidth: 180,
         duration: [500, 0],
       });
-      
-    } else {
-      showAlert('error');
     }
+  } else {
+    showAlert('error');
   }
 }
 
@@ -1205,20 +1205,8 @@ export function isLayersCanBeDisplayed(table, id, callback) {
 
 //</Наслоение дел>==============================================================================
 
-async function idFolderExist(id) {
-  let response = await fetch('api/todo.json', {
-    method: 'POST',
-  });
-
-  if (response.ok) {
-    let answer = await response.json();
-
-    if (answer.todo[id]) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+function idFolderExist(json, id) {
+  return json.todo[id] ? true : false;
 }
 
 function formValidate(form) {
