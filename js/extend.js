@@ -1248,7 +1248,7 @@ function fullBreif() {
 	);
 	isLayersCanBeDisplayed(
 		document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
-		document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id,
+		[document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id],
 		loadTodoLayers
 	)
 	// loadTodoLayers(

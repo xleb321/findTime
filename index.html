@@ -1953,7 +1953,7 @@
 												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 											</span>
 										</div>
-										<div class="modal-body fs-4" style="padding: 3px">
+										<div class="modal-body fs-4" style="padding: 3px; overflow-x: hidden;">
 											<style>
 												.fullTable td {
 													padding: 1px 3px;
@@ -2434,17 +2434,13 @@
 					closeTodoLayers(fullTable);
 
 					if (localStorageID.length && fullTable.children) {
-						closeTodoLayers(fullTable);
+						loadTodoLayers(fullTable, localStorageID).then(() => {
+							let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
 
-						localStorageID.forEach((id) => {
-							loadTodoLayers(fullTable, id);
-						});
-
-						let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
-
-						tableFullLayers.forEach((layer) => {
-							layer.style.paddingTop = `24.11px`;
-						});
+							tableFullLayers.forEach((layer) => {
+								layer.style.paddingTop = `24.11px`;
+							});
+						})
 					} else {
 						console.log('NO DATA');
 					}

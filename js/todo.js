@@ -311,7 +311,7 @@ btnTodo.addEventListener('click', () => {
       );
       isLayersCanBeDisplayed(
         btnTodo.closest('.modal-content').children[2].children[0],
-        userId,
+        [userId],
         loadTodoLayers
       )
       // loadTodoLayers(
@@ -1029,18 +1029,16 @@ btnFullScreen.addEventListener('click', () => {
     finalArray = idArray.filter((element) => localStorageID.includes(element));
 
     setTimeout(() => {
-      finalArray.forEach((id) => {
-        loadTodoLayers(
-          document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
-          id
-        );
-      });
+      loadTodoLayers(
+        document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
+        finalArray
+      ).then(() => {
+        let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
 
-      let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
-
-      tableFullLayers.forEach((layer) => {
-        layer.style.paddingTop = `24.11px`;
-      });
+        tableFullLayers.forEach((layer) => {
+          layer.style.paddingTop = `24.11px`;
+        });
+      })
     }, 200);
   }
 });
@@ -1049,143 +1047,153 @@ btnFullScreen.addEventListener('click', () => {
 
 //<Наслоение дел>==============================================================================
 
-export async function loadTodoLayers(table, id) {
-  // Генерируем контейнер для слоев
-  let layersHtml = /* html */ `
-    <div class="layers">
-      <div class="layers__body">
-      </div>
-    </div>
-  `;
+export async function loadTodoLayers(table, idArray) {
+  let btnClose = table.querySelector('.btn-close') || table.closest('.modal-content').querySelector('.btn-close');
+  btnClose.addEventListener('click', close);
 
-  layersHtml = parser.parseFromString(layersHtml, 'text/html').querySelector('.layers');
-  layersHtml.dataset.id = id;
-  table.append(layersHtml);
-
-  table.style.position = 'relative';
-
-  let layersBody = table.querySelector(`.layers[data-id="${id}"]`).querySelector('.layers__body');
-
-  // Расчет padding-left у layers__body
-  if (window.innerWidth <= 573) {
-    layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
-  } else {
-    layersBody.style.paddingLeft = "9%";
+  function close() {
+    closeTodoLayers(table);
+    btnClose.removeEventListener('click', close);
   }
-  
-  // Динамический padding-left у layers__body
-  window.addEventListener('resize', function () {
+
+  for (let id of idArray) {
+    // Генерируем контейнер для слоев
+    let layersHtml = /* html */ `
+      <div class="layers">
+        <div class="layers__body">
+        </div>
+      </div>
+    `;
+
+    layersHtml = parser.parseFromString(layersHtml, 'text/html').querySelector('.layers');
+    layersHtml.dataset.id = id;
+    table.append(layersHtml);
+
+    table.style.position = 'relative';
+
+    let layersBody = table.querySelector(`.layers[data-id="${id}"]`).querySelector('.layers__body');
+
+    // Расчет padding-left у layers__body
     if (window.innerWidth <= 573) {
       layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
     } else {
       layersBody.style.paddingLeft = "9%";
     }
-  });
+    
+    // Динамический padding-left у layers__body
+    window.addEventListener('resize', function () {
+      if (window.innerWidth <= 573) {
+        layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
+      } else {
+        layersBody.style.paddingLeft = "9%";
+      }
+    });
 
-  let response = await fetch('api/todo.json', {
-    method: 'POST',
-  });
+    let response = await fetch('api/todo.json', {
+      method: 'POST',
+    });
 
-  if (response.ok) {
-    let todoJson = await response.json(),
-      userTodo = todoJson.todo[id];
+    if (response.ok) {
+      let todoJson = await response.json(),
+        userTodo = todoJson.todo[id];
 
-    if (idFolderExist(todoJson, id)) {
-      // Высота 1й минуты (в px)
-      const oneMinuteHeight = table.querySelector('tbody').children[0].getBoundingClientRect().height / 30;
+      if (idFolderExist(todoJson, id)) {
+        // Высота 1й минуты (в px)
+        const oneMinuteHeight = table.querySelector('tbody').children[0].getBoundingClientRect().height / 30;
 
-      for (let i = 0; i < userTodo.length; i++) {
-        const item = userTodo[i];
+        for (let i = 0; i < userTodo.length; i++) {
+          const item = userTodo[i];
 
-        // Расчет высоты наслоения
-        let [endTimeHour, endTimeMinutes] = splitTimeString(item.endTime);
-        let [startTimeHour, startTimeMinutes] = splitTimeString(item.startTime);
-        let layerHeight = ((endTimeHour - startTimeHour) * 60 + (endTimeMinutes - startTimeMinutes)) * oneMinuteHeight;
+          // Расчет высоты наслоения
+          let [endTimeHour, endTimeMinutes] = splitTimeString(item.endTime);
+          let [startTimeHour, startTimeMinutes] = splitTimeString(item.startTime);
+          let layerHeight = ((endTimeHour - startTimeHour) * 60 + (endTimeMinutes - startTimeMinutes)) * oneMinuteHeight;
 
-        // Расчет отступа сверху (значение top)
-        let [firstTimeHour, firstTimeMinutes] = splitTimeString(timeSetting.start);
+          // Расчет отступа сверху (значение top)
+          let [firstTimeHour, firstTimeMinutes] = splitTimeString(timeSetting.start);
 
-        let topValue = ((startTimeHour - firstTimeHour) * 60 + (startTimeMinutes - firstTimeMinutes)) * oneMinuteHeight;
-        
-        // Расчет множителя для отступа слева (для margin-left)
-        let marginLeftValue = 12.99;
+          let topValue = ((startTimeHour - firstTimeHour) * 60 + (startTimeMinutes - firstTimeMinutes)) * oneMinuteHeight;
+          
+          // Расчет множителя для отступа слева (для margin-left)
+          let marginLeftValue = 12.99;
 
-        // Расчет отступа слева (значение margin-left)
-        switch (item.day) {
-          case '1':
-            marginLeftValue = 0;
-            break;
-        
-          case '2':
-            marginLeftValue *= 1;
-            break;
-        
-          case '3':
-            marginLeftValue *= 2;
-            break;
-        
-          case '4':
-            marginLeftValue *= 3;
-            break;
-        
-          case '5':
-            marginLeftValue *= 4;
-            break;
-        
-          case '6':
-            marginLeftValue *= 5;
-            break;
-        
-          case '7':
-            marginLeftValue *= 6;
-            break;
-        }
+          // Расчет отступа слева (значение margin-left)
+          switch (item.day) {
+            case '1':
+              marginLeftValue = 0;
+              break;
+          
+            case '2':
+              marginLeftValue *= 1;
+              break;
+          
+            case '3':
+              marginLeftValue *= 2;
+              break;
+          
+            case '4':
+              marginLeftValue *= 3;
+              break;
+          
+            case '5':
+              marginLeftValue *= 4;
+              break;
+          
+            case '6':
+              marginLeftValue *= 5;
+              break;
+          
+            case '7':
+              marginLeftValue *= 6;
+              break;
+          }
 
-        let colorsValue = colors[item.type];
+          let colorsValue = colors[item.type];
 
-        layersBody.innerHTML += /*html*/`
-          <div class="layers__item layers-item ${+item.checked ? '_checked' : ''}" 
-            style="
-              z-index: ${i + 1};
-              height: ${layerHeight - 4}px;
-              top: ${topValue}px;
-              margin-left: ${marginLeftValue}%;
-            "
-            data-tippy-content="
-              <span>${item.startTime} - ${item.endTime}</span>
-              <br>
-              <span style='word-break: break-all;'>${item.description}</span>
-            "
-          >
-            <div class="layers-item__body"
+          layersBody.innerHTML += /*html*/`
+            <div class="layers__item layers-item ${+item.checked ? '_checked' : ''}" 
               style="
-                background-color: ${colorsValue.color} !important; 
-                box-shadow: 0 4px 0 ${colorsValue.dark} !important;
-                border: 1.5px solid ${colorsValue.dark} !important; 
-                border-bottom: none !important;
+                z-index: ${i + 1};
+                height: ${layerHeight - 4}px;
+                top: ${topValue}px;
+                margin-left: ${marginLeftValue}%;
+              "
+              data-tippy-content="
+                <span>${item.startTime} - ${item.endTime}</span>
+                <br>
+                <span style='word-break: break-all;'>${item.description}</span>
               "
             >
-              <div class="layers-item__time">
-                <i class="bi bi-clock"></i>
-                <span>${item.startTime}</span>
+              <div class="layers-item__body"
+                style="
+                  background-color: ${colorsValue.color} !important; 
+                  box-shadow: 0 4px 0 ${colorsValue.dark} !important;
+                  border: 1.5px solid ${colorsValue.dark} !important; 
+                  border-bottom: none !important;
+                "
+              >
+                <div class="layers-item__time">
+                  <i class="bi bi-clock"></i>
+                  <span>${item.startTime}</span>
+                </div>
+                <div class="layers-item__description">${item.description}</div>
               </div>
-              <div class="layers-item__description">${item.description}</div>
             </div>
-          </div>
-        `;
+          `;
+        }
+        
+        tippy("[data-tippy-content]", {
+          allowHTML: true,
+          theme: 'light-border',
+          placement: 'right',
+          followCursor: 'vertical',
+          maxWidth: 180,
+          duration: [500, 0],
+        });
       }
-      
-      tippy("[data-tippy-content]", {
-        allowHTML: true,
-        theme: 'light-border',
-        placement: 'right',
-        followCursor: 'vertical',
-        maxWidth: 180,
-        duration: [500, 0],
-      });
+    } else {
+      showAlert('error');
     }
-  } else {
-    showAlert('error');
   }
 }
 
@@ -1198,9 +1206,16 @@ export function closeTodoLayers(table) {
   }
 }
 
-export function isLayersCanBeDisplayed(table, id, callback) {
+export function isLayersCanBeDisplayed(table, idArray, callback) {
   let localStorageID = getLocalStorageData('todoID') || [];
-  if (localStorageID.includes(id)) callback(table, id);
+  let call = false;
+
+  for (let id of idArray) {
+    call = localStorageID.includes(id) ? true : false;
+    if (!call) break;
+  }
+
+  if (call) callback(table, idArray);
 }
 
 //</Наслоение дел>==============================================================================
