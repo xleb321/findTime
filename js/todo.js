@@ -35,10 +35,10 @@ const colors = {
     color: 'rgb(255, 233, 214)',
     dark: 'rgb(211, 165, 125)',
   },
-  // LemonChiffon: {
-  //     color: 'rgb(255, 251, 216)',
-  //     dark: 'rgb(204, 170, 71)'
-  // },
+  free: {
+    color: 'rgb(223, 251, 216)',
+    dark: 'rgb(116, 205, 127)'
+  },
 };
 
 // HTML-парсер
@@ -85,6 +85,7 @@ btnTodo.addEventListener('click', () => {
                 <option trans="text+:Work;" value="work">Работа</option>
                 <option trans="text+:Personal;" value="personal">Личное</option>
                 <option trans="text+:Rest;" value="rest">Отдых</option>
+                <option trans="text+:FreeDO;" value="free">Своб.</option>
               </select>
             </div>
             <div class="todo-form__footer">
@@ -105,14 +106,14 @@ btnTodo.addEventListener('click', () => {
           </form>
         </div>
         <div class="todo__filters todo-filters">
-          <div data-day="0" class="todo-filters__filter _active">Все</div>
-          <div data-day="1" class="todo-filters__filter">Пн</div>
-          <div data-day="2" class="todo-filters__filter">Вт</div>
-          <div data-day="3" class="todo-filters__filter">Ср</div>
-          <div data-day="4" class="todo-filters__filter">Чт</div>
-          <div data-day="5" class="todo-filters__filter">Пт</div>
-          <div data-day="6" class="todo-filters__filter">Сб</div>
-          <div data-day="7" class="todo-filters__filter">Вс</div>
+          <div data-day="0" trans="text+:All;" class="todo-filters__filter _active">Все</div>
+          <div data-day="1" trans="text+:Mon;" class="todo-filters__filter">Пн</div>
+          <div data-day="2" trans="text+:Tue;" class="todo-filters__filter">Вт</div>
+          <div data-day="3" trans="text+:Wed;" class="todo-filters__filter">Ср</div>
+          <div data-day="4" trans="text+:Thu;" class="todo-filters__filter">Чт</div>
+          <div data-day="5" trans="text+:Fri;" class="todo-filters__filter">Пт</div>
+          <div data-day="6" trans="text+:Sat;" class="todo-filters__filter">Сб</div>
+          <div data-day="7" trans="text+:Sun;" class="todo-filters__filter">Вс</div>
         </div>
         <div class="todo__deals todo-deals">
           <div class="todo-deals__items" id="todoDealsBody">
@@ -588,31 +589,33 @@ btnTodo.addEventListener('click', () => {
   }
 
   async function todoDeleteAll(id) {
-    let response = await fetch('api/todo.json', {
-      method: 'POST',
-    });
-    
-    if (response.ok) {
-      let todoJson = await response.json();
+    if (confirm('Вы уверены, что хотите удалить все дела?')) {
+      let response = await fetch('api/todo.json', {
+        method: 'POST',
+      });
       
-      if (idFolderExist(todoJson, id)) {
-        let formData = new FormData();
-        formData.append('type', 'deleteAll');
-        formData.append('userId', id);
-  
-        let responsePHP = await fetch('php/todo.php', {
-          method: 'POST',
-          body: formData,
-        });
-  
-        if (responsePHP.ok) {
-          loadTodo(id);
-        } else {
-          showAlert('error');
+      if (response.ok) {
+        let todoJson = await response.json();
+        
+        if (idFolderExist(todoJson, id)) {
+          let formData = new FormData();
+          formData.append('type', 'deleteAll');
+          formData.append('userId', id);
+    
+          let responsePHP = await fetch('php/todo.php', {
+            method: 'POST',
+            body: formData,
+          });
+    
+          if (responsePHP.ok) {
+            loadTodo(id);
+          } else {
+            showAlert('error');
+          }
         }
+      } else {
+        showAlert('error');
       }
-    } else {
-      showAlert('error');
     }
   }
 
@@ -647,6 +650,7 @@ btnTodo.addEventListener('click', () => {
                       <option trans="text+:Work" value="work">Работа</option>
                       <option trans="text+:Personal" value="personal">Личное</option>
                       <option trans="text+:Rest" value="rest">Отдых</option>
+                      <option trans="text+:freeDO" value="free">Своб.</option>
                   </select>
                 </div>
                 <div class="edit-form__textarea" data-symbols="">
@@ -1056,6 +1060,9 @@ export async function loadTodoLayers(table, idArray) {
     btnClose.removeEventListener('click', close);
   }
 
+  // Обнуляем стиль кнопки "Скрыть дела"
+  document.getElementById("onOffTask").children[0].setAttribute('class', 'bi bi-eye-slash-fill');
+
   for (let id of idArray) {
     // Генерируем контейнер для слоев
     let layersHtml = /* html */ `
@@ -1079,6 +1086,9 @@ export async function loadTodoLayers(table, idArray) {
     } else {
       layersBody.style.paddingLeft = "9%";
     }
+
+    // layersBody.style.paddingLeft = "9%";
+    // layersBody.style.paddingLeft = 9 + window.innerWidth / 273 / 10 + "%";
     
     // Динамический padding-left у layers__body
     window.addEventListener('resize', function () {
@@ -1292,5 +1302,25 @@ function showAlert(type) {
       break;
   }
 }
+
+// Логика кнопки "Скрыть дела"
+let onOffTasks = document.getElementById("onOffTask")
+let layers = document.getElementsByClassName('layers');
+
+onOffTasks.addEventListener('click', () => {
+  if (onOffTasks.children[0].classList.contains('bi-eye-slash-fill')) {
+    for (let layer of layers) {
+      layer.style.visibility = 'hidden';
+    }
+    onOffTasks.children[0].classList.remove('bi-eye-slash-fill');
+    onOffTasks.children[0].classList.add('bi-eye-fill');
+  } else {
+    for (let layer of layers) {
+      layer.style.visibility = 'visible';
+    }
+    onOffTasks.children[0].classList.add('bi-eye-slash-fill');
+    onOffTasks.children[0].classList.remove('bi-eye-fill');
+  }
+})
 
 //</FUNCTIONS>==============================================================================

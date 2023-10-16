@@ -419,6 +419,10 @@
 						<input class="form-check-input" type="radio" name="inpRadioEnter" id="loginReg" value="singin" />
 						<label class="form-check-label" for="singin"><Text trans="text+:RadioReg">Регистрация</Text></label>
 					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="inpRadioEnter" id="loginRem" value="remember" />
+						<label class="form-check-label" for="singin"><Text trans="text+:RadioRem">Восстановить</Text></label>
+					</div>
 					<div class="mt-0 pb-3" id='divStart2Net'>
 						<input type="checkbox" id="start2Net" checked name="start2Net" style="margin-bottom: 15px;"><Text trans="text+:start2Net">&nbsp;&nbsp;Входить в сетевое хранилище при входе</Text>
 					</div>
@@ -464,6 +468,7 @@
 
 		rad[0].addEventListener('click', selectRadioEnter);
 		rad[1].addEventListener('click', selectRadioEnter);
+		rad[2].addEventListener('click', selectRadioEnter);
 
 		function selectRadioEnter() {
 			let btnEnterReg = document.getElementById('buttonEnter');
@@ -481,6 +486,18 @@
 				pass2.style.display = 'none';
 				emailReg.style.display = 'none';
 				start2Net.style.display = 'block'
+			} else if (rad[2].checked) {
+				selectRadio = 'loginRem';
+				btnEnterReg.innerHTML = 'Сменить пароль!';
+				btnEnterReg.name = 'MRem';
+
+				pass2.style.display = 'block';
+				emailReg.style.display = 'block';
+				start2Net.style.display = 'none'
+				login.value = '';
+				pass1.value = '';
+				pass2.value = '';
+				emailReg.value = '';
 			} else {
 				selectRadio = 'loginReg';
 				btnEnterReg.innerHTML = 'Регистрация';
@@ -634,7 +651,7 @@
 					</div>
 
 					<div class="tableDaysInner">
-						<table id="tableDays" class="table table-bordered m-0 mt-2 w-100" style="background-color: gray; font-size: 0.8em">
+						<table id="tableDays" class="table table-bordered m-0 mt-0 w-100" style="background-color: gray; font-size: 0.8em;">
 							<thead>
 								<tr>
 									<td width="9%" class="align-middle">
@@ -973,48 +990,67 @@
 				<div class="modal-footer justify-content-between text-nowrap" style="padding: 5px; background-color: WhiteSmoke" 9q8>
 					<!--					<span><button class="nbts" value="Save" style="font-size: 1.5em; background-color: white;color: black; border-width: 0px"><i class="bi bi-save" name="disable"></i></button></span>-->
 
-					<span><button class="nbtc" value="Clear" style="
-									font-size: 1em;
-									background-color: white;
-									color: black;
-									border-width: 0px;
-									border: 1px solid indianred;
-									border-radius: 2px;
-									margin-left: 6px;
-								">
-							<i class="bi bi-eraser-fill" name="disable" style="color: indianred"></i></button></span>
+					<span>
+						<button class="nbtc" value="Clear" style="
+							font-size: 1em;
+							background-color: white;
+							color: black;
+							border-width: 0px;
+							border: 1px solid indianred;
+							border-radius: 2px;
+							margin-left: 4px;
+						">
+							<i class="bi bi-eraser-fill" name="disable" style="color: indianred"></i>
+						</button>
+						<button id="onOffTask" style="
+							font-size: 1em;
+							background-color: white;
+							color: black;
+							border-width: 0px;
+							border: 1px solid dodgerblue;
+							border-radius: 2px;
+							margin-left: 4px;
+						">
+							<i class="bi bi-eye-slash-fill" name="disable" style="color: dodgerblue"></i>
+						</button>
+					</span>
 					<!--
 					<span>
 						<button class="nbtcl" data-bs-dismiss="modal" style=" font-size: 1.5em; background-color: white; color: red; border-width: 0px"><i class="bi bi-x-square" name="disable"></i></button>
 					</span>
 -->
 					<span>
-						<button class="btn btn-sm btn-w-m btn-white nbtcl" style="font-size: 0.75em" data-bs-dismiss="modal">
-							<Text name="btnEsc">&nbsp;Отмена</Text>
+						<button class="btn btn-sm btn-w-m btn-white nbtcl" 
+							style="font-size: 0.75em" 
+							data-bs-dismiss="modal"
+						>
+							<Text name="btnEsc">Отмена</Text>
 						</button>
 
 						<button type="button" id="sendCode2" class="btn btn-sm" style="
-									background-color: #1c84c6;
-									font-weight: 400;
-									margin-left: 2px;
-									color: white;
-									font-size: 0.75em;
-									border-radius: 2px;
-								">
-							<i class="bi bi-send" name="disable" style="margin-right: 3px;"></i><Text name="btnSend">Отправить</Text>
+							background-color: #1c84c6;
+							font-weight: 300;
+							margin-left: 0px;
+							color: white;
+							font-size: 0.73em;
+							border-radius: 2px;
+						">
+							<i class="bi bi-send" name="disable" style="margin-right: 0px;"></i>
+							<Text name="btnSend">Отправить</Text>
 						</button>
 
 						<!--                         <button class="btn btn-sm" id="sendCode3" name="disable" style="box-sizing: border-box; color: white;padding: 1px 5px; font-size: 1m; background-color: #1C84C6; border-radius: 2px; margin-left: 2px; font-weight: 100;"><i class="bi bi-send" name="disable"></i></button>-->
 
 						<button type="submit" value="Save" class="btn btn-sm nbts" style="
-									background-color: #48c2a9;
-									margin-left: 4px;
-									font-weight: 400;
-									color: black;
-									font-size: 0.75em;
-									border-radius: 2px;
-								">
-							<i class="bi bi-save" name="disable" style="margin-right: 3px;"></i><Text name="btnSave">Сохранить</Text>
+							background-color: #48c2a9;
+							margin-left: 4px;
+							font-weight: 400;
+							color: black;
+							font-size: 0.73em;
+							border-radius: 2px;
+						">
+							<i class="bi bi-save" name="disable" style="margin-right: 2px;"></i>
+							<Text name="btnSave">Сохранить</Text>
 						</button>
 					</span>
 				</div>

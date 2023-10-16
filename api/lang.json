@@ -225,14 +225,19 @@
 		"fr": "&nbsp; Maintenance des données"
 	},
 	"RadioEnter": {
-		"ru": "Вход в систему",
+		"ru": "Войти",
 		"en": "Enter",
 		"fr": "Entrée"
 	},
 	"RadioReg": {
-		"ru": "Новый пользователь",
-		"en": "New account",
-		"fr": "Nouveau compte"
+		"ru": "Регистрация",
+		"en": "Registration",
+		"fr": "Enregistrement"
+	},
+	"RadioRem": {
+		"ru": "Забыли пароль?",
+		"en": "Forgot your password?",
+		"fr": "Forgot your password"
 	},
 	"legend": {
 		"ru": "Легенда расписания",
@@ -313,6 +318,11 @@
 		"ru": "Вс",
 		"en": "Sun",
 		"fr": "Dim"
+	},
+	"All": {
+		"ru": "Все",
+		"en": "All",
+		"fr": "Tout"
 	},
 	"MonFull": {
 		"ru": "Понедельник",
@@ -1547,7 +1557,12 @@
 	"Rest": {
 		"ru": "Отдых",
 		"en": "Rest",
-		"fr": "Détente"
+		"fr": "Librement"
+	},
+	"freeDO": {
+		"ru": "Своб.",
+		"en": "Free",
+		"fr": "Free"
 	},
 	"ThrowOff": {
 		"ru": "Сбросить",
