@@ -1081,23 +1081,23 @@ export async function loadTodoLayers(table, idArray) {
     let layersBody = table.querySelector(`.layers[data-id="${id}"]`).querySelector('.layers__body');
 
     // Расчет padding-left у layers__body
-    if (window.innerWidth <= 573) {
-      layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
-    } else {
-      layersBody.style.paddingLeft = "9%";
-    }
+    // if (window.innerWidth <= 573) {
+    //   layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
+    // } else {
+    //   layersBody.style.paddingLeft = "9%";
+    // }
 
-    // layersBody.style.paddingLeft = "9%";
+    layersBody.style.paddingLeft = "9%";
     // layersBody.style.paddingLeft = 9 + window.innerWidth / 273 / 10 + "%";
     
     // Динамический padding-left у layers__body
-    window.addEventListener('resize', function () {
-      if (window.innerWidth <= 573) {
-        layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
-      } else {
-        layersBody.style.paddingLeft = "9%";
-      }
-    });
+    // window.addEventListener('resize', function () {
+    //   if (window.innerWidth <= 573) {
+    //     layersBody.style.paddingLeft = table.querySelector('tr').children[0].getBoundingClientRect().width + 'px';
+    //   } else {
+    //     layersBody.style.paddingLeft = "9%";
+    //   }
+    // });
 
     let response = await fetch('api/todo.json', {
       method: 'POST',
