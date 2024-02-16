@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Система составления расписания, планирования встреч и работы со временем. Для школ, развивающих центров, репетиторов и других организаций, работающих с клиентами. Формирование групп и определение времени встреч и занятий. Ведение списка дел. Онлайн. Бесплатно. Возможность работы без регистрации." />
+	<meta name="keywords" content="Система составления расписания, бесплатно, найди время!, найдивремя! settime!, НайдиВремя!, свободное время, занятое время , расписание, freetime, busytime" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<meta property="og:title" content=" ДелуВремя! | Система составления расписания, организации встреч и работы со временем!" />
+	<meta property="og:description" content="Система составления расписания, планирования встреч и работы со временем. Для школ, развивающих центров, репетиторов и других организаций, работающих с клиентами. Формирование групп и определение времени встреч и занятий. Ведение списка дел. Онлайн. Бесплатно. Возможность работы без регистрации." />
+	<meta property="og:image" content="https://settime.online/img/findTime1.png" />
+
+	<meta http-equiv='cache-control' content='no-cache'>
+	<meta http-equiv='expires' content='0'>
+	<meta http-equiv='pragma' content='no-cache'>
+
+	<title>
+		ДелуВремя! | Система составления расписания, организации встреч и работы со временем!
+	</title>
+
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<link rel="apple-touch-icon" href="favicon.png" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+	<script src="js/popper.min.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&display=swap" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+</head>
+
+
+<script>
+	sessionStorage.setItem('textNote1', "Текст ссылки из сессионстор")
+
+</script>
+
+<body>
+	<div class="modal-body mt-1 border w-25 p-2" id="modalBodyAlert" style="text-align: justify; text-indent: 8px; font-size: 8px;">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<td colspan=3 scope="col" style="font-size: 0.65em; font-weight: 100"> <text trans="text+:sendCodeError1444444444;">Вы можете скопировать в память различную информацию по своему времени и переслать её пользователям различными способами.</text></td>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+
+					<td width=85%>Информация по cвободному времени пользователя.</td>
+					<td width=5%><a href="https://settime.online/?viewFree=demodemo&amp;user=1662375468045">
+							<i class="bi bi-link" style="font-size: 1.5em;font-weight: 500;"></i></a></td>
+					<td width=5%> <a><span style="cursor: pointer;color: cornflowerblue;" onclick="
+				let a = sessionStorage.getItem('textNote1');
+				document.getElementById('iconInfo2').color='cornflowerblue';
+				document.getElementById('iconInfo3').color='cornflowerblue';
+				let obj1=document.getElementById('iconInfo1');
+				obj1.style.color='#48c2a9';
+				obj1.style.cursor='pointer';
+				obj1.style.fontWeight='bold';
+				obj1.style.fontSize='';
+				navigator.clipboard.writeText(a).then(() => {});">
+
+								<i id="iconInfo1" class="bi bi-clipboard-fill" style="font-size: 1em; color: cornflowerblue"></i></span></a></td>
+				</tr>
+				<tr>
+		
+					<td>Приглашение пользователю заполнить свое свободное время</td>
+					<td> <a href="https://settime.online/?invite=demodemo&amp;user=1662375468045">
+							<i class="bi bi-link d-inline" style="font-size: 1.5em;font-weight: 500;color: cornflowerblue"></i></a></td>
+					<td> <a><span style="cursor: pointer;color: cornflowerblue;" onclick="
+				let a = sessionStorage.getItem('textNote1');
+				document.getElementById('iconInfo1').color='cornflowerblue';
+				document.getElementById('iconInfo3').color='cornflowerblue';
+				let obj2=document.getElementById('iconInfo2');
+				obj2.style.color='#48c2a9';
+				obj2.style.cursor='pointer';
+				obj2.style.fontWeight='bold';
+				obj2.style.fontSize='';
+				navigator.clipboard.writeText(a).then(() => {});">
+
+								<i id="iconInfo2" class="bi bi-clipboard-fill" style="font-size: 1em; color: cornflowerblue"></i></span></a></td>
+				</tr>
+				<tr>
+		
+					<td>Ссылка на свободное время с Вашим текстом </td>
+					<td></td>
+					<td><a><span style="cursor: pointer; color: cornflowerblue" class="ml-0 mr-0" onclick="
+				let a = sessionStorage.getItem('textNote1');
+				document.getElementById('iconInfo1').color='cornflowerblue';
+				document.getElementById('iconInfo2').color='cornflowerblue';
+				let obj3=document.getElementById('iconInfo3');
+				obj3.style.color='#48c2a9';
+				obj3.style.cursor='pointer';
+				obj3.style.fontWeight='bold';
+				obj3.style.fontSize='';
+				navigator.clipboard.writeText(a).then(() => {});">
+
+								<i id="iconInfo3" class="bi bi-clipboard-fill"></i></span></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

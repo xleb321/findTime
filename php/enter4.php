@@ -84,7 +84,7 @@ if ($action=='login'){
     }
 }
 
-if ($action=='singin'){
+elseif ($action=='singin'){
     $query = "SELECT * FROM enter WHERE login='".$login."'";
     $result = mysqli_query($link,$query);
     $n = mysqli_num_rows ($result);	
@@ -125,7 +125,7 @@ if ($action=='singin'){
         $message .='<div><br>В системе добавлен пользователь <b>';
         $message .= $login;
         $message .='</b></div>';
-        $message .= '<p>Активируйте доступ для этого пользователя, нажав на кнопку <a href="'; 
+        $message .= '<p>Для активации доступа для этого пользователя перейдите по сссылке <a href="'; 
         $message .='https://settime.online?';
         $message .='action=verify';
         $message .='&loginUser='.$login;
@@ -160,5 +160,85 @@ if ($action=='singin'){
 
     };
 }
+
+elseif ($action=='remember'){
+    $query = "SELECT * FROM enter WHERE login='".$login."'";
+    $result = mysqli_query($link,$query);
+    $n = mysqli_num_rows ($result);	
+    $check= mysqli_fetch_array($result);
+    $email = $check[5];
+    if ($n != 0){
+        
+        $s = "UPDATE `enter` SET `password` = '".$hash."', `verify` = '0' WHERE `enter`.`id` = ".$check[0];
+        
+        mysqli_query($link,$s);
+
+        //        fwrite($fn,$str);
+        
+        $key=substr($hash,0,16);
+        $to = $email;
+        
+        $subject = 'Восстановление пароля в системе ДелуВремя!';
+        $from = 'no-reply@settime.online';
+
+        // Для отправки HTML-почты необходимо установить заголовок Content-type.
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        // Создаем заголовки писем
+        $headers .= 'From: '.$from."\r\n".
+            'Reply-To: '.$from."\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        // Составляем простое сообщение электронной почты в формате HTML
+        $message = '<html><body style="box-sizing: border-box;">';
+        $message .='<div>';
+        $message .='<div style="background-color: #dee2e6; width: 100%; height: 45px; padding-top: 10px; padding-left: 20px; "><a style="text-decoration: none;font-size: 1.6em; color: black;margin-right: 0px" href="https://settime.online"><img src="https://settime.online/favicon.png" width="22" style="margin-right: 10px; color: black">ДелуВремя!</a></div>';
+        $message .='<div><br>Восстановление пароля пользователя <b>';
+        $message .= $login;
+        $message .='</b></div>';
+        $message .= '<p>Для активации доступа для этого пользователя перейдите по сссылке <a href="'; 
+        $message .='https://settime.online?';
+        $message .='action=verify';
+        $message .='&loginUser='.$login;
+        $message .='&key='.$key;
+        $message .='" style="text-decoration: none;">АКТИВИРОВАТЬ С НОВЫМ ПАРОЛЕМ</a></p>';
+        $message .='<p> Если информация пришла по ошибке или Вы не желаете добавлять этого пользователя в свои данные, проигнорируйте это письмо.</p></div>';
+
+        $message .= '<div style="background-color: #dee2e6;text-align: center"><span style="font-size:0.8em;"> &copy; <a href="https://intermir.ru" style="text-decoration: none; color: darkcyan;font-weight: 400">InterМИР 2024</a></span></div>';
+        $message .= '</body></html>';
+
+        // Отправляем письмо
+        if(mail($to, $subject, $message, $headers)){
+//            $str="[13]-".$login."|".$today."|".$expiredDate."|".$interval->days." дней";
+//            $str.=" \n";
+//            fwrite($fn,$str); 
+            $stroke = '{"login":"'.$login.'","access":10,"expiredDate":"","txtMsg":" "}';
+            echo $stroke;
+        } else{
+//            $str="[0]-".$login."|".$today."|".$expiredDate."|".$interval->days." дней";
+//            $str.=" \n";
+//            fwrite($fn,$str); 
+            $stroke = '{"login":"'.$login.'","access":11,"expiredDate":"","txtMsg":" "}';
+            echo $stroke;
+        }
+
+            
+        }
+    else{
+		
+		$stroke = '{"login":"'.$login.'","access":12,"answer":"noUser","txtMsg":"Такой логина нет в системе. Исправьте его  и повторите ввод данных!. Если логин не удается вспомнить, напишите на администратора и Вам отправят письмо на зарегистрированный email"}';
+		echo $stroke;
+
+    };
+}
+
+else{
+    
+		$stroke = '{"login":"'.$login.'","access":0,"answer":"noUser","txtMsg":"Непонятная ошибка в коде!"}';
+		echo $stroke;
+}
+
+
 fclose($fn);
 ?>

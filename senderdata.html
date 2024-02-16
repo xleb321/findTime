@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Система составления расписания, планирования встреч и работы со временем. Для школ, развивающих центров, репетиторов и других организаций, работающих с клиентами. Формирование групп и определение времени встреч и занятий. Ведение списка дел. Онлайн. Бесплатно. Возможность работы без регистрации." />
+	<meta name="keywords" content="Система составления расписания, бесплатно, найди время!, найдивремя! settime!, НайдиВремя!, свободное время, занятое время , расписание, freetime, busytime" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<meta property="og:title" content=" ДелуВремя! | Система составления расписания, организации встреч и работы со временем!" />
+	<meta property="og:description" content="Система составления расписания, планирования встреч и работы со временем. Для школ, развивающих центров, репетиторов и других организаций, работающих с клиентами. Формирование групп и определение времени встреч и занятий. Ведение списка дел. Онлайн. Бесплатно. Возможность работы без регистрации." />
+	<meta property="og:image" content="https://settime.online/img/findTime1.png" />
+
+	<meta http-equiv='cache-control' content='no-cache'>
+	<meta http-equiv='expires' content='0'>
+	<meta http-equiv='pragma' content='no-cache'>
+
+	<title>
+		ДелуВремя! | Система составления расписания, организации встреч и работы со временем!
+	</title>
+
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="icon" type="image/png" href="favicon.png" />
+	<link rel="apple-touch-icon" href="favicon.png" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+
+
+</head>
+
+<body>
+
+
+	<div>
+		<input type="text" trans="placeholder:login" id="InputName" aria-describedby="nameHelp" placeholder="name " required class="form-control mt-0" style="font-size: 1em" />
+		<button id="sender">Отправить письмо</button>
+		<button id="clip">Сохранить в буфер</button>
+
+	</div>
+	<script>
+		let inputname = document.getElementById("InputName")
+		document.getElementById("sender").addEventListener('click', () => {
+
+			const params = {
+				name: inputname.value
+			}
+
+			url = "../php/senderdata.php"
+
+			params = new URLSearchParams()
+			params.set('name', parameters.name)
+
+			const res = await fetch(url, {
+				method: "POST",
+				body: params
+			})
+
+		})
+
+		let clip = document.getElementById('clip')
+		clip.style.backgroundColor = "red";
+
+		clip.addEventListener('click', () => {
+
+			let txtLink = "проиер записи в файл";
+
+			if (true) {
+				navigator.clipboard
+					.writeText(txtLink)
+					.then(() => {
+						notifyer(
+							'Ссылка сформирована и сохранена в памяти! Можете переслать её другому пользователю.',
+							'500'
+						);
+					})
+					.catch((err) => {
+						alert('Something went wrong', err);
+					});
+			}
+
+
+
+
+		})
+
+	</script>
+</body>
+
+</html>

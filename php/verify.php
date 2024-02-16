@@ -45,6 +45,7 @@ if ($n>0 and substr($check[2],0,16) == $key){
 	copy('../data/_blank/courses.json', $nameDir.'/'.$login.'_courses.json');
 	copy('../data/_blank/filteredCourses.json', $nameDir.'/'.$login.'_filteredCourses.json');
 	copy('../data/_blank/filteredGrades.json', $nameDir.'/'.$login.'_filteredGrades.json');
+    copy('../data/_blank/filteredUsers.json', $nameDir.'/'.$login.'_filteredUsers.json');
 	copy('../data/_blank/grades.json', $nameDir.'/'.$login.'_grades.json');
 	
 } 

@@ -29,7 +29,10 @@ import {
 	saveDataTo
 } from './main.js';
 import {
-	splittingGrades
+	splittingGrades,
+	createParamOption,
+	offObjOnModal,
+	onObjOnModal
 } from './main.js';
 import {
 	closeTodoLayers,
@@ -86,19 +89,139 @@ function loadTableSchedule() {
 
 let gradeNameSubmitLoad = document.getElementById('gradeNameSubmitLoad');
 
-function listGrades() {
-	//    let listGrades = JSON.parse(localStorage.getItem('grades'));
-	let listGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades'));
+//function listGrades() {
+//	//    debugger;
+//	//    let listGrades = JSON.parse(localStorage.getItem('grades'));
+//	let listGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades'));
+//
+//	//    console.log(listGrades)
+//
+//	let strokeGrades = '';
+//	for (let i = 0; i < listGrades.length; i++) {
+//		strokeGrades += String(listGrades[i]) + ',';
+//	}
+//	document.getElementById('gradeTextArea').value = strokeGrades;
+//}
+
+//gradeNameSubmitLoad.addEventListener('click', listGrades);
 
 
+//загрузка параметра 2 - 5 типов
+
+let loadLocalParam2 = document.getElementById('loadLocalParam2');
+loadLocalParam2.addEventListener('click', () => {
+	let listGrades = JSON.parse(localStorage.getItem('grades'))
 	let strokeGrades = '';
-	for (let i = 0; i < listGrades.length; i++) {
-		strokeGrades += String(listGrades[i]) + ',';
+	if (listGrades) {
+		for (let i = 0; i < listGrades.length; i++) {
+			if (String(listGrades[i]) == 'Any') {
+				continue
+			}
+			strokeGrades += String(listGrades[i]) + ',';
+		}
 	}
 	document.getElementById('gradeTextArea').value = strokeGrades;
-}
+});
 
-gradeNameSubmitLoad.addEventListener('click', listGrades);
+let loadNetParam2 = document.getElementById('loadNetParam2');
+loadNetParam2.addEventListener('click', () => {
+	if (sessionStorage.getItem('grades')) {
+		let listGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades'));
+		let strokeGrades = '';
+		if (listGrades) {
+			for (let i = 0; i < listGrades.length; i++) {
+				if (String(listGrades[i]) == 'Any') {
+					continue
+				}
+				strokeGrades += String(listGrades[i]) + ',';
+			}
+		}
+		document.getElementById('gradeTextArea').value = strokeGrades;
+	} else {
+		alerter(
+			'<Text trans="text+:AlertAttention;">Внимание!</Text>',
+			'<Text trans="text+:AlertAttention2444;">Для получения сетевых настроек параметра 2 войдите в систему</Text>',
+			'standart',
+			'warning',
+			'standart'
+		);
+	}
+
+});
+
+let loadAllLocalParam2 = document.getElementById('loadAllLocalParam2');
+loadAllLocalParam2.addEventListener('click', () => {
+	let listGrades = JSON.parse(localStorage.getItem('users'))
+	let setFromArr = new Set()
+	let strokeGrades = '';
+	if (listGrades) {
+		for (let i = 0; i < listGrades.length; i++) {
+			if (String(listGrades[i]['currentLevel']) == 'Any') {
+				continue
+			}
+			setFromArr.add(String(listGrades[i]['currentLevel']))
+		}
+		for (let value of setFromArr) {
+			strokeGrades += String(value) + ',';
+		}
+	}
+	document.getElementById('gradeTextArea').value = strokeGrades;
+});
+
+let loadAllNetParam2 = document.getElementById('loadAllNetParam2');
+loadAllNetParam2.addEventListener('click', () => {
+	if (sessionStorage.getItem('grades')) {
+		let listGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'users'));
+		let setFromArr = new Set()
+		let strokeGrades = '';
+		if (listGrades) {
+			for (let i = 0; i < listGrades.length; i++) {
+				if (String(listGrades[i]['currentLevel']) == 'Any') {
+					continue
+				}
+				setFromArr.add(String(listGrades[i]['currentLevel']))
+			}
+			for (let value of setFromArr) {
+				strokeGrades += String(value) + ',';
+			}
+		}
+		document.getElementById('gradeTextArea').value = strokeGrades;
+	} else {
+		alerter(
+			'<Text trans="text+:AlertAttention;">Внимание!</Text>',
+			'<Text trans="text+:AlertAttention2444;">Для получения сетевых настроек параметра 2 из всех введенных данных, войдите в систему</Text>',
+			'standart',
+			'warning',
+			'standart'
+		);
+	}
+
+});
+
+let loadDemoParam2 = document.getElementById('loadDemoParam2');
+loadDemoParam2.addEventListener('click', () => {
+
+	let grades_demo = '["1","2","3","4"]';
+	let listGrades = JSON.parse(grades_demo)
+	let strokeGrades = '';
+	if (listGrades) {
+		for (let i = 0; i < listGrades.length; i++) {
+			strokeGrades += String(listGrades[i]) + ',';
+		}
+	}
+	document.getElementById('gradeTextArea').value = strokeGrades;
+});
+
+
+//------------------------------
+
+
+
+
+
+
+
+
 
 //listGrades();
 
@@ -114,7 +237,7 @@ let gradeNameSubmitDel = document.getElementById('gradeNameSubmitDel');
 gradeNameSubmitDel.addEventListener('click', () => {
 	if (confirm('В хранилище есть данные по уровням. Удалить?')) {
 
-		let grades_null = '["1"]';
+		let grades_null = '[]';
 		if ((sessionStorage.getItem("typeBase") == "remote") && (sessionStorage.getItem("globalAccess") == 7)) {
 			sessionStorage.setItem('grades', grades_null);
 			sessionStorage.setItem('filteredGrades', grades_null);
@@ -137,6 +260,9 @@ gradeNameSubmitDel.addEventListener('click', () => {
 		let listGrades = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'grades'));
 		JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'filteredGrades'));
 		document.getElementById('gradeTextArea').value = listGrades;
+
+		createParamOption();
+
 		notifyer('grades delete in local storage');
 	}
 });
@@ -149,6 +275,9 @@ gradeNameSubmitUpdate.addEventListener('click', () => {
 		if (confirm('Есть данные в хранилище. Обновить?')) {
 			localStorage.removeItem('grades');
 			splittingGrades();
+
+			createParamOption();
+
 			notifyer('Данные обновлены!');
 		}
 	} else {
@@ -166,12 +295,103 @@ gradeNameSubmitUpdate.addEventListener('click', () => {
 
 
 
-function listCourses() {
-	//    let listCourses = JSON.parse(localStorage.getItem('courses'));
-	let listCourses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'courses'));
+//загрузка параметра 1 - 5 типов
 
+let loadLocalParam1 = document.getElementById('loadLocalParam1');
+loadLocalParam1.addEventListener('click', () => {
+	let listCourses = JSON.parse(localStorage.getItem('courses'))
+	let strokeCourses = '';
+	if (listCourses) {
+		for (let i = 0; i < listCourses.length; i++) {
+			if (String(listCourses[i]) == 'Any') {
+				continue
+			}
+			strokeCourses += String(listCourses[i]) + ',';
+		}
+	}
+	document.getElementById('courseTextArea').value = strokeCourses;
+});
 
+let loadNetParam1 = document.getElementById('loadNetParam1');
+loadNetParam1.addEventListener('click', () => {
+	if (sessionStorage.getItem('courses')) {
+		let listCourses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'courses'));
+		let strokeCourses = '';
+		if (listCourses) {
+			for (let i = 0; i < listCourses.length; i++) {
+				if (String(listCourses[i]) == 'Any') {
+					continue
+				}
+				strokeCourses += String(listCourses[i]) + ',';
+			}
+		}
+		document.getElementById('courseTextArea').value = strokeCourses;
+	} else {
+		alerter(
+			'<Text trans="text+:AlertAttention;">Внимание!</Text>',
+			'<Text trans="text+:AlertAttention2444;">Для получения сетевых настроек параметра 1 войдите в систему</Text>',
+			'standart',
+			'warning',
+			'standart'
+		);
+	}
 
+});
+
+let loadAllLocalParam1 = document.getElementById('loadAllLocalParam1');
+loadAllLocalParam1.addEventListener('click', () => {
+	let listCourses = JSON.parse(localStorage.getItem('users'))
+	let setFromArr = new Set()
+	let strokeCourses = '';
+	if (listCourses) {
+		for (let i = 0; i < listCourses.length; i++) {
+			if (String(listCourses[i]['currentCourse']) == 'Any') {
+				continue
+			}
+			setFromArr.add(String(listCourses[i]['currentCourse']))
+		}
+		for (let value of setFromArr) {
+			strokeCourses += String(value) + ',';
+		}
+	}
+	document.getElementById('courseTextArea').value = strokeCourses;
+});
+
+let loadAllNetParam1 = document.getElementById('loadAllNetParam1');
+loadAllNetParam1.addEventListener('click', () => {
+	if (sessionStorage.getItem('courses')) {
+		let listCourses = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'users'));
+		let setFromArr = new Set()
+		let strokeCourses = '';
+		if (listCourses) {
+			for (let i = 0; i < listCourses.length; i++) {
+				if (String(listCourses[i]['currentCourse']) == 'Any') {
+					continue
+				}
+				setFromArr.add(String(listCourses[i]['currentCourse']))
+			}
+			for (let value of setFromArr) {
+				strokeCourses += String(value) + ',';
+			}
+		}
+		document.getElementById('courseTextArea').value = strokeCourses;
+	} else {
+		alerter(
+			'<Text trans="text+:AlertAttention;">Внимание!</Text>',
+			'<Text trans="text+:AlertAttention2444;">Для получения сетевых настроек параметра 1 из всех введенных данных, войдите в систему</Text>',
+			'standart',
+			'warning',
+			'standart'
+		);
+	}
+
+});
+
+let loadDemoParam1 = document.getElementById('loadDemoParam1');
+loadDemoParam1.addEventListener('click', () => {
+	let courses_demo =
+		'["Пробное", "Kodu", "Scratch", "CoSpaces", "MitApp Inventor", "Pencil Code", "Python Start", "Godot", "WebStart", "JavaScript Start", "JavaScripts Front", "JavaScript Game", "PHP", "C# Start", "Unity", "Java Start", "Fusion 3D", "ОГЭ", "ЕГЭ", "Project Team", "Препод."]';
+	let listCourses = JSON.parse(courses_demo)
 	let strokeCourses = '';
 	if (listCourses) {
 		for (let i = 0; i < listCourses.length; i++) {
@@ -179,16 +399,23 @@ function listCourses() {
 		}
 	}
 	document.getElementById('courseTextArea').value = strokeCourses;
-}
+});
 
-let courseNameSubmitLoad = document.getElementById('courseNameSubmitLoad');
-courseNameSubmitLoad.addEventListener('click', listCourses);
-//listCourses();
+
+
+
+
+
+
+
 
 let courseNameSubmitDel = document.getElementById('courseNameSubmitDel');
 courseNameSubmitDel.addEventListener('click', () => {
 	if (confirm('В хранилище есть данные по курсам. Удалить?')) {
 		localStorage.removeItem('courses');
+
+		createParamOption();
+
 		notifyer('course delete in local storage');
 	}
 });
@@ -280,6 +507,7 @@ function showShedulePanel() {
 //login
 
 let moveWin = document.querySelector('.moveWin');
+let infoWin = document.querySelector('.infoWin');
 let btnCloses = document.querySelectorAll('.btnCloseEnter');
 
 let buttonEnter = document.querySelector('#buttonEnter');
@@ -340,6 +568,7 @@ document.getElementById('logout').addEventListener('click', () => {
 		rad = document.getElementsByName('inpRadioEnter');
 		rad[0].checked = true;
 		rad[1].checked = false;
+		rad[2].checked = false;
 
 
 
@@ -360,14 +589,9 @@ document.getElementById('logout').addEventListener('click', () => {
 		sessionStorage.removeItem('filteredCourses');
 		sessionStorage.removeItem('filteredGrades');
 
-		alerter(
-			'<Text trans="text+:AlertChangeStorageHeader;">Смена типа хранилища</Text>',
-			'<Text trans="text+:AlertChangeStorageBody;">Тип базы данных будет изменён c сетевого на локальный после перезагрузки.</Text>',
-			'standart',
-			'warning',
-			'standart'
-		);
-		setTimeout("location.replace('index.html')", 3000);
+		notifyer('Подключаемся к выбранному типу базы данных.');
+
+		setTimeout("location.replace('index.html')", 1500);
 
 	}
 
@@ -403,6 +627,8 @@ buttonEnter.addEventListener("click", async () => {
 
 		}
 	}
+
+
 
 	let validLetters = /^[а-яА-ЯёЁa-zA-Z0-9]+$/;
 
@@ -448,7 +674,7 @@ buttonEnter.addEventListener("click", async () => {
 			'danger',
 			'standart'
 		);
-	} else if ((action == "singin") && ((input1Pass.value.trim() == "") || (input2Pass.value.trim() == ""))) {
+	} else if ((action == "singin" || action == "remember") && ((input1Pass.value.trim() == "") || (input2Pass.value.trim() == ""))) {
 		alerter(
 			'<Text trans="text+:AlertErrorHeader;">Ошибка</Text>',
 			'<Text trans="text+:AlertErrorlogin4;">Не заполнено одно из полей с паролями</Text>',
@@ -456,7 +682,7 @@ buttonEnter.addEventListener("click", async () => {
 			'danger',
 			'standart'
 		);
-	} else if ((action == "singin") && (input1Pass.value.trim() != input2Pass.value.trim())) {
+	} else if ((action == "singin" || action == "remember") && (input1Pass.value.trim() != input2Pass.value.trim())) {
 		alerter(
 			'<Text trans="text+:AlertErrorHeader;">Ошибка</Text>',
 			'<Text trans="text+:AlertErrorlogin5;">Пароли не совпадают</Text>',
@@ -490,6 +716,7 @@ buttonEnter.addEventListener("click", async () => {
 			email: emailReg.value,
 			action: action
 		}
+		//        alert(action)
 
 		async function loadDataEnter(parameters = null, url, method) {
 			let params
@@ -515,14 +742,9 @@ buttonEnter.addEventListener("click", async () => {
 			localStorage.setItem("typeBase", "remote");
 			sessionStorage.setItem("typeBase", "remote");
 
-			alerter(
-				'<Text trans="text+:AlertChangeStorageHeader;">Смена типа хранилища</Text>',
-				'<Text trans="text+:AlertChangeStorageBody;">Производится подключение к сетевому хранилищу данных.</Text>',
-				'standart',
-				'warning',
-				'standart'
-			);
-			setTimeout("location.replace('index.html')", 2000);
+			notifyer('Подключаемся к выбранному типу базы данных.');
+
+			setTimeout("location.replace('index.html')", 1500);
 		}
 	}
 })
@@ -551,6 +773,8 @@ if (globalAccess == 7) {
 	document.getElementById('logout').disabled = false;
 	document.querySelector('#buttonEnter').disabled = true;
 
+	document.getElementById("areaAnswer").innerHTML = " ";
+
 	if (localStorage.getItem('typeBase') == 'remote') {
 		//        alert("База удаленная 1")
 
@@ -576,6 +800,7 @@ if (globalAccess == 7) {
 
 
 function genContentWinEnter(text) {
+	areaAnswer.innerHTML = '';
 	//	alert(text);
 	//	let objectPHP = JSON.parse(text);
 	let objectPHP = text;
@@ -598,6 +823,8 @@ function genContentWinEnter(text) {
 		document.getElementById('importButtonBase').disabled = false;
 	}
 
+
+
 	//    ДОСТУПА В СИСТЕМУ НЕТ.
 	if (Number(objectPHP['access']) == 0) {
 
@@ -617,6 +844,7 @@ function genContentWinEnter(text) {
 
 	// регистрация
 	else if (Number(objectPHP['access']) == 13) {
+
 		modalBody.style.display = 'none';
 		areaAnswer.innerHTML = '';
 
@@ -645,7 +873,7 @@ function genContentWinEnter(text) {
 			'</b></div>';
 
 
-		contentWinEnter += '<br><p><b>Подключите до 31.12.2023 г. бесплатно</b> дополнительные сервисы в системе, перейдя по ссылке в письме которое Вам поступило после регистрации.</p><br>'
+		contentWinEnter += '<br><p><b>Подключите до 31.01.2024 г. бесплатно</b> дополнительные сервисы в системе, перейдя по ссылке в письме которое Вам поступило после регистрации.</p><br>'
 
 
 	}
@@ -680,15 +908,15 @@ function genContentWinEnter(text) {
 			objectPHP['expiredDate'] +
 			'</b></div>';
 
-		contentWinEnter +=
-			'<div style="width:95%; text-align:left;margin-left:10px; margin-top:10px;"><b>Ваша ссылка-приглашение:<br><a id="invite" style="font-size:1em;font-weight:500;" href="';
-		contentWinEnter +=
-			'https://settime.online?invite=' + globalLogin;
-		contentWinEnter += '">';
-		contentWinEnter +=
-			'https://settime.online?invite=' + globalLogin;
-		contentWinEnter += '</a>';
-		contentWinEnter += `<span id="clipboardPlus2" style="font-size: 1.7em; margin: 10px 15px 0 3px; color: #1AB395; cursor: pointer; padding-top: 12px; vertical-align: -3px;"><i class="bi bi-clipboard-plus"></i></span>`;
+		//        contentWinEnter +=
+		//            '<div style="width:95%; text-align:left;margin-left:10px; margin-top:10px;"><b>Ваша ссылка-приглашение:<br><a id="invite" style="font-size:1em;font-weight:500;" href="';
+		//        contentWinEnter +=
+		//            'https://settime.online?invite=' + globalLogin;
+		//        contentWinEnter += '">';
+		//        contentWinEnter +=
+		//            'https://settime.online?invite=' + globalLogin;
+		//        contentWinEnter += '</a>';
+		//        contentWinEnter += `<span id="clipboardPlus2" style="font-size: 1.7em; margin: 10px 15px 0 3px; color: #1AB395; cursor: pointer; padding-top: 12px; vertical-align: -3px;"><i class="bi bi-clipboard-plus"></i></span>`;
 
 
 		//
@@ -825,12 +1053,17 @@ function genContentWinEnter(text) {
 		contentWinEnter += '</b><br><p  style="width:100%; font-weight:500; text-align: center; color:indianred; margin-top:7px;">У Вас закончился доступ к расширенной функциональности системы!<br><a href="" style="color:black";> Продлите доступ БЕСПЛАТНО до 31.12.2023!</a></p><br>'
 
 
-
-
-
-
 	} else if (Number(objectPHP['access']) == 8) {
 		contentWinEnter = '<p style="color:indianred;font-weight:500">Такой логин уже есть в системе!<br><p>Попробуйте еще раз!</p><br>'
+	} else if (Number(objectPHP['access']) == 10) {
+		//        alert(10)
+		contentWinEnter = '<p style="color:indianred;font-weight:500">Восстановление пароля!</p><p>Подтвердите изменение пароля в письме!</p><br>'
+	} else if (Number(objectPHP['access']) == 11) {
+		//        alert(10)
+		contentWinEnter = '<p style="color:indianred;font-weight:500">Восстановление пароля!</p><p style="font-weight:500">Ошибка отправки письма! Повторите восстановление пароля!</p><br>'
+	} else if (Number(objectPHP['access']) == 12) {
+		//        alert(10)
+		contentWinEnter = '<p style="color:indianred;font-weight:500">Такой логина нет в системе!</p><br><p style="width:100%;text-indent:15px;text-align:justify">Исправьте логин и повторите ввод данных пароля. Если логин не удается вспомнить, напишите администратору системы и Вам отправят письмо на зарегистрированный email</p><br>'
 	} else {
 
 	}
@@ -900,6 +1133,7 @@ function loadFiles(globalLogin, item) {
 			return response.text();
 		})
 		.then((text) => {
+			sessionStorage.setItem(item + '1', text)
 			return text;
 		});
 }
@@ -938,14 +1172,9 @@ function radioSelect() {
 	sessionStorage.removeItem('filteredCourses');
 	sessionStorage.removeItem('filteredGrades');
 
-	alerter(
-		'<Text trans="text+:AlertChangeStorageHeader;">Смена типа хранилища</Text>',
-		'<Text trans="text+:AlertChangeStorageBody;">Тип базы данных будет изменён после перезагрузки.</Text>',
-		'standart',
-		'warning',
-		'standart'
-	);
-	setTimeout("location.replace('index.html')", 4000);
+	notifyer('Подключаемся к выбранному типу базы данных.');
+
+	setTimeout("location.replace('index.html')", 1500);
 	//    location.reload();
 }
 
@@ -970,13 +1199,14 @@ document.querySelectorAll('.help')[0].addEventListener('click', () => {
 });
 
 document.getElementById('sendCode2').addEventListener('click', sendCodeFunc);
+document.getElementById('sendCodeInfo2').addEventListener('click', sendCodeFunc);
 
 function sendCodeFunc() {
 	{
 		let action = 'sendCode2email';
 		let nameUser = document.getElementById('YourName').value;
 		let sendTimeCode = document.getElementById('importInput').value;
-		let loginSendTimeCode = document.getElementById('loginSendTimeCode').value;
+		let loginSendTimeCode = document.getElementById('loginSendTimeCode2').value;
 		let courseUser = document.getElementById('courseSelector').value;
 		let levelUser = document.getElementById('levelSelector').value;
 
@@ -1095,11 +1325,403 @@ document.getElementById('clipboardPlus1').addEventListener('click', (e) => {
 });
 
 
+
+
+
+
+
+let btnInformer = document.getElementById("btnInformer");
+btnInformer.addEventListener('click', () => {
+	btnInformer.style.backgroundColor = "#48c2a9";
+
+	if (window.innerWidth < 400) infoWin.style.width = '320px';
+	else if (window.innerWidth < 600) infoWin.style.width = '400px';
+	else infoWin.style.width = '450px';
+
+	let middle = Math.round(window.innerWidth / 2 - infoWin.clientWidth / 2 - 25);
+	infoWin.style.left = String(middle) + 'px';
+
+	let listTab = document.querySelectorAll('.nav-link');
+	let numTabActive = 1;
+	for (let i = 1; listTab.length; i++) {
+		if (String(document.querySelectorAll('.nav-link')[i].classList).includes('active')) {
+			numTabActive = i;
+			break;
+		}
+	};
+
+
+	globalLogin = sessionStorage.getItem('globalLogin')
+
+	if (numTabActive == 1) {
+
+
+		document.getElementById("InformerSend").setAttribute("trans", "text+:InformerSendFree")
+		document.getElementById("TxtInformer1").setAttribute("trans", "text+:Informer1Free")
+		document.getElementById("TxtInformer3").setAttribute("trans", "text+:Informer3Free")
+		document.getElementById("TxtInformer4").setAttribute("trans", "text+:Informer4Free")
+
+		let txtLink = `https://settime.online/?viewFree=`;
+		txtLink += globalLogin;
+		txtLink += `&user=`;
+		txtLink += sessionStorage.getItem('idCurUser');
+		sessionStorage.setItem('textLink', txtLink);
+
+		let txtLinkInvite = `https://settime.online/?invite=demodemo`;
+		sessionStorage.setItem('txtLinkInvite', txtLinkInvite);
+
+		localStorage.setItem('textInvite', document.getElementById('textInvite').innerHTML);
+		let msgInvite = txtLink + " " + document.getElementById('textInvite').innerHTML.replace('{login}', globalLogin);
+
+		sessionStorage.setItem('msgInvite', msgInvite);
+
+		document.getElementById('linkInfo1').setAttribute('href', sessionStorage.getItem('txtLinkInvite'));
+		document.getElementById('linkInfo2').setAttribute('href', sessionStorage.getItem('textLink'));
+
+		sessionStorage.setItem('timeCode', document.getElementById('importInput').value)
+	} else if (numTabActive == 2) {
+
+		document.getElementById("InformerSend").setAttribute("trans", "text+:InformerSendBusy")
+		document.getElementById("TxtInformer1").setAttribute("trans", "text+:Informer1Busy")
+		document.getElementById("TxtInformer3").setAttribute("trans", "text+:Informer3Busy")
+		document.getElementById("TxtInformer4").setAttribute("trans", "text+:Informer4Busy")
+
+		let txtLink = `https://settime.online/?viewBusy=`;
+		txtLink += globalLogin;
+		txtLink += `&user=`;
+		txtLink += sessionStorage.getItem('idCurUser');
+		sessionStorage.setItem('textLink', txtLink);
+
+		let txtLinkInvite = `https://settime.online/?invite=demodemo`;
+		sessionStorage.setItem('txtLinkInvite', txtLinkInvite);
+
+		localStorage.setItem('textInvite', document.getElementById('textInvite').innerHTML);
+		let msgInvite = txtLink + " " + document.getElementById('textInvite').innerHTML.replace('{login}', globalLogin);
+
+		sessionStorage.setItem('msgInvite', msgInvite);
+
+		document.getElementById('linkInfo1').setAttribute('href', sessionStorage.getItem('txtLinkInvite'));
+		document.getElementById('linkInfo2').setAttribute('href', sessionStorage.getItem('textLink'));
+
+		sessionStorage.setItem('timeCode', document.getElementById('importInput').value)
+
+	} else {
+		coslole.log('error numTabActive ')
+	}
+
+
+	Translate();
+
+	document.getElementById('loginSendTimeCode2').value = globalLogin;
+	document.getElementById('timeCodeInfo').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo1').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo2').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo3').style.color = 'CornflowerBlue';
+	document.querySelectorAll(".infoWin")[0].classList.add('infoinvs');
+})
+
+document.getElementById("timeCodeInfo").addEventListener('click', () => {
+	let a = sessionStorage.getItem('timeCode');
+	if (a.length > 2) {
+		document.getElementById('timeCodeInfo').style.color = 'CornflowerBlue';
+		document.getElementById('iconInfo1').style.color = 'CornflowerBlue';
+		document.getElementById('iconInfo2').style.color = 'CornflowerBlue';
+		document.getElementById('iconInfo3').style.color = 'CornflowerBlue';
+		let curObj = document.getElementById('timeCodeInfo');
+		curObj.style.color = '#48c2a9';
+		curObj.style.cursor = 'pointer';
+		curObj.style.fontWeight = 'bold';
+		curObj.style.fontSize = '';
+		navigator.clipboard.writeText(a).then(() => {});
+
+		let listTab = document.querySelectorAll('.nav-link');
+		let numTabActive = 1;
+		for (let i = 1; listTab.length; i++) {
+			if (String(document.querySelectorAll('.nav-link')[i].classList).includes('active')) {
+				numTabActive = i;
+				break;
+			}
+		};
+
+		if (numTabActive == 1) {
+			notifyer('Код свободного времени сохранен в памяти', 500, 'SaveCodeFree');
+		} else if (numTabActive == 2) {
+			notifyer('Код занятого времени сохранен в памяти', 500, 'SaveCodeBusy');
+		}
+
+	} else {
+		alerter(
+			'<Text trans="text+:AlertErrorHeader;">Ошибка</Text>',
+			'<Text trans="text+:sendCodeError1;">Нет данных по коду времени! Cформируйте его, нажав на кнопку </Text><button class="btn btn-sm" id="showingCodeButton2" style="box-sizing: border-box; padding: 2px 6px; font-size: 1em; font-weight: bold; background-color:#23C6C8; lightskyblue; border-radius: 2px; margin-left: 0px"><i class="bi bi-code-square" title="load"></i></button>.',
+			'standart',
+			'danger',
+			'standart'
+		);
+	}
+
+
+})
+
+document.getElementById("iconInfo1").addEventListener('click', () => {
+	let a = sessionStorage.getItem('txtLinkInvite');
+	document.getElementById('timeCodeInfo').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo1').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo2').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo3').style.color = 'CornflowerBlue';
+	let curObj = document.getElementById('iconInfo1');
+	curObj.style.color = '#48c2a9';
+	curObj.style.cursor = 'pointer';
+	curObj.style.fontWeight = 'bold';
+	navigator.clipboard.writeText(a).then(() => {});
+	notifyer('Ссылка сохранена в памяти!', 500, 'SaveLink');
+})
+
+document.getElementById("iconInfo2").addEventListener('click', () => {
+	let a = sessionStorage.getItem('textLink');
+	document.getElementById('timeCodeInfo').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo1').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo2').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo3').style.color = 'CornflowerBlue';
+	let curObj = document.getElementById('iconInfo2');
+	curObj.style.color = '#48c2a9';
+	curObj.style.cursor = 'pointer';
+	curObj.style.fontWeight = 'bold';
+	navigator.clipboard.writeText(a).then(() => {});
+	notifyer('Ссылка сохранена в памяти!', 500, 'SaveLink');
+})
+
+document.getElementById("iconInfo3").addEventListener('click', () => {
+	let a = sessionStorage.getItem('msgInvite');
+	document.getElementById('timeCodeInfo').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo1').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo2').style.color = 'CornflowerBlue';
+	document.getElementById('iconInfo3').style.color = 'CornflowerBlue';
+	let curObj = document.getElementById('iconInfo3');
+	curObj.style.color = '#48c2a9';
+	curObj.style.cursor = 'pointer';
+	curObj.style.fontWeight = 'bold';
+	navigator.clipboard.writeText(a).then(() => {});
+	notifyer('Текст со ссылкой сохранен в памяти!', 500, 'SaveLinkText');
+})
+
+
+document.querySelectorAll(".btnCloseInfo")[0].addEventListener("click", () => {
+	document.querySelectorAll(".infoWin")[0].classList.remove('infoinvs');
+	btnInformer.style.backgroundColor = "CornflowerBlue";
+
+
+})
+document.querySelectorAll(".btnCloseInfo")[1].addEventListener("click", () => {
+	document.querySelectorAll(".infoWin")[0].classList.remove('infoinvs');
+	btnInformer.style.backgroundColor = "CornflowerBlue";
+
+})
+
+
+
+
+
+
+
+
+
+//document.getElementById('btnInformer').addEventListener('click', (e) => {
+//
+//	let listTab = document.querySelectorAll('.nav-link')
+//	let numTabActive = 1
+//	for (let i = 1; listTab.length; i++) {
+//		if (String(document.querySelectorAll('.nav-link')[i].classList).includes('active')) {
+//			numTabActive = i;
+//			break;
+//		}
+//	}
+//	
+//	let txtInvite = `https://settime.online/?invite=`;
+//	txtInvite += globalLogin;
+//	txtInvite += `&user=`;
+//	txtInvite += sessionStorage.getItem('idCurUser');
+//
+//	infoWin.classList.toggle('infoinvs');
+//
+//
+//
+//
+//})
+
+//document.getElementById('btnInformer').addEventListener('click', (e) => {
+//
+//	let listTab = document.querySelectorAll('.nav-link')
+//	let numTabActive = 1
+//	for (let i = 1; listTab.length; i++) {
+//		if (String(document.querySelectorAll('.nav-link')[i].classList).includes('active')) {
+//			numTabActive = i;
+//			break;
+//		}
+//	}
+//
+//	let txtInvite = `https://settime.online/?invite=`;
+//	txtInvite += globalLogin;
+//	txtInvite += `&user=`;
+//	txtInvite += sessionStorage.getItem('idCurUser');
+//
+//	const infoBtn = `<button type="button" class="btn btn-primary ml-3 mr-1 btn btn-sm" id="clipboardLinkBusy" name="clipboardLinkBusy" title="Информеры" style="background-color: lightskyblue;color: black;padding: 0px 4px; margin-left: 3px;border-radius: 2px;font-weight: 500; border-color: lightskyblue;display: none"><i class="bi bi-envelope-at" name="disable"></i></button>`;
+//
+//	if (numTabActive == 2) {
+//
+//		let txtLink = `https://settime.online/?viewBusy=`;
+//		txtLink += globalLogin;
+//		txtLink += `&user=`;
+//		txtLink += sessionStorage.getItem('idCurUser');
+//
+//		alerter(
+//			'<Text trans="text+:AlertErrorHeader4444444;">Информеры</Text>',
+//			`<Text trans="text+:sendCodeError1444444444;">Вы можете скопировать в память необъодтмую информацию по времени и переслать её пользователям различными способами.</Text><br><br><p>Информация по занятому времени пользователя. <br></p><a href="${txtLink}"><p style="font-size:0.90em"><b>${txtLink}</b></p></a><p>Приглашение пользователю заполнить свое свободное время <br><a href="${txtInvite}"><p style="font-size:0.90em"><b>${txtInvite}</b></p></a></p><p>Ссылка с текстом busy</p>`,
+//			'standart',
+//			'info',
+//			'standart'
+//		);
+//	} else if (numTabActive == 1) {
+//
+//
+//		let txtLink = `https://settime.online/?viewFree=`;
+//		txtLink += globalLogin;
+//		txtLink += `&user=`;
+//		txtLink += sessionStorage.getItem('idCurUser');
+//		sessionStorage.setItem('textLink', txtLink);
+//
+//		let txtLinkInvite = `https://settime.online/?invite=demodemo`;
+//		sessionStorage.setItem('txtLinkInvite', txtLinkInvite);
+//
+//		localStorage.setItem('textInvite', document.getElementById('textInvite').innerHTML);
+//
+//
+//		let msgInvite = txtLink + " " + document.getElementById('textInvite').innerHTML.replace('{login}', globalLogin);
+//
+//
+//		sessionStorage.setItem('msgInvite', msgInvite);
+//
+//		sessionStorage.setItem('timeCode', document.getElementById('importInput').value)
+//
+//		let contentBodyInfo = `
+//
+//<table class="table table-striped table-hover" id="tableInformer" style="color: black;">
+//			<thead>
+//				<tr>
+//					<td align=left colspan=3 scope="col">
+//
+//					<span class="w-100" style="font-weight:inherit;color:black"><text trans="text+:sendCodeError1444444444;" style="font-weight:400";>Выберите нужную информацию, сохраните её в пямяти, нажав на кнопку</text><i id="" class="bi bi-clipboard-plus-fill" style="color: cornflowerblue;"></i> ,<text trans=""  style="font-weight:400;color:black"> и отправьте адресату.</text></span> 
+//				</td>
+//				</tr>
+//			</thead>
+//			<tbody>
+//
+//				<tr>
+//				<td width=85% colspan=2>Отправить письмо с данными свободного времени получателю: <input style="margin-left: 5px;margin-top: 5px;margin-right: 10px;width:50%;font-weight: 400;font-size: 0.8em;" class="" value="${globalLogin}" id="loginSendTimeCode" type="text" placeholder="Логин в системе" />
+//</td>
+//					<td width=5%;>
+//						<a><span ><i class="bi bi-send-fill" id="sendCode0" style="font-size: 1em; color: cornflowerblue";cursor:pointer></i></span></a>
+//					</td>
+//					<td width=5%;>&nbsp;</td>
+//				</tr>
+//
+//<tr>
+//				<td>Сохранить код свободного времени</td>
+//				<td> </td>
+//				<td style=""> <a><span style="padding-top:'14px';cursor: pointer;color: cornflowerblue;" onclick="
+//				let a = sessionStorage.getItem('timeCode');
+//				document.getElementById('iconInfo1').color='cornflowerblue';
+//				document.getElementById('iconInfo3').color='cornflowerblue';
+//				let obj2=document.getElementById('timeCode');
+//				obj2.style.color='#48c2a9';
+//				obj2.style.cursor='pointer';
+//				obj2.style.fontWeight='bold';
+//				obj2.style.fontSize='';
+//				navigator.clipboard.writeText(a).then(() => {});">
+//				<i id="timeCode" class="bi bi-clipboard-plus-fill" style="font-size: 1em; color: cornflowerblue"></i></span></a></td>
+//<td width=5%;></td>
+//				</tr>
+//
+//				<tr>
+//				<td>Ссылка с приглашением заполнить свое время</td>
+//				<td> <a href="${txtLinkInvite}">
+//				<i class="bi bi-link d-inline" style="font-size: 1.5em;font-weight: 500;color: cornflowerblue"></i></a></td>
+//				<td style=""> <a><span style="padding-top:'14px';cursor: pointer;color: cornflowerblue;" onclick="
+//				let a = sessionStorage.getItem('txtLinkInvite');
+//				document.getElementById('iconInfo2').color='cornflowerblue';
+//				document.getElementById('iconInfo3').color='cornflowerblue';
+//				let obj2=document.getElementById('iconInfo1');
+//				obj2.style.color='#48c2a9';
+//				obj2.style.cursor='pointer';
+//				obj2.style.fontWeight='bold';
+//				obj2.style.fontSize='';
+//				navigator.clipboard.writeText(a).then(() => {});">
+//				<i id="iconInfo1" class="bi bi-clipboard-plus-fill" style="font-size: 1em; color: cornflowerblue"></i></span></a></td>
+//<td width=5%;></td>
+//				</tr>
+//
+//<tr>
+//
+//				<td width=90%>Ссылка со cвободным временем пользователя.</td>
+//				<td width=5%><a href="${txtLink}">
+//				<i class="bi bi-link" style="font-size: 1.5em;font-weight: 500;"></i></a></td>
+//				<td width=5%;> <a><span style="padding-top:'14px';cursor: pointer;color: cornflowerblue;padding-top:5px;" onclick="
+//				let a = sessionStorage.getItem('textLink');
+//				document.getElementById('iconInfo1').color='cornflowerblue';
+//				document.getElementById('iconInfo3').color='cornflowerblue';
+//				let obj1=document.getElementById('iconInfo2');
+//				obj1.style.color='#48c2a9';
+//				obj1.style.cursor='pointer';
+//				obj1.style.fontWeight='bold';
+//				obj1.style.fontSize='';
+//				navigator.clipboard.writeText(a).then(() => {});">
+//				<i id="iconInfo2" class="bi bi-clipboard-plus-fill" style="font-size: 1em; color: cornflowerblue"></i></span></a></td>
+//<td width=5%;></td>
+//				</tr>
+//
+//
+//				<tr>
+//				<td>Ссылка со свободным временем и текстом</td>
+//				<td></td>
+//				<td style=""><a><span style="padding-top:'14px';cursor: pointer; color: cornflowerblue" class="ml-0 mr-0" onclick="
+//				let a = sessionStorage.getItem('msgInvite');
+//				document.getElementById('iconInfo1').color='cornflowerblue';
+//				document.getElementById('iconInfo2').color='cornflowerblue';
+//				let obj3=document.getElementById('iconInfo3');
+//				obj3.style.color='#48c2a9';
+//				obj3.style.cursor='pointer';
+//				obj3.style.fontWeight='bold';
+//				obj3.style.fontSize='';
+//				navigator.clipboard.writeText(a).then(() => {});">
+//				<i id="iconInfo3" class="bi bi-clipboard-plus-fill" style="font-size: 1em; color: cornflowerblue"></i></span></a></td>
+//<td width=5%;></td>
+//				</tr>
+//			</tbody>
+//		</table>`
+//
+//		//		console.log(contentBodyInfo)
+//
+//		alerter(
+//			'<Text trans="text+:AlertErrorHeader4444444;">Информеры</Text>', contentBodyInfo, 'standart',
+//			'info',
+//			'standart'
+//		);
+//
+//		let tdGen = document.querySelectorAll("#tableInformer td");
+//		for (let j = 0; j < tdGen.length; j++) {
+//			tdGen[j].style.textAlign = "justify";
+//			tdGen[j].style.fontSize = "0.95em";
+//			tdGen[j].style.textIndent = "10px";
+//			tdGen[j].style.lineHeight = "1.55em";
+//		}
+//	}
+//
+//});
 document.getElementById('clipboardLinkBusy').addEventListener('click', (e) => {
 
+	//	let idUser = document.getElementById("btnTodo").getAttribute('data-id');
+	//	console.log(idUser);
+
 	let txtLink = "";
-
-
 	txtLink += `Добрый день! Вам отправлено приглашение от пользователя `;
 	txtLink += globalLogin;
 	txtLink += ` заполнить данные по Вашему свободному времени для составления оптимального расписания в системе "ДелуВремя!". Перейдите пожалуйста по ссылке, отметьте в таблице время для занятий и нажмите кнопку 'ОТПРАВИТЬ'! Спасибо!
@@ -1107,6 +1729,8 @@ document.getElementById('clipboardLinkBusy').addEventListener('click', (e) => {
 
 	txtLink += `https://settime.online/?invite=`;
 	txtLink += globalLogin;
+	txtLink += `&user=`;
+	txtLink += document.getElementById("btnTodo").getAttribute('data-id');
 	txtLink += `&nameUser=`;
 	txtLink += document.getElementById('YourName').value.replace(/\s+/g, '_');
 	txtLink += `&sendTimeCode=`;
@@ -1203,23 +1827,40 @@ function getDataFrom(typeBase, globalLogin, item) {
 
 btnFullScreenBusy.addEventListener('click', fullBreif)
 
-function fullBreif() {
+
+
+export function fullBreif() {
 	let btnFullScreenBusy = document.getElementById("btnFullScreenBusy")
 	let briefName = document.getElementById("briefName")
 	let tds = document.querySelectorAll("#tableUser td");
 	let tdsDays = document.querySelectorAll("#tableDays td");
 	//let tabledDays = document.querySelectorAll("#tableDays");
+
+
 	if (btnFullScreenBusy.dataset.target == "full") {
 		btnFullScreenBusy.setAttribute("data-target", "brief")
 		btnFullScreenBusy.innerHTML = `<i class="bi bi-arrows-collapse font-weight-bold mx-0" style="margin-top: 0.65em"></i>`
 		document.getElementById("editDataHeader").style.display = "none";
+		document.getElementById("importSpan").style.display = "none";
+		document.getElementById("strCourseLevel").style.display = "none";
+
 		if (Number(window.innerWidth) < 400) {
-			briefName.innerHTML = document.getElementById("YourName").value.slice(0, 10) + "..."
+			briefName.innerHTML = document.getElementById("YourName").value.slice(0, 23).replace(/_/g, ' ')
 		} else {
-			briefName.innerHTML = document.getElementById("YourName").value
+			briefName.innerHTML = document.getElementById("YourName").value.replace(/_/g, ' ')
 		}
+
+		console.log("1279 строка - Высота bodyTable");
+		console.log(document.getElementById("bodyTable").offsetHeight);
+		console.log("Высота одной из 24 ячеек таблицы с верт паддинком 1");
+		console.log(tds[1].offsetHeight);
+
+		const calcHeight = String((document.getElementById("bodyTable").offsetHeight) / 28) + "px";
+		console.log(calcHeight);
+
 		for (let i = 0; i < tds.length; i++) {
-			tds[i].style.padding = "0px 2px";
+			tds[i].style.padding = "1px 2px";
+			tds[i].style.height = calcHeight - 1;
 			//tds[i].style.fontSize = "0.75em";
 		}
 		for (let i = 0; i < tdsDays.length; i++) {
@@ -1231,7 +1872,11 @@ function fullBreif() {
 		btnFullScreenBusy.innerHTML = `<i class="bi bi-arrows-expand font-weight-bold mx-0" style="margin-top: 0.65em"></i>`
 		//tabledDays.style.marginTop = "0px";
 		//tabledDays.style.marginTop = "0px";
-		document.getElementById("editDataHeader").style.display = "block";
+		document.getElementById("editDataHeader").style.display = "flex";
+		document.getElementById("importSpan").style.display = "flex";
+		document.getElementById("strCourseLevel").style.display = "flex";
+		document.getElementById("importInput").style.width = "50%";
+
 		briefName.innerHTML = ""
 		for (let i = 0; i < tds.length; i++) {
 			tds[i].style.padding = "8px 1.6px"
@@ -1257,3 +1902,5 @@ function fullBreif() {
 	// );
 
 }
+
+document.getElementById('dataTitle').addEventListener('click', offObjOnModal)

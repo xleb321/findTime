@@ -75,9 +75,9 @@
 		"fr": "Ajouter "
 	},
 	"filterButtonStyle": {
-		"ru": "width:8em; height:29px; margin:5px 145px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
-		"en": "width:5em; height:29px; margin:5px 55px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
-		"fr": "width:5em; height:29px; margin:5px 55px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;"
+		"ru": "width:8em; height:29px; margin:5px 65px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"en": "width:5em; height:29px; margin:5px 25px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"fr": "width:5em; height:29px; margin:5px 30px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;"
 	},
 	"HelpButtonStyle": {
 		"ru": "width:8em; margin:5px 0 0 0; font-size:0.9em; border-color:white; font-weight:300; background-color:deepskyblue; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
@@ -85,9 +85,9 @@
 		"fr": "width:5em; border-color:white; font-weight:300; background-color:deepskyblue; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;"
 	},
 	"PlusButtonBusyStyle": {
-		"ru": "margin:5px 85px 0 0; font-weight:100; height:29px; width:90px; color:black; font-weight:300; background-color:#48c2a9; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
-		"en": "margin:5px 35px 0 0; height:29px; width:50px; color:black; font-weight:300; background-color:#48c2a9; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
-		"fr": "margin:5px 35px 0 0; height:29px; width:50px; color:black; font-weight:300; background-color:#48c2a9; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;"
+		"ru": "margin:5px 5px 0 0; font-weight:100; height:29px; width:90px; color:black; font-weight:300; background-color:#48c2a9; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"en": "margin:5px 5px 0 0; height:29px; width:50px; color:black; font-weight:300; background-color:#48c2a9; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"fr": "margin:5px 5px 0 0; height:29px; width:55px; color:black; font-weight:300; background-color:#48c2a9; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;"
 	},
 	"Setting": {
 		"ru": "НАСТРОЙКА СИСТЕМЫ",
@@ -125,7 +125,7 @@
 		"fr": " Dans le stockage local de l'appareil"
 	},
 	"RtStor": {
-		"ru": " В удаленной базе данных",
+		"ru": " В сетевой базе данных",
 		"en": " In the remote database",
 		"fr": " Dans une base de données distante"
 	},
@@ -174,6 +174,26 @@
 		"en": " Free time  ",
 		"fr": " Temps Libre "
 	},
+	"setupData": {
+		"ru": "Настройка данных",
+		"en": "Set up data base ",
+		"fr": "Configuration de la base de données"
+	},
+	"setupInformers": {
+		"ru": "Информеры",
+		"en": "Informers",
+		"fr": "Informateurs"
+	},
+	"setupTasks": {
+		"ru": "Задачи",
+		"en": "Tasks",
+		"fr": "Tâches"
+	},
+	"setupServices": {
+		"ru": "Обслуживание базы",
+		"en": "Database maintenance",
+		"fr": "Entretien de la base"
+	},
 	"FreeTimeBrief": {
 		"ru": " Свободноe",
 		"en": " Free  ",
@@ -190,14 +210,14 @@
 		"fr": "&nbsp; Temps &nbsp;"
 	},
 	"ToCreateCurse": {
-		"ru": "Чтобы создать курсы",
-		"en": "To create a courses",
-		"fr": "Pour créer un cours"
+		"ru": "Данные параметра 1",
+		"en": "Parameter 1 data",
+		"fr": "Données de paramètre 2"
 	},
 	"ToCreateGrade": {
-		"ru": "Чтобы создать уровни",
-		"en": "To create grades",
-		"fr": "Pour créer une évaluation"
+		"ru": "Данные параметра 2",
+		"en": "Parameter 2 data",
+		"fr": "Données de paramètre 2"
 	},
 	"ImpFreetime": {
 		"ru": "Импортируйте свободное время",
@@ -375,7 +395,7 @@
 		"fr": "Sélectionnez la langue"
 	},
 	"SortingLabel": {
-		"ru": "Сортировка: ",
+		"ru": " ",
 		"en": "Sort by: ",
 		"fr": "Trier par: "
 	},
@@ -418,6 +438,11 @@
 		"ru": "Уровни<br>",
 		"en": "Grades<br>",
 		"fr": "Niveaux<br>"
+	},
+	"flagShedDivTitle": {
+		"ru": "Признак расписания<br>",
+		"en": "A sign of the schedule<br>",
+		"fr": "Signe d'horaire<br>"
 	},
 	"FilterTitle": {
 		"ru": "Фильтры",
@@ -492,10 +517,20 @@
 	"Work": {
 		"ru": "Работа",
 		"en": "Work",
-		"fr": "&nbsp;Travail"
+		"fr": "Travail"
+	},
+	"Work_r": {
+		"ru": "Постоянно",
+		"en": "Regular",
+		"fr": "travaux ordinairesail"
+	},
+	"Work_s": {
+		"ru": "Разово",
+		"en": "One-time work",
+		"fr": "Travail ponctuel"
 	},
 	"work": {
-		"ru": "&nbsp;Работа",
+		"ru": "Работа",
 		"en": "Work",
 		"fr": "&nbsp;Travail"
 	},
@@ -534,10 +569,94 @@
 		"en": "Log in and additional features will be available to you",
 		"fr": "Connectez-vous et vous aurez accès à des fonctionnalités supplémentaires."
 	},
+	"Info": {
+		"ru": "&nbsp;&nbsp;Инфо&nbsp;",
+		"en": "&nbsp;&nbsp;Info&nbsp;",
+		"fr": "&nbsp;&nbsp;Info&nbsp;"
+	},
+
+	"InformerTitle1": {
+		"ru": "Выберите нужную информацию, сохраните её в памяти, нажав на кнопку",
+		"en": "Select the necessary information, save it in memory by clicking on the button",
+		"fr": "Sélectionnez les informations souhaitées, enregistrez-les en mémoire en cliquant sur le bouton."
+	},
+
+	"InformerTitle2": {
+		"ru": " и отправьте адресату.",
+		"en": " and send it to the recipient.",
+		"fr": " et envoyez-le au destinataire."
+	},
+	"InformerSendFree": {
+		"ru": "Отправить письмо со свободным временем участнику системы:",
+		"en": "Send an email with free time to a member of the system:",
+		"fr": "Envoyer un e-mail avec du temps libre au participant du système:"
+	},
+	"InformerSendBusy": {
+		"ru": "Отправить письмо с занятым временем участнику системы:",
+		"en": "Send an email with busy time to a member of the system:",
+		"fr": "Envoyer un e-mail avec du temps libre au participant du système:"
+	},
+
+
+	"Informer1Free": {
+		"ru": "Сохранить в памяти код свободного времени",
+		"en": "Save the free time code in memory:",
+		"fr": "Enregistrer le code de temps libre dans la mémoire:"
+	},
+	"Informer1Busy": {
+		"ru": "Сохранить в памяти код занятого времени",
+		"en": "Save the busy time code in memory:",
+		"fr": "Enregistrer en mémoire le code du temps occupé:"
+	},
+	"Informer2": {
+		"ru": "Ссылка с приглашением заполнить свое время",
+		"en": "A link with an invitation to fill in your time",
+		"fr": "Lien avec une invitation à remplir votre temps"
+	},
+	"Informer3Free": {
+		"ru": "Ссылка со cвободным временем пользователя",
+		"en": "A link with the user's free time",
+		"fr": "Lien avec le temps libre de l'utilisateur"
+	},
+	"Informer3Busy": {
+		"ru": "Ссылка с занятым временем пользователя",
+		"en": "A link with the user's busy time",
+		"fr": "Lien avec le temps occupé de l'utilisateur"
+	},
+	"Informer4Free": {
+		"ru": "Ссылка со свободным временем и текстом",
+		"en": "Link with free time and text",
+		"fr": "Lien avec du temps libre et du texte"
+	},
+	"Informer4Busy": {
+		"ru": "Ссылка с занятым временем и текстом",
+		"en": "Link with busy time and text",
+		"fr": "Lien avec le temps occupé et le texte"
+	},
 	"InviteText": {
 		"ru": "Вы получили приглашение от пользователя",
 		"en": "You have received an invitation from the user ",
 		"fr": "Vous avez reçu une invitation de l'utilisateur"
+	},
+	"SaveCodeFree": {
+		"ru": "Код свободного времени сохранен в памяти!",
+		"en": "The free time code is stored in memory!",
+		"fr": "Le code de temps libre est stocké dans la mémoire!"
+	},
+	"SaveCodeBusy": {
+		"ru": "Код занятого времени сохранен в памяти!",
+		"en": "The busy time code is stored in memory!",
+		"fr": "Le code du temps occupé est enregistré dans la mémoire!"
+	},
+	"SaveLink": {
+		"ru": "Ссылка сохранена в памяти!",
+		"en": "The link is saved in memory!",
+		"fr": "Le lien est enregistré dans la mémoire!"
+	},
+	"SaveLinkText": {
+		"ru": "Текст со ссылкой сохранен в памяти!",
+		"en": "The text with the link is saved in memory!",
+		"fr": "Le texte avec le lien est enregistré dans la mémoire!"
 	},
 	"InviteText2": {
 		"ru": " заполнить данные по Вашему свободному или занятому времени для составления расписания в системе <b>ДелуВремя!</b> <p>Введите пожалуйста свое имя и фамилию, отметьте в таблице время и нажмите кнопку <b class=\"text-primary\">'Отправить'</b>!<span style=\" font-weight:500\"> Спасибо!<span></p>",
@@ -1284,11 +1403,17 @@
 		"en": "Name",
 		"fr": "Nom"
 	},
+	"LoginSend": {
+		"ru": "Отправить",
+		"en": "Send to",
+		"fr": "Envoyer"
+	},
 	"login": {
 		"ru": "Логин",
 		"en": "login",
 		"fr": "login"
 	},
+
 	"password": {
 		"ru": "Пароль",
 		"en": "Password",
@@ -1330,7 +1455,7 @@
 		"fr": " Il faut "
 	},
 	"clickUpdate": {
-		"ru": " Обновить ",
+		"ru": " Сохранить ",
 		"en": " Update ",
 		"fr": " Actualiser "
 	},
@@ -1445,52 +1570,52 @@
 		"fr": "Aucun étudiant n'est sélectionné"
 	},
 	"NameAscending": {
-		"ru": "&#8595; имена по возр",
+		"ru": "Сортировка: по имени &#8595;",
 		"en": "&#8595; name asc",
 		"fr": "&#8595; c'est par vozr"
 	},
 	"NameDescending": {
-		"ru": "&#8593; имена по уб",
+		"ru": "Сортировка: по имени &#8593;",
 		"en": "&#8593; name desc",
 		"fr": "&#8593; c'est par UB"
 	},
 	"NumAscending": {
-		"ru": "&#8595; номера по возр",
+		"ru": "Сортировка: по номеру &#8595;",
 		"en": "&#8595; num asc",
 		"fr": "&#8595; nombre par année"
 	},
 	"NumDescending": {
-		"ru": "&#8593; номера по уб",
+		"ru": "Сортировка: по номеру &#8593;",
 		"en": "&#8593; num desc",
 		"fr": "&#8593; nombre par UB"
 	},
 	"CourseAscending": {
-		"ru": "&#8595; курсы по возр",
+		"ru": "Сортировка: параметр1 &#8595",
 		"en": "&#8595; course asc",
 		"fr": "&#8595; cours sur l'eau"
 	},
 	"CourseDescending": {
-		"ru": "&#8593; курсы по уб",
+		"ru": "Сортировка: параметр1 &#8593;",
 		"en": "&#8593; course desc",
 		"fr": "&#8593; cours sur UB"
 	},
 	"GradeAscending": {
-		"ru": "&#8595; уровни по возр",
+		"ru": "Сортировка: параметр2 &#8595;",
 		"en": "&#8595; grade asc",
 		"fr": "&#8595; évaluation asc"
 	},
 	"GradeDescending": {
-		"ru": "&#8593; уровни по уб",
+		"ru": "Сортировка: параметр2 &#8593;",
 		"en": "&#8593; grade desc",
 		"fr": "&#8593; classe par ordre décroissant"
 	},
 	"DescAscending": {
-		"ru": "&#8595; описания по возр",
+		"ru": "Сортировка: по описанию &#8595;",
 		"en": "&#8595; desc asc",
 		"fr": "&#8595; Description de l'article"
 	},
 	"DescDescending": {
-		"ru": "&#8593; описания по уб",
+		"ru": "Сортировка: по описанию &#8593;",
 		"en": "&#8593; desc desc",
 		"fr": "&#8593; par ordre décroissant"
 	},
@@ -1580,9 +1705,9 @@
 		"fr": "Édition de l'affaire"
 	},
 	"DisplaySchedule": {
-		"ru": "Выводить список дел в расписание",
-		"en": "Display the to-do list in the schedule",
-		"fr": "Afficher la liste des tâches dans le calendrier"
+		"ru": "Показать в расписании",
+		"en": "Show in the schedule",
+		"fr": "Afficher dans le calendrier"
 	},
 	"toDoList": {
 		"ru": "список дел",

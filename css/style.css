@@ -36,6 +36,16 @@ td {
 	font-size: 0.8em;
 }
 
+#tableInformer td {
+	text-align: justify;
+	font-size: 0.95em;
+	padding-left: 1px;
+	padding-right: 12px;
+	text-indent: 10px;
+	box-sizing: border-box;
+}
+
+
 .text-orange {
 	color: orangered;
 }
@@ -60,6 +70,8 @@ td {
 
 tr td:last-child {
 	border-right: 0;
+	text-align: center;
+/*	text-indent: 15px;*/
 }
 
 .tableDaysInner {
@@ -138,7 +150,7 @@ h5 {
 #filter-button {
 	position: absolute;
 	top: 0;
-	right: 70px;
+	right: 35px;
 	width: 29px;
 	margin: 5px 6px 0 0;
 	font-size: 12px;
@@ -193,7 +205,7 @@ h5 {
 #erase-button {
 	position: absolute;
 	top: 0;
-	right: 35px;
+	right: 0px;
 	width: 29px;
 	margin: 5px 6px 0 0;
 	font-size: 11.8px;
@@ -248,7 +260,7 @@ h5 {
 #plus-button {
 	position: absolute;
 	top: 0;
-	right: 35px;
+	right: 0px;
 	width: 29px;
 	margin: 5px 6px 0 0;
 	font-size: 12px;
@@ -265,7 +277,7 @@ h5 {
 #plus-button-busy {
 	position: absolute;
 	top: 5;
-	right: 45px;
+	right: 0px;
 	width: 29px;
 	margin: 5px 6px 0 0;
 	font-size: 12px;
@@ -282,7 +294,7 @@ h5 {
 #plus-button-Busy1 {
 	position: absolute;
 	top: 5;
-	right: 45px;
+	right: 9px;
 	width: 29px;
 	margin: 5px 6px 0 0;
 	padding: 5px;
@@ -392,6 +404,7 @@ h5 {
 
 .filter-modal-body {
 	width: 95%;
+	/*	height: 80%;*/
 	overflow-y: auto;
 	position: fixed;
 	top: 50%;
@@ -400,6 +413,7 @@ h5 {
 	z-index: 20;
 	border: 1px solid black;
 	border-radius: 5px;
+	z-index: 500;
 }
 
 .filter-modal-title {
@@ -436,15 +450,12 @@ h5 {
 
 }
 
-
-
-
 .filter-modal-div {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 
-	/*	height: calc(100% - 100px);*/
+	height: calc(100% - 100px);
 	padding: 5px;
 	display: flex;
 	justify-content: space-around;
@@ -471,6 +482,21 @@ h5 {
 	text-align: left;
 	padding-left: 15px;
 	margin-top: 5px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid black;
+
+}
+
+.filter-modal-flagShed-div {
+	width: 100%;
+
+	font-size: 15px;
+	font-weight: 500;
+	text-align: left;
+	padding-left: 15px;
+	padding-bottom: 10px;
+	margin-top: 5px;
+
 
 }
 
@@ -494,6 +520,9 @@ h5 {
 .course-or-grade label {
 	padding-left: 5px;
 }
+
+
+
 
 .blocked {
 	display: block;
@@ -655,12 +684,17 @@ h5 {
 
 	.filter-modal-courses-div {
 		padding-top: 40px;
-		padding-left: 1px;
+		padding-left: 3px;
 	}
 
 	.filter-modal-grades-div {
-		padding-left: 1px;
+		padding-left: 3px;
 	}
+
+	.filter-modal-flagShed-div {
+		padding-left: 3px;
+	}
+
 }
 
 @media (max-width: 500px) {
@@ -670,10 +704,17 @@ h5 {
 
 	.filter-modal-courses-div {
 		padding-top: 40px;
-		padding-left: 1px;
+		padding-left: 3px;
 	}
 
 	.filter-modal-grades-div {
-		padding-left: 1px;
+		padding-left: 3px;
 	}
+
+	.filter-modal-flagShed-div {
+		padding-left: 3px;
+	}
+
+
+
 }

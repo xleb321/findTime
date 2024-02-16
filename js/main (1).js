@@ -2,8 +2,7 @@ import {
 	Translate
 } from './translator.js';
 import {
-	export2net,
-	fullBreif
+	export2net
 } from './extend.js';
 import {
 	loadTodoLayers,
@@ -33,8 +32,6 @@ const timeSelector = document.getElementById('timeSelect');
 const timeSelectorSpan = document.getElementById('timeSelectSpan');
 const selectCourseSpan = document.getElementById('courseSelectorSpan');
 const selectLevelSpan = document.getElementById('levelSelectorSpan');
-const strCourseLevel = document.getElementById('strCourseLevel');
-
 // const gradeTextArea = document.getElementById("gradeTextArea");
 // const courseTextArea = document.getElementById("courseTextArea");
 const gradeSubmittingButton = document.getElementById('gradeNameSubmit');
@@ -508,16 +505,9 @@ function checkOut() {
 }
 
 function loadStudentsTable() {
-
-	if (document.getElementById("spiner")) {
-		//        debugger
-		document.getElementById("spiner").remove()
-	}
-
 	//    const users = JSON.parse(localStorage.getItem("users")) || [];
 	//    const users1 = JSON.parse(getDataFrom(localStorage.getItem('typeBase'), globalLogin, 'users')) || [];
 
-	//    debugger;
 	const users =
 		JSON.parse(
 			getDataFrom(
@@ -526,8 +516,6 @@ function loadStudentsTable() {
 				'users'
 			)
 		) || [];
-
-
 
 	//    const filteredUsers =
 	//        JSON.parse(localStorage.getItem("filteredUsers")) || users;
@@ -544,15 +532,14 @@ function loadStudentsTable() {
 	//	if (sessionStorage.getItem('filteredUsers') == '[]') {
 	//		filteredUsers = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'users'));
 	//	}
-
-
-	//    console.log("#######-filteredUsers-analis#################")
-	//    console.log(filteredUsers, '540 - - loadStudentsTable() ');
-	//	console.log(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), '540');
-	//	console.log("Session", sessionStorage.getItem('filteredUsers'))
-	//	console.log("Local", localStorage.getItem('filteredUsers'))
-	//	console.log("##############################################")
-
+	//
+	//	alert(filteredUsers, '523')
+	console.log(filteredUsers, '528 - loadStudentsTable()');
+	console.log(
+		sessionStorage.getItem('typeBase'),
+		sessionStorage.getItem('globalLogin'),
+		'528'
+	);
 
 	let rightToolBar = document.createElement('span');
 
@@ -597,20 +584,19 @@ function loadStudentsTable() {
 		document.getElementById('plus-button').addEventListener('click', () => {
 			currUser = null;
 			currBusiness = null;
-			debugger;
-			onObjOnModal()
-			document.getElementById('dataTitle').setAttribute('trans', 'text+:AddTime;');
+			timeSelectorSpan.style.display = 'block';
+			document.getElementById('dataTitle').display = 'block';
+			document
+				.getElementById('dataTitle')
+				.setAttribute('trans', 'text+:AddTime;');
 			document.getElementById('dataTitle').innerHTML = ' ';
 			document.getElementById('YourName').value = '';
-			document.getElementById("timeSelect").childNodes[1].selected = true;
-			document.getElementById("timeSelect").childNodes[3].selected = false;
-
 			//            document.getElementById("dataTitle").display = "none";
 			clearEverything();
 			Translate();
 		});
 	}
-	//	timeSelectorSpan.style.display = 'block';
+	timeSelectorSpan.style.display = 'block';
 
 	if (!document.getElementById('filter-button')) {
 		const filterButton = document.createElement('button');
@@ -651,46 +637,41 @@ function loadStudentsTable() {
 
 	//     <button name="PlusButton" id="create" class="help" style="color: white; background-color:deepskyblue;box-sizing: border-box; padding: 4px 3px 3px 4px; border-radius: 2px; border-width: 0px; font-size: 1.6em; font-weight: 200;"><i class="bi bi-question"></i></button
 
-	//    if (!document.getElementById('help-button')) {
-	//        let helpButton = document.createElement('button');
-	//        let helpButtonIcon = document.createElement('i');
-	//
-	//        helpButton.setAttribute('id', 'create');
-	//        helpButton.setAttribute('id', 'help-button');
-	//        helpButton.setAttribute('class', 'help');
-	//        helpButton.setAttribute(
-	//            'style',
-	//            'width:3.5em; color: black; background-color:deepskyblue;box-sizing: border-box; padding: 0px 3px 2px 4px; border-radius: 2px; border-width: 0px; font-size: 1.05em; font-weight: 100;'
-	//        );
-	//        helpButton.style.margin = '5px 0 0 0';
-	//        helpButton.style.padding = '0 1px 0 0';
-	//        helpButton.style.width = '29px';
-	//        helpButton.style.height = '29px';
-	//        helpButton.style.fontSize = '1em';
-	//        helpButton.style.fontWeight = '100';
-	//
-	//        helpButtonIcon.style.fontSize = '20px';
-	//        helpButtonIcon.setAttribute('class', 'bi bi-question');
-	//        helpButton.appendChild(helpButtonIcon);
-	//
-	//        if (document.documentElement.clientWidth > 540) {
-	//            let helpButtonText = document.createElement('span');
-	//            helpButtonText.setAttribute('trans', 'text+:HelpButton;');
-	//            helpButton.setAttribute('trans', 'style:HelpButtonStyle;');
-	//            helpButton.appendChild(helpButtonText);
-	//        }
-	//
-	//        rightToolBar.append(helpButton);
-	//        helpButton.onclick = () => (window.location.href = 'guide.html');
-	//    }
+	if (!document.getElementById('help-button')) {
+		let helpButton = document.createElement('button');
+		let helpButtonIcon = document.createElement('i');
+
+		helpButton.setAttribute('id', 'create');
+		helpButton.setAttribute('id', 'help-button');
+		helpButton.setAttribute('class', 'help');
+		helpButton.setAttribute(
+			'style',
+			'width:3.5em; color: black; background-color:deepskyblue;box-sizing: border-box; padding: 0px 3px 2px 4px; border-radius: 2px; border-width: 0px; font-size: 1.05em; font-weight: 100;'
+		);
+		helpButton.style.margin = '5px 0 0 0';
+		helpButton.style.padding = '0 1px 0 0';
+		helpButton.style.width = '29px';
+		helpButton.style.height = '29px';
+		helpButton.style.fontSize = '1em';
+		helpButton.style.fontWeight = '100';
+
+		helpButtonIcon.style.fontSize = '20px';
+		helpButtonIcon.setAttribute('class', 'bi bi-question');
+		helpButton.appendChild(helpButtonIcon);
+
+		if (document.documentElement.clientWidth > 540) {
+			let helpButtonText = document.createElement('span');
+			helpButtonText.setAttribute('trans', 'text+:HelpButton;');
+			helpButton.setAttribute('trans', 'style:HelpButtonStyle;');
+			helpButton.appendChild(helpButtonText);
+		}
+
+		rightToolBar.append(helpButton);
+		helpButton.onclick = () => (window.location.href = 'guide.html');
+	}
 
 	//	document.getElementById("erase-button").style.display = "block"
 	document.getElementById('filter-button').style.display = 'block';
-
-	//    alert("683" + String(users.length))
-	//    alert("684" + String(sessionStorage.getItem("users")))
-
-
 
 	if (
 		(users.length === 0 &&
@@ -698,9 +679,7 @@ function loadStudentsTable() {
 			filteredCourses.length === 0) ||
 		filteredUsers.length === 0
 	) {
-
-
-		//        console.log("Привет 688");
+		// console.log("Привет");
 		if (studentTableDiv.querySelector('section')) {
 			studentTableDiv.removeChild(studentTableDiv.querySelector('section'));
 		}
@@ -722,23 +701,9 @@ function loadStudentsTable() {
 		}
 
 		const text = document.createElement('Text');
-		console.log("----715-----");
-		console.log(sessionStorage.getItem("numLoad"), sessionStorage.getItem("globalAccess"))
-
-		//        alert("empty query!")
-
-
-		if (document.getElementById("spiner")) {
-			document.getElementById("spiner").remove();
-		}
-
-		if (sessionStorage.getItem("numLoad") == 2) {
-
-			text.innerHTML = "Unfortunately,\n the list of users' free time is empty";
-			text.setAttribute('trans', 'text+:EmptinessOfUsersList;');
-			text.id = 'EmptinessOfUsersList';
-		}
-
+		text.innerHTML = "Unfortunately,\n the list of users' free time is empty";
+		text.setAttribute('trans', 'text+:EmptinessOfUsersList;');
+		text.id = 'EmptinessOfUsersList';
 		h6.appendChild(text);
 		h6.style.margin = '5px';
 		h6.style.width = '100%';
@@ -757,70 +722,34 @@ function loadStudentsTable() {
 		Translate();
 
 		if (sessionStorage.getItem('globalAccess') == 7) {
-
-			//            alert(sessionStorage.getItem("users"))
 			//			alert(document.querySelectorAll("#section td").length)
-			//
-			//            if (filteredUsers.length == 0) {
-			//
-			//                sessionStorage.setItem("filteredUsers", sessionStorage.getItem("users"))
-			//            }
 
-			//            console.log("----741-- после удачного первого логина. Здесь должны быть все файлы--")
-			//            console.log("Тип хранения данных" + sessionStorage.getItem("typeBase") + sessionStorage.getItem("filteredUsers").length == 0)
-			//            
-			//            
+			if (filteredUsers.length == 0 && sessionStorage.getItem('numLoad') != 1) {
+				sessionStorage.setItem('typeBase', 'remote');
+				sessionStorage.setItem('numLoad', 1);
 
-			//            console.log(filteredUsers, '746 -   до загрузки');
+				alerter(
+					"<Text name='Welcome'>Добро пожаловать</Text>",
+					`<Text name='disable'>
+						Вы вошли в систему расширенных возможностей по составлению расписания и организации встреч! <ul><h6 style="margin-top:10px">Теперь вы сможете:</h6><li>Смотреть данные по времени клиентов, расписанию и списка своих дел с любого устройства</li>
+<li>Отправить клиенту приглашение отметить своё свободное или занятое время и затем быстро и просто ввести его данные в систему для составления расписания</li><li>Отправить клиентам своё свободное или занятое время</li><li>Предоставить доступ к расписанию нескольким сотрудникам</li><li>Управлять персональным расписанием сотрудника администратором времени (тайм-менеджером) </li></ul></Text> `,
+					'standart',
+					'success',
+					'<a href="https://settime.online"><button type="button" class="btn btn-sm btnUpdate m-2 " id="net2" style="font-weight: 500;color: black; font-size: 1em; background-color:#48c2a9;">Понятно!</button></a>',
+					true
+				);
 
-			getDataFrom(sessionStorage.getItem("typeBase"), sessionStorage.getItem("globalLogin"), "filteredUsers")
-
-			//            getFilteredUser();
-
-			//            console.log(sessionStorage.getItem("typeBase") + " " + sessionStorage.getItem("globalLogin") + " " + "users")
-
-			//            alert(sessionStorage.getItem("users"))
-			//            console.log(filteredUsers, '752 -  после загрузки filteredUsers');
-
-
-
-			//            if (filteredUsers.length >= 0 && sessionStorage.getItem('numLoad') != 1) {
-			//                sessionStorage.setItem('typeBase', 'remote');
-			//                sessionStorage.setItem('numLoad', 1);
-			//
-			//                alerter(
-			//                    "<Text name='Welcome'>Добро пожаловать</Text>",
-			//                    `<Text name='disable'>
-			//									Вы вошли в систему расширенных возможностей по составлению расписания и организации встреч! <ul><h6 style="margin-top:10px">Теперь вы сможете:</h6><li>Смотреть данные по времени клиентов, расписанию и списка своих дел с любого устройства</li>
-			//			<li>Отправить клиенту приглашение отметить своё свободное или занятое время и затем быстро и просто ввести его данные в систему для составления расписания</li><li>Отправить клиентам своё свободное или занятое время</li><li>Предоставить доступ к расписанию нескольким сотрудникам</li><li>Управлять персональным расписанием сотрудника администратором времени (тайм-менеджером) </li></ul></Text> `,
-			//                    'standart',
-			//                    'success',
-			//                    '<a href="https://settime.online"><button type="button" class="btn btn-sm btnUpdate m-2 " id="net2" style="font-weight: 500;color: black; font-size: 1em; background-color:#48c2a9;">Понятно!</button></a>',
-			//                    true
-			//                );
-			//
-			//                //				document.getElementById("net2").addEventListener('click', () => {
-			//                //					alert("")
-			//                //				})
-			//            }
-
-			filteredUsers =
-				JSON.parse(
-					getDataFrom(
-						sessionStorage.getItem('typeBase'),
-						sessionStorage.getItem('globalLogin'),
-						'filteredUsers'
-					)
-				) || users;
-
+				//				document.getElementById("net2").addEventListener('click', () => {
+				//					alert("")
+				//				})
+			}
 		}
-		//        console.log(filteredUsers, '791 -   до загрузки');
 
 		return;
 	}
 
 	if (document.getElementById('LOMATEL')) {
-		//        console.log("IT's here");
+		console.log("IT's here");
 		studentTableDiv.removeChild(document.getElementById('LOMATEL'));
 		document.getElementById('EmptinessOfUsersList').remove();
 	}
@@ -1014,69 +943,10 @@ function loadStudentsTable() {
 			tableThirdTd.classList = "hovered";
 
 			tableThirdTd.addEventListener("click", () => {
-				console.log("free 1017!+");
-
-				onObjOnModal()
-
-				//                debugger;
-				document.getElementById("courseSelector").style.display = "inline";
-				document.getElementById("levelSelector").style.display = "inline";
-				document.getElementById("strCourseLevel").style.display = "flex";
-				document.getElementsByName("Level1")[0].style.display = "block";
-				document.getElementsByName("Level2")[0].style.display = "block";
-				document.getElementById("timeSelect").style.display = "none";
-				document.getElementById("timeSelectSpan").style.display = "none";
-				document.getElementById('checkShedule').style.display = "inline";
-				document.getElementById('btnTodo').style.display = "none";
-				document.getElementById("onOffTask").style.display = "block";
-				document.getElementById("flexCheckDefault").style.display = "block";
-
-				document.getElementById("delColorTime").style.display = "block";
-				document.getElementById("clipboardLinkBusy").style.display = "none";
-				document.getElementById("btnFullScreenBusy").style.display = "block";
-				document.getElementById("sendCode2").style.display = "none";
-				document.getElementById("saveDataUser").style.display = "block";
-
-				document.getElementById("courseSelector").style.display = "inline";
-				document.getElementById("levelSelector").style.display = "inline";
-
-				document.getElementById('loginSendTimeCode2').value = sessionStorage.getItem('globalLogin');
-
-				let btnFullScreenBusy = document.getElementById("btnFullScreenBusy")
-
-				btnFullScreenBusy.setAttribute("data-target", "full")
-				btnFullScreenBusy.innerHTML = `<i class="bi bi-arrows-expand font-weight-bold mx-0" style="margin-top: 0.65em"></i>`
-
-				document.getElementById('dataTitle').setAttribute('trans', 'text+:BusyTime;');
-
-				let flags = document.querySelectorAll(".allday")
-				for (let i = 0; i < flags.length; i++) {
-					flags[i].style.display = "inline-block"
-				}
-
-				let tds = document.querySelectorAll("#tableUser td");
-				for (let i = 0; i < tds.length; i++) {
-					tds[i].style.padding = "0px 2px";
-					tds[i].disabled = true;
-				}
-
-
-
-
-
 				showUpdatingModal("freeTime");
 				document.getElementById("briefName").innerHTML = "";
 				displayOneUserModal(item);
-				//                console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2")
-				//                console.log(item)
-				//                console.log(item['id'])
-				sessionStorage.setItem("idCurUser", item['id'])
 				document.getElementById('importInput').value = fCompressCodeTime(getTimeCode())
-
-				document.getElementById("flexCheckDefault").checked = item['setShed'];
-
-
-
 
 			});
 
@@ -1089,13 +959,9 @@ function loadStudentsTable() {
 			tableSixthTd.classList = 'bi bi-calendar3 hovered';
 
 			tableSixthTd.addEventListener('click', () => {
-				//                debugger;
-				//                clearModalTable() //06.12.2023
 				showUpdatingModal('freeTime');
 				displayOneUserModal(item);
 				document.getElementById('importInput').value = fCompressCodeTime(getTimeCode())
-				document.getElementById("flexCheckDefault").checked = item['setShed'];
-
 			});
 
 			const tableSeventhTd = document.createElement('td');
@@ -1315,8 +1181,6 @@ function sortUsers() {
 		}
 	});
 
-	//    alert("1261 sortUsers")
-	//    console.log("1261 sortUsers")
 	loadStudentsTable();
 	clearTable();
 }
@@ -1352,19 +1216,9 @@ function loadBusinessTable() {
 
 		const h6 = document.createElement('h6');
 		const text = document.createElement('Text');
-
-		//        alert(sessionStorage.getItem("numLoad"), sessionStorage.getItem("typeBase"), sessionStorage.getItem("globalAccess"))
-
-		console.log("---- 1333 -----")
-		console.log(sessionStorage.getItem("numLoad"))
-		if (sessionStorage.getItem("numLoad") == 2 && sessionStorage.getItem("globalAccess") == 7) {
-			text.innerHTML = `<div class = "text-center text-primary"><div class = "spinner-border" style="font-size:0.7em;" role = "status"><span class= "visually-hidden"></span></div></div>`;
-			text.setAttribute('trans', 'text+:EmptinessOfBusinessList');
-		} else {
-			text.innerHTML =
-				'Unfortunately\n, the list of busy time is empty.\n Add busy time.';
-			text.setAttribute('trans', 'text+:EmptinessOfBusinessList');
-		}
+		text.innerHTML =
+			'Unfortunately\n, the list of busy time is empty.\n Add busy time.';
+		text.setAttribute('trans', 'text+:EmptinessOfBusinessList');
 
 		//        alert("no busytime1")
 
@@ -1408,12 +1262,9 @@ function loadBusinessTable() {
 			}
 
 			plusButtonBusy.addEventListener('click', () => {
-
-
-				//				
-				//				timeSelectorSpan.style.display = 'block';
-				//				//                alert("plus1035")
-				//				document.getElementById('dataTitle').display = 'block';
+				timeSelectorSpan.style.display = 'block';
+				//                alert("plus1035")
+				document.getElementById('dataTitle').display = 'block';
 				document
 					.getElementById('dataTitle')
 					.setAttribute('trans', 'text+:AddTime;');
@@ -1423,26 +1274,26 @@ function loadBusinessTable() {
 		}
 		Translate();
 
-		//        if (!document.getElementById('help-button-busy')) {
-		//            let helpButtonBusy = document.createElement('button');
-		//            let helpButtonIcon = document.createElement('i');
-		//            //               alert("help1busy")
-		//            helpButtonBusy.setAttribute('trans', 'text+:PlusButton;');
-		//            //            helpButtonBusy.setAttribute("id", "create");
-		//            helpButtonBusy.setAttribute('id', 'help-button-busy');
-		//            helpButtonBusy.setAttribute('class', 'help');
-		//            helpButtonBusy.setAttribute(
-		//                'style',
-		//                'color: black; background-color:deepskyblue;box-sizing: border-box; padding: 0px 3px 2px 4px; border-radius: 2px; border-width: 0px; font-size: 1.05em; font-weight: 100;'
-		//            );
-		//            helpButtonIcon.style.fontSize = '20px';
-		//            helpButtonIcon.setAttribute('class', 'bi bi-question');
-		//
-		//            helpButtonBusy.appendChild(helpButtonIcon);
-		//            rightToolBarBusy.append(helpButtonBusy);
-		//
-		//            helpButtonBusy.onclick = () => (window.location.href = 'guide.html');
-		//        }
+		if (!document.getElementById('help-button-busy')) {
+			let helpButtonBusy = document.createElement('button');
+			let helpButtonIcon = document.createElement('i');
+			//               alert("help1busy")
+			helpButtonBusy.setAttribute('trans', 'text+:PlusButton;');
+			//            helpButtonBusy.setAttribute("id", "create");
+			helpButtonBusy.setAttribute('id', 'help-button-busy');
+			helpButtonBusy.setAttribute('class', 'help');
+			helpButtonBusy.setAttribute(
+				'style',
+				'color: black; background-color:deepskyblue;box-sizing: border-box; padding: 0px 3px 2px 4px; border-radius: 2px; border-width: 0px; font-size: 1.05em; font-weight: 100;'
+			);
+			helpButtonIcon.style.fontSize = '20px';
+			helpButtonIcon.setAttribute('class', 'bi bi-question');
+
+			helpButtonBusy.appendChild(helpButtonIcon);
+			rightToolBarBusy.append(helpButtonBusy);
+
+			helpButtonBusy.onclick = () => (window.location.href = 'guide.html');
+		}
 
 		spanRight.appendChild(rightToolBarBusy);
 		div.appendChild(spanLeft);
@@ -1560,47 +1411,49 @@ function loadBusinessTable() {
 			rightToolBarBusy.appendChild(plusButtonBusy);
 
 			plusButtonBusy.addEventListener('click', () => {
-
-				onObjOnModal()
-				document.getElementById('dataTitle').setAttribute('trans', 'text+:AddTime;');
+				timeSelectorSpan.style.display = 'block';
+				document.getElementById('dataTitle').display = 'block';
+				document
+					.getElementById('dataTitle')
+					.setAttribute('trans', 'text+:AddTime;');
 				document.getElementById('dataTitle').innerHTML = ' ';
 				document.getElementById('YourName').value = '';
 				document.getElementById('briefName').innerHTML = '';
-				document.getElementById("timeSelect").childNodes[1].selected = false;
-				document.getElementById("timeSelect").childNodes[3].selected = true;
-				//				document.getElementById("dataTitle").value="busy";
+
+				//document.getElementById("dataTitle").display = "none";
 				Translate();
 			});
 		}
+
 		Translate();
 
-		//        if (!document.getElementById('help-button-busy2')) {
-		//            let helpButtonBusy = document.createElement('button');
-		//            let helpButtonIcon = document.createElement('i');
-		//            helpButtonBusy.style.borderColor = 'white';
-		//            //            helpButtonBusy.setAttribute("id", "create");
-		//            helpButtonBusy.setAttribute('id', 'help-button-busy2');
-		//            helpButtonBusy.setAttribute('class', 'help');
-		//            helpButtonBusy.setAttribute(
-		//                'style',
-		//                ' color: black; background-color:deepskyblue; box-sizing: border-box; padding: 0px 3px 2px 4px; border-radius: 2px; border-width: 0px; font-size: 1em; font-weight: 100;'
-		//            );
-		//            //            alert(helpButtonBusy.innerHTML)
-		//
-		//            helpButtonIcon.setAttribute('class', 'bi bi-question');
-		//            helpButtonBusy.appendChild(helpButtonIcon);
-		//
-		//            if (document.documentElement.clientWidth > 450) {
-		//                helpButtonBusy.setAttribute('trans', 'style:HelpButtonStyle;');
-		//                let helpButtonText = document.createElement('span');
-		//                helpButtonText.setAttribute('trans', 'text:HelpButton; ');
-		//                helpButtonBusy.appendChild(helpButtonText);
-		//            }
-		//
-		//            rightToolBarBusy.append(helpButtonBusy);
-		//
-		//            helpButtonBusy.onclick = () => (window.location.href = 'guide.html');
-		//        }
+		if (!document.getElementById('help-button-busy2')) {
+			let helpButtonBusy = document.createElement('button');
+			let helpButtonIcon = document.createElement('i');
+			helpButtonBusy.style.borderColor = 'white';
+			//            helpButtonBusy.setAttribute("id", "create");
+			helpButtonBusy.setAttribute('id', 'help-button-busy2');
+			helpButtonBusy.setAttribute('class', 'help');
+			helpButtonBusy.setAttribute(
+				'style',
+				' color: black; background-color:deepskyblue; box-sizing: border-box; padding: 0px 3px 2px 4px; border-radius: 2px; border-width: 0px; font-size: 1em; font-weight: 100;'
+			);
+			//            alert(helpButtonBusy.innerHTML)
+
+			helpButtonIcon.setAttribute('class', 'bi bi-question');
+			helpButtonBusy.appendChild(helpButtonIcon);
+
+			if (document.documentElement.clientWidth > 450) {
+				helpButtonBusy.setAttribute('trans', 'style:HelpButtonStyle;');
+				let helpButtonText = document.createElement('span');
+				helpButtonText.setAttribute('trans', 'text:HelpButton; ');
+				helpButtonBusy.appendChild(helpButtonText);
+			}
+
+			rightToolBarBusy.append(helpButtonBusy);
+
+			helpButtonBusy.onclick = () => (window.location.href = 'guide.html');
+		}
 
 		spanRight.appendChild(rightToolBarBusy);
 
@@ -1715,51 +1568,9 @@ function loadBusinessTable() {
 		tableThirdTd.classList = "hovered";
 
 		tableThirdTd.addEventListener("click", () => {
-
-			onObjOnModal()
-
-			document.getElementById("levelSelector").style.display = "none";
-			document.getElementsByName("Level1")[0].style.display = "none";
-			document.getElementsByName("Level2")[0].style.display = "none";
-			document.getElementById("timeSelect").style.display = "none";
-
-			document.getElementById("onOffTask").style.display = "block";
-			document.getElementById("btnTodo").style.display = "block";
-			document.getElementById("delColorTime").style.display = "block";
-			document.getElementById("clipboardLinkBusy").style.display = "block";
-			document.getElementById("btnFullScreenBusy").style.display = "block";
-			document.getElementById("sendCode2").style.display = "none";
-			document.getElementById("saveDataUser").style.display = "block";
-
-
-
-			//			alert(document.getElementById("loginSendTimeCode").value)
-			//			document.getElementById("YourName").value = url.searchParams.get("nameUser");
-			//			document.getElementById("loginSendTimeCode").value = url.searchParams.get("viewtime");
-			//			document.getElementById("importInput").value = url.searchParams.get("sendTimeCode");
-			//			document.getElementById("timeSelect").name = url.searchParams.get("typeTime");
-			//			document.getElementById("timeSelect").value = url.searchParams.get("typeTime");
-
-
-
-			let flags = document.querySelectorAll(".allday")
-			for (let i = 0; i < flags.length; i++) {
-				flags[i].style.display = "inline-block"
-			}
-
-			let tds = document.querySelectorAll("#tableUser td");
-			for (let i = 0; i < tds.length; i++) {
-				tds[i].style.padding = "0px 2px";
-				tds[i].disabled = true;
-			}
-
 			showUpdatingModal("busyTime");
 			document.getElementById("briefName").innerHTML = "";
 			displayOneBusyModal(sortedBusiness[i]);
-			//			alert(sortedBusiness[i]);
-			//            console.log("###########################################")
-			//            console.log(sortedBusiness[i]['id'])
-			sessionStorage.setItem('idCurUser', sortedBusiness[i]['id']);
 			document.getElementById('importInput').value = fCompressCodeTime(getTimeCode())
 
 			//<Наслоение дел>=================================================
@@ -1805,7 +1616,7 @@ function loadBusinessTable() {
 				);
 				isLayersCanBeDisplayed(
 					document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
-					[document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id],
+					[document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id], 
 					loadTodoLayers
 				)
 				// loadTodoLayers(
@@ -2002,7 +1813,7 @@ function displayUsersAndBusiness() {
 		const bestMatches = findBestMatch();
 		// console.log(bestMatches);
 		bestMatches.forEach((item) => {
-			//            console.log(item);
+			console.log(item);
 			const el = document.getElementById(item[1]).querySelector(`.${item[2]}`);
 			if (el.innerHTML.length == 0) {
 				el.style.background = colorStudent[getRandomColor];
@@ -2077,7 +1888,7 @@ function displayOneUserModal(currentUser) {
 	}
 
 	fullName.value = currentUser.name;
-	//    debugger;
+
 	for (let i = 0; i < selectLevel.children.length; i++) {
 		if (selectLevel.children[i].value === currentUser.currentLevel) {
 			selectLevel.children[i].selected = true;
@@ -2121,12 +1932,8 @@ function saveUser() {
 		decDay
 	} = checkDec();
 
-	let setShed = document.getElementById("flexCheckDefault").checked;
-
 	if (currentCourse && currentLevel && fullName.value !== '') {
-		debugger;
 		// console.log(currentCourse, currentLevel, fullName.value);
-
 		if (currUser) {
 			const index = users.findIndex((user) => user.id === currUser.id);
 			let updatedUser = {
@@ -2135,15 +1942,36 @@ function saveUser() {
 				currentCourse,
 				currentLevel,
 				days: decDay,
-				setShed,
 			};
 
 			users[index] = updatedUser;
 		} else {
 			const tempUser = users.find(
-				(user) => user.name === fullName.value && user.currentCourse === currentCourse && user.currentLevel === currentLevel
+				(user) =>
+				user.name === fullName.value &&
+				user.currentCourse === currentCourse &&
+				user.currentLevel === currentLevel
 			);
 			if (tempUser) {
+				// const button = document.createElement("button");
+				// const text = document.createElement("Text");
+				// text.innerHTML =
+				// 	"Пользователь с таким же именем, курсом и уровнем уже существует.\n";
+				// button.classList.add(
+				// 	"btn",
+				// 	"btn-success",
+				// 	"btn-sm",
+				// 	"btnCloseAlert",
+				// 	"m-2"
+				// );
+				// button.style.fontWeight = "500";
+				// button.style.color = "white";
+				// button.fontSize = "1em";
+				// button.innerHTML = "Обновить?";
+				// button.addEventListener("click", () => tempUserUpdate(userToFind));
+				// button.setAttribute("name", "disable");
+				// text.setAttribute("name", "disable");
+				// text.appendChild(button);
 				tempUser.days = decDay;
 				sessionStorage.setItem('tempUser', JSON.stringify(tempUser));
 				alerter(
@@ -2154,6 +1982,21 @@ function saveUser() {
 					'warning',
 					'<button type="button" class="btn btn-sm btnUpdate m-2 " style="font-weight: 500;color: black; font-size: 1em; background-color:#48c2a9;">Обновить</button>'
 				);
+				//                alerter(
+				//					"<Text name='disable'>Предупреждение</Text>",
+				//					`<Text name='disable'>
+				//						Пользователь с таким же именем, курсом и уровнем уже существует. Либо измените данные, либо обновите уже существующего пользователя.<br>
+				//						<button
+				//								type="button"
+				//								class="btn btn-success btn-sm btnUpdate m-2 "
+				//								style="font-weight: 500;color: white; font-size: 1em">
+				//								Обновить?
+				//						</button>
+				//					</Text>`,
+				//					"standart",
+				//					"warning",
+				//					"<button type=\"button\" class=\btn btn-success btn-sm btnUpdate m-2 \"	style=\"font-weight: 500;color: white; font-size: 1em\">Обновить?</button>"
+				//				);
 				return;
 			}
 
@@ -2163,11 +2006,10 @@ function saveUser() {
 				currentCourse,
 				currentLevel,
 				days: decDay,
-				setShed,
 			};
 
 			users.push(user);
-
+			console.log(users);
 		}
 
 		if (users.length === 1) {
@@ -2384,14 +2226,12 @@ function changeTimeSelector() {
 		fullName.setAttribute('trans', 'text+:name;');
 		selectCourseSpan.style.display = 'inline-block';
 		selectLevelSpan.style.display = 'inline-block';
-		strCourseLevel.style.display = 'flex';
 
+		document.getElementById("selectCourseName").style.display =
+			//        document.getElementById("Level1").style.display = "inline-block";
+			//        document.getElementById("Level2").style.display = "inline-block";
 
-		document.getElementById("selectCourseName").style.display = "inline-block"
-		//        document.getElementById("Level1").style.display = "inline-block";
-		//        document.getElementById("Level2").style.display = "inline-block";
-
-		document.getElementById('levelSelector').style.display = 'inline-block';
+			document.getElementById('levelSelector').style.display = 'inline-block';
 		document.getElementById('courseSelector').style.display = 'inline-block';
 
 
@@ -2406,7 +2246,6 @@ function changeTimeSelector() {
 		//        document.getElementsByName("Level2").style.display = "none";
 		selectCourseSpan.style.display = 'none';
 		selectLevelSpan.style.display = 'none';
-		strCourseLevel.style.display = 'none';
 		//        document.getElementById("Level1").style.display = "none";
 		//        document.getElementById("Level2").style.display = "none";
 		document.getElementById('levelSelector').style.display = 'none';
@@ -2436,15 +2275,11 @@ function showUpdatingModal(type) {
 		// fullName.placeholder = "Name";
 		selectCourseSpan.style.display = 'inline-block';
 		selectLevelSpan.style.display = 'inline-block';
-		strCourseLevel.style.display = 'flex';
 
 		//        document.getElementById("Level1").style.display = "inline-block";
 		//        document.getElementById("Level2").style.display = "inline-block";
 		document.getElementById('levelSelector').style.display = 'inline-block';
 		document.getElementById('courseSelector').style.display = 'inline-block';
-		document.getElementById('strCourseLevel').style.display = 'flex';
-
-
 
 		nbts.removeEventListener('click', saveBusySchedule);
 		nbts.addEventListener('click', saveUser);
@@ -2459,13 +2294,11 @@ function showUpdatingModal(type) {
 		// fullName.placeholder = "Description";
 		selectCourseSpan.style.display = 'none';
 		selectLevelSpan.style.display = 'none';
-		strCourseLevel.style.display = 'none';
 
 		//        document.getElementById("Level1").style.display = "none";
 		//        document.getElementById("Level2").style.display = "none";
 		document.getElementById('levelSelector').style.display = 'none';
 		document.getElementById('courseSelector').style.display = 'none';
-
 
 		nbts.removeEventListener('click', saveUser);
 		nbts.addEventListener('click', saveBusySchedule);
@@ -2481,9 +2314,9 @@ function showUpdatingModal(type) {
 
 
 	//	document.getElementById('importInput').value = fCompressCodeTime(getTimeCode())
-	//    console.log(document.getElementById('importInput').value)
-	//    console.log(fCompressCodeTime(getTimeCode()))
-	//    console.log(getTimeCode())
+	console.log(document.getElementById('importInput').value)
+	console.log(fCompressCodeTime(getTimeCode()))
+
 
 	$('#staticBackdrop').modal('show');
 }
@@ -2512,6 +2345,10 @@ document
 	.getElementById('btnFullScreen4orange')
 	.addEventListener('click', () => {
 
+
+
+
+
 		let tdFull = document.querySelectorAll('.fullTable td');
 		let bestMatch = sessionStorage.getItem('BestMatch');
 		for (let i = 0; i < tdFull.length; i++) {
@@ -2525,29 +2362,17 @@ document
 	});
 
 function creatingOptions(array, type) {
+	for (let i = 0; i < array.length; i++) {
+		let option = document.createElement('option');
+		option.value = array[i].toString();
+		option.innerHTML = array[i].toString();
 
-
-	createParamOption();
-
-
-
-	//    debugger;
-
-	//    for (let i = 0; i < array.length; i++) {
-	//
-	//        let option = document.createElement('option');
-	//        //        console.log(option)
-	//        option.value = array[i].toString();
-	//        option.innerHTML = array[i].toString();
-	//
-	//        if (type === 'course') {
-	//            selectCourse.appendChild(option);
-	//        } else if (type === 'grade') {
-	//            //            console.log(option)
-	//            selectLevel.appendChild(option);
-	//        }
-	//    }
-
+		if (type === 'course') {
+			selectCourse.appendChild(option);
+		} else if (type === 'grade') {
+			selectLevel.appendChild(option);
+		}
+	}
 }
 
 function splittingCourses() {
@@ -2585,15 +2410,11 @@ function splittingCourses() {
 
 	creatingOptions(options, 'course');
 
-	if (options[options.length - 1] == "") {
-		options.pop()
-	}
-
 	saveDataTo(
 		sessionStorage.getItem('typeBase'),
 		sessionStorage.getItem('globalLogin'),
 		'courses',
-		JSON.stringify(options)
+		JSON.stringify([...courses, ...options])
 	);
 	//	localStorage.setItem("courses", JSON.stringify([...courses, ...options]));
 
@@ -2613,7 +2434,6 @@ function splittingCourses() {
 }
 
 export function splittingGrades() {
-
 	const text = gradeText.value;
 	//    let grades = JSON.parse(localStorage.getItem("grades")) || [];
 
@@ -2630,47 +2450,34 @@ export function splittingGrades() {
 	//        JSON.parse(localStorage.getItem("filteredGrades")) || grades;
 	//
 
-	//    let filteredGrades =
-	//        JSON.parse(
-	//            getDataFrom(
-	//                sessionStorage.getItem('typeBase'),
-	//                sessionStorage.getItem('globalLogin'),
-	//                'filteredGrades'
-	//            )
-	//        ) || grades;
+	let filteredGrades =
+		JSON.parse(
+			getDataFrom(
+				sessionStorage.getItem('typeBase'),
+				sessionStorage.getItem('globalLogin'),
+				'filteredGrades'
+			)
+		) || grades;
 
 	let options = text.split(',');
 	options = [...new Set(options.map((item) => item.trim()))];
 
-
-	//    console.log(options)
-	//    console.log([...options])
-
-	//    creatingOptions(options, 'grade');
-	//    console.log("2644")
-	//    console.log("в поле ввода")
-	//    console.log(options)
-	//    console.log("из хранилища")
-	//    console.log([...grades, ...options])
-
-	if (options[options.length - 1] == "") {
-		options.pop()
-	}
+	creatingOptions(options, 'grade');
 
 	saveDataTo(
 		sessionStorage.getItem('typeBase'),
 		sessionStorage.getItem('globalLogin'),
 		'grades',
-		JSON.stringify(options)
+		JSON.stringify([...grades, ...options])
 	);
 	//	localStorage.setItem("grades", JSON.stringify([...grades, ...options]));
 
-	//    saveDataTo(
-	//        sessionStorage.getItem('typeBase'),
-	//        sessionStorage.getItem('globalLogin'),
-	//        'filteredGrades',
-	//        JSON.stringify([...filteredGrades, ...options])
-	//    );
+	saveDataTo(
+		sessionStorage.getItem('typeBase'),
+		sessionStorage.getItem('globalLogin'),
+		'filteredGrades',
+		JSON.stringify([...filteredGrades, ...options])
+	);
 	//	localStorage.setItem(
 	//		"filteredGrades",
 	//		JSON.stringify([...filteredGrades, ...options])
@@ -2678,21 +2485,6 @@ export function splittingGrades() {
 
 	gradeText.value = '';
 	// console.log(options.at(-1));
-
-	//    повторное получение данных после обновления 02.01.2024
-
-	grades =
-		JSON.parse(
-			getDataFrom(
-				sessionStorage.getItem('typeBase'),
-				sessionStorage.getItem('globalLogin'),
-				'grades'
-			)
-		) || [];
-
-
-
-
 }
 
 function decodeTheTimeCode(value) {
@@ -2810,8 +2602,6 @@ function importTime() {
 }
 
 export function filterUsers() {
-	//    console.log("---2748---")
-	//    console.log(filteredUsers)
 	filteredUsers = [];
 	users.forEach((item) => {
 		if (
@@ -2820,44 +2610,11 @@ export function filterUsers() {
 			(filteredGrades.includes(item.currentLevel) ||
 				item.currentLevel === 'Any')
 		) {
-			if (
-				localStorage.getItem('checkbox1') == 'true' &&
-				localStorage.getItem('checkbox2') == 'true'
-			) {
-				filteredUsers.push(item);
-			} else if (
-				localStorage.getItem('checkbox1') == 'true' &&
-				localStorage.getItem('checkbox2') == 'false'
-			) {
-				if (item.setShed == false || item.setShed == undefined) {
-					filteredUsers.push(item);
-				}
-			} else if (
-				localStorage.getItem('checkbox1') == 'false' &&
-				localStorage.getItem('checkbox2') == 'true'
-			) {
-				if (item.setShed == true) {
-					filteredUsers.push(item);
-				}
-			} else if (
-				localStorage.getItem('checkbox1') == 'false' &&
-				localStorage.getItem('checkbox2') == 'false'
-			) {
-				alerter(
-					'<Text trans="text+:AlertErrorHeader;">Ошибка</Text>',
-					'<Text trans="text+:AlertErrorBody133;">Выберите как минимум один вариантов показа (с расписанием или без)</Text>',
-					'standart',
-					'danger',
-					'standart'
-				);
-			}
-			//-----------------
-			//			filteredUsers.push(item);
-			//			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			filteredUsers.push(item);
 		}
 	});
-	//    alert(filteredUsers, '2761')
-	//    console.log(filteredUsers, '2762')
+	//	alert(filteredUsers, '2330')
+	//	console.log(filteredUsers, '2330')
 	saveDataTo(
 		sessionStorage.getItem('typeBase'),
 		sessionStorage.getItem('globalLogin'),
@@ -2865,12 +2622,13 @@ export function filterUsers() {
 		JSON.stringify(filteredUsers)
 	);
 
-	//    console.log("#######-filteredUsers-analis#################")
-	//    console.log(filteredUsers, '2728 -  - filterUsers() ');
-	//	console.log(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), '2728');
-	//	console.log("Session", sessionStorage.getItem('filteredUsers'))
-	//	console.log("Local", localStorage.getItem('filteredUsers'))
-	//	console.log("##############################################")
+	//	alert(filteredUsers, '2333')
+	console.log(filteredUsers, '2342 - filterUsers()');
+	console.log(
+		sessionStorage.getItem('typeBase'),
+		sessionStorage.getItem('globalLogin'),
+		'2342'
+	);
 
 	//	localStorage.setItem("filteredUsers", JSON.stringify(filteredUsers));
 
@@ -2919,34 +2677,31 @@ function createModal() {
 
 		const filtersDiv = document.createElement('div');
 
-		const coursesDiv = document.createElement('div');
-		const gradesDiv = document.createElement('div');
-		const flagShedDiv = document.createElement('div');
+		//		filtersDiv.style.backgroundColor="red"
 
+		const coursesDiv = document.createElement('div');
+		//		coursesDiv.style.backgroundColor="blue"
+		const gradesDiv = document.createElement('div');
+		//		gradesDiv.style.backgroundColor="indianred"
 
 		const coursesDivTitle = document.createElement('Text');
 		const gradesDivTitle = document.createElement('Text');
-		const flagShedDivTitle = document.createElement('Text');
 
-		coursesDivTitle.innerHTML = localStorage.getItem('param1Name') + '<br>';
+		coursesDivTitle.innerHTML = 'Курсы';
 		coursesDivTitle.id = 'courses-div-title';
-		gradesDivTitle.innerHTML = localStorage.getItem('param2Name') + '<br>';
+		gradesDivTitle.innerHTML = 'Уровни';
 		gradesDivTitle.id = 'grades-div-title';
-		flagShedDivTitle.innerHTML = 'Признак расписания' + '<br>';
-		flagShedDivTitle.id = 'flag-div-title';
 
-		//		coursesDivTitle.setAttribute('trans', 'text+:CoursesDivTitle;');
-		//		gradesDivTitle.setAttribute('trans', 'text+:GradesDivTitle;');
-		flagShedDivTitle.setAttribute('trans', 'text+:flagShedDivTitle;');
+		coursesDivTitle.setAttribute('trans', 'text+:CoursesDivTitle;');
+		gradesDivTitle.setAttribute('trans', 'text+:GradesDivTitle;');
 
 		coursesDiv.appendChild(coursesDivTitle);
 		gradesDiv.appendChild(gradesDivTitle);
-		flagShedDiv.appendChild(flagShedDivTitle)
 
 		filtersDiv.className = 'filter-modal-div';
 
 		if (window.innerWidth < 400) {
-			filtersDiv.style.height = '350px';
+			filtersDiv.style.height = '330px';
 			filtersDiv.style.paddingTop = '150px';
 		} else {
 			filtersDiv.style.height = '422px';
@@ -2957,104 +2712,8 @@ function createModal() {
 
 		coursesDiv.className = 'filter-modal-courses-div';
 		gradesDiv.className = 'filter-modal-grades-div';
-		//		flagShedDiv.className = 'filter-modal-flagShed-div';
 		filtersDiv.appendChild(coursesDiv);
 		filtersDiv.appendChild(gradesDiv);
-		filtersDiv.appendChild(flagShedDiv);
-
-		//Место для флага расписания
-
-		const checkbox1span = document.createElement('span');
-		const checkbox1 = document.createElement('input');
-		checkbox1.type = "checkbox";
-		checkbox1.name = "";
-		checkbox1.value = "flafOff";
-		checkbox1.id = "checkbox1";
-		const label1 = document.createElement('label');
-		label1.style.paddingLeft = '5px';
-		label1.style.cursor = 'pointer';
-		label1.htmlFor = "flafOff";
-		label1.appendChild(document.createTextNode('Расписания нет'));
-
-		checkbox1span.style.width = '48%';
-		checkbox1span.style.textAlign = 'left';
-		checkbox1span.style.backgroundColor = "white";
-		checkbox1span.style.display = 'inline-block';
-		checkbox1span.style.margin = '2px';
-		checkbox1span.style.padding = '5px 10px';
-		checkbox1span.style.fontSize = '10px';
-		checkbox1.style.fontWeight = '500';
-		checkbox1.style.cursor = 'pointer';
-
-		if (!localStorage.getItem('checkbox1')) {
-			checkbox1.checked = true;
-			localStorage.getItem('checkbox1', true)
-		} else {
-			if (localStorage.getItem('checkbox1') == 'false') {
-				checkbox1.checked = false;
-			} else if (localStorage.getItem('checkbox1') == 'true') {
-				checkbox1.checked = true;
-			} else {
-				checkbox1.checked = true;
-			}
-		}
-
-		checkbox1.addEventListener('click', () => {
-			localStorage.setItem('checkbox1', checkbox1.checked)
-		})
-
-		checkbox1span.appendChild(checkbox1);
-		checkbox1span.appendChild(label1);
-		flagShedDiv.appendChild(checkbox1span)
-
-		const checkbox2span = document.createElement('span');
-		const checkbox2 = document.createElement('input');
-		checkbox2.type = "checkbox";
-		checkbox2.name = "";
-		checkbox2.value = "flafOn";
-		checkbox2.id = "checkbox2";
-
-		const label2 = document.createElement('label');
-		label2.style.paddingLeft = '5px';
-		label2.style.cursor = 'pointer';
-		label2.htmlFor = "flafOn";
-		label2.appendChild(document.createTextNode('Расписание есть'));
-
-		checkbox2span.style.width = '48%';
-		checkbox2span.style.textAlign = 'left';
-		checkbox2span.style.backgroundColor = "white";
-		checkbox2span.style.display = 'inline-block';
-		checkbox2span.style.margin = '2px';
-		checkbox2span.style.padding = '5px 10px';
-		checkbox2span.style.fontSize = '10px';
-		checkbox2.style.fontWeight = '500';
-		checkbox2.style.cursor = 'pointer';
-
-
-		if (!localStorage.getItem('checkbox2')) {
-			checkbox2.checked = true;
-			localStorage.getItem('checkbox2', true)
-		} else {
-			if (localStorage.getItem('checkbox2') == 'false') {
-				checkbox2.checked = false;
-			} else if (localStorage.getItem('checkbox2') == 'true') {
-				checkbox2.checked = true;
-			} else {
-				checkbox2.checked = true;
-			}
-		}
-
-		checkbox2.addEventListener('click', () => {
-			localStorage.setItem('checkbox2', checkbox2.checked)
-		})
-
-		checkbox2span.appendChild(checkbox2);
-		checkbox2span.appendChild(label2);
-		flagShedDiv.appendChild(checkbox2span)
-		flagShedDiv.classList.add('filter-modal-flagShed-div');
-		flagShedDiv.style.paddingBottom = '10px';
-
-		//---------
 
 		let divBntApply = document.createElement('div');
 
@@ -3140,8 +2799,6 @@ function createModal() {
 
 		Translate();
 	}
-
-
 	document.querySelector('.filter-modal').classList.remove('closed');
 	document.querySelector('.filter-modal').classList.add('blocked');
 	const coursesDiv = document.querySelector('.filter-modal-courses-div');
@@ -3419,10 +3076,7 @@ courseNameSubmitUpdate.addEventListener('click', () => {
 	if (document.getElementById('courseTextArea').value.length > 3) {
 		if (confirm('Есть данные в хранилище. Обновить?')) {
 			localStorage.removeItem('courses');
-
 			splittingCourses();
-			createParamOption();
-
 			notifyer('Данные обновлены!');
 		}
 	} else {
@@ -3436,21 +3090,18 @@ courseNameSubmitUpdate.addEventListener('click', () => {
 	}
 });
 
+
+
 // WINDOWS
 //Окно уведомителя
 export function notifyer(
 	text,
-	time = 1000,
-	translateCode,
+	time = 850,
 	bgcolor = 'MediumSeaGreen',
 	textcolor = 'white'
 ) {
 	let divNotifyer = document.createElement('div');
 	let textNotifyer = document.createTextNode(text);
-	if (translateCode) {
-		divNotifyer.setAttribute("trans", "text+:" + translateCode)
-	}
-
 	divNotifyer.classList.add('mainNotifyer');
 	divNotifyer.style.position = 'absolute';
 	divNotifyer.style.top = '10px';
@@ -3460,7 +3111,7 @@ export function notifyer(
 		divNotifyer.style.left = '26%';
 	} else {
 		divNotifyer.style.width = '20%';
-		divNotifyer.style.left = '40%';
+		divNotifyer.style.left = '36%';
 	}
 	divNotifyer.style.padding = '5px';
 	divNotifyer.style.borderRadius = '3px';
@@ -3472,8 +3123,6 @@ export function notifyer(
 	divNotifyer.style.backgroundColor = bgcolor;
 	divNotifyer.style.color = textcolor;
 	document.body.appendChild(divNotifyer);
-
-	Translate();
 
 	let timerNotifyer1 = setTimeout(() => {
 		divNotifyer.classList.toggle('invsNotifyer');
@@ -3554,26 +3203,6 @@ export function alerter(
 		alertWin.classList.remove('alertinvs');
 	});
 
-
-
-	//	let infoWin = document.getElementById('infoWin');
-	//	let btnCloseInfo = document.querySelectorAll('.btnCloseInfo');
-	//	btnCloseInfo[0].addEventListener('click', () => {
-	//		console.log('до');
-	//		console.log(document.getElementById('infoWin').classList)
-	//		String(document.getElementById('infoWin').classList).replace('infoinvs', "")
-	//		console.log('после');
-	//		console.log(document.getElementById('infoWin').classList)
-	//	});
-	//
-	//	btnCloseInfo[1].addEventListener('click', () => {
-	//		//		alert("infoclose 2")
-	//		infoWin.classList.remove('infoinvs');
-	//	});
-
-
-
-
 	if (!hideClose) {
 		btnCloseAlert[1].addEventListener('click', () => {
 			alertWin.classList.remove('alertinvs');
@@ -3626,11 +3255,9 @@ function F4Team() {
 	alerter(titleWin, bodyWin);
 }
 
-document.getElementById('testConfirmer').addEventListener('click', () => {
-	getFilteredUser();
-	alert(sessionStorage.getItem("filteredUsers"))
-	//        confirmer.bind('тело', 'заголовок')
-});
+document
+	.getElementById('testConfirmer')
+	.addEventListener('click', confirmer.bind('тело', 'заголовок'));
 
 export function confirmer(titleWinContent = ' title', bodyWinContent) {
 	//	alert(titleWinContent+"="+bodyWinContent)
@@ -3689,8 +3316,6 @@ export function confirmer(titleWinContent = ' title', bodyWinContent) {
 	});
 }
 
-
-
 if (!localStorage.getItem('users') && !localStorage.getItem('business')) {
 	alerter(
 		"<span trans='text+:Welcome'>Добро пожаловать!</span>",
@@ -3705,14 +3330,6 @@ if (!localStorage.getItem('users') && !localStorage.getItem('business')) {
 
 	localStorage.setItem('users', users_demo);
 	localStorage.setItem('filteredUsers', users_demo);
-	localStorage.setItem('param1Name', "Курс");
-	localStorage.setItem('param2Name', "Уровень");
-
-
-
-
-
-
 
 	let business_demo =
 		'[{"id":1662373691437,"description":"Класс  1(Demo)","days":[58720256,58720256,58720256,58720256,58720256,60784640,58720256]},{"id":1662373704669,"description":"Класс 2 (Demo)","days":[33554432,33554432,33554432,33554432,33554432,33554432,33554432]},{"id":1662374339780,"description":"Белозеров Олег (Demo)","days":[33685504,33556476,49815550,33556479,33677310,40910846,33554432]},{"id":1672065745981,"description":"Антоненко Евгений (Demo)","days":[67108863,67108608,67108608,67108608,67108608,67108863,58720255]}]';
@@ -3743,341 +3360,114 @@ function goFromURL() {
 	const url = new URL(window.location.href);
 	let strUrl = String(url.searchParams);
 
-
-	if (strUrl.indexOf('invite=') != -1) {
-		document
-			.getElementById("dataTitle")
-			.setAttribute("trans", "text+:AddTime;");
-
-		let textInviteStr =
-			'<Text trans="text+:InviteText;">Вы получили приглашение от пользователя </Text><b class="text-primary"> ';
-		textInviteStr += String(url.searchParams.get("invite"));
-
-		if (!url.searchParams.get("user")) {
-			textInviteStr +=
-				'</b><Text trans="text+:InviteText2;">  заполнить данные по Вашему свободному или занятому времени.  Введите пожалуйста свое имя и фамилию, отметьте в таблице время и нажмите кнопку отправить! Спасибо!</Text>';
-		} else {
-			textInviteStr +=
-				'</b><Text trans="text+:InviteText22;">  заполнить данные по Вашему свободному или занятому времени.  Отметьте в таблице своё свободное  время для занятий и нажмите кнопку ОТПРАВИТЬ! Спасибо!</Text>';
-		}
-
-		alerter(
-			'<Text trans="text+:Welcome;">Добро пожаловать!</Text>',
-			textInviteStr,
-			"standart",
-			"info",
-			"standart"
-		);
-
-		//		document.getElementById("loginSendTimeCode").value = url.searchParams.get("user");
-		document.getElementById("courseSelector").style.display = "none";
-		document.getElementById("levelSelector").style.display = "none";
-		document.getElementById("strCourseLevel").style.display = "none";
-
-		document.getElementsByName("Level1")[0].style.display = "none"
-		document.getElementsByName("Level2")[0].style.display = "none"
-
-		document.getElementById('btnTodo').style.display = "none";
-		document.getElementById('onOffTask').style.display = "none";
-		//		document.getElementById('sendCode2').style.display = "inline";		
-		document.getElementById("sendCode2").style.display = "block";
-		document.getElementById('checkShedule').style.display = "none";
-
-		//		document.getElementById("YourName").value = url.searchParams.get("user");
-		document.getElementById("loginSendTimeCode").value = sessionStorage.getItem("globalLogin");
+	if (url.searchParams.get('action') || strUrl.indexOf('invite=') != -1) {
+		if (strUrl.indexOf('invite=') != -1) {
+			//            alert(document.getElementById("loginSendTimeCode").value)
+			//            alert(url.searchParams.get('loginUser'))
+			document
+				.getElementById("dataTitle")
+				.setAttribute("trans", "text+:AddTime;");
 
 
-		//		document.getElementById("loginSendTimeCode").value = url.searchParams.get("invite");
-		document.getElementById("importInput").value = url.searchParams.get("sendTimeCode");
+			let textInviteStr =
+				'<Text trans="text+:InviteText;">Вы получили приглашение от пользователя </Text><b class="text-primary"> ';
+			textInviteStr += String(url.searchParams.get("invite"));
+
+			if (!url.searchParams.get("nameUser")) {
+				textInviteStr +=
+					'</b><Text trans="text+:InviteText2;">  заполнить данные по Вашему свободному или занятому времени.  Введите пожалуйста свое имя и фамилию, отметьте в таблице время и нажмите кнопку отправить! Спасибо!</Text>';
+			} else {
+				textInviteStr +=
+					'</b><Text trans="text+:InviteText22;">  заполнить данные по Вашему свободному или занятому времени.  Отметьте в таблице своё свободное  время для занятий и нажмите кнопку ОТПРАВИТЬ! Спасибо!</Text>';
+			}
+
+			alerter(
+				'<Text trans="text+:Welcome;">Добро пожаловать!</Text>',
+				textInviteStr,
+				"standart",
+				"success",
+				"standart"
+			);
+
+			//			alert(document.getElementById("loginSendTimeCode"))
+			document.getElementById("loginSendTimeCode").value = url.searchParams.get("user");
+			document.getElementById("courseSelector").style.display = "none";
+			document.getElementById("levelSelector").style.display = "none";
+			document.getElementsByName("Level1")[0].style.display = "none"
+			document.getElementsByName("Level2")[0].style.display = "none"
 
 
+			//			alert(document.getElementById("loginSendTimeCode").value)
+			document.getElementById("YourName").value =
+				url.searchParams.get("nameUser");
+			document.getElementById("loginSendTimeCode").value =
+				url.searchParams.get("invite");
+			document.getElementById("importInput").value =
+				url.searchParams.get("sendTimeCode");
+			if (url.searchParams.get("sendTimeCode")) {
+				importTime();
+			}
 
-		if (url.searchParams.get("sendTimeCode")) {
+			$("#staticBackdrop").modal("show");
+
+			Translate();
+		} else if (url.searchParams.get('action') == 'sendCode2email') {
+			document
+				.getElementById("dataTitle")
+				.setAttribute("trans", "text+:AddTime;");
+			document.getElementById("timeSelect").name =
+				url.searchParams.get("typeTime");
+			document.getElementById("timeSelect").value =
+				url.searchParams.get("typeTime");
+
+			document.getElementById("YourName").value =
+				url.searchParams.get("nameUser");
+			document.getElementById("loginSendTimeCode").value =
+				url.searchParams.get("loginSendTimeCode");
+			document.getElementById("importInput").value =
+				url.searchParams.get("sendTimeCode");
 			importTime();
+			$("#staticBackdrop").modal("show");
+
+		} else if (url.searchParams.get('action') == 'verify') {
+			let searchParams = new URLSearchParams();
+			searchParams.set('login', url.searchParams.get('loginUser'));
+			searchParams.set('key', url.searchParams.get('key'));
+
+			fetch('https://settime.online/php/verify.php', {
+					method: 'POST',
+					body: searchParams,
+				})
+				.then((response) => {
+					return response.text();
+				})
+				.then((text) => {
+					let objectPHP = JSON.parse(text);
+
+					sessionStorage.setItem('globalLogin', objectPHP['login']);
+
+					let msg =
+						'<span style="display: block; text-align:center"><Text trans="text+:WelcomeVerify;">Пользователь</Text><b> ';
+					msg += objectPHP['login'];
+					msg +=
+						' </b><Text trans="text+:WelcomeVerify2;"> активирован!</Text></span>';
+					msg +=
+						'<p style="margin-top:5px"><Text trans="text+:WelcomeVerify3;">Войдите в систему и Вам будут доступны дополнительные функции.</Text></p>';
+
+					alerter(
+						'<Text trans="text+:Welcome;">Добро пожаловать!</Text>',
+						msg,
+						'standart',
+						'success',
+						'standart'
+					);
+				});
+		} else {
+			document.getElementById('courseSelector').style.display = 'block';
+			document.getElementById('levelSelector').style.display = 'block';
 		}
-
-		$("#staticBackdrop").modal("show");
 		Translate();
-
-
-
-
-
-
-	} else if (strUrl.indexOf('viewBusy=') != -1) {
-
-		let textStr = "";
-		var userName;
-		var userListday = [];
-		var userItemBusy = {}
-
-		var params = new URLSearchParams();
-		params.set('login', url.searchParams.get("viewBusy"));
-		params.set('item', 'business');
-		fetch('https://settime.online/php/lload.php', {
-			method: 'POST',
-			body: params
-		}).then(
-			response => {
-				return response.text();
-			}
-		).then(
-			text => {
-				sessionStorage.setItem('itemUserBusy', text);
-
-				var userBusyTime = JSON.parse(sessionStorage.getItem('itemUserBusy'))
-				//                console.log(userBusyTime);
-
-				for (let i = 0; i < userBusyTime.length; i++) {
-					if (String(userBusyTime[i]['id']) == String(url.searchParams.get("user"))) {
-						userName = userBusyTime[i]['description']
-						userListday = userBusyTime[i]['days']
-						userItemBusy = userBusyTime[i]
-						break;
-					}
-				}
-				displayOneUserModal(userItemBusy);
-
-				let textStr =
-					'<Text trans="text+:InviteText1;">Вы получили информацию от аккаунта </Text><b class="text-primary"> ';
-				textStr += String(url.searchParams.get("viewBusy"));
-				textStr +=
-					'</b><Text trans="text+:InviteText2222;"> о занятом времени пользователя </Text><strong>';
-
-				if (url.searchParams.get("user")) {
-					//			textInviteStr += String(url.searchParams.get("nameUser")).replace(/_/g, ' ')
-					textStr += userName;
-				}
-				textStr += '</strong>.';
-
-				alerter(
-					'<Text trans="text+:Welcome22;">Информация для Вас!</Text>',
-					textStr,
-					"standart",
-					"info",
-					"standart"
-				);
-
-				document.getElementById("courseSelector").style.display = "none";
-				document.getElementById("levelSelector").style.display = "none";
-				document.getElementById("strCourseLevel").style.display = "none";
-
-				document.getElementsByName("Level1")[0].style.display = "none";
-				document.getElementsByName("Level2")[0].style.display = "none";
-				document.getElementById("timeSelect").style.display = "none";
-
-				document.getElementById("importSpan").style.display = "none";
-
-				document.getElementById("onOffTask").style.display = "none";
-				document.getElementById("btnTodo").style.display = "none";
-				document.getElementById("delColorTime").style.display = "none";
-				document.getElementById("clipboardLinkBusy").style.display = "none";
-				document.getElementById("btnInformer").style.display = "none";
-				document.getElementById("btnFullScreenBusy").style.display = "none";
-				document.getElementById("sendCode2").style.display = "none";
-				document.getElementById("saveDataUser").style.display = "block";
-
-
-				//				loginSendTimeCode2
-
-				document.getElementById("YourName").value = userName;
-				document.getElementById("loginSendTimeCode").value = sessionStorage.getItem("globalLogin");
-
-				//				alert(document.getElementById("loginSendTimeCode").value)
-
-
-				document.getElementById("importInput").value = url.searchParams.get("sendTimeCode");
-				document.getElementById("timeSelect").name = url.searchParams.get("typeTime");
-				document.getElementById("timeSelect").value = url.searchParams.get("typeTime");
-
-				document.getElementById('dataTitle').setAttribute('trans', 'text+:BusyTime;');
-
-				if (url.searchParams.get("sendTimeCode")) {
-					importTime();
-				}
-				let flags = document.querySelectorAll(".allday")
-				for (let i = 0; i < flags.length; i++) {
-					flags[i].style.display = "none"
-				}
-
-				let tds = document.querySelectorAll("#tableUser td");
-				for (let i = 0; i < tds.length; i++) {
-					if (tds[i].style.backgroundColor == "mediumaquamarine") {
-						tds[i].style.backgroundColor = "cornflowerblue"
-					}
-					tds[i].style.padding = "1px 2px";
-					tds[i].disabled = true;
-				}
-				fullBreif()
-				$("#staticBackdrop").modal("show");
-				Translate();
-			}
-		);
-
-
-
-	} else if (strUrl.indexOf('viewFree=') != -1) {
-
-		let textStr = "";
-		var userName;
-		var userListday = [];
-		var userItemFree = {}
-
-		var params = new URLSearchParams();
-		params.set('login', url.searchParams.get("viewFree"));
-		params.set('item', 'users');
-		fetch('https://settime.online/php/lload.php', {
-			method: 'POST',
-			body: params
-		}).then(
-			response => {
-				return response.text();
-			}
-		).then(
-			text => {
-				sessionStorage.setItem('itemUserFree', text);
-
-				var userFreeTime = JSON.parse(sessionStorage.getItem('itemUserFree'))
-
-				for (let i = 0; i < userFreeTime.length; i++) {
-					if (String(userFreeTime[i]['id']) == String(url.searchParams.get("user"))) {
-						userName = userFreeTime[i]['name']
-						userListday = userFreeTime[i]['days']
-						userItemFree = userFreeTime[i]
-						break;
-					}
-				}
-				displayOneUserModal(userItemFree);
-
-
-				let textStr =
-					'<Text trans="text+:InviteText244444;">Вы получили информацию от аккаунта </Text><b class="text-primary"> ';
-				textStr += String(url.searchParams.get("viewFree"));
-				textStr +=
-					'</b><Text trans="text+:InviteText22225555;"> о свободном времени пользователя </Text><strong>';
-
-				if (url.searchParams.get("user")) {
-					textStr += userName;
-				}
-				textStr += '</strong>.';
-
-				alerter(
-					'<Text trans="text+:Welcome22;">Информация для Вас!</Text>',
-					textStr,
-					"standart",
-					"info",
-					"standart"
-				);
-
-				document.getElementById("courseSelector").style.display = "none";
-				document.getElementById("levelSelector").style.display = "none";
-				document.getElementById("strCourseLevel").style.display = "none";
-				document.getElementsByName("Level1")[0].style.display = "none";
-				document.getElementsByName("Level2")[0].style.display = "none";
-				document.getElementById("timeSelect").style.display = "none";
-
-				document.getElementById("importSpan").style.display = "none";
-
-				document.getElementById("onOffTask").style.display = "none";
-				document.getElementById("btnTodo").style.display = "none";
-				document.getElementById("delColorTime").style.display = "none";
-				document.getElementById("clipboardLinkBusy").style.display = "none";
-				document.getElementById("btnInformer").style.display = "none";
-				document.getElementById("btnFullScreenBusy").style.display = "none";
-				document.getElementById("sendCode2").style.display = "none";
-				document.getElementById("saveDataUser").style.display = "block";
-
-				document.getElementById("YourName").value = userName;
-
-				document.getElementById("loginSendTimeCode").value = sessionStorage.getItem("globalLogin");
-
-				//				document.getElementById("loginSendTimeCode").value = url.searchParams.get("viewFree");
-				document.getElementById("importInput").value = url.searchParams.get("sendTimeCode");
-				document.getElementById("timeSelect").name = url.searchParams.get("typeTime");
-				document.getElementById("timeSelect").value = url.searchParams.get("typeTime");
-				document.getElementById('dataTitle').setAttribute('trans', 'text+:FreeTime;');
-
-				if (url.searchParams.get("sendTimeCode")) {
-					importTime();
-				}
-				let flags = document.querySelectorAll(".allday")
-				for (let i = 0; i < flags.length; i++) {
-					flags[i].style.display = "none"
-				}
-
-				let tds = document.querySelectorAll("#tableUser td");
-				for (let i = 0; i < tds.length; i++) {
-					if (tds[i].style.backgroundColor == "mediumaquamarine") {
-						//							tds[i].style.backgroundColor = "cornflowerblue"
-					}
-					tds[i].style.padding = "1px 2px";
-					tds[i].disabled = true;
-				}
-				fullBreif()
-				$("#staticBackdrop").modal("show");
-				Translate();
-			}
-		);
-
-
-
-	} else if (url.searchParams.get('action') == 'sendCode2email') {
-		document
-			.getElementById("dataTitle")
-			.setAttribute("trans", "text+:AddTime;");
-		document.getElementById("timeSelect").name =
-			url.searchParams.get("typeTime");
-		document.getElementById("timeSelect").value =
-			url.searchParams.get("typeTime");
-
-		document.getElementById("YourName").value =
-			url.searchParams.get("nameUser");
-		document.getElementById("loginSendTimeCode").value =
-			url.searchParams.get("loginSendTimeCode");
-		document.getElementById("importInput").value =
-			url.searchParams.get("sendTimeCode");
-		importTime();
-		$("#staticBackdrop").modal("show");
-
-	} else if (url.searchParams.get('action') == 'verify') {
-		let searchParams = new URLSearchParams();
-		searchParams.set('login', url.searchParams.get('loginUser'));
-		searchParams.set('key', url.searchParams.get('key'));
-
-		fetch('https://settime.online/php/verify.php', {
-				method: 'POST',
-				body: searchParams,
-			})
-			.then((response) => {
-				return response.text();
-			})
-			.then((text) => {
-				let objectPHP = JSON.parse(text);
-
-				sessionStorage.setItem('globalLogin', objectPHP['login']);
-
-				let msg =
-					'<span style="display: block; text-align:center"><Text trans="text+:WelcomeVerify;">Пользователь</Text><b> ';
-				msg += objectPHP['login'];
-				msg +=
-					' </b><Text trans="text+:WelcomeVerify2;"> активирован!</Text></span>';
-				msg +=
-					'<p style="margin-top:5px"><Text trans="text+:WelcomeVerify3;">Войдите в систему и Вам будут доступны дополнительные функции.</Text></p>';
-
-				alerter(
-					'<Text trans="text+:Welcome;">Добро пожаловать!</Text>',
-					msg,
-					'standart',
-					'success',
-					'standart'
-				);
-			});
-	} else {
-		document.getElementById('courseSelector').style.display = 'block';
-		document.getElementById('levelSelector').style.display = 'block';
 	}
-	Translate();
-
 }
 
 function startLoadFromRemote(globalLogin, item) {
@@ -4179,8 +3569,6 @@ import2.addEventListener('click', () => {
 		sessionStorage.getItem('globalAccess')
 	);
 
-	//    alert("3907 saveDataTo")
-	//    console.log("3907 saveDataTo")
 	loadStudentsTable();
 	loadBusinessTable();
 	clearEverything();
@@ -4207,30 +3595,12 @@ document.getElementById("param2Name").addEventListener('change', () => {
 
 
 window.onload = () => {
-
-	sessionStorage.setItem('numLoad', 1);
 	start();
-
-	//   спинер между загрузками
-	//    debugger;
-
-	if (localStorage.getItem("numTab") == 1 || localStorage.getItem("numTab") == 2) {
-		const spiner = document.createElement("div");
-		spiner.setAttribute("style", "z-index: -1; display: flex; justify-content: center; position: absolute; top:35%; width:100%; margin:0 auto; height: 300px; color: blue;");
-		spiner.setAttribute("id", "spiner");
-		const inSpiner = document.createElement("span");
-		inSpiner.innerHTML = `<div class = "spinner-border" style="font-size:0.7em; position: relative; top:25%; left:-12px;" role = "status"><span class="visually-hidden"></span></div>`;
-		spiner.append(inSpiner)
-		document.body.append(spiner);
-	}
-
-
-	sessionStorage.setItem('numLoad', 2);
-	setTimeout(start, 1000)
-
 };
 
 export function start() {
+
+
 
 	if (localStorage.getItem('param1Name')) {
 		param1Name.value = localStorage.getItem('param1Name');
@@ -4248,15 +3618,14 @@ export function start() {
 	}
 
 
-	if (!localStorage.getItem('checkbox1')) {
-		localStorage.setItem('checkbox1', true)
-	}
-	if (!localStorage.getItem('checkbox2')) {
-		localStorage.setItem('checkbox2', true)
+	if (!sessionStorage.getItem('numLoad')) {
+		sessionStorage.setItem('numLoad', 0);
 	}
 
-
-
+	console.log('параметры при старте - start()');
+	console.log(sessionStorage.getItem('typeBase'));
+	console.log(!sessionStorage.getItem('globalLogin'));
+	console.log('------------------------------');
 
 	if (!localStorage.getItem('typeBase')) {
 		localStorage.setItem('typeBase', 'local');
@@ -4265,6 +3634,7 @@ export function start() {
 		sessionStorage.setItem('typeBase', localStorage.getItem('typeBase'));
 	}
 
+	goFromURL();
 
 	if (
 		localStorage.getItem('typeBase') == 'remote' &&
@@ -4293,6 +3663,11 @@ export function start() {
 			'iconDataBtn'
 		).innerHTML = `<i class="bi bi-database-down my-0 mt-1" style="font-size: 1.15em" title="Локальное хранилище"></i>`;
 	}
+
+	//    users = JSON.parse(localStorage.getItem("users")) || [];
+	//    business = JSON.parse(localStorage.getItem("business")) || [];
+	//    courses = JSON.parse(localStorage.getItem("courses")) || [];
+	//    grades = JSON.parse(localStorage.getItem("grades")) || [];
 
 	users =
 		JSON.parse(
@@ -4347,36 +3722,17 @@ export function start() {
 			)
 		) || users;
 
-	//	filteredUsers =
-	//		JSON.parse(
-	//			getDataFrom(
-	//				sessionStorage.getItem('typeBase'),
-	//				sessionStorage.getItem('globalLogin'),
-	//				'filteredUsers'
-	//			)
-	//		) || users;
-
-
 	//	if (sessionStorage.getItem('filteredUsers') == '[]') {
 	//		filteredUsers = JSON.parse(getDataFrom(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), 'users'));
 	//	}
-	//    getFilteredUser()
-	//    console.log("#######-filteredUsers-analis#################")
-	//    console.log(filteredUsers, '4057 - start()  до загрузки');
-	//
-	//    getDataFrom(sessionStorage.getItem("typeBase"), sessionStorage.getItem("globalLogin"), "filteredUsers")
-	//
-	//    alert(sessionStorage.getItem("typeBase") + " " + sessionStorage.getItem("globalLogin") + " " + "filteredUsers")
-	//
-	//    console.log(filteredUsers, '4062 - start() после загрузки filteredUsers');
 
-
-	//	console.log(sessionStorage.getItem('typeBase'), sessionStorage.getItem('globalLogin'), '4040');
-	//	console.log("Session", sessionStorage.getItem('filteredUsers'))
-	//	console.log("Local", localStorage.getItem('filteredUsers'))
-	//	console.log("##############################################")
-
-
+	//	alert(filteredUsers, '3288')
+	console.log(filteredUsers, '3304 - start() ');
+	console.log(
+		sessionStorage.getItem('typeBase'),
+		sessionStorage.getItem('globalLogin'),
+		'3304'
+	);
 
 	sortedFilteredUsers = filteredUsers;
 
@@ -4405,226 +3761,103 @@ export function start() {
 
 	allMatches = [];
 
+	if (courses.length !== 0) {
+		creatingOptions(courses, 'course');
+	}
 
+	if (grades.length !== 0) {
+		creatingOptions(grades, 'grade');
+	}
 
-	//    alert("4125 start");
+	loadStudentsTable();
+	loadBusinessTable();
+	clearEverything();
+	toggleCellClickAbility(true, 'modal');
+	toggleCellClickAbility(false, 'tab');
+	nbtc.addEventListener('click', clearEverything);
+	nbtct.addEventListener('click', clearTable);
+	nbts.addEventListener('click', saveUser);
+	nbtcl.addEventListener('click', clearTable);
 
-	if (sessionStorage.getItem('numLoad') == 2) {
+	document.getElementById('btnDelFull').addEventListener('click', clearTable);
 
+	creatingButton.addEventListener('click', () => {
+		currBusiness = null;
+		currUser = null;
+		timeSelectorSpan.style.display = 'block';
+		document.getElementById('dataTitle').display = 'block';
+		document
+			.getElementById('dataTitle')
+			.setAttribute('trans', 'text+:AddTime;');
+		//        document.getElementById("dataTitle").innerHTML = " ";
+		//        document.getElementById("dataTitle").display = "none";
+		clearEverything();
+		Translate();
+	});
+	Translate();
 
-		if (courses.length !== 0) {
-			creatingOptions(courses, 'course');
-		}
-
-		if (grades.length !== 0) {
-			creatingOptions(grades, 'grade');
-		}
-
-
-		goFromURL();
-
-		console.log("4171 start -load events");
+	if (sessionStorage.getItem('typeBase') == 'remote') {
 		loadStudentsTable();
 		loadBusinessTable();
 		clearEverything();
 		toggleCellClickAbility(true, 'modal');
 		toggleCellClickAbility(false, 'tab');
-		nbtc.addEventListener('click', clearEverything);
-		nbtct.addEventListener('click', clearTable);
-		nbts.addEventListener('click', saveUser);
-		nbtcl.addEventListener('click', clearTable);
-		document.getElementById('btnDelFull').addEventListener('click', clearTable);
-		creatingButton.addEventListener('click', () => {
-			currBusiness = null;
-			currUser = null;
+	}
 
-			onObjOnModal()
+	timeSelector.addEventListener('change', changeTimeSelector);
+	gradeSubmittingButton.addEventListener('click', splittingGrades);
+	courseSubmittingButton.addEventListener('click', splittingCourses);
+	scheduleLoadingCheckBox.addEventListener('change', () =>
+		localStorage.setItem(
+			'schedule-loading',
+			JSON.stringify(scheduleLoadingCheckBox.checked)
+		)
+	);
 
-			timeSelector.style.display = 'block';
-			timeSelectorSpan.style.display = 'block';
+	selectLevel.addEventListener('change', (e) => getCurrentLevel(e));
+	selectCourse.addEventListener('change', (e) => getCurrentCourse(e));
+	fullName.addEventListener('change', changeName);
+	importButton.addEventListener('click', importTime);
 
-			document.getElementById('courseSelector').style.display = "inline";
-			document.getElementById('levelSelector').style.display = "inline";
-			document.getElementById('levelSelector').style.marginBottom = "5px";
-
-
-			document.getElementById('briefName').style.display = "none";
-			document.getElementById('checkShedule').style.display = "none";
-			document.getElementById('onOffTask').style.display = "none";
-			document.getElementById('btnTodo').style.display = "none";
-			document.getElementById('sendCode2').style.display = "none";
-
-
-			document.getElementById("timeSelect").childNodes[1].selected = true;
-			document.getElementById("timeSelect").childNodes[3].selected = false;
-
-
-
-
-			document
-				.getElementById('dataTitle')
-				.setAttribute('trans', 'text+:AddTime;');
-			//        document.getElementById("dataTitle").innerHTML = " ";
-			//        document.getElementById("dataTitle").display = "none";
-			clearEverything();
-			Translate();
-		});
-
-		timeSelector.addEventListener('change', changeTimeSelector);
-		gradeSubmittingButton.addEventListener('click', splittingGrades);
-		courseSubmittingButton.addEventListener('click', splittingCourses);
-		scheduleLoadingCheckBox.addEventListener('change', () =>
-			localStorage.setItem(
-				'schedule-loading',
-				JSON.stringify(scheduleLoadingCheckBox.checked)
-			)
+	showingCodeButton.addEventListener('click', () => {
+		document.getElementById('importInput').value = fCompressCodeTime(
+			getTimeCode()
 		);
+		notifyer(
+			'Сформирован Ваш код времени! Можете его отправить пользователю системы',
+			500
+		);
+	});
 
-		selectLevel.addEventListener('change', (e) => getCurrentLevel(e));
-		selectCourse.addEventListener('change', (e) => getCurrentCourse(e));
-		fullName.addEventListener('change', changeName);
-		importButton.addEventListener('click', importTime);
+	gradeText = document.getElementById('gradeTextArea');
+	courseText = document.getElementById('courseTextArea');
 
-		showingCodeButton.addEventListener('click', () => {
-			document.getElementById('importInput').value = fCompressCodeTime(
-				getTimeCode()
-			);
-			notifyer(
-				'Сформирован Ваш код времени! Можете его отправить пользователю системы',
-				500
-			);
-		});
+	//    if (!autoSaving) {
+	//        scheduleAutoSavingCheckBox.checked = false;
+	//    }
 
-		Translate();
+	if (!loading) {
+		scheduleLoadingCheckBox.checked = false;
+	} else {
+		tbodySchedule.innerHTML = localStorage.getItem('tableSchedule');
 
-		gradeText = document.getElementById('gradeTextArea');
-		courseText = document.getElementById('courseTextArea');
+		//        alert(" Пытаюсь загрузить таблицу 2 ")
+		tbodyScheduleFull.innerHTML = localStorage.getItem('tableSchedule');
 
-		//    if (!autoSaving) {
-		//        scheduleAutoSavingCheckBox.checked = false;
-		//    }
-
-		if (!loading) {
-			scheduleLoadingCheckBox.checked = false;
-		} else {
-			tbodySchedule.innerHTML = localStorage.getItem('tableSchedule');
-
-			//        alert(" Пытаюсь загрузить таблицу 2 ")
-			tbodyScheduleFull.innerHTML = localStorage.getItem('tableSchedule');
-
-			//        notifyer("Данные загружены из хранилища!")
-		}
-
-		for (let i = 0; i < dayWeek.length; i++) {
-			dayWeek[i].addEventListener('change', () => allDaySelect(dayWeek[i]));
-		}
-
-		if (localStorage.length && localStorage.getItem('LanguageLocal')) {
-			// Наличие localStorege и нашего LanguageLocal в нём
-			document.getElementById('Trans').value =
-				localStorage.getItem('LanguageLocal'); // T.к. уже есть переносим его значение в select
-			Translate(); // Вызываем функцию при старте страницы , но после обработки локального хранилища
-		}
-		AddEventAllCheck();
+		//        notifyer("Данные загружены из хранилища!")
 	}
 
-	//    filterUsers();
-}
-
-export function createParamOption() {
-
-	let param1 = document.getElementById("courseSelector")
-
-	let courses =
-		JSON.parse(
-			getDataFrom(
-				sessionStorage.getItem('typeBase'),
-				sessionStorage.getItem('globalLogin'),
-				'courses'
-			)
-		) || [];
-
-	let options = courses;
-	options = [...new Set(options.map((item) => item.trim()))];
-
-	param1.innerHTML = ""
-	param1.innerHTML += `<option value="Nothing" id="nocourse">` + String(localStorage.getItem("param1Name")) + `</option>`;
-
-	param1.innerHTML += `</option>`;
-	param1.innerHTML += `<option name="Any" value="Any" id="any">Any</option>`;
-
-	for (let i = 0; i < options.length; i++) {
-		let option = document.createElement('option');
-		option.value = options[i].toString();
-		option.innerHTML = options[i].toString();
-		param1.appendChild(option);
+	for (let i = 0; i < dayWeek.length; i++) {
+		dayWeek[i].addEventListener('change', () => allDaySelect(dayWeek[i]));
 	}
 
-	//    ---------------------------------------------------------------
-
-	let param2 = document.getElementById("levelSelector")
-
-	let grades =
-		JSON.parse(
-			getDataFrom(
-				sessionStorage.getItem('typeBase'),
-				sessionStorage.getItem('globalLogin'),
-				'grades'
-			)
-		) || [];
-
-	options = grades;
-	options = [...new Set(options.map((item) => item.trim()))];
-
-	param2.innerHTML = ""
-	param2.innerHTML += `<option value="Nothing" selected="" id="nolevel">` + String(localStorage.getItem("param2Name")) + `</option>`;
-
-	param2.innerHTML += ``;
-	param2.innerHTML += `<option name="Any" value="Any">Any</option>`;
-
-	for (let i = 0; i < options.length; i++) {
-		let option = document.createElement('option');
-		option.value = options[i].toString();
-		option.innerHTML = options[i].toString();
-		param2.appendChild(option);
+	if (localStorage.length && localStorage.getItem('LanguageLocal')) {
+		// Наличие localStorege и нашего LanguageLocal в нём
+		document.getElementById('Trans').value =
+			localStorage.getItem('LanguageLocal'); // T.к. уже есть переносим его значение в select
+		Translate(); // Вызываем функцию при старте страницы , но после обработки локального хранилища
 	}
 
-}
-
-export function offObjOnModal() {
-	document.getElementById('dataTitle').style.display = "none";
-	document.getElementById('timeSelect').style.display = "none";
-	document.getElementById('timeSelectSpan').style.display = "none";
-	document.getElementById('briefName').style.display = "none";
-	document.getElementById('editDataHeader').style.display = "none";
-	document.getElementById('strCourseLevel').style.display = "none";
-	document.getElementById('checkShedule').style.display = "none";
-	document.getElementById('flexCheckDefault').style.display = "none";
-	document.getElementById('importSpan').style.display = "none";
-	document.getElementById('delColorTime').style.display = "none";
-	document.getElementById('onOffTask').style.display = "none";
-	document.getElementById('btnFullScreenBusy').style.display = "none";
-	document.getElementById('btnTodo').style.display = "none";
-	document.getElementById('sendCode2').style.display = "none";
-	document.getElementById('btnInformer').style.display = "none";
-
-
-}
-
-export function onObjOnModal() {
-	document.getElementById('dataTitle').style.display = "inline";
-	document.getElementById('timeSelect').style.display = "inline";
-	document.getElementById('timeSelectSpan').style.display = "inline";
-	document.getElementById('briefName').style.display = "inline";
-	document.getElementById('editDataHeader').style.display = "flex";
-	document.getElementById('checkShedule').style.display = "inline";
-	document.getElementById('flexCheckDefault').style.display = "block";
-	document.getElementById('strCourseLevel').style.display = "flex";
-	document.getElementById('importSpan').style.display = "block";
-	document.getElementById('delColorTime').style.display = "inline";
-	document.getElementById('onOffTask').style.display = "inline";
-	document.getElementById('btnFullScreenBusy').style.display = "inline";
-	document.getElementById('btnTodo').style.display = "inline";
-	document.getElementById('sendCode2').style.display = "inline";
-	document.getElementById('btnInformer').style.display = "block";
+	AddEventAllCheck();
+	filterUsers();
 }
