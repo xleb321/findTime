@@ -1075,7 +1075,21 @@ function loadStudentsTable() {
 
 				document.getElementById("flexCheckDefault").checked = item['setShed'];
 
+        //<Наслоение дел - Только свободные>=================================================
 
+        setTimeout(() => {
+          closeTodoLayers(
+            document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
+          );
+          isLayersCanBeDisplayed(
+            document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+            [item.id],
+            'free',
+            loadTodoLayers
+          );
+        }, 200);
+
+        //</Наслоение дел - Только свободные>=========================================================
 
 
 			});
@@ -1095,6 +1109,22 @@ function loadStudentsTable() {
 				displayOneUserModal(item);
 				document.getElementById('importInput').value = fCompressCodeTime(getTimeCode())
 				document.getElementById("flexCheckDefault").checked = item['setShed'];
+
+        //<Наслоение дел - Только свободные>=================================================
+
+        setTimeout(() => {
+          closeTodoLayers(
+            document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
+          );
+          isLayersCanBeDisplayed(
+            document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+            [item.id],
+            'free',
+            loadTodoLayers
+          );
+        }, 200);
+
+        //</Наслоение дел - Только свободные>=========================================================
 
 			});
 
@@ -1762,7 +1792,7 @@ function loadBusinessTable() {
 			sessionStorage.setItem('idCurUser', sortedBusiness[i]['id']);
 			document.getElementById('importInput').value = fCompressCodeTime(getTimeCode())
 
-			//<Наслоение дел>=================================================
+			//<Наслоение дел - Все дела>=================================================
 
 			setTimeout(() => {
 				closeTodoLayers(
@@ -1771,15 +1801,12 @@ function loadBusinessTable() {
 				isLayersCanBeDisplayed(
 					document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
 					[document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id],
+          'any',
 					loadTodoLayers
-				)
-				// loadTodoLayers(
-				// 	document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
-				// 	document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
-				// )
+				);
 			}, 200);
 
-			//</Наслоение дел>=========================================================
+			//</Наслоение дел - Все дела>=========================================================
 
 		});
 
@@ -1797,7 +1824,7 @@ function loadBusinessTable() {
 			document.getElementById('importInput').value = fCompressCodeTime(getTimeCode())
 
 
-			//<Наслоение дел>==============================================================================
+			//<Наслоение дел - Все дела>==============================================================================
 
 			setTimeout(() => {
 				closeTodoLayers(
@@ -1806,15 +1833,12 @@ function loadBusinessTable() {
 				isLayersCanBeDisplayed(
 					document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
 					[document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id],
+          'any',
 					loadTodoLayers
-				)
-				// loadTodoLayers(
-				// 	document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
-				// 	document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
-				// );
+				);
 			}, 200);
 
-			//</Наслоение дел>==============================================================================
+			//</Наслоение дел - Все дела>==============================================================================
 		});
 
 		const tableSeventhTd = document.createElement('td');

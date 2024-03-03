@@ -34,11 +34,6 @@ import {
 	offObjOnModal,
 	onObjOnModal
 } from './main.js';
-import {
-	closeTodoLayers,
-	loadTodoLayers,
-	isLayersCanBeDisplayed
-} from './todo.js';
 
 
 //save&load schedule
@@ -1887,19 +1882,6 @@ export function fullBreif() {
 			//tds[i].style.fontSize = "0.9em";
 		}
 	}
-
-	closeTodoLayers(
-		document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
-	);
-	isLayersCanBeDisplayed(
-		document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
-		[document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id],
-		loadTodoLayers
-	)
-	// loadTodoLayers(
-	// 	document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
-	// 	document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
-	// );
 
 }
 

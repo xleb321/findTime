@@ -185,3 +185,66 @@
 16/02/24 (
   Объединил с версией Олега за 13.02.2024
 )
+
+03/03/24 (
+  js/extend.js - Отвязал функции списка дел, больше не нужны
+    ### Удалено
+      1:  
+        import {
+          closeTodoLayers,
+          loadTodoLayers,
+          isLayersCanBeDisplayed
+        } from './todo.js';
+      2: 
+        closeTodoLayers(
+          document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
+        );
+        isLayersCanBeDisplayed(
+          document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+          [document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id],
+          loadTodoLayers
+        )
+        // loadTodoLayers(
+        // 	document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+        // 	document.querySelector('#staticBackdrop').querySelector('#btnTodo').dataset.id
+        // );
+    ### Удалено
+
+  js/main.js:
+    1. Вывод стикеров дел в таблицу свободного времени
+    ### Добавлено (1795, 1829)
+      //<Наслоение дел - Только свободные>=================================================
+
+      setTimeout(() => {
+        closeTodoLayers(
+          document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
+        );
+        isLayersCanBeDisplayed(
+          document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0],
+          [item.id],
+          'free',
+          loadTodoLayers
+        );
+      }, 200);
+
+      //</Наслоение дел - Только свободные>=========================================================
+    ### Добавлено
+    2. Добавил аргумент 'any' в функцию isLayersCanBeDisplayed (1795-1809, 1827-1841)
+
+  css/todo.css - Правки стилей
+
+  api/lang.json - Поменял перевод:
+    ### Изменено (1707)
+      "DisplaySchedule": {
+        "ru": "Показать в расписании",
+        "en": "Show in schedule",
+        "fr": "Afficher dans l'agenda"
+      },
+    ### Изменено
+
+  js/todo.js:
+    1. Правки названий и оптимизация кода
+    2. confirm на удаление одного дела и всех дел
+    3. Обновил функцию вывода стикеров дел loadTodoLayers - добавил возможность вывода всех дела, или только с типом свободное
+    4. Перевод размеров стикеров с px в %
+)

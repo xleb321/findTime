@@ -325,21 +325,32 @@
 .todo-btns__left {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 12px;
+}
+
+.todo__checkbox span {
+  font-size: 16px;
+}
+
+@media (max-width: 425px) {
+  .todo__checkbox span {
+    font-size: 14px;
+  }   
 }
 
 .todo-btns__right {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 12px;
 }
 
 .todo-btns__delete {
-	padding: 4px 6px;
+	padding: 5px 6px;
 	background-color: #fff;
-	border-radius: 3px;
+	border-radius: 2px;
 	border: 1px solid #CD5C5C;
-	font-size: 18px;
+	font-size: 1em;
+  margin-left: 2px;
 }
 
 .todo-btns__escape {
@@ -455,7 +466,7 @@
 
 .todo-item__buttons {
 	display: flex;
-	column-gap: 10px;
+	column-gap: 12px;
 }
 
 .todo-buttons__btn {
@@ -501,10 +512,6 @@
 
 	.todo-item__info {
 		column-gap: 7px;
-	}
-
-	.todo-item__buttons {
-		column-gap: 5px;
 	}
 }
 

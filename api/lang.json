@@ -1706,8 +1706,8 @@
 	},
 	"DisplaySchedule": {
 		"ru": "Показать в расписании",
-		"en": "Show in the schedule",
-		"fr": "Afficher dans le calendrier"
+		"en": "Show in schedule",
+		"fr": "Afficher dans l'agenda"
 	},
 	"toDoList": {
 		"ru": "список дел",
