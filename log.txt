@@ -189,13 +189,13 @@
 03/03/24 (
   js/extend.js - Отвязал функции списка дел, больше не нужны
     ### Удалено
-      1:  
+      1:
         import {
           closeTodoLayers,
           loadTodoLayers,
           isLayersCanBeDisplayed
         } from './todo.js';
-      2: 
+      2:
         closeTodoLayers(
           document.querySelector('#staticBackdrop').querySelector('.modal-content').children[2].children[0]
         );

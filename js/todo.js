@@ -1,9 +1,5 @@
-import {
-  Translate
-} from './translator.js';
-import {
-  alerter
-} from './main.js';
+import { Translate } from './translator.js';
+import { alerter } from './main.js';
 
 // Настройка времени
 const timeSetting = {
@@ -13,13 +9,13 @@ const timeSetting = {
 };
 
 const days = {
-  1: "Пн",
-  2: "Вт",
-  3: "Ср",
-  4: "Чт",
-  5: "Пт",
-  6: "Сб",
-  7: "Вс",
+  1: 'Пн',
+  2: 'Вт',
+  3: 'Ср',
+  4: 'Чт',
+  5: 'Пт',
+  6: 'Сб',
+  7: 'Вс',
 };
 
 const colors = {
@@ -37,10 +33,9 @@ const colors = {
   },
   free: {
     color: 'rgb(144, 238, 144)',
-    dark: 'rgb(55, 173, 95)'
+    dark: 'rgb(55, 173, 95)',
   },
 };
-
 
 let parser = new DOMParser(); // HTML-парсер
 let btnTodo = document.querySelector('#btnTodo');
@@ -189,7 +184,7 @@ btnTodo.addEventListener('click', () => {
     changeDescriptionLimit(
       todoDescription,
       todoDescription.value.length,
-      maxSymbols
+      maxSymbols,
     );
   });
 
@@ -264,7 +259,7 @@ btnTodo.addEventListener('click', () => {
           '<div trans="text+:TodoIsAlreadyDisplayed;" style="text-indent: 0;">Список дел другого(их) пользователей уже выводится в расписание</div>',
           'standart',
           'info',
-          'slim'
+          'slim',
         );
 
         if (!localStorageID.includes(checkboxID)) {
@@ -322,21 +317,26 @@ btnTodo.addEventListener('click', () => {
     // Закрытие списка дел
     if (targetElement.closest('#todoClose')) {
       closeTodoLayers(
-        btnTodo.closest('.modal-content').children[2].children[0]
+        btnTodo.closest('.modal-content').children[2].children[0],
       );
       isLayersCanBeDisplayed(
         btnTodo.closest('.modal-content').children[2].children[0],
         [userId],
         'any',
-        loadTodoLayers
+        loadTodoLayers,
       );
 
       closeTodoWindow();
     }
 
     // Редактирование дела
-    if (targetElement.closest('.todo-buttons__edit') || targetElement.closest('.todo-item__info')) {
-      let editBtn = targetElement.closest('.todo-buttons__edit') ?? targetElement.closest('.todo-item__info');
+    if (
+      targetElement.closest('.todo-buttons__edit') ||
+      targetElement.closest('.todo-item__info')
+    ) {
+      let editBtn =
+        targetElement.closest('.todo-buttons__edit') ??
+        targetElement.closest('.todo-item__info');
       let editItemData = {
         id: editBtn.dataset.id,
         day: editBtn.dataset.day,
@@ -353,7 +353,9 @@ btnTodo.addEventListener('click', () => {
       let currentFilter = targetElement.closest('.todo-filters__filter');
       if (!currentFilter.classList.contains('_active')) {
         // Убираем стили с бывшего "активного" фильтра
-        document.querySelector('.todo-filters__filter._active').classList.remove('_active');
+        document
+          .querySelector('.todo-filters__filter._active')
+          .classList.remove('_active');
         currentFilter.classList.add('_active'); // Делаем "активным" выбранный день
 
         loadTodo(userId, currentFilter.dataset.day);
@@ -371,7 +373,7 @@ btnTodo.addEventListener('click', () => {
 
       let response = await fetch('api/todo.json', {
         method: 'POST',
-      })
+      });
 
       if (response.ok) {
         let todoJson = await response.json();
@@ -390,11 +392,11 @@ btnTodo.addEventListener('click', () => {
           if (responsePHP.ok) {
             let response = await fetch('api/todo.json', {
               method: 'POST',
-            })
+            });
 
             todoJson = await response.json();
           } else {
-            showAlert('error')
+            showAlert('error');
           }
         }
 
@@ -438,7 +440,6 @@ btnTodo.addEventListener('click', () => {
           showAlert('error');
           todoForm.classList.remove('_sending');
         }
-
       } else {
         showAlert('error');
       }
@@ -447,7 +448,11 @@ btnTodo.addEventListener('click', () => {
     }
   }
 
-  async function loadTodo(id, filteredDay = +document.querySelector('.todo-filters__filter._active').dataset.day) {
+  async function loadTodo(
+    id,
+    filteredDay = +document.querySelector('.todo-filters__filter._active')
+      .dataset.day,
+  ) {
     filteredDay = +filteredDay;
 
     let response = await fetch('api/todo.json', {
@@ -467,7 +472,9 @@ btnTodo.addEventListener('click', () => {
         }
 
         userJson.sort((a, b) => {
-          return a.day.localeCompare(b.day) || a.startTime.localeCompare(b.startTime);
+          return (
+            a.day.localeCompare(b.day) || a.startTime.localeCompare(b.startTime)
+          );
         });
 
         if (userJson.length) {
@@ -476,8 +483,12 @@ btnTodo.addEventListener('click', () => {
 
             todoDealsBody.innerHTML += /* html */ `
               <div class="todo-deals__item todo-item" data-id="${item.id}">
-                <div class="todo-item__body" style="border-bottom: 0.18em solid ${colors[item.type]['dark']}">
-                  <div class="todo-item__checkbox ${+item.checked ? '_checked' : ''}" 
+                <div class="todo-item__body" style="border-bottom: 0.18em solid ${
+                  colors[item.type]['dark']
+                }">
+                  <div class="todo-item__checkbox ${
+                    +item.checked ? '_checked' : ''
+                  }" 
                     data-id="${item.id}" 
                     title="${+item.checked ? 'Выполнено' : 'Невыполнено'}"
                   >
@@ -494,7 +505,9 @@ btnTodo.addEventListener('click', () => {
                         data-type="${item.type}"
                       >
                         <div class="todo-info__date">
-                          <span class="todo-info__item todo-info__day">${days[item.day]}</span>
+                          <span class="todo-info__item todo-info__day">${
+                            days[item.day]
+                          }</span>
                           <span class="todo-info__item todo-info__time">
                             ${item.startTime} - ${item.endTime}
                           </span>
@@ -515,7 +528,9 @@ btnTodo.addEventListener('click', () => {
                         >
                           <i class="bi bi-pencil-square"></i>
                         </div>
-                        <div class="todo-buttons__btn todo-buttons__del" data-id="${item.id}" title="Удалить дело">
+                        <div class="todo-buttons__btn todo-buttons__del" data-id="${
+                          item.id
+                        }" title="Удалить дело">
                           <i class="bi bi-trash"></i>
                         </div>
                       </div>
@@ -546,8 +561,8 @@ btnTodo.addEventListener('click', () => {
 
   async function checkTodoItem(checkbox, id) {
     let response = await fetch('api/todo.json', {
-      method: 'POST',
-    }),
+        method: 'POST',
+      }),
       todoId = checkbox.dataset.id;
 
     if (response.ok) {
@@ -718,7 +733,7 @@ btnTodo.addEventListener('click', () => {
       changeDescriptionLimit(
         editedDescription,
         editedDescription.value.length,
-        maxSymbols
+        maxSymbols,
       );
     });
 
@@ -756,7 +771,7 @@ btnTodo.addEventListener('click', () => {
     changeDescriptionLimit(
       editedDescription,
       editedDescription.value.length,
-      maxSymbols
+      maxSymbols,
     );
 
     editedDaySelect.value = +data.day;
@@ -792,7 +807,6 @@ btnTodo.addEventListener('click', () => {
       }
     }, 1);
 
-    
     function todoEditActions(e) {
       let targetElement = e.target;
 
@@ -818,7 +832,6 @@ btnTodo.addEventListener('click', () => {
       }
     }
 
-    
     async function saveEditChanges(e) {
       e.preventDefault();
 
@@ -846,11 +859,10 @@ btnTodo.addEventListener('click', () => {
           todoForm.classList.remove('_sending');
         }
       } else {
-        showAlert('form')
+        showAlert('form');
       }
     }
 
-    
     function closeEditPopup() {
       // Анимация закрытия окна редактирования дела
       if (todoEdit.classList.contains('_open')) {
@@ -914,7 +926,9 @@ btnTodo.addEventListener('click', () => {
     while (isTimeSmaller(timeline[timeline.length - 1], settings.end)) {
       let newMinutes = 0,
         newHour = 0;
-      let [startHour, startMinutes] = splitTimeString(timeline[timeline.length - 1]);
+      let [startHour, startMinutes] = splitTimeString(
+        timeline[timeline.length - 1],
+      );
 
       /* Работаем с минутами */
       let minutesSummary = startMinutes + stepMinutes;
@@ -1025,33 +1039,37 @@ btnTodo.addEventListener('click', () => {
 let btnFullScreen = document.querySelector('#btnFullScreen4orange');
 
 btnFullScreen.addEventListener('click', () => {
-  let checkedUsers = document.querySelectorAll('.checkBusyBtn.bi-check-square-fill');
+  let checkedUsers = document.querySelectorAll(
+    '.checkBusyBtn.bi-check-square-fill',
+  );
   let localStorageID = getLocalStorageData('todoID') || [];
   let idArray = [];
   let finalArray = [];
 
   closeTodoLayers(
-    document.querySelector('#full').querySelector('#tableScheduleBodyFull')
+    document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
   );
 
   if (checkedUsers.length && localStorageID.length) {
-    checkedUsers.forEach((user) => {
+    checkedUsers.forEach(user => {
       idArray.push(user.parentElement.attributes.id.value);
     });
 
-    finalArray = idArray.filter((element) => localStorageID.includes(element));
+    finalArray = idArray.filter(element => localStorageID.includes(element));
 
     setTimeout(() => {
       loadTodoLayers(
         document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
-        finalArray
+        finalArray,
       ).then(() => {
-        let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
+        let tableFullLayers = document
+          .querySelector('#full')
+          .querySelectorAll('.layers');
 
         tableFullLayers.forEach(layer => {
           layer.style.paddingTop = `24.11px`;
         });
-      })
+      });
     }, 200);
   }
 });
@@ -1061,7 +1079,9 @@ btnFullScreen.addEventListener('click', () => {
 //<Наслоение дел>==============================================================================
 
 export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
-  let btnClose = table.querySelector('.btn-close') || table.closest('.modal-content').querySelector('.btn-close');
+  let btnClose =
+    table.querySelector('.btn-close') ||
+    table.closest('.modal-content').querySelector('.btn-close');
   btnClose.addEventListener('click', close);
 
   function close() {
@@ -1070,7 +1090,9 @@ export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
   }
 
   // Обнуляем стиль кнопки "Скрыть дела"
-  document.getElementById("onOffTask").children[0].setAttribute('class', 'bi bi-eye-slash-fill');
+  document
+    .getElementById('onOffTask')
+    .children[0].setAttribute('class', 'bi bi-eye-slash-fill');
 
   for (let id of idArray) {
     // Генерируем контейнер для слоев
@@ -1081,15 +1103,19 @@ export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
       </div>
     `;
 
-    layersHtml = parser.parseFromString(layersHtml, 'text/html').querySelector('.layers');
+    layersHtml = parser
+      .parseFromString(layersHtml, 'text/html')
+      .querySelector('.layers');
     layersHtml.dataset.id = id;
     table.append(layersHtml);
 
     table.style.position = 'relative';
 
-    let layersBody = table.querySelector(`.layers[data-id="${id}"]`).querySelector('.layers__body');
+    let layersBody = table
+      .querySelector(`.layers[data-id="${id}"]`)
+      .querySelector('.layers__body');
 
-    layersBody.style.paddingLeft = "9%";
+    layersBody.style.paddingLeft = '9%';
 
     let response = await fetch('api/todo.json', {
       method: 'POST',
@@ -1100,29 +1126,41 @@ export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
         userTodo = todoJson.todo[id];
 
       if (idFolderExist(todoJson, id)) {
-
         // Вывод слоёв только свободного времени
         if (todoTypes === 'free') {
           userTodo = userTodo.filter(todo => todo.type === 'free');
         }
 
         // Высота 1й минуты (в px)
-        const oneMinuteHeight = table.querySelector('tbody').children[0].getBoundingClientRect().height / 30;
+        const oneMinuteHeight =
+          table.querySelector('tbody').children[0].getBoundingClientRect()
+            .height / 30;
 
         userTodo.forEach((item, index) => {
           // Расчет высоты наслоения (в px)
           let [endTimeHour, endTimeMinutes] = splitTimeString(item.endTime);
-          let [startTimeHour, startTimeMinutes] = splitTimeString(item.startTime);
-          let layerHeight = ((endTimeHour - startTimeHour) * 60 + (endTimeMinutes - startTimeMinutes)) * oneMinuteHeight - 4;
+          let [startTimeHour, startTimeMinutes] = splitTimeString(
+            item.startTime,
+          );
+          let layerHeight =
+            ((endTimeHour - startTimeHour) * 60 +
+              (endTimeMinutes - startTimeMinutes)) *
+              oneMinuteHeight -
+            4;
 
           // Расчет отступа сверху (значение top, в px)
-          let [firstTimeHour, firstTimeMinutes] = splitTimeString(timeSetting.start);
+          let [firstTimeHour, firstTimeMinutes] = splitTimeString(
+            timeSetting.start,
+          );
 
-          let topValue = ((startTimeHour - firstTimeHour) * 60 + (startTimeMinutes - firstTimeMinutes)) * oneMinuteHeight;
+          let topValue =
+            ((startTimeHour - firstTimeHour) * 60 +
+              (startTimeMinutes - firstTimeMinutes)) *
+            oneMinuteHeight;
 
           // Переводим layerHeight и topValue в %
-          layerHeight = layerHeight / table.offsetHeight * 100;
-          topValue = topValue / table.offsetHeight * 100;
+          layerHeight = (layerHeight / table.offsetHeight) * 100;
+          topValue = (topValue / table.offsetHeight) * 100;
 
           // Множитель для отступа слева (для margin-left)
           let marginLeftValue = 12.99;
@@ -1161,7 +1199,9 @@ export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
           let colorsValue = colors[item.type];
 
           layersBody.innerHTML += /*html*/ `
-            <div class="layers__item layers-item ${+item.checked ? '_checked' : ''}" 
+            <div class="layers__item layers-item ${
+              +item.checked ? '_checked' : ''
+            }" 
               style="
                 z-index: ${index + 1};
                 height: ${layerHeight}%;
@@ -1192,7 +1232,7 @@ export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
           `;
         });
 
-        tippy("[data-tippy-content]", {
+        tippy('[data-tippy-content]', {
           allowHTML: true,
           theme: 'light-border',
           placement: 'right',
@@ -1216,7 +1256,12 @@ export function closeTodoLayers(table) {
   }
 }
 
-export function isLayersCanBeDisplayed(table, idArray, todoType = 'any', callback) {
+export function isLayersCanBeDisplayed(
+  table,
+  idArray,
+  todoType = 'any',
+  callback,
+) {
   let localStorageID = getLocalStorageData('todoID') || [];
   let call = false;
 
@@ -1287,7 +1332,7 @@ function showAlert(type) {
         '<div trans="text+:ErrorGo;" style="text-indent: 0;">Что-то пошло не так. Повторите вашу попытку позже</div>',
         'standart',
         'danger',
-        'slim'
+        'slim',
       );
       break;
 
@@ -1297,14 +1342,14 @@ function showAlert(type) {
         '<div trans="text+:FillRequired" style="text-indent: 0;">Заполните обязательные поля</div>',
         'standart',
         'warning',
-        'slim'
+        'slim',
       );
       break;
   }
 }
 
 // Логика кнопки "Скрыть дела"
-let onOffTasks = document.getElementById("onOffTask")
+let onOffTasks = document.getElementById('onOffTask');
 let layers = document.getElementsByClassName('layers');
 
 onOffTasks.addEventListener('click', () => {
@@ -1321,6 +1366,6 @@ onOffTasks.addEventListener('click', () => {
     onOffTasks.children[0].classList.add('bi-eye-slash-fill');
     onOffTasks.children[0].classList.remove('bi-eye-fill');
   }
-})
+});
 
 //</FUNCTIONS>==============================================================================
