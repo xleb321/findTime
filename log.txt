@@ -248,3 +248,15 @@
     3. Обновил функцию вывода стикеров дел loadTodoLayers - добавил возможность вывода всех дела, или только с типом свободное
     4. Перевод размеров стикеров с px в %
 )
+
+01/04/24 (
+  js/extend.js - добавил export для getDataFrom
+  js/todo.js - сетевое хранение дел:
+    1. Новые импорты:
+      import { getDataFrom } from './extend.js';
+      import { saveDataTo } from './main.js';
+    2. Новая функция получения данных getTodoJSON
+    3. Новая функция сохранения данных saveTodoJSON
+    4. Изменил логику функций todoAddItem, loadTodo, checkTodoItem, 
+      deleteTodoItem, todoDeleteAll, todoEditItem, loadTodoLayers
+)
