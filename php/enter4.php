@@ -41,15 +41,34 @@ if ($action=='login'){
         //верификация есть
         if ($check[6]==1){
 
-            $date = new DateTime( strval($check[4]));//дата окончания подписки
+            $date = new DateTime(strval($check[4]));//дата окончания подписки
 			$now = new DateTime();	
             
-        
-//            ($now->diff($date)->format("%a"))<90
+//			
+// $nowDate = strtotime(strval($now));
+// $dateReg = strtotime(strval($date));
+//
+// $interval=round(($dateReg - $nowDate) / (60*60*24),0);
+//			        
+//            ($now$date)<90
             
+			
+			
+			
             // не истек срок действия подписки
-            if (($now->diff($date)->format("%a")) < 100) { // здесь берется разница между сегодняшним днем и датой покупки подписки
-                $stroke = '{"login":"'.$check[1].'","access":7,"email":"","expiredDate":"'.$expiredDate.'","txtMsg":""}';
+				$now1 = new DateTime();
+				$dateReg1 = new DateTime(strval($check[4]));
+				$interval=date_diff($now1,$dateReg1)->format("%r%a");
+				
+			 $interval1 = intval ($interval);
+			$rez = $interval1 > 100; 
+						
+			if ( $interval1 < 100) { // здесь берется разница между сегодняшним днем и датой покупки подписки
+//			if (($now->diff($date)->format("%a")) < 100) { // здесь берется разница между сегодняшним днем и датой покупки подписки
+					
+ 				$raz = $date->diff($now)->format("%a");
+		
+                $stroke = '{"login":"'.$check[1].'","access":7,"email":"","expiredDate":"'.$expiredDate.'","txtMsg":"'.(string)$rez.'"}';
                 echo $stroke;
 //                $str="[7]-".$login."|".$today."|".$expiredDate."|".$interval->days." дней";
 //                $str.=" \n";
@@ -60,7 +79,7 @@ if ($action=='login'){
 //                $str="[6]-".$login."|".$today."|".$expiredDate."|".$interval->days." дней";
 //                $str.=" \n";
 //                fwrite($fn,$str);  
-                $stroke = '{"login":"'.$check[1].'","access":6,"email":"","expiredDate":"'.$expiredDate.'","txtMsg":""}';
+                $stroke = '{"login":"'.$check[1].'","access":6,"email":"","expiredDate":"'.$expiredDate.'","txtMsg":"'.(string)$rez.'"}';
                 echo $stroke;
             }
         }

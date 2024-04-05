@@ -442,7 +442,7 @@ if (numTab != 3) {
 
 alertEmptyStart();
 
-function alertEmptyStart() {
+export function alertEmptyStart() {
   let tableObj = document.querySelectorAll('#tbodySchedule');
   let tableObjFull = document.querySelectorAll('#tbodyScheduleFull');
   let checkFlagTime = document.querySelectorAll('.bi-check-square-fill');
@@ -513,7 +513,13 @@ let emailReg = document.getElementById('Email');
 //}
 
 let btnModalEnter = document.getElementById('btnModalEnter');
+
+document.getElementById('btnModalEnterIcon');
+
 btnModalEnter.addEventListener('click', () => {
+  //	document.getElementById('btnModalEnterIcon').style.color = "white";
+  //	document.getElementById('btnModalEnterIcon').style.backgroundColor = "blue";
+
   moveWin.classList.toggle('invs');
 });
 
@@ -522,10 +528,14 @@ else if (window.innerWidth < 600) moveWin.style.width = '400px';
 else moveWin.style.width = '450px';
 
 btnCloses[0].addEventListener('click', () => {
+  //	document.getElementById('btnModalEnterIcon').style.color = "black";
+  //	document.getElementById('btnModalEnterIcon').style.backgroundColor = "white";
   moveWin.classList.toggle('invs');
 });
 
 btnCloses[1].addEventListener('click', () => {
+  //	document.getElementById('btnModalEnterIcon').style.color = "black";
+  //	document.getElementById('btnModalEnterIcon').style.backgroundColor = "white";
   moveWin.classList.toggle('invs');
 });
 
@@ -713,7 +723,7 @@ buttonEnter.addEventListener('click', async () => {
     }
 
     const json = await (
-      await loadDataEnter(params, '../php/enter4.php', 'POST')
+      await loadDataEnter(params, './php/enter4.php', 'POST')
     ).json();
     areaAnswer.innerHTML = genContentWinEnter(json);
 
@@ -756,13 +766,13 @@ if (globalAccess == 7) {
     document.getElementById('flexRadioDefault2').disabled = false;
     document.getElementById('flexRadioDefault2').checked = true;
     document.getElementById('flexRadioDefault1').checked = false;
-    document.getElementById('importButtonBase').disabled = false;
+    document.getElementById('importButtonBase').disabled = true; // было false
   } else {
     document.getElementById('flexRadioDefault1').disabled = false;
     document.getElementById('flexRadioDefault2').disabled = false;
     document.getElementById('flexRadioDefault1').checked = true;
     document.getElementById('flexRadioDefault2').checked = false;
-    document.getElementById('importButtonBase').disabled = false;
+    document.getElementById('importButtonBase').disabled = true; // было false
 
     //        alert("База локальная 1")
   }
@@ -770,7 +780,7 @@ if (globalAccess == 7) {
   document.getElementById('flexRadioDefault2').disabled = true;
   document.getElementById('flexRadioDefault1').checked = true;
   document.getElementById('flexRadioDefault1').disabled = false;
-  document.getElementById('importButtonBase').disabled = true;
+  document.getElementById('importButtonBase').disabled = true; // было false
 }
 
 function genContentWinEnter(text) {
@@ -793,7 +803,7 @@ function genContentWinEnter(text) {
     document.getElementById('importButtonBase').disabled = true;
   } else {
     remoteBase.disabled = false;
-    document.getElementById('importButtonBase').disabled = false;
+    document.getElementById('importButtonBase').disabled = true; // было false
   }
 
   //    ДОСТУПА В СИСТЕМУ НЕТ.
@@ -808,7 +818,9 @@ function genContentWinEnter(text) {
   }
 
   // регистрация
+  // зарегистрирован, но не подтвержден
   else if (Number(objectPHP['access']) == 13) {
+    //		alert(objectPHP['expiredDate']);
     modalBody.style.display = 'none';
     areaAnswer.innerHTML = '';
 
@@ -844,7 +856,7 @@ function genContentWinEnter(text) {
       '</b></div>';
 
     contentWinEnter +=
-      '<br><p><b>Подключите до 31.01.2024 г. бесплатно</b> дополнительные сервисы в системе, перейдя по ссылке в письме которое Вам поступило после регистрации.</p><br>';
+      '<br><p><b>Подключите до 31.05.2024 г. бесплатно</b> дополнительные сервисы в системе, перейдя по ссылке в письме которое Вам поступило после регистрации.</p><br>';
   }
 
   //    логин зарегистрировн
@@ -853,6 +865,9 @@ function genContentWinEnter(text) {
     modalBody.style.display = 'none';
     areaAnswer.innerHTML = '';
 
+    //		alert(objectPHP['expiredDate']);
+
+    //				alert(objectPHP['txtMsg']);
     document
       .getElementById('btnModalEnterIcon')
       .classList.replace('bi-box-arrow-in-right', 'bi-person-check');
@@ -881,6 +896,14 @@ function genContentWinEnter(text) {
       '<div style="width:95%;text-align:left;padding-left:10px;">Дополнительные сервисы до: <b  style="color:#48c2a0;">' +
       objectPHP['expiredDate'] +
       '</b></div>';
+
+    if (globalLogin == 'demodemo') {
+      contentWinEnter +=
+        '<p style="color:maroon;font-weight:bold;padding-top:15px;"><Text trans="text+:attention;" name="disable">Внимание!</Text></p>';
+
+      contentWinEnter +=
+        '<div style="width:95%;text-align:justify;padding-left:10px;"><Text trans="text+:userDemo;" name="disable">Демонстрационный доступ с пользователем <b>demodemo</b> не позволяет изменять имена и другие настройки и служит только для демострации сервиса составления расписания. Зарегистрируйтесь и получите доступ к всем сервисам!</Text></div>';
+    }
 
     //        contentWinEnter +=
     //            '<div style="width:95%; text-align:left;margin-left:10px; margin-top:10px;"><b>Ваша ссылка-приглашение:<br><a id="invite" style="font-size:1em;font-weight:500;" href="';
@@ -929,7 +952,7 @@ function genContentWinEnter(text) {
     //                                        </button></span>`;
     //
     //        contentWinEnter += `</span>`
-    contentWinEnter += `<br><br>`;
+    //		contentWinEnter += `<br>`
 
     //
     //                document.getElementById("clipboardPlus2").addEventListener('click', (e) => {
@@ -1013,17 +1036,19 @@ function genContentWinEnter(text) {
       objectPHP['expiredDate'] +
       '</b></div>';
 
-    contentWinEnter +=
-      '<div style="width:95%; text-align:left;margin-left:10px; margin-top:10px;"><b>Ваша ссылка-приглашение:<br><a id="invite" style="font-size:0.9em;font-weight:500;" href="';
-    contentWinEnter += 'https://settime.online?invite&user=' + globalLogin;
-    contentWinEnter += '">';
-    contentWinEnter += 'https://settime.online?invite&user=' + globalLogin;
-    contentWinEnter += '</a>';
+    //		contentWinEnter +=
+    //			'<div style="width:95%; text-align:left;margin-left:10px; margin-top:10px;"><b>Ваша ссылка-приглашение:<br><a id="invite" style="font-size:0.9em;font-weight:500;" href="';
+    //		contentWinEnter +=
+    //			'https://settime.online?invite&user=' + globalLogin;
+    //		contentWinEnter += '">';
+    //		contentWinEnter +=
+    //			'https://settime.online?invite&user=' + globalLogin;
+    //		contentWinEnter += '</a>';
 
     //        contentWinEnter += '<span id="clipboardPlus2" style="font-size: 1.7em; margin: 10px 15px 0 3px; color: #1AB395; cursor: pointer; padding-top: 12px; vertical-align: -3px;" title="Скопировать в память"><i class="bi bi-clipboard-plus-fill"></i></span>';
 
     contentWinEnter +=
-      '</b><br><p  style="width:100%; font-weight:500; text-align: center; color:indianred; margin-top:7px;">У Вас закончился доступ к расширенной функциональности системы!<br><a href="" style="color:black";> Продлите доступ БЕСПЛАТНО до 31.12.2023!</a></p><br>';
+      '</b><br><p  style="width:100%; font-weight:500; text-align: center; color:indianred; margin-top:7px;">У Вас закончился доступ к расширенной функциональности системы!<br><a href="" style="color:black";> Продлите доступ БЕСПЛАТНО до 31.05.2024!</a></p><br>';
   } else if (Number(objectPHP['access']) == 8) {
     contentWinEnter =
       '<p style="color:indianred;font-weight:500">Такой логин уже есть в системе!<br><p>Попробуйте еще раз!</p><br>';
@@ -1041,7 +1066,6 @@ function genContentWinEnter(text) {
       '<p style="color:indianred;font-weight:500">Такой логина нет в системе!</p><br><p style="width:100%;text-indent:15px;text-align:justify">Исправьте логин и повторите ввод данных пароля. Если логин не удается вспомнить, напишите администратору системы и Вам отправят письмо на зарегистрированный email</p><br>';
   } else {
   }
-
   sessionStorage.setItem('modalBody', contentWinEnter);
   return contentWinEnter;
 }
@@ -1076,7 +1100,7 @@ export function export2net() {
     params.set('item', item);
     params.set('data', localData);
 
-    fetch('https://settime.online/php/saveData.php', {
+    fetch('./php/saveData.php', {
       method: 'POST',
       body: params,
     })
@@ -1092,13 +1116,7 @@ export function export2net() {
 
 function loadFiles(globalLogin, item) {
   let dataItem =
-    'https://settime.online/php/' +
-    globalLogin +
-    '/' +
-    globalLogin +
-    '_' +
-    item +
-    '.json';
+    './php/' + globalLogin + '/' + globalLogin + '_' + item + '.json';
 
   fetch(dataItem)
     .then(response => {
@@ -1240,7 +1258,7 @@ function sendCodeFunc() {
       searchParams.set('loginSendTimeCode', loginSendTimeCode);
       searchParams.set('action', action);
 
-      fetch('https://settime.online/php/sendCode.php', {
+      fetch('./php/sendCode.php', {
         method: 'POST',
         body: searchParams,
       })
@@ -1344,7 +1362,10 @@ btnInformer.addEventListener('click', () => {
     txtLink += sessionStorage.getItem('idCurUser');
     sessionStorage.setItem('textLink', txtLink);
 
-    let txtLinkInvite = `https://settime.online/?invite=demodemo`;
+    let txtLinkInvite = `https://settime.online/?invite=`;
+
+    txtLinkInvite += globalLogin;
+
     sessionStorage.setItem('txtLinkInvite', txtLinkInvite);
 
     localStorage.setItem(
@@ -1391,7 +1412,9 @@ btnInformer.addEventListener('click', () => {
     txtLink += sessionStorage.getItem('idCurUser');
     sessionStorage.setItem('textLink', txtLink);
 
-    let txtLinkInvite = `https://settime.online/?invite=demodemo`;
+    let txtLinkInvite = `https://settime.online/?invite=`;
+    txtLinkInvite += globalLogin;
+
     sessionStorage.setItem('txtLinkInvite', txtLinkInvite);
 
     localStorage.setItem(
@@ -1785,7 +1808,7 @@ function loadFromRemote(globalLogin, item) {
   var params = new URLSearchParams();
   params.set('login', globalLogin);
   params.set('item', item);
-  fetch('https://settime.online/php/lload.php', {
+  fetch('./php/lload.php', {
     method: 'POST',
     body: params,
   })
@@ -1809,6 +1832,7 @@ export function getDataFrom(typeBase, globalLogin, item) {
     dataLoad = startLoadFromRemote(globalLogin, item);
   } else {
     dataLoad = startLoadFromLocal(item);
+    //                alert("error typeBase")
   }
   return dataLoad;
 }
@@ -1817,6 +1841,19 @@ export function getDataFrom(typeBase, globalLogin, item) {
 
 btnFullScreenBusy.addEventListener('click', fullBreif);
 
+//	Определяем номер текущей вкладки
+function CalcNumTab() {
+  if (
+    document.querySelectorAll('.nav-link')[1].classList.value.includes('active')
+  )
+    return 1;
+  else if (
+    document.querySelectorAll('.nav-link')[2].classList.value.includes('active')
+  )
+    return 2;
+  else return 0;
+}
+
 export function fullBreif() {
   let btnFullScreenBusy = document.getElementById('btnFullScreenBusy');
   let briefName = document.getElementById('briefName');
@@ -1824,24 +1861,62 @@ export function fullBreif() {
   let tdsDays = document.querySelectorAll('#tableDays td');
   //let tabledDays = document.querySelectorAll("#tableDays");
 
+  //
+  //	alert(CalcNumTab());
+  //	debugger;
   if (btnFullScreenBusy.dataset.target == 'full') {
+    if (CalcNumTab() == 1) {
+      if (Number(window.innerWidth) < 400) {
+        document.getElementById(
+          'titleModalName',
+        ).innerHTML = `<i class="bi bi-clock text-success" style="margin-right: 4px;"></i> <text id="dataTitle" style="text-transform: uppercase; display: inline;"> </text>`;
+        briefName.innerHTML = document
+          .getElementById('YourName')
+          .value.slice(0, 23)
+          .replace(/_/g, ' ');
+      } else {
+        document.getElementById(
+          'titleModalName',
+        ).innerHTML = ` <i class="bi bi-clock text-success" style="margin-right: 4px;"></i> <text trans="text+:FreeTime;" id="dataTitle" style="text-transform: uppercase; display: inline;"> Свободноe время</text>`;
+        briefName.innerHTML = document
+          .getElementById('YourName')
+          .value.replace(/_/g, ' ');
+      }
+    } else if (CalcNumTab() == 2) {
+      if (Number(window.innerWidth) < 400) {
+        document.getElementById(
+          'titleModalName',
+        ).innerHTML = `<i class="bi bi-clock text-orange" style="margin-right: 4px;"></i> <text id="dataTitle" style="text-transform: uppercase; display: inline;"> </text>`;
+        briefName.innerHTML = document
+          .getElementById('YourName')
+          .value.slice(0, 23)
+          .replace(/_/g, ' ');
+      } else {
+        document.getElementById(
+          'titleModalName',
+        ).innerHTML = `<i class="bi bi-clock text-orange" style="margin-right: 4px;"></i> <text trans="text+:BusyTime;" id="dataTitle" style="text-transform: uppercase; display: inline;"> Занятое время</text>`;
+        briefName.innerHTML = document
+          .getElementById('YourName')
+          .value.replace(/_/g, ' ');
+      }
+    }
+
     btnFullScreenBusy.setAttribute('data-target', 'brief');
     btnFullScreenBusy.innerHTML = `<i class="bi bi-arrows-collapse font-weight-bold mx-0" style="margin-top: 0.65em"></i>`;
     document.getElementById('editDataHeader').style.display = 'none';
     document.getElementById('importSpan').style.display = 'none';
     document.getElementById('strCourseLevel').style.display = 'none';
 
-    if (Number(window.innerWidth) < 400) {
-      briefName.innerHTML = document
-        .getElementById('YourName')
-        .value.slice(0, 23)
-        .replace(/_/g, ' ');
-    } else {
-      briefName.innerHTML = document
-        .getElementById('YourName')
-        .value.replace(/_/g, ' ');
-    }
-
+    //		if (Number(window.innerWidth) < 400) {
+    //			document.getElementById("dataTitle").outerHTML = `
+    //			<text id="dataTitle" style="text-transform: uppercase; display: inline;"> <i class="bi bi-clock text-success" style="margin-right: 4px;"></i></text>`;
+    //			//<text trans="text+:FreeTime;" id="dataTitle" style="text-transform: uppercase; display: inline;"> Свободноe время</text>
+    //			briefName.innerHTML = document.getElementById("YourName").value.slice(0, 23).replace(/_/g, ' ')
+    //		} else {
+    //			briefName.innerHTML = document.getElementById("YourName").value.replace(/_/g, ' ')
+    //			document.getElementById("dataTitle").outerHTML = `
+    //			<text trans="text+:FreeTime;" id="dataTitle" style="text-transform: uppercase; display: inline;"> Свободноe время</text>`
+    //		}
     console.log('1279 строка - Высота bodyTable');
     console.log(document.getElementById('bodyTable').offsetHeight);
     console.log('Высота одной из 24 ячеек таблицы с верт паддинком 1');
@@ -1861,6 +1936,20 @@ export function fullBreif() {
       //tds[i].style.fontSize = "0.75em";
     }
   } else {
+    if (CalcNumTab() == 1) {
+      if (Number(window.innerWidth) < 400) {
+        document.getElementById(
+          'titleModalName',
+        ).innerHTML = ` <i class="bi bi-clock text-success" style="margin-right: 4px;"></i> <text trans="text+:FreeTime;" id="dataTitle" style="text-transform: uppercase; display: inline;"> Свободноe время</text>`;
+      }
+    } else if (CalcNumTab() == 2) {
+      if (Number(window.innerWidth) < 400) {
+        document.getElementById(
+          'titleModalName',
+        ).innerHTML = ` <i class="bi bi-clock text-orange" style="margin-right: 4px;"></i> <text trans="text+:BusyTime;" id="dataTitle" style="text-transform: uppercase; display: inline;"> Занятое время</text>`;
+      }
+    }
+
     btnFullScreenBusy.setAttribute('data-target', 'full');
     btnFullScreenBusy.innerHTML = `<i class="bi bi-arrows-expand font-weight-bold mx-0" style="margin-top: 0.65em"></i>`;
     //tabledDays.style.marginTop = "0px";

@@ -42,13 +42,13 @@ export function Translate() {
             } catch {
                 //                 Неужача => выводится ошибка
                 //                				временно закомментирована до отлади загрузки с сети
-                // console.log(
-                //     'Ошибка в переводчеке',
-                //     '\n',
-                //     masWord[elem],
-                //     masWord[i + 1],
-                //     language
-                // );
+                console.log(
+                    'Ошибка в переводчеке',
+                    '\n',
+                    masWord[elem],
+                    masWord[i + 1],
+                    language
+                );
             }
         }
     });

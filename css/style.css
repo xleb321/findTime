@@ -71,7 +71,7 @@ td {
 tr td:last-child {
 	border-right: 0;
 	text-align: center;
-/*	text-indent: 15px;*/
+	/*	text-indent: 15px;*/
 }
 
 .tableDaysInner {
@@ -149,6 +149,7 @@ h5 {
 
 #filter-button {
 	position: absolute;
+	color: white;
 	top: 0;
 	right: 35px;
 	width: 29px;
@@ -328,7 +329,7 @@ h5 {
 
 #create {
 	width: 29px;
-	margin: 5px 6px 0 0;
+	margin: 0px 6px 0 0;
 	font-size: 12px;
 	font-weight: 900;
 	background-color: #48c2a9;

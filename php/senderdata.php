@@ -6,11 +6,11 @@ if (isset($_POST['name'])) {$name = $_POST['name']; }
 $to = "belozerov.o.s@yandex.ru";
         
 $subject = 'Заявка с сайта Легко';
-$from = 'no-reply@settime.online';
+$from = 'no-reply@settime.ru';
 
 // Для отправки HTML-почты необходимо установить заголовок Content-type.
 $headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 
 // Создаем заголовки писем
 $headers .= 'From: '.$from."\r\n".

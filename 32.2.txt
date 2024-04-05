@@ -1,0 +1,105 @@
+Extend
+
+228
+
+//if (localStorage.getItem('typeBase') == 'remote') {
+//	moveWin.classList.toggle('invs');
+//}
+
+
+main
+3265
+//	if (localStorage.getItem('typeBase') == 'remote' && sessionStorage.globalAccess != 7) {
+//		document.querySelector('.moveWin').classList.add('invs');
+//	}
+
+
+function findBestMatch() {
+	let array = [...allMatches].sort((a, b) => b[0] - a[0]);
+	let result = [];
+
+	for (let i = 0; i < array.length; i++) {
+		// if (array[i - 1] && array[i - 1][0] && array[i][0] === array[i - 1][0]) {
+		result.push(array[i]);
+		// }
+		if (i === array.length - 1 || array[i][0] > array[i + 1][0]) break;
+	}
+	if (result.length > 0) {
+		sessionStorage.setItem("BestMatch", result[0][0])
+	} else {
+		sessionStorage.setItem("BestMatch", 0)
+	}
+	return result;
+}
+
+document.getElementById("btnFullScreen4orange").addEventListener('click', () => {
+	let tdFull = document.querySelectorAll(".fullTable td");
+	let bestMatch = sessionStorage.getItem("BestMatch");
+	for (let i = 0; i < tdFull.length; i++) {
+		if (tdFull[i].childNodes[0]) {
+			if (tdFull[i].childNodes[0].innerHTML == bestMatch) {
+				tdFull[i].style.backgroundColor = "DarkOrange"
+				tdFull[i].setAttribute("maximum", 1)
+
+			}
+		}
+	}
+})
+
+
+
+
+683
+
+перенос  из конца main.js 
+console.log(sessionStorage.getItem('globalAccess'))
+		console.log(document.querySelectorAll("#section td").length)
+		console.log(filteredUsers.length)
+		console.log(users.length)
+
+		if (sessionStorage.getItem('globalAccess') == 7) {
+			if (filteredUsers.length == 0) {
+				sessionStorage.setItem("typeBase", 'remote')
+				alerter(
+					"<Text name='Welcome'>Добро пожаловать</Text>",
+					`<Text name='disable'>
+						Добро пожаловать в систему расширенных возможностей! Подключить сетевое хранилище данных в системе</Text> `,
+					"standart",
+					"success",
+					'<a href="https://settime.online"><button type="button" class="btn btn-sm btnUpdate m-2 " style="font-weight: 500;color: black; font-size: 1em; background-color:#48c2a9;">Подключить!</button></a>')
+
+			}
+		}
+2425
+		if (window.innerWidth < 400) filtersDiv.style.height = "300px";
+		else {
+			filtersDiv.style.height = "400px";
+		}
+3278  start()
+
+	if (sessionStorage.getItem('typeBase') == 'remote' && (!sessionStorage.getItem("globalLogin"))) {
+		sessionStorage.setItem('typeBase', 'local')
+	}
+
+loadtable
+
+			if (filteredUsers.length == 0 && sessionStorage.getItem("numLoad") != 1) {
+				sessionStorage.setItem("typeBase", 'remote');
+				sessionStorage.setItem("numLoad", 1)
+
+
+export function start() {
+
+3284	if (!sessionStorage.get("numLoad")) {
+		sessionStorage.setItem("numLoad", 0)
+	}
+
+extend
+ document.getElementById('logout').addEventListener('click', () => {
+251	sessionStorage.setItem("numLoad", 0)
+
+
+start
+695			if (filteredUsers.length == 0 && sessionStorage.getItem("numLoad") != 1) {
+				sessionStorage.setItem("typeBase", 'remote');
+697				sessionStorage.setItem("numLoad", 1)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+</head>
+
+<span id="clipboardPlus2" style="font-size: 1.7em; margin: 10px 15px 0 3px; color: #1AB395; cursor: pointer; padding-top: 12px; vertical-align: -3px;" title="Скопировать в память"><i class="bi bi-clipboard-plus" onclick="alert(' Сохранено!!!')">g</i></span>
+
+<body>
+	<iframe src="https://intermir.s20.online/common/1/online-schedule?branch=1&locale=ru&pc=59CD90&crm=https://intermir.s20.online&token=146dfd579d259a0bd3b54b59a202a77f&appKey=79b0338b5985a4405d03296ebad5b685&" style="width: 100%; height: 100%; border: 0;"></iframe>
+
+	<script>
+		let timing
+
+		function timeoutFunction() {
+			alert('Click OK to Continue'); // timing ACTUALLY stops until user hits ok
+			timing = setTimeout(timeoutFunction, 4000);
+		}
+		timeoutFunction()
+
+		window.clearTimeout(timing)
+		alert("continue code")
+
+	</script>
+
+
+</body>
+
+</html>
