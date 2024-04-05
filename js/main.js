@@ -4,6 +4,7 @@ import {
   loadTodoLayers,
   closeTodoLayers,
   isLayersCanBeDisplayed,
+  todoIsActive,
 } from './todo.js';
 
 const body = document.querySelector('body');
@@ -90,7 +91,7 @@ const colorStudent = [
 ]; // Oleg
 let cndCoincid = 0; // Oleg
 let numberStudent = 0; // Oleg
-const toDoOn = true; // Oleg
+export const toDoOn = true; // Oleg
 
 function getRandomColor(min, max) {
   min = Math.ceil(0);
@@ -1191,21 +1192,23 @@ function loadStudentsTable() {
 
         //<Наслоение дел - Только свободные>=================================================
 
-        setTimeout(() => {
-          closeTodoLayers(
-            document
-              .querySelector('#staticBackdrop')
-              .querySelector('.modal-content').children[2].children[0],
-          );
-          isLayersCanBeDisplayed(
-            document
-              .querySelector('#staticBackdrop')
-              .querySelector('.modal-content').children[2].children[0],
-            [item.id],
-            'free',
-            loadTodoLayers,
-          );
-        }, 200);
+        if (todoIsActive()) {
+          setTimeout(() => {
+            closeTodoLayers(
+              document
+                .querySelector('#staticBackdrop')
+                .querySelector('.modal-content').children[2].children[0],
+            );
+            isLayersCanBeDisplayed(
+              document
+                .querySelector('#staticBackdrop')
+                .querySelector('.modal-content').children[2].children[0],
+              [item.id],
+              'free',
+              loadTodoLayers,
+            );
+          }, 200);
+        }
 
         //</Наслоение дел - Только свободные>=========================================================
       });
@@ -1229,21 +1232,23 @@ function loadStudentsTable() {
 
         //<Наслоение дел - Только свободные>=================================================
 
-        setTimeout(() => {
-          closeTodoLayers(
-            document
-              .querySelector('#staticBackdrop')
-              .querySelector('.modal-content').children[2].children[0],
-          );
-          isLayersCanBeDisplayed(
-            document
-              .querySelector('#staticBackdrop')
-              .querySelector('.modal-content').children[2].children[0],
-            [item.id],
-            'free',
-            loadTodoLayers,
-          );
-        }, 200);
+        if (todoIsActive()) {
+          setTimeout(() => {
+            closeTodoLayers(
+              document
+                .querySelector('#staticBackdrop')
+                .querySelector('.modal-content').children[2].children[0],
+            );
+            isLayersCanBeDisplayed(
+              document
+                .querySelector('#staticBackdrop')
+                .querySelector('.modal-content').children[2].children[0],
+              [item.id],
+              'free',
+              loadTodoLayers,
+            );
+          }, 200);
+        }
 
         //</Наслоение дел - Только свободные>=========================================================
       });
@@ -1939,24 +1944,27 @@ function loadBusinessTable() {
 
       //<Наслоение дел - Все дела>=================================================
 
-      setTimeout(() => {
-        closeTodoLayers(
-          document
-            .querySelector('#staticBackdrop')
-            .querySelector('.modal-content').children[2].children[0],
-        );
-        isLayersCanBeDisplayed(
-          document
-            .querySelector('#staticBackdrop')
-            .querySelector('.modal-content').children[2].children[0],
-          [
-            document.querySelector('#staticBackdrop').querySelector('#btnTodo')
-              .dataset.id,
-          ],
-          'any',
-          loadTodoLayers,
-        );
-      }, 200);
+      if (todoIsActive()) {
+        setTimeout(() => {
+          closeTodoLayers(
+            document
+              .querySelector('#staticBackdrop')
+              .querySelector('.modal-content').children[2].children[0],
+          );
+          isLayersCanBeDisplayed(
+            document
+              .querySelector('#staticBackdrop')
+              .querySelector('.modal-content').children[2].children[0],
+            [
+              document
+                .querySelector('#staticBackdrop')
+                .querySelector('#btnTodo').dataset.id,
+            ],
+            'any',
+            loadTodoLayers,
+          );
+        }, 200);
+      }
 
       //</Наслоение дел - Все дела>=========================================================
     });
@@ -1977,24 +1985,27 @@ function loadBusinessTable() {
 
       //<Наслоение дел - Все дела>=================================================
 
-      setTimeout(() => {
-        closeTodoLayers(
-          document
-            .querySelector('#staticBackdrop')
-            .querySelector('.modal-content').children[2].children[0],
-        );
-        isLayersCanBeDisplayed(
-          document
-            .querySelector('#staticBackdrop')
-            .querySelector('.modal-content').children[2].children[0],
-          [
-            document.querySelector('#staticBackdrop').querySelector('#btnTodo')
-              .dataset.id,
-          ],
-          'any',
-          loadTodoLayers,
-        );
-      }, 200);
+      if (todoIsActive()) {
+        setTimeout(() => {
+          closeTodoLayers(
+            document
+              .querySelector('#staticBackdrop')
+              .querySelector('.modal-content').children[2].children[0],
+          );
+          isLayersCanBeDisplayed(
+            document
+              .querySelector('#staticBackdrop')
+              .querySelector('.modal-content').children[2].children[0],
+            [
+              document
+                .querySelector('#staticBackdrop')
+                .querySelector('#btnTodo').dataset.id,
+            ],
+            'any',
+            loadTodoLayers,
+          );
+        }, 200);
+      }
 
       //</Наслоение дел - Все дела>=========================================================
     });

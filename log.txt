@@ -260,3 +260,42 @@
     4. Изменил логику функций todoAddItem, loadTodo, checkTodoItem, 
       deleteTodoItem, todoDeleteAll, todoEditItem, loadTodoLayers
 )
+
+05/04/23 (
+  Объединил с версией Олега за 02.04.2024
+  
+  js/todo.js - исправление проблем с сетевым хранением дел:
+    1. Новый импорт:
+      import { toDoOn } from './main.js';
+    2. Функция проверки todoIsActive, нужен ли список дел:
+      ### Добавлено
+        export function todoIsActive() {
+          return toDoOn;
+        }
+      ### Добавлено
+      +++ Проверки if (todoIsActive()) {...} в разных частях кода
+    3. Исправление багов по сетевому хранению
+
+  js/main.js:
+    1. Новый импорт:
+      ### Изменено
+        import {
+          loadTodoLayers,
+          closeTodoLayers,
+          isLayersCanBeDisplayed,
+          todoIsActive,
+        } from './todo.js';
+      ### Изменено
+    2. Проверки if (todoIsActive()) {...} в разных частях кода
+
+  index.html:
+    1. Новый импорт:
+      ### Изменено
+        import {
+          closeTodoLayers,
+          loadTodoLayers,
+          todoIsActive
+        } from './js/todo.js';
+      ### Изменено
+    2. Проверкв if (todoIsActive()) {...} в конце файла
+)

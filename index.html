@@ -3174,9 +3174,9 @@
   <script type="module">
     // import { Translate } from './js/translator.js';
     import {
-      getLocalStorageData,
       closeTodoLayers,
-      loadTodoLayers
+      loadTodoLayers,
+      todoIsActive
     } from './js/todo.js';
 
     window.addEventListener('load', () => {
@@ -3196,24 +3196,26 @@
 
         // <Вывод наслоения списка дел>======================================================
 
-        setTimeout(() => {
-          let localStorageID = getLocalStorageData('todoID') || [];
-          let fullTable = document.querySelector('#full').querySelector('#tableScheduleBodyFull');
+        if (todoIsActive()) {
+          setTimeout(() => {
+            let localStorageID = JSON.parse(localStorage.getItem('todoID')) || [];
+            let fullTable = document.querySelector('#full').querySelector('#tableScheduleBodyFull');
 
-          closeTodoLayers(fullTable);
+            closeTodoLayers(fullTable);
 
-          if (localStorageID.length && fullTable.children) {
-            loadTodoLayers(fullTable, localStorageID).then(() => {
-              let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
+            if (localStorageID.length && fullTable.children) {
+              loadTodoLayers(fullTable, localStorageID).then(() => {
+                let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
 
-              tableFullLayers.forEach((layer) => {
-                layer.style.paddingTop = `24.11px`;
-              });
-            })
-          } else {
-            console.log('NO DATA');
-          }
-        }, 200);
+                tableFullLayers.forEach((layer) => {
+                  layer.style.paddingTop = `24.11px`;
+                });
+              })
+            } else {
+              console.log('NO DATA');
+            }
+          }, 200);
+        }
 
         // </Вывод наслоения списка дел>======================================================
       }

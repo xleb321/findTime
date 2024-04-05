@@ -2,6 +2,11 @@ import { Translate } from './translator.js';
 import { alerter } from './main.js';
 import { getDataFrom } from './extend.js';
 import { saveDataTo } from './main.js';
+import { toDoOn } from './main.js';
+
+export function todoIsActive() {
+  return toDoOn;
+}
 
 // Настройка времени
 const timeSetting = {
@@ -40,20 +45,30 @@ const colors = {
 };
 
 let parser = new DOMParser(); // HTML-парсер
-let btnTodo = document.querySelector('#btnTodo');
 
-// Список дел
-btnTodo.addEventListener('click', () => {
-  let userId = btnTodo.dataset.id;
-  if (!userId) userId = '00000000000';
+if (todoIsActive()) {
+  let btnTodo = document.querySelector('#btnTodo');
 
-  // Генерация времени
-  let timeline = createTimeline(timeSetting);
+  // Инициализация данных в localStorage (по умолчанию)
+  if (
+    sessionStorage.getItem('globalAccess') != 7 &&
+    localStorage.getItem('todo') === null
+  ) {
+    localStorage.setItem('todo', '{"todo": {}}');
+  }
 
-  // Генерируем окно списка дел
-  let modalContent = btnTodo.closest('.modal-content');
-  let btnClose = modalContent.querySelector('.btn-close');
-  let todoHtml = /* html */ `
+  // Список дел
+  btnTodo.addEventListener('click', () => {
+    let userId = btnTodo.dataset.id;
+    if (!userId) userId = '00000000000';
+
+    // Генерация времени
+    let timeline = createTimeline(timeSetting);
+
+    // Генерируем окно списка дел
+    let modalContent = btnTodo.closest('.modal-content');
+    let btnClose = modalContent.querySelector('.btn-close');
+    let todoHtml = /* html */ `
     <div class="todo">
       <div class="todo__body">
         <div trans="text+:toDoList;" class="todo__title">Список дел</div>
@@ -147,318 +162,319 @@ btnTodo.addEventListener('click', () => {
         </div>
       </div>
     </div>
-  `;
+    `;
 
-  todoHtml = parser
-    .parseFromString(todoHtml, 'text/html')
-    .querySelector('.todo');
+    todoHtml = parser
+      .parseFromString(todoHtml, 'text/html')
+      .querySelector('.todo');
 
-  modalContent.style.position = 'relative';
-  btnClose.style.position = 'relative';
-  btnClose.style.zIndex = 1000;
-  modalContent.append(todoHtml);
+    modalContent.style.position = 'relative';
+    btnClose.style.position = 'relative';
+    btnClose.style.zIndex = 1000;
+    modalContent.append(todoHtml);
 
-  // Закрытие списка дел на крестик
-  btnClose.addEventListener('click', closeTodoWindow);
+    // Закрытие списка дел на крестик
+    btnClose.addEventListener('click', closeTodoWindow);
 
-  // Переменные списка дел
-  let selectStartTime = document.querySelector('#todoStartTime'),
-    selectEndTime = document.querySelector('#todoEndTime'),
-    todo = document.querySelector('.todo'),
-    todoForm = document.querySelector('#todoForm'),
-    todoDealsBody = document.querySelector('#todoDealsBody'),
-    todoCheckbox = document.querySelector('#todoCheckbox');
+    // Переменные списка дел
+    let selectStartTime = document.querySelector('#todoStartTime'),
+      selectEndTime = document.querySelector('#todoEndTime'),
+      todo = document.querySelector('.todo'),
+      todoForm = document.querySelector('#todoForm'),
+      todoDealsBody = document.querySelector('#todoDealsBody'),
+      todoCheckbox = document.querySelector('#todoCheckbox');
 
-  // Генерируем дела
-  loadTodo(userId);
+    // Генерируем дела
+    loadTodo(userId);
 
-  // Генерация селектов
-  generateSelectStartTime(timeline, selectStartTime);
-  generateSelectEndTime(timeline, selectEndTime);
+    // Генерация селектов
+    generateSelectStartTime(timeline, selectStartTime);
+    generateSelectEndTime(timeline, selectEndTime);
 
-  // Контроль кол-ва символов в <textarea>
-  let todoDescription = document.querySelector('#todoDescription');
-  let maxSymbols = todoDescription.attributes.maxlength.value;
+    // Контроль кол-ва символов в <textarea>
+    let todoDescription = document.querySelector('#todoDescription');
+    let maxSymbols = todoDescription.attributes.maxlength.value;
 
-  changeDescriptionLimit(todoDescription, 0, maxSymbols);
+    changeDescriptionLimit(todoDescription, 0, maxSymbols);
 
-  todoDescription.addEventListener('input', () => {
-    changeDescriptionLimit(
-      todoDescription,
-      todoDescription.value.length,
-      maxSymbols,
-    );
-  });
-
-  // Обновление селектов (убираем лишнее время)
-  selectEndTime.addEventListener('change', () => {
-    let selectStartValue = selectStartTime.value;
-    selectStartUpdate(timeline, selectStartTime, selectEndTime);
-
-    Array.from(selectStartTime.children).forEach(option => {
-      if (option.value == selectStartValue) {
-        option.setAttribute('selected', '');
-      }
+    todoDescription.addEventListener('input', () => {
+      changeDescriptionLimit(
+        todoDescription,
+        todoDescription.value.length,
+        maxSymbols,
+      );
     });
-  });
 
-  selectStartTime.addEventListener('change', () => {
-    let selectEndValue = selectEndTime.value;
-    selectEndUpdate(timeline, selectStartTime, selectEndTime);
+    // Обновление селектов (убираем лишнее время)
+    selectEndTime.addEventListener('change', () => {
+      let selectStartValue = selectStartTime.value;
+      selectStartUpdate(timeline, selectStartTime, selectEndTime);
 
-    Array.from(selectEndTime.children).forEach(option => {
-      if (option.value == selectEndValue) {
-        option.setAttribute('selected', '');
-      }
-    });
-  });
-
-  // Отправка формы при клике на кнопку 'Добавить'
-  todoForm.addEventListener('submit', todoAddItem);
-
-  // Изменение статуса checkbox "Выводить список дел в расписание"
-  todoCheckbox.addEventListener('change', changeTodoCheckbox);
-  renderTodoCheckbox();
-
-  // Делегирование
-  todo.addEventListener('click', todoActions);
-
-  Translate();
-
-  //<FUNCTIONS>==============================================================================
-
-  // Checkbox "Выводить список дел в расписание"
-  function renderTodoCheckbox() {
-    let checkboxID = todoCheckbox.dataset.id;
-    let localStorageID = getLocalStorageData('todoID') || [];
-
-    if (localStorageID.length) {
-      if (localStorageID.includes(checkboxID)) {
-        if (!todoCheckbox.checked) {
-          todoCheckbox.checked = true;
+      Array.from(selectStartTime.children).forEach(option => {
+        if (option.value == selectStartValue) {
+          option.setAttribute('selected', '');
         }
+      });
+    });
+
+    selectStartTime.addEventListener('change', () => {
+      let selectEndValue = selectEndTime.value;
+      selectEndUpdate(timeline, selectStartTime, selectEndTime);
+
+      Array.from(selectEndTime.children).forEach(option => {
+        if (option.value == selectEndValue) {
+          option.setAttribute('selected', '');
+        }
+      });
+    });
+
+    // Отправка формы при клике на кнопку 'Добавить'
+    todoForm.addEventListener('submit', todoAddItem);
+
+    // Изменение статуса checkbox "Выводить список дел в расписание"
+    todoCheckbox.addEventListener('change', changeTodoCheckbox);
+    renderTodoCheckbox();
+
+    // Делегирование
+    todo.addEventListener('click', todoActions);
+
+    Translate();
+
+    //<FUNCTIONS>==============================================================================
+
+    // Checkbox "Выводить список дел в расписание"
+    function renderTodoCheckbox() {
+      let checkboxID = todoCheckbox.dataset.id;
+      let localStorageID = getLocalStorageData('todoID') || [];
+
+      if (localStorageID.length) {
+        if (localStorageID.includes(checkboxID)) {
+          if (!todoCheckbox.checked) {
+            todoCheckbox.checked = true;
+          }
+        }
+        // else {
+        //     // Если нужен будет множественный выбор, то закомментировать блок else
+        //     if (!todoCheckbox.attributes.disabled) {
+        //         todoCheckbox.setAttribute('disabled', '');
+        //     }
+        // }
       }
-      // else {
-      //     // Если нужен будет множественный выбор, то закомментировать блок else
-      //     if (!todoCheckbox.attributes.disabled) {
-      //         todoCheckbox.setAttribute('disabled', '');
-      //     }
-      // }
     }
-  }
 
-  function changeTodoCheckbox() {
-    let checkboxID = todoCheckbox.dataset.id;
-    let localStorageID = getLocalStorageData('todoID') || [];
+    function changeTodoCheckbox() {
+      let checkboxID = todoCheckbox.dataset.id;
+      let localStorageID = getLocalStorageData('todoID') || [];
 
-    if (todoCheckbox.checked) {
-      if (!localStorageID.length) {
-        localStorageID.push(checkboxID);
-        setLocalStorageData('todoID', localStorageID);
-      } else {
-        alerter(
-          '<span trans="text+:Danger">Внимание</span>',
-          '<div trans="text+:TodoIsAlreadyDisplayed;" style="text-indent: 0;">Список дел другого(их) пользователей уже выводится в расписание</div>',
-          'standart',
-          'info',
-          'slim',
-        );
-
-        if (!localStorageID.includes(checkboxID)) {
+      if (todoCheckbox.checked) {
+        if (!localStorageID.length) {
           localStorageID.push(checkboxID);
           setLocalStorageData('todoID', localStorageID);
+        } else {
+          alerter(
+            '<span trans="text+:Danger">Внимание</span>',
+            '<div trans="text+:TodoIsAlreadyDisplayed;" style="text-indent: 0;">Список дел другого(их) пользователей уже выводится в расписание</div>',
+            'standart',
+            'info',
+            'slim',
+          );
+
+          if (!localStorageID.includes(checkboxID)) {
+            localStorageID.push(checkboxID);
+            setLocalStorageData('todoID', localStorageID);
+          }
+        }
+      } else {
+        localStorageID.splice(localStorageID.indexOf(checkboxID), 1);
+        setLocalStorageData('todoID', localStorageID);
+      }
+    }
+
+    function todoActions(e) {
+      let targetElement = e.target;
+
+      // Кнопка 'Сбросить'
+      if (targetElement.closest('.todo-form__reset')) {
+        todoForm.reset();
+
+        let formReq = todoForm.querySelectorAll('._req');
+
+        for (let i = 0; i < formReq.length; i++) {
+          const input = formReq[i];
+          formRemoveError(input);
+        }
+
+        changeDescriptionLimit(todoDescription, 0, maxSymbols);
+        generateSelectStartTime(timeline, selectStartTime);
+        generateSelectEndTime(timeline, selectEndTime);
+      }
+
+      // Checkbox
+      if (targetElement.closest('.todo-item__checkbox')) {
+        let checkboxBtn = targetElement.closest('.todo-item__checkbox');
+        checkboxBtn.classList.toggle('_checked');
+        checkTodoItem(checkboxBtn, userId);
+      }
+
+      // Удаление дела
+      if (targetElement.closest('.todo-buttons__del')) {
+        let deleteBtn = targetElement.closest('.todo-buttons__del');
+        if (confirm('Вы уверены, что хотите удалить дело?')) {
+          deleteTodoItem(deleteBtn.dataset.id, userId);
         }
       }
-    } else {
-      localStorageID.splice(localStorageID.indexOf(checkboxID), 1);
-      setLocalStorageData('todoID', localStorageID);
-    }
-  }
 
-  function todoActions(e) {
-    let targetElement = e.target;
-
-    // Кнопка 'Сбросить'
-    if (targetElement.closest('.todo-form__reset')) {
-      todoForm.reset();
-
-      let formReq = todoForm.querySelectorAll('._req');
-
-      for (let i = 0; i < formReq.length; i++) {
-        const input = formReq[i];
-        formRemoveError(input);
+      // Удаление всех дел сразу
+      if (targetElement.closest('#todoDeleteAll')) {
+        if (confirm('Вы уверены, что хотите удалить все дела?')) {
+          todoDeleteAll(userId);
+        }
       }
 
-      changeDescriptionLimit(todoDescription, 0, maxSymbols);
-      generateSelectStartTime(timeline, selectStartTime);
-      generateSelectEndTime(timeline, selectEndTime);
-    }
+      // Закрытие списка дел
+      if (targetElement.closest('#todoClose')) {
+        closeTodoLayers(
+          btnTodo.closest('.modal-content').children[2].children[0],
+        );
+        isLayersCanBeDisplayed(
+          btnTodo.closest('.modal-content').children[2].children[0],
+          [userId],
+          'any',
+          loadTodoLayers,
+        );
 
-    // Checkbox
-    if (targetElement.closest('.todo-item__checkbox')) {
-      let checkboxBtn = targetElement.closest('.todo-item__checkbox');
-      checkboxBtn.classList.toggle('_checked');
-      checkTodoItem(checkboxBtn, userId);
-    }
+        closeTodoWindow();
+      }
 
-    // Удаление дела
-    if (targetElement.closest('.todo-buttons__del')) {
-      let deleteBtn = targetElement.closest('.todo-buttons__del');
-      if (confirm('Вы уверены, что хотите удалить дело?')) {
-        deleteTodoItem(deleteBtn.dataset.id, userId);
+      // Редактирование дела
+      if (
+        targetElement.closest('.todo-buttons__edit') ||
+        targetElement.closest('.todo-item__info')
+      ) {
+        let editBtn =
+          targetElement.closest('.todo-buttons__edit') ??
+          targetElement.closest('.todo-item__info');
+        let editItemData = {
+          id: editBtn.dataset.id,
+          day: editBtn.dataset.day,
+          startTime: editBtn.dataset.starttime,
+          endTime: editBtn.dataset.endtime,
+          description: editBtn.dataset.description,
+          type: editBtn.dataset.type,
+        };
+        todoEditItem(userId, editItemData);
+      }
+
+      // Фильтр
+      if (targetElement.closest('.todo-filters__filter')) {
+        let currentFilter = targetElement.closest('.todo-filters__filter');
+        if (!currentFilter.classList.contains('_active')) {
+          // Убираем стили с бывшего "активного" фильтра
+          document
+            .querySelector('.todo-filters__filter._active')
+            .classList.remove('_active');
+          currentFilter.classList.add('_active'); // Делаем "активным" выбранный день
+
+          loadTodo(userId, currentFilter.dataset.day);
+        }
       }
     }
 
-    // Удаление всех дел сразу
-    if (targetElement.closest('#todoDeleteAll')) {
-      if (confirm('Вы уверены, что хотите удалить все дела?')) {
-        todoDeleteAll(userId);
+    async function todoAddItem(e) {
+      e.preventDefault();
+
+      let errors = formValidate(todoForm);
+
+      if (errors === 0) {
+        todoForm.classList.add('_sending');
+
+        let todoJson = getTodoJSON();
+
+        if (todoJson.todo) {
+          // Если у id нет созданных дел - создаем пустую 'папку'
+          if (!idFolderExist(todoJson, userId)) {
+            todoJson.todo[userId] = [];
+          }
+
+          // Определение ID элемента
+          let maximum = 0,
+            todoId;
+          let userTodo = todoJson.todo[userId];
+
+          if (userTodo.length) {
+            for (let i = 0; i < userTodo.length; i++) {
+              const todo = userTodo[i];
+
+              if (+todo.id > maximum) {
+                maximum = +todo.id;
+              }
+            }
+
+            todoId = +maximum + 1;
+          } else {
+            todoId = 1;
+          }
+
+          let formData = new FormData(todoForm);
+
+          todoJson.todo[userId].push({
+            id: todoId,
+            day: formData.get('day'),
+            startTime: formData.get('start'),
+            endTime: formData.get('end'),
+            description: formData.get('description'),
+            type: formData.get('todoType'),
+            checked: '0',
+          });
+
+          saveTodoJSON(todoJson);
+
+          todoForm.reset();
+          changeDescriptionLimit(todoDescription, 0, maxSymbols);
+          generateSelectStartTime(timeline, selectStartTime);
+          generateSelectEndTime(timeline, selectEndTime);
+          loadTodo(userId);
+          todoForm.classList.remove('_sending');
+        } else {
+          showAlert('error');
+        }
+      } else {
+        showAlert('form');
       }
     }
 
-    // Закрытие списка дел
-    if (targetElement.closest('#todoClose')) {
-      closeTodoLayers(
-        btnTodo.closest('.modal-content').children[2].children[0],
-      );
-      isLayersCanBeDisplayed(
-        btnTodo.closest('.modal-content').children[2].children[0],
-        [userId],
-        'any',
-        loadTodoLayers,
-      );
-
-      closeTodoWindow();
-    }
-
-    // Редактирование дела
-    if (
-      targetElement.closest('.todo-buttons__edit') ||
-      targetElement.closest('.todo-item__info')
+    async function loadTodo(
+      id,
+      filteredDay = +document.querySelector('.todo-filters__filter._active')
+        .dataset.day,
     ) {
-      let editBtn =
-        targetElement.closest('.todo-buttons__edit') ??
-        targetElement.closest('.todo-item__info');
-      let editItemData = {
-        id: editBtn.dataset.id,
-        day: editBtn.dataset.day,
-        startTime: editBtn.dataset.starttime,
-        endTime: editBtn.dataset.endtime,
-        description: editBtn.dataset.description,
-        type: editBtn.dataset.type,
-      };
-      todoEditItem(userId, editItemData);
-    }
-
-    // Фильтр
-    if (targetElement.closest('.todo-filters__filter')) {
-      let currentFilter = targetElement.closest('.todo-filters__filter');
-      if (!currentFilter.classList.contains('_active')) {
-        // Убираем стили с бывшего "активного" фильтра
-        document
-          .querySelector('.todo-filters__filter._active')
-          .classList.remove('_active');
-        currentFilter.classList.add('_active'); // Делаем "активным" выбранный день
-
-        loadTodo(userId, currentFilter.dataset.day);
-      }
-    }
-  }
-
-  async function todoAddItem(e) {
-    e.preventDefault();
-
-    let errors = formValidate(todoForm);
-
-    if (errors === 0) {
-      todoForm.classList.add('_sending');
+      filteredDay = +filteredDay;
 
       let todoJson = getTodoJSON();
 
       if (todoJson.todo) {
-        // Если у id нет созданных дел - создаем пустую 'папку'
-        if (!idFolderExist(todoJson, userId)) {
-          todoJson.todo[userId] = [];
-        }
+        let userJson = todoJson.todo[id];
 
-        // Определение ID элемента
-        let maximum = 0,
-          todoId;
-        let userTodo = todoJson.todo[userId];
+        // Если есть папка и дела
+        if (userJson && userJson.length) {
+          todoDealsBody.innerHTML = '';
 
-        if (userTodo.length) {
-          for (let i = 0; i < userTodo.length; i++) {
-            const todo = userTodo[i];
-
-            if (+todo.id > maximum) {
-              maximum = +todo.id;
-            }
+          if (filteredDay) {
+            userJson = userJson.filter(item => +item.day === filteredDay);
           }
 
-          todoId = +maximum + 1;
-        } else {
-          todoId = 1;
-        }
+          userJson.sort((a, b) => {
+            return (
+              a.day.localeCompare(b.day) ||
+              a.startTime.localeCompare(b.startTime)
+            );
+          });
 
-        let formData = new FormData(todoForm);
+          if (userJson.length) {
+            for (let i = 0; i < userJson.length; i++) {
+              const item = userJson[i];
 
-        todoJson.todo[userId].push({
-          id: todoId,
-          day: formData.get('day'),
-          startTime: formData.get('start'),
-          endTime: formData.get('end'),
-          description: formData.get('description'),
-          type: formData.get('todoType'),
-          checked: '0',
-        });
-
-        saveTodoJSON(todoJson);
-
-        todoForm.reset();
-        changeDescriptionLimit(todoDescription, 0, maxSymbols);
-        generateSelectStartTime(timeline, selectStartTime);
-        generateSelectEndTime(timeline, selectEndTime);
-        loadTodo(userId);
-        todoForm.classList.remove('_sending');
-      } else {
-        showAlert('error');
-      }
-    } else {
-      showAlert('form');
-    }
-  }
-
-  async function loadTodo(
-    id,
-    filteredDay = +document.querySelector('.todo-filters__filter._active')
-      .dataset.day,
-  ) {
-    filteredDay = +filteredDay;
-
-    let todoJson = getTodoJSON();
-
-    if (todoJson.todo) {
-      let userJson = todoJson.todo[id];
-
-      // Если есть папка и дела
-      if (userJson && userJson.length) {
-        todoDealsBody.innerHTML = '';
-
-        if (filteredDay) {
-          userJson = userJson.filter(item => +item.day === filteredDay);
-        }
-
-        userJson.sort((a, b) => {
-          return (
-            a.day.localeCompare(b.day) || a.startTime.localeCompare(b.startTime)
-          );
-        });
-
-        if (userJson.length) {
-          for (let i = 0; i < userJson.length; i++) {
-            const item = userJson[i];
-
-            todoDealsBody.innerHTML += /* html */ `
+              todoDealsBody.innerHTML += /* html */ `
               <div class="todo-deals__item todo-item" data-id="${item.id}">
                 <div class="todo-item__body" style="border-bottom: 0.18em solid ${
                   colors[item.type]['dark']
@@ -516,89 +532,92 @@ btnTodo.addEventListener('click', () => {
                 </div>
               </div>
             `;
-          }
-        } else {
-          todoDealsBody.innerHTML = /* html */ `
+            }
+          } else {
+            todoDealsBody.innerHTML = /* html */ `
             <div class="todo-deals__empty">
               <span>Пусто...</span>
             </div>
           `;
-        }
-      } else {
-        todoDealsBody.innerHTML = /* html */ `
+          }
+        } else {
+          todoDealsBody.innerHTML = /* html */ `
           <div class="todo-deals__empty">
             <span>Список дел пуст...</span>
           </div>
         `;
+        }
+      } else {
+        showAlert('error');
       }
-    } else {
-      showAlert('error');
     }
-  }
 
-  async function checkTodoItem(checkbox, userId) {
-    let todoJson = getTodoJSON();
-    let todoId = checkbox.dataset.id;
+    async function checkTodoItem(checkbox, userId) {
+      let todoJson = getTodoJSON();
+      let todoId = checkbox.dataset.id;
 
-    if (todoJson.todo) {
-      let userTodo = todoJson.todo[userId];
+      if (todoJson.todo) {
+        let userTodo = todoJson.todo[userId];
 
-      for (let i = 0; i < userTodo.length; i++) {
-        const item = userTodo[i];
+        for (let i = 0; i < userTodo.length; i++) {
+          const item = userTodo[i];
 
-        if (item.id == todoId) {
-          if (+item.checked) {
-            item.checked = '0';
-            checkbox.title = 'Невыполнено';
-          } else {
-            item.checked = '1';
-            checkbox.title = 'Выполнено';
+          if (item.id == todoId) {
+            if (+item.checked) {
+              item.checked = '0';
+              checkbox.title = 'Невыполнено';
+            } else {
+              item.checked = '1';
+              checkbox.title = 'Выполнено';
+            }
+
+            saveTodoJSON(todoJson);
+            let data = getTodoJSON().todo[userId];
           }
-
-          saveTodoJSON(todoJson);
         }
+      } else {
+        showAlert('error');
       }
-    } else {
-      showAlert('error');
     }
-  }
 
-  async function deleteTodoItem(todoId, userId) {
-    let todoJson = getTodoJSON();
+    async function deleteTodoItem(todoId, userId) {
+      let todoJson = getTodoJSON();
 
-    if (todoJson.todo) {
-      let userTodo = todoJson.todo[userId];
+      if (todoJson.todo) {
+        let userTodo = todoJson.todo[userId];
 
-      for (let i = 0; i < userTodo.length; i++) {
-        const item = userTodo[i];
+        for (let i = 0; i < userTodo.length; i++) {
+          const item = userTodo[i];
 
-        if (item.id == todoId) {
-          userTodo.splice(i, 1);
+          if (item.id == todoId) {
+            userTodo.splice(i, 1);
+          }
         }
-      }
 
-      saveTodoJSON(todoJson);
-    } else {
-      showAlert('error');
-    }
-  }
-
-  async function todoDeleteAll(userId) {
-    let todoJson = getTodoJSON();
-
-    if (todoJson.todo) {
-      if (idFolderExist(todoJson, userId)) {
-        delete todoJson.todo[userId];
+        saveTodoJSON(todoJson);
         loadTodo(userId);
+      } else {
+        showAlert('error');
       }
-    } else {
-      showAlert('error');
     }
-  }
 
-  function todoEditItem(userId, data) {
-    // Генерируем окно редактирования дела
-    let editPopupHtml = /* html */ `
+    async function todoDeleteAll(userId) {
+      let todoJson = getTodoJSON();
+
+      if (todoJson.todo) {
+        if (idFolderExist(todoJson, userId)) {
+          delete todoJson.todo[userId];
+          saveTodoJSON(todoJson);
+          loadTodo(userId);
+        }
+      } else {
+        showAlert('error');
+      }
+    }
+
+    function todoEditItem(userId, data) {
+      // Генерируем окно редактирования дела
+      let editPopupHtml = /* html */ `
       <div class="todo__edit todo-edit">
         <div class="todo-edit__body">
           <div class="todo-edit__content">
@@ -657,506 +676,510 @@ btnTodo.addEventListener('click', () => {
       </div>
     `;
 
-    editPopupHtml = parser
-      .parseFromString(editPopupHtml, 'text/html')
-      .querySelector('.todo__edit');
+      editPopupHtml = parser
+        .parseFromString(editPopupHtml, 'text/html')
+        .querySelector('.todo__edit');
 
-    modalContent.append(editPopupHtml);
+      modalContent.append(editPopupHtml);
 
-    // Переменные редактирования дела
-    let todoEdit = modalContent.querySelector('.todo__edit'),
-      editedDaySelect = todoEdit.querySelector('#editedDayOfWeek'),
-      editedTypeSelect = todoEdit.querySelector('#editedTodoType'),
-      editedSelectStartTime = todoEdit.querySelector('#editedStartTime'),
-      editedSelectEndTime = todoEdit.querySelector('#editedEndTime'),
-      todoEditForm = todoEdit.querySelector('#todoEditForm');
+      // Переменные редактирования дела
+      let todoEdit = modalContent.querySelector('.todo__edit'),
+        editedDaySelect = todoEdit.querySelector('#editedDayOfWeek'),
+        editedTypeSelect = todoEdit.querySelector('#editedTodoType'),
+        editedSelectStartTime = todoEdit.querySelector('#editedStartTime'),
+        editedSelectEndTime = todoEdit.querySelector('#editedEndTime'),
+        todoEditForm = todoEdit.querySelector('#todoEditForm');
 
-    // Генерация селектов
-    generateSelectStartTime(timeline, editedSelectStartTime);
-    generateSelectEndTime(timeline, editedSelectEndTime);
+      // Генерация селектов
+      generateSelectStartTime(timeline, editedSelectStartTime);
+      generateSelectEndTime(timeline, editedSelectEndTime);
 
-    // Контроль кол-ва символов в <textarea>
-    let editedDescription = todoEdit.querySelector('#editedDescription');
-    editedDescription.attributes.maxlength.value = maxSymbols;
+      // Контроль кол-ва символов в <textarea>
+      let editedDescription = todoEdit.querySelector('#editedDescription');
+      editedDescription.attributes.maxlength.value = maxSymbols;
 
-    changeDescriptionLimit(editedDescription, 0, maxSymbols);
+      changeDescriptionLimit(editedDescription, 0, maxSymbols);
 
-    editedDescription.addEventListener('input', () => {
+      editedDescription.addEventListener('input', () => {
+        changeDescriptionLimit(
+          editedDescription,
+          editedDescription.value.length,
+          maxSymbols,
+        );
+      });
+
+      // Обновление селектов при их измененении (убираем лишнее время)
+      editedSelectEndTime.addEventListener('change', () => {
+        let editedSelectStartValue = editedSelectStartTime.value;
+        selectStartUpdate(timeline, editedSelectStartTime, editedSelectEndTime);
+
+        Array.from(editedSelectStartTime.children).forEach(option => {
+          if (option.value == editedSelectStartValue) {
+            option.setAttribute('selected', '');
+          }
+        });
+      });
+
+      editedSelectStartTime.addEventListener('change', () => {
+        let editedSelectEndValue = editedSelectEndTime.value;
+        selectEndUpdate(timeline, editedSelectStartTime, editedSelectEndTime);
+
+        Array.from(editedSelectEndTime.children).forEach(option => {
+          if (option.value == editedSelectEndValue) {
+            option.setAttribute('selected', '');
+          }
+        });
+      });
+
+      // Отправка формы при клике на кнопку 'Сохранить'
+      todoEditForm.addEventListener('submit', saveEditChanges);
+
+      // Делегирование
+      todoEdit.addEventListener('click', todoEditActions);
+
+      // Меняем значения <textarea> и селектов
+      editedDescription.value = data.description;
       changeDescriptionLimit(
         editedDescription,
         editedDescription.value.length,
         maxSymbols,
       );
-    });
 
-    // Обновление селектов при их измененении (убираем лишнее время)
-    editedSelectEndTime.addEventListener('change', () => {
-      let editedSelectStartValue = editedSelectStartTime.value;
+      editedDaySelect.value = +data.day;
+      editedTypeSelect.value = data.type;
+
+      editedSelectStartTime.value = data.startTime;
+      editedSelectEndTime.value = data.endTime;
+
       selectStartUpdate(timeline, editedSelectStartTime, editedSelectEndTime);
 
       Array.from(editedSelectStartTime.children).forEach(option => {
-        if (option.value == editedSelectStartValue) {
+        if (option.value == data.startTime) {
           option.setAttribute('selected', '');
         }
       });
-    });
 
-    editedSelectStartTime.addEventListener('change', () => {
-      let editedSelectEndValue = editedSelectEndTime.value;
       selectEndUpdate(timeline, editedSelectStartTime, editedSelectEndTime);
 
       Array.from(editedSelectEndTime.children).forEach(option => {
-        if (option.value == editedSelectEndValue) {
+        if (option.value == data.endTime) {
           option.setAttribute('selected', '');
         }
       });
-    });
 
-    // Отправка формы при клике на кнопку 'Сохранить'
-    todoEditForm.addEventListener('submit', saveEditChanges);
+      Translate();
 
-    // Делегирование
-    todoEdit.addEventListener('click', todoEditActions);
+      // Анимация открытия окна редактирования дела
+      setTimeout(() => {
+        todo.querySelector('.todo__body').style.pointerEvents = 'none';
 
-    // Меняем значения <textarea> и селектов
-    editedDescription.value = data.description;
-    changeDescriptionLimit(
-      editedDescription,
-      editedDescription.value.length,
-      maxSymbols,
-    );
-
-    editedDaySelect.value = +data.day;
-    editedTypeSelect.value = data.type;
-
-    editedSelectStartTime.value = data.startTime;
-    editedSelectEndTime.value = data.endTime;
-
-    selectStartUpdate(timeline, editedSelectStartTime, editedSelectEndTime);
-
-    Array.from(editedSelectStartTime.children).forEach(option => {
-      if (option.value == data.startTime) {
-        option.setAttribute('selected', '');
-      }
-    });
-
-    selectEndUpdate(timeline, editedSelectStartTime, editedSelectEndTime);
-
-    Array.from(editedSelectEndTime.children).forEach(option => {
-      if (option.value == data.endTime) {
-        option.setAttribute('selected', '');
-      }
-    });
-
-    Translate();
-
-    // Анимация открытия окна редактирования дела
-    setTimeout(() => {
-      todo.querySelector('.todo__body').style.pointerEvents = 'none';
-
-      if (!todoEdit.classList.contains('_open')) {
-        todoEdit.classList.add('_open');
-      }
-    }, 1);
-
-    function todoEditActions(e) {
-      let targetElement = e.target;
-
-      // Кнопка 'Сбросить'
-      if (targetElement.closest('.edit-buttons__reset')) {
-        todoEditForm.reset();
-
-        let formReq = todoEditForm.querySelectorAll('._req');
-
-        for (let i = 0; i < formReq.length; i++) {
-          const input = formReq[i];
-          formRemoveError(input);
+        if (!todoEdit.classList.contains('_open')) {
+          todoEdit.classList.add('_open');
         }
+      }, 1);
 
-        changeDescriptionLimit(editedDescription, 0, maxSymbols);
-        generateSelectStartTime(timeline, editedSelectStartTime);
-        generateSelectEndTime(timeline, editedSelectEndTime);
-      }
+      function todoEditActions(e) {
+        let targetElement = e.target;
 
-      // Кнопка 'Закрыть'
-      if (targetElement.closest('.edit-buttons__escape')) {
-        closeEditPopup();
-      }
-    }
+        // Кнопка 'Сбросить'
+        if (targetElement.closest('.edit-buttons__reset')) {
+          todoEditForm.reset();
 
-    async function saveEditChanges(e) {
-      e.preventDefault();
+          let formReq = todoEditForm.querySelectorAll('._req');
 
-      let errors = formValidate(todoEditForm);
-
-      if (errors === 0) {
-        todoEditForm.classList.add('_sending');
-
-        let todoJson = getTodoJSON();
-
-        if (todoJson.todo) {
-          let userTodo = todoJson.todo[userId];
-          let formData = new FormData(todoEditForm);
-
-          for (let i = 0; i < userTodo.length; i++) {
-            const item = userTodo[i];
-
-            if (item.id == data.id) {
-              item.day = formData.get('editedDay');
-              item.startTime = formData.get('editedStart');
-              item.endTime = formData.get('editedEnd');
-              item.description = formData.get('editedDescription');
-              item.type = formData.get('editedTodoType');
-              break;
-            }
+          for (let i = 0; i < formReq.length; i++) {
+            const input = formReq[i];
+            formRemoveError(input);
           }
 
-          saveTodoJSON(todoJson);
+          changeDescriptionLimit(editedDescription, 0, maxSymbols);
+          generateSelectStartTime(timeline, editedSelectStartTime);
+          generateSelectEndTime(timeline, editedSelectEndTime);
+        }
 
-          todoForm.classList.remove('_sending');
+        // Кнопка 'Закрыть'
+        if (targetElement.closest('.edit-buttons__escape')) {
           closeEditPopup();
-          loadTodo(userId);
-        } else {
-          showAlert('error');
-        }
-      } else {
-        showAlert('form');
-      }
-    }
-
-    function closeEditPopup() {
-      // Анимация закрытия окна редактирования дела
-      if (todoEdit.classList.contains('_open')) {
-        todoEdit.classList.remove('_open');
-      }
-
-      setTimeout(() => {
-        editPopupHtml.remove();
-        todo.querySelector('.todo__body').style.pointerEvents = 'auto';
-      }, 301);
-    }
-  }
-
-  function closeTodoWindow() {
-    modalContent.style.position = 'static';
-    btnClose.style.position = 'static';
-    btnClose.style.zIndex = 0;
-    modalContent.querySelector('.todo').remove();
-    btnClose.removeEventListener('click', closeTodoWindow);
-  }
-
-  function changeDescriptionLimit(textarea, left, right) {
-    const textareaParent = textarea.parentNode;
-    textareaParent.dataset.symbols = `${left}/${right}`;
-
-    if (
-      textarea.value.length >= maxSymbols / 2 &&
-      textarea.value.length != maxSymbols
-    ) {
-      if (textareaParent.classList.contains('_red')) {
-        textareaParent.classList.remove('_red');
-      }
-
-      if (!textareaParent.classList.contains('_yellow')) {
-        textareaParent.classList.add('_yellow');
-      }
-    } else if (textarea.value.length == maxSymbols) {
-      if (textareaParent.classList.contains('_yellow')) {
-        textareaParent.classList.remove('_yellow');
-      }
-
-      if (!textareaParent.classList.contains('_red')) {
-        textareaParent.classList.add('_red');
-      }
-    } else {
-      if (textareaParent.classList.contains('_yellow')) {
-        textareaParent.classList.remove('_yellow');
-      }
-
-      if (textareaParent.classList.contains('_red')) {
-        textareaParent.classList.remove('_red');
-      }
-    }
-  }
-
-  function createTimeline(settings) {
-    let timeline = [];
-    timeline.push(settings.start); // Добавляем начальное значение timeSetting.start
-    let [stepHours, stepMinutes] = splitTimeString(settings.step); // Распаковываем шаг
-
-    while (isTimeSmaller(timeline[timeline.length - 1], settings.end)) {
-      let newMinutes = 0,
-        newHour = 0;
-      let [startHour, startMinutes] = splitTimeString(
-        timeline[timeline.length - 1],
-      );
-
-      /* Работаем с минутами */
-      let minutesSummary = startMinutes + stepMinutes;
-
-      if (minutesSummary > 60) {
-        let diff = minutesSummary - 60;
-
-        if (diff < 10) {
-          newMinutes = `0${diff}`;
-        } else {
-          newMinutes = `${diff}`;
-        }
-
-        newHour++;
-      } else if (minutesSummary == 60) {
-        newMinutes = '00';
-        newHour++;
-      } else {
-        if (minutesSummary < 10) {
-          newMinutes = `0${minutesSummary}`;
-        } else {
-          newMinutes = `${minutesSummary}`;
         }
       }
 
-      /* Работаем с часами */
-      let hoursSummary = startHour + stepHours;
-      newHour += hoursSummary;
+      async function saveEditChanges(e) {
+        e.preventDefault();
 
-      if (newHour < 10) {
-        newHour = `0${newHour}`;
+        let errors = formValidate(todoEditForm);
+
+        if (errors === 0) {
+          todoEditForm.classList.add('_sending');
+
+          let todoJson = getTodoJSON();
+
+          if (todoJson.todo) {
+            let userTodo = todoJson.todo[userId];
+            let formData = new FormData(todoEditForm);
+
+            for (let i = 0; i < userTodo.length; i++) {
+              const item = userTodo[i];
+
+              if (item.id == data.id) {
+                item.day = formData.get('editedDay');
+                item.startTime = formData.get('editedStart');
+                item.endTime = formData.get('editedEnd');
+                item.description = formData.get('editedDescription');
+                item.type = formData.get('editedTodoType');
+                break;
+              }
+            }
+
+            saveTodoJSON(todoJson);
+
+            todoForm.classList.remove('_sending');
+            closeEditPopup();
+            loadTodo(userId);
+          } else {
+            showAlert('error');
+          }
+        } else {
+          showAlert('form');
+        }
       }
 
-      let newTimeString = `${newHour}:${newMinutes}`;
+      function closeEditPopup() {
+        // Анимация закрытия окна редактирования дела
+        if (todoEdit.classList.contains('_open')) {
+          todoEdit.classList.remove('_open');
+        }
+
+        setTimeout(() => {
+          editPopupHtml.remove();
+          todo.querySelector('.todo__body').style.pointerEvents = 'auto';
+        }, 301);
+      }
+    }
+
+    function closeTodoWindow() {
+      modalContent.style.position = 'static';
+      btnClose.style.position = 'static';
+      btnClose.style.zIndex = 0;
+      modalContent.querySelector('.todo').remove();
+      btnClose.removeEventListener('click', closeTodoWindow);
+    }
+
+    function changeDescriptionLimit(textarea, left, right) {
+      const textareaParent = textarea.parentNode;
+      textareaParent.dataset.symbols = `${left}/${right}`;
 
       if (
-        !isTimeSmaller(newTimeString, settings.end) &&
-        newTimeString !== settings.end
+        textarea.value.length >= maxSymbols / 2 &&
+        textarea.value.length != maxSymbols
       ) {
-        break;
+        if (textareaParent.classList.contains('_red')) {
+          textareaParent.classList.remove('_red');
+        }
+
+        if (!textareaParent.classList.contains('_yellow')) {
+          textareaParent.classList.add('_yellow');
+        }
+      } else if (textarea.value.length == maxSymbols) {
+        if (textareaParent.classList.contains('_yellow')) {
+          textareaParent.classList.remove('_yellow');
+        }
+
+        if (!textareaParent.classList.contains('_red')) {
+          textareaParent.classList.add('_red');
+        }
       } else {
-        timeline.push(newTimeString);
+        if (textareaParent.classList.contains('_yellow')) {
+          textareaParent.classList.remove('_yellow');
+        }
+
+        if (textareaParent.classList.contains('_red')) {
+          textareaParent.classList.remove('_red');
+        }
       }
     }
 
-    return timeline;
-  }
+    function createTimeline(settings) {
+      let timeline = [];
+      timeline.push(settings.start); // Добавляем начальное значение timeSetting.start
+      let [stepHours, stepMinutes] = splitTimeString(settings.step); // Распаковываем шаг
 
-  function isTimeSmaller(string1, string2) {
-    let [startHour, startMinutes] = splitTimeString(string1);
-    let [endHour, endMinutes] = splitTimeString(string2);
+      while (isTimeSmaller(timeline[timeline.length - 1], settings.end)) {
+        let newMinutes = 0,
+          newHour = 0;
+        let [startHour, startMinutes] = splitTimeString(
+          timeline[timeline.length - 1],
+        );
 
-    if (startHour < endHour) {
-      return true;
-    } else if (startMinutes < endMinutes && startHour == endHour) {
-      return true;
-    } else {
-      return false;
+        /* Работаем с минутами */
+        let minutesSummary = startMinutes + stepMinutes;
+
+        if (minutesSummary > 60) {
+          let diff = minutesSummary - 60;
+
+          if (diff < 10) {
+            newMinutes = `0${diff}`;
+          } else {
+            newMinutes = `${diff}`;
+          }
+
+          newHour++;
+        } else if (minutesSummary == 60) {
+          newMinutes = '00';
+          newHour++;
+        } else {
+          if (minutesSummary < 10) {
+            newMinutes = `0${minutesSummary}`;
+          } else {
+            newMinutes = `${minutesSummary}`;
+          }
+        }
+
+        /* Работаем с часами */
+        let hoursSummary = startHour + stepHours;
+        newHour += hoursSummary;
+
+        if (newHour < 10) {
+          newHour = `0${newHour}`;
+        }
+
+        let newTimeString = `${newHour}:${newMinutes}`;
+
+        if (
+          !isTimeSmaller(newTimeString, settings.end) &&
+          newTimeString !== settings.end
+        ) {
+          break;
+        } else {
+          timeline.push(newTimeString);
+        }
+      }
+
+      return timeline;
     }
-  }
 
-  function generateSelectStartTime(timeline, select) {
-    /* Генерация selectStartTime */
-    select.innerHTML = /* html */ `
+    function isTimeSmaller(string1, string2) {
+      let [startHour, startMinutes] = splitTimeString(string1);
+      let [endHour, endMinutes] = splitTimeString(string2);
+
+      if (startHour < endHour) {
+        return true;
+      } else if (startMinutes < endMinutes && startHour == endHour) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function generateSelectStartTime(timeline, select) {
+      /* Генерация selectStartTime */
+      select.innerHTML = /* html */ `
       <option trans="text+:Beginning" value=''>Начало</option>
     `;
 
-    for (let i = 0; i < timeline.length; i++) {
-      const elem = timeline[i];
-      select.innerHTML += /* html */ `
+      for (let i = 0; i < timeline.length; i++) {
+        const elem = timeline[i];
+        select.innerHTML += /* html */ `
         <option value='${elem}'>${elem}</option>
       `;
+      }
     }
-  }
 
-  function generateSelectEndTime(timeline, select) {
-    /* Генерация selectEndTime */
-    select.innerHTML = /* html */ `
+    function generateSelectEndTime(timeline, select) {
+      /* Генерация selectEndTime */
+      select.innerHTML = /* html */ `
       <option trans="text+:Fin;" value=''>Конец</option>
     `;
 
-    for (let i = 0; i < timeline.length; i++) {
-      const elem = timeline[i];
-      select.innerHTML += /* html */ `
+      for (let i = 0; i < timeline.length; i++) {
+        const elem = timeline[i];
+        select.innerHTML += /* html */ `
         <option value='${elem}'>${elem}</option>
       `;
+      }
     }
-  }
 
-  function selectStartUpdate(timeline, selectStart, selectEnd) {
-    let selectEndValueIndex = timeline.indexOf(selectEnd.value);
-    let newStartTimeline = timeline.slice(0, selectEndValueIndex);
+    function selectStartUpdate(timeline, selectStart, selectEnd) {
+      let selectEndValueIndex = timeline.indexOf(selectEnd.value);
+      let newStartTimeline = timeline.slice(0, selectEndValueIndex);
 
-    generateSelectStartTime(newStartTimeline, selectStart);
-  }
+      generateSelectStartTime(newStartTimeline, selectStart);
+    }
 
-  function selectEndUpdate(timeline, selectStart, selectEnd) {
-    let selectStartValueIndex = timeline.indexOf(selectStart.value);
-    let newEndTimeline = timeline.slice(selectStartValueIndex + 1);
+    function selectEndUpdate(timeline, selectStart, selectEnd) {
+      let selectStartValueIndex = timeline.indexOf(selectStart.value);
+      let newEndTimeline = timeline.slice(selectStartValueIndex + 1);
 
-    generateSelectEndTime(newEndTimeline, selectEnd);
-  }
+      generateSelectEndTime(newEndTimeline, selectEnd);
+    }
 
-  //</FUNCTIONS>==============================================================================
-});
+    //</FUNCTIONS>==============================================================================
+  });
 
-// Вывод наслоения дел на таблицу полного расписания
-let btnFullScreen = document.querySelector('#btnFullScreen4orange');
+  // Вывод наслоения дел на таблицу полного расписания
+  let btnFullScreen = document.querySelector('#btnFullScreen4orange');
 
-btnFullScreen.addEventListener('click', () => {
-  let checkedUsers = document.querySelectorAll(
-    '.checkBusyBtn.bi-check-square-fill',
-  );
-  let localStorageID = getLocalStorageData('todoID') || [];
-  let idArray = [];
-  let finalArray = [];
+  btnFullScreen.addEventListener('click', () => {
+    let checkedUsers = document.querySelectorAll(
+      '.checkBusyBtn.bi-check-square-fill',
+    );
+    let localStorageID = getLocalStorageData('todoID') || [];
+    let idArray = [];
+    let finalArray = [];
 
-  closeTodoLayers(
-    document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
-  );
+    closeTodoLayers(
+      document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
+    );
 
-  if (checkedUsers.length && localStorageID.length) {
-    checkedUsers.forEach(user => {
-      idArray.push(user.parentElement.attributes.id.value);
-    });
-
-    finalArray = idArray.filter(element => localStorageID.includes(element));
-
-    setTimeout(() => {
-      loadTodoLayers(
-        document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
-        finalArray,
-      ).then(() => {
-        let tableFullLayers = document
-          .querySelector('#full')
-          .querySelectorAll('.layers');
-
-        tableFullLayers.forEach(layer => {
-          layer.style.paddingTop = `24.11px`;
-        });
+    if (checkedUsers.length && localStorageID.length) {
+      checkedUsers.forEach(user => {
+        idArray.push(user.parentElement.attributes.id.value);
       });
-    }, 200);
-  }
-});
+
+      finalArray = idArray.filter(element => localStorageID.includes(element));
+
+      setTimeout(() => {
+        loadTodoLayers(
+          document
+            .querySelector('#full')
+            .querySelector('#tableScheduleBodyFull'),
+          finalArray,
+        ).then(() => {
+          let tableFullLayers = document
+            .querySelector('#full')
+            .querySelectorAll('.layers');
+
+          tableFullLayers.forEach(layer => {
+            layer.style.paddingTop = `24.11px`;
+          });
+        });
+      }, 200);
+    }
+  });
+}
 
 //<FUNCTIONS>==============================================================================
 
 //<Наслоение дел>==============================================================================
 
 export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
-  let btnClose =
-    table.querySelector('.btn-close') ||
-    table.closest('.modal-content').querySelector('.btn-close');
-  btnClose.addEventListener('click', close);
+  if (todoIsActive()) {
+    let btnClose =
+      table.querySelector('.btn-close') ||
+      table.closest('.modal-content').querySelector('.btn-close');
+    btnClose.addEventListener('click', close);
 
-  function close() {
-    closeTodoLayers(table);
-    btnClose.removeEventListener('click', close);
-  }
+    function close() {
+      closeTodoLayers(table);
+      btnClose.removeEventListener('click', close);
+    }
 
-  // Обнуляем стиль кнопки "Скрыть дела"
-  document
-    .getElementById('onOffTask')
-    .children[0].setAttribute('class', 'bi bi-eye-slash-fill');
+    // Обнуляем стиль кнопки "Скрыть дела"
+    document
+      .getElementById('onOffTask')
+      .children[0].setAttribute('class', 'bi bi-eye-slash-fill');
 
-  for (let id of idArray) {
-    // Генерируем контейнер для слоев
-    let layersHtml = /* html */ `
+    for (let id of idArray) {
+      // Генерируем контейнер для слоев
+      let layersHtml = /* html */ `
       <div class="layers">
         <div class="layers__body">
         </div>
       </div>
     `;
 
-    layersHtml = parser
-      .parseFromString(layersHtml, 'text/html')
-      .querySelector('.layers');
-    layersHtml.dataset.id = id;
-    table.append(layersHtml);
+      layersHtml = parser
+        .parseFromString(layersHtml, 'text/html')
+        .querySelector('.layers');
+      layersHtml.dataset.id = id;
+      table.append(layersHtml);
 
-    table.style.position = 'relative';
+      table.style.position = 'relative';
 
-    let layersBody = table
-      .querySelector(`.layers[data-id="${id}"]`)
-      .querySelector('.layers__body');
+      let layersBody = table
+        .querySelector(`.layers[data-id="${id}"]`)
+        .querySelector('.layers__body');
 
-    layersBody.style.paddingLeft = '9%';
+      layersBody.style.paddingLeft = '9%';
 
-    let todoJson = getTodoJSON();
+      let todoJson = getTodoJSON();
 
-    if (todoJson.todo) {
-      let userTodo = todoJson.todo[id];
+      if (todoJson.todo) {
+        let userTodo = todoJson.todo[id];
 
-      if (userTodo) {
-        // Вывод слоёв только свободного времени
-        if (todoTypes === 'free') {
-          userTodo = userTodo.filter(todo => todo.type === 'free');
-        }
-
-        // Высота 1й минуты (в px)
-        const oneMinuteHeight =
-          table.querySelector('tbody').children[0].getBoundingClientRect()
-            .height / 30;
-
-        userTodo.forEach((item, index) => {
-          // Расчет высоты наслоения (в px)
-          let [endTimeHour, endTimeMinutes] = splitTimeString(item.endTime);
-          let [startTimeHour, startTimeMinutes] = splitTimeString(
-            item.startTime,
-          );
-          let layerHeight =
-            ((endTimeHour - startTimeHour) * 60 +
-              (endTimeMinutes - startTimeMinutes)) *
-              oneMinuteHeight -
-            4;
-
-          // Расчет отступа сверху (значение top, в px)
-          let [firstTimeHour, firstTimeMinutes] = splitTimeString(
-            timeSetting.start,
-          );
-
-          let topValue =
-            ((startTimeHour - firstTimeHour) * 60 +
-              (startTimeMinutes - firstTimeMinutes)) *
-            oneMinuteHeight;
-
-          // Переводим layerHeight и topValue в %
-          layerHeight = (layerHeight / table.offsetHeight) * 100;
-          topValue = (topValue / table.offsetHeight) * 100;
-
-          // Множитель для отступа слева (для margin-left)
-          let marginLeftValue = 12.99;
-
-          // Расчет отступа слева (значение margin-left)
-          switch (item.day) {
-            case '1':
-              marginLeftValue = 0;
-              break;
-
-            case '2':
-              marginLeftValue *= 1;
-              break;
-
-            case '3':
-              marginLeftValue *= 2;
-              break;
-
-            case '4':
-              marginLeftValue *= 3;
-              break;
-
-            case '5':
-              marginLeftValue *= 4;
-              break;
-
-            case '6':
-              marginLeftValue *= 5;
-              break;
-
-            case '7':
-              marginLeftValue *= 6;
-              break;
+        if (userTodo) {
+          // Вывод слоёв только свободного времени
+          if (todoTypes === 'free') {
+            userTodo = userTodo.filter(todo => todo.type === 'free');
           }
 
-          let colorsValue = colors[item.type];
+          // Высота 1й минуты (в px)
+          const oneMinuteHeight =
+            table.querySelector('tbody').children[0].getBoundingClientRect()
+              .height / 30;
 
-          layersBody.innerHTML += /*html*/ `
+          userTodo.forEach((item, index) => {
+            // Расчет высоты наслоения (в px)
+            let [endTimeHour, endTimeMinutes] = splitTimeString(item.endTime);
+            let [startTimeHour, startTimeMinutes] = splitTimeString(
+              item.startTime,
+            );
+            let layerHeight =
+              ((endTimeHour - startTimeHour) * 60 +
+                (endTimeMinutes - startTimeMinutes)) *
+                oneMinuteHeight -
+              4;
+
+            // Расчет отступа сверху (значение top, в px)
+            let [firstTimeHour, firstTimeMinutes] = splitTimeString(
+              timeSetting.start,
+            );
+
+            let topValue =
+              ((startTimeHour - firstTimeHour) * 60 +
+                (startTimeMinutes - firstTimeMinutes)) *
+              oneMinuteHeight;
+
+            // Переводим layerHeight и topValue в %
+            layerHeight = (layerHeight / table.offsetHeight) * 100;
+            topValue = (topValue / table.offsetHeight) * 100;
+
+            // Множитель для отступа слева (для margin-left)
+            let marginLeftValue = 12.99;
+
+            // Расчет отступа слева (значение margin-left)
+            switch (item.day) {
+              case '1':
+                marginLeftValue = 0;
+                break;
+
+              case '2':
+                marginLeftValue *= 1;
+                break;
+
+              case '3':
+                marginLeftValue *= 2;
+                break;
+
+              case '4':
+                marginLeftValue *= 3;
+                break;
+
+              case '5':
+                marginLeftValue *= 4;
+                break;
+
+              case '6':
+                marginLeftValue *= 5;
+                break;
+
+              case '7':
+                marginLeftValue *= 6;
+                break;
+            }
+
+            let colorsValue = colors[item.type];
+
+            layersBody.innerHTML += /*html*/ `
             <div class="layers__item layers-item ${
               +item.checked ? '_checked' : ''
             }" 
@@ -1188,28 +1211,31 @@ export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
               </div>
             </div>
           `;
-        });
+          });
 
-        tippy('[data-tippy-content]', {
-          allowHTML: true,
-          theme: 'light-border',
-          placement: 'right',
-          followCursor: 'vertical',
-          maxWidth: 180,
-          duration: [500, 0],
-        });
+          tippy('[data-tippy-content]', {
+            allowHTML: true,
+            theme: 'light-border',
+            placement: 'right',
+            followCursor: 'vertical',
+            maxWidth: 180,
+            duration: [500, 0],
+          });
+        }
+      } else {
+        showAlert('error');
       }
-    } else {
-      showAlert('error');
     }
   }
 }
 
 export function closeTodoLayers(table) {
-  let layers = table.querySelectorAll('.layers');
-  if (layers.length) {
-    for (let i = 0; i < layers.length; i++) {
-      layers[i].remove();
+  if (todoIsActive()) {
+    let layers = table.querySelectorAll('.layers');
+    if (layers.length) {
+      for (let i = 0; i < layers.length; i++) {
+        layers[i].remove();
+      }
     }
   }
 }
@@ -1220,15 +1246,17 @@ export function isLayersCanBeDisplayed(
   todoType = 'any',
   callback,
 ) {
-  let localStorageID = getLocalStorageData('todoID') || [];
-  let call = false;
+  if (todoIsActive()) {
+    let localStorageID = getLocalStorageData('todoID') || [];
+    let call = false;
 
-  for (let id of idArray) {
-    call = localStorageID.includes(id);
-    if (!call) break;
+    for (let id of idArray) {
+      call = localStorageID.includes(id);
+      if (!call) break;
+    }
+
+    if (call) callback(table, idArray, todoType);
   }
-
-  if (call) callback(table, idArray, todoType);
 }
 
 //</Наслоение дел>==============================================================================
@@ -1299,7 +1327,7 @@ function setLocalStorageData(name, data) {
   localStorage.setItem(name, JSON.stringify(data));
 }
 
-export function getLocalStorageData(name) {
+function getLocalStorageData(name) {
   return JSON.parse(localStorage.getItem(name));
 }
 
@@ -1327,24 +1355,26 @@ function showAlert(type) {
   }
 }
 
-// Логика кнопки "Скрыть дела"
-let onOffTasks = document.getElementById('onOffTask');
-let layers = document.getElementsByClassName('layers');
+if (todoIsActive()) {
+  // Логика кнопки "Скрыть дела"
+  let onOffTasks = document.getElementById('onOffTask');
+  let layers = document.getElementsByClassName('layers');
 
-onOffTasks.addEventListener('click', () => {
-  if (onOffTasks.children[0].classList.contains('bi-eye-slash-fill')) {
-    for (let layer of layers) {
-      layer.style.visibility = 'hidden';
+  onOffTasks.addEventListener('click', () => {
+    if (onOffTasks.children[0].classList.contains('bi-eye-slash-fill')) {
+      for (let layer of layers) {
+        layer.style.visibility = 'hidden';
+      }
+      onOffTasks.children[0].classList.remove('bi-eye-slash-fill');
+      onOffTasks.children[0].classList.add('bi-eye-fill');
+    } else {
+      for (let layer of layers) {
+        layer.style.visibility = 'visible';
+      }
+      onOffTasks.children[0].classList.add('bi-eye-slash-fill');
+      onOffTasks.children[0].classList.remove('bi-eye-fill');
     }
-    onOffTasks.children[0].classList.remove('bi-eye-slash-fill');
-    onOffTasks.children[0].classList.add('bi-eye-fill');
-  } else {
-    for (let layer of layers) {
-      layer.style.visibility = 'visible';
-    }
-    onOffTasks.children[0].classList.add('bi-eye-slash-fill');
-    onOffTasks.children[0].classList.remove('bi-eye-fill');
-  }
-});
+  });
+}
 
 //</FUNCTIONS>==============================================================================
