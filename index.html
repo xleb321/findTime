@@ -1618,7 +1618,7 @@
 							display: none;
 						">
               <i class="bi bi-list" name="disable" style="margin-right: 0px;"></i>
-              <Text name="Schedul2e">Дела</Text>
+              <Text trans="text+:toDoListLittle" name="Schedul2e">Дела</Text>
             </button>
 
             <button type="button" id="sendCode2" class="btn btn-sm" style="
@@ -3179,7 +3179,8 @@
     import {
       closeTodoLayers,
       loadTodoLayers,
-      todoIsActive
+      todoIsActive,
+      getTodoIDArray
     } from './js/todo.js';
 
     window.addEventListener('load', () => {
@@ -3201,13 +3202,16 @@
 
         if (todoIsActive()) {
           setTimeout(() => {
-            let localStorageID = JSON.parse(localStorage.getItem('todoID')) || [];
+            let todoID = getTodoIDArray();
             let fullTable = document.querySelector('#full').querySelector('#tableScheduleBodyFull');
+            let fullTableTbody = document.querySelector('#full').querySelector('#tbodyScheduleFull');
 
             closeTodoLayers(fullTable);
 
-            if (localStorageID.length && fullTable.children) {
-              loadTodoLayers(fullTable, localStorageID).then(() => {
+            if (todoID.length && fullTableTbody.children.length) {
+              loadTodoLayers(fullTable, todoID).then(() => {
+                console.log('Работает')
+
                 let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
 
                 tableFullLayers.forEach((layer) => {

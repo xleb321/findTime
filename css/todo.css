@@ -468,7 +468,14 @@
 
 .todo-item__buttons {
   display: flex;
-  column-gap: 12px;
+  column-gap: 18px;
+}
+
+@media (max-width: 425px) {
+  .todo-item__buttons {
+    display: flex;
+    column-gap: 15px;
+  }
 }
 
 .todo-buttons__btn {

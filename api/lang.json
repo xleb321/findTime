@@ -1718,6 +1718,11 @@
     "en": "Class schedule",
     "fr": "Calendrier des cours"
   },
+  "toDoListLittle": {
+    "ru": "График",
+    "en": "Schedule",
+    "fr": "Calendrier"
+  },
   "userWith": {
     "ru": "Пользователь с таким же именем, курсом и уровнем уже существует. Либо измените данные, либо обновите уже существующего пользователя",
     "en": "A user with the same name, course, and level already exists. Either change the data or update an existing user",

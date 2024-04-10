@@ -1310,7 +1310,7 @@ export function isLayersCanBeDisplayed(
 
 //</Наслоение дел>==============================================================================
 
-function getTodoIDArray() {
+export function getTodoIDArray() {
   let todoID;
 
   if (sessionStorage.getItem('typeBase') == 'remote') {
