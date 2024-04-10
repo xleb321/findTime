@@ -80,7 +80,7 @@ if (todoIsActive()) {
     let todoHtml = /* html */ `
     <div class="todo">
       <div class="todo__body">
-        <div trans="text+:toDoList;" class="todo__title">Список дел</div>
+        <div trans="text+:toDoList;" class="todo__title">График занятий</div>
         <div class="todo__options">
           <form action="#" class="todo__form todo-form" id="todoForm">
             <div class="todo-form__selects">
@@ -136,11 +136,7 @@ if (todoIsActive()) {
           <button type='button' data-day="7" trans="text+:Sun;" class="todo-filters__filter" tabindex='0'>Вс</button>
         </div>
         <div class="todo__deals todo-deals">
-          <div class="todo-deals__items" id="todoDealsBody">
-            <!-- <div class="todo-deals__empty">
-                <span>Список дел пуст...</span>
-            </div> -->
-          </div>
+          <div class="todo-deals__items" id="todoDealsBody"></div>
         </div>
 
         <div class="todo__btns todo-btns">
@@ -287,7 +283,7 @@ if (todoIsActive()) {
         if (todoID.length) {
           alerter(
             '<span trans="text+:Danger">Внимание</span>',
-            '<div trans="text+:TodoIsAlreadyDisplayed;" style="text-indent: 0;">Список дел другого(их) пользователей уже выводится в расписание</div>',
+            '<div trans="text+:TodoIsAlreadyDisplayed;" style="text-indent: 0;">График занятий другого(их) пользователя(ей) уже выводится в расписании</div>',
             'standart',
             'info',
             'slim',
@@ -568,14 +564,14 @@ if (todoIsActive()) {
           } else {
             todoDealsBody.innerHTML = /* html */ `
             <div class="todo-deals__empty">
-              <span>Пусто...</span>
+              <Text trans="text+:Empty;">Пусто...</Text>
             </div>
           `;
           }
         } else {
           todoDealsBody.innerHTML = /* html */ `
           <div class="todo-deals__empty">
-            <span>Список дел пуст...</span>
+            <Text trans="text+:ScheduleEmpty;">График пуст...</Text>
           </div>
         `;
         }

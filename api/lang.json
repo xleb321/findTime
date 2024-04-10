@@ -184,11 +184,6 @@
     "en": "Informers",
     "fr": "Informateurs"
   },
-  "setupTasks": {
-    "ru": "Список дел",
-    "en": "ToDo",
-    "fr": "ToDo"
-  },
   "setupServices": {
     "ru": "Обслуживание базы",
     "en": "Database maintenance",
@@ -1649,9 +1644,19 @@
     "fr": "Quelque chose a mal tourné. Réessayez plus tard"
   },
   "TodoIsAlreadyDisplayed": {
-    "ru": "Список дел другого(их) пользователей уже выводится в расписание",
-    "en": "The to-do list of the other (their) users is already displayed in the schedule",
-    "fr": "La liste des tâches de l'autre(leurs) utilisateurs est déjà affichée dans le calendrier"
+    "ru": "График занятий другого(их) пользователя(ей) уже выводится в расписании",
+    "en": "The class schedule of the other user(s) is already displayed in the timetable",
+    "fr": "L'horaire des cours de l'autre ou des autres utilisateurs est déjà affiché dans l'emploi du temps."
+  },
+  "Empty": {
+    "ru": "Пусто...",
+    "en": "Empty...",
+    "fr": "Vide..."
+  },
+  "ScheduleEmpty": {
+    "ru": "График пуст...",
+    "en": "The schedule is empty...",
+    "fr": "Le programme est vide..."
   },
   "WeekDay": {
     "ru": "День",
@@ -1709,9 +1714,9 @@
     "fr": "Afficher dans l'agenda"
   },
   "toDoList": {
-    "ru": "список дел",
-    "en": "to-do list",
-    "fr": "rôle"
+    "ru": "График занятий",
+    "en": "Class schedule",
+    "fr": "Calendrier des cours"
   },
   "userWith": {
     "ru": "Пользователь с таким же именем, курсом и уровнем уже существует. Либо измените данные, либо обновите уже существующего пользователя",

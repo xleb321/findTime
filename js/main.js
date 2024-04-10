@@ -64,6 +64,7 @@ let businessToDisplay = [];
 let allMatches = [];
 let courses = [];
 let grades = [];
+let toDoMy = [];
 let filteredCourses = [];
 let filteredGrades = [];
 let filteredUsers = [];
@@ -4502,6 +4503,14 @@ export function start() {
         sessionStorage.getItem('typeBase'),
         sessionStorage.getItem('globalLogin'),
         'grades',
+      ),
+    ) || [];
+  toDoMy =
+    JSON.parse(
+      getDataFrom(
+        sessionStorage.getItem('typeBase'),
+        sessionStorage.getItem('globalLogin'),
+        'todo',
       ),
     ) || [];
 
