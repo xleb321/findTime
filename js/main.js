@@ -4329,7 +4329,7 @@ function saveData2remote(globalLogin, item, dataSave) {
         return response.text();
       })
       .then(text => {
-        //						alert('Данные ' + item + ' записаны на сервер')
+        console.log('Данные ' + item + ' записаны на сервер');
       });
   }
 }

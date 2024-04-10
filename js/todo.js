@@ -50,11 +50,20 @@ if (todoIsActive()) {
   let btnTodo = document.querySelector('#btnTodo');
 
   // Инициализация данных в localStorage (по умолчанию)
-  if (
-    sessionStorage.getItem('globalAccess') != 7 &&
-    localStorage.getItem('todo') === null
-  ) {
-    localStorage.setItem('todo', '{"todo": {}}');
+  if (sessionStorage.getItem('typeBase') == 'local') {
+    let todoJson = JSON.parse(localStorage.getItem('todo'));
+
+    if (todoJson === null) {
+      todoJson = {
+        todoID: [],
+        todo: {},
+      };
+    } else {
+      if (todoJson.todo === undefined) todoJson.todo = {};
+      if (todoJson.todoID === undefined) todoJson.todoID = [];
+    }
+
+    localStorage.setItem('todo', JSON.stringify(todoJson));
   }
 
   // Список дел
@@ -75,7 +84,7 @@ if (todoIsActive()) {
         <div class="todo__options">
           <form action="#" class="todo__form todo-form" id="todoForm">
             <div class="todo-form__selects">
-              <select name="day" id="todoDayOfWeek" tabindex="1" class="todo-form__select _req">
+              <select name="day" id="todoDayOfWeek" tabindex="0" class="todo-form__select _req">
                 <option trans="text+:WeekDay;" value="">День</option>
                 <option trans="text+:Mon;" value="1">Пн</option>
                 <option trans="text+:Tue;" value="2">Вт</option>
@@ -85,13 +94,13 @@ if (todoIsActive()) {
                 <option trans="text+:Sat;" value="6">Сб</option>
                 <option trans="text+:Sun;" value="7">Вс</option>
               </select>
-              <select name="start" id="todoStartTime" tabindex="2" class="todo-form__select _req">
+              <select name="start" id="todoStartTime" tabindex="0" class="todo-form__select _req">
                 <option trans="text+:Beginning;" value="">Начало</option>
               </select>
-              <select name="end" id="todoEndTime" tabindex="3" class="todo-form__select _req">
+              <select name="end" id="todoEndTime" tabindex="0" class="todo-form__select _req">
                 <option trans="text+:Fin;" value="">Конец</option>
               </select>
-              <select name="todoType" id="todoType" tabindex="4" class="todo-form__select _req">
+              <select name="todoType" id="todoType" tabindex="0" class="todo-form__select _req">
                 <option trans="text+:TypeEmployment;" value="">Тип</option>
                 <option trans="text+:Work_r;" value="work">Постоянно</option>
 				        <option trans="text+:Work_s;" value="work_s">Разово</option>
@@ -101,14 +110,14 @@ if (todoIsActive()) {
             </div>
             <div class="todo-form__footer">
               <div class="todo-form__textarea" data-symbols="">
-                <textarea trans="placeholder:Description" name="description" id="todoDescription" tabindex="5" class="todo-form__description _req" placeholder="Описание" maxlength="100"></textarea>
+                <textarea trans="placeholder:Description" name="description" id="todoDescription" tabindex="0" class="todo-form__description _req" placeholder="Описание" maxlength="100"></textarea>
               </div>
               <div class="todo-form__btns">
-                <button class="todo-form__button todo-form__submit" tabindex="6" type="submit">
+                <button class="todo-form__button todo-form__submit" tabindex="0" type="submit">
                   <i class="bi bi-plus"></i>
                   <span trans="text+:plusButtonBusyText">Добавить</span>
                 </button>
-                <button class="todo-form__button todo-form__reset" tabindex="7" type="reset">
+                <button class="todo-form__button todo-form__reset" tabindex="0" type="reset">
                   <i class="bi bi-arrow-repeat"></i>
                   <span trans="text+:ThrowOff">Сбросить</span>
                 </button>
@@ -117,14 +126,14 @@ if (todoIsActive()) {
           </form>
         </div>
         <div class="todo__filters todo-filters">
-          <div data-day="0" trans="text+:All;" class="todo-filters__filter _active">Все</div>
-          <div data-day="1" trans="text+:Mon;" class="todo-filters__filter">Пн</div>
-          <div data-day="2" trans="text+:Tue;" class="todo-filters__filter">Вт</div>
-          <div data-day="3" trans="text+:Wed;" class="todo-filters__filter">Ср</div>
-          <div data-day="4" trans="text+:Thu;" class="todo-filters__filter">Чт</div>
-          <div data-day="5" trans="text+:Fri;" class="todo-filters__filter">Пт</div>
-          <div data-day="6" trans="text+:Sat;" class="todo-filters__filter">Сб</div>
-          <div data-day="7" trans="text+:Sun;" class="todo-filters__filter">Вс</div>
+          <button type='button' data-day="0" trans="text+:All;" class="todo-filters__filter _active" tabindex='0'>Все</button>
+          <button type='button' data-day="1" trans="text+:Mon;" class="todo-filters__filter" tabindex='0'>Пн</button>
+          <button type='button' data-day="2" trans="text+:Tue;" class="todo-filters__filter" tabindex='0'>Вт</button>
+          <button type='button' data-day="3" trans="text+:Wed;" class="todo-filters__filter" tabindex='0'>Ср</button>
+          <button type='button' data-day="4" trans="text+:Thu;" class="todo-filters__filter" tabindex='0'>Чт</button>
+          <button type='button' data-day="5" trans="text+:Fri;" class="todo-filters__filter" tabindex='0'>Пт</button>
+          <button type='button' data-day="6" trans="text+:Sat;" class="todo-filters__filter" tabindex='0'>Сб</button>
+          <button type='button' data-day="7" trans="text+:Sun;" class="todo-filters__filter" tabindex='0'>Вс</button>
         </div>
         <div class="todo__deals todo-deals">
           <div class="todo-deals__items" id="todoDealsBody">
@@ -138,14 +147,14 @@ if (todoIsActive()) {
           <div class="todo-btns__left">
             <button class="todo-btns__button todo-btns__delete"
               id="todoDeleteAll"
-              tabindex="9"
+              tabindex="0"
               title="Удалить все дела"
             >
               <i class="bi bi-eraser-fill" style="color: indianred"></i>
             </button>
             <div class="todo__checkbox">
           		<label>
-            	  <input id="todoCheckbox" data-id="${userId}" type="checkbox" class="form-check-input" tabindex="8">
+            	  <input id="todoCheckbox" data-id="${userId}" type="checkbox" class="form-check-input" tabindex="0">
             	  <span trans="text+:DisplaySchedule">Показывать в расписании</span>
           		</label>
         	  </div>
@@ -154,7 +163,7 @@ if (todoIsActive()) {
             <button trans="text+:Close;"
               class="todo-btns__button todo-btns__escape"
               id="todoClose"
-              tabindex="10"
+              tabindex="0"
             >
               Закрыть
             </button>
@@ -244,33 +253,38 @@ if (todoIsActive()) {
 
     // Checkbox "Выводить список дел в расписание"
     function renderTodoCheckbox() {
-      let checkboxID = todoCheckbox.dataset.id;
-      let localStorageID = getLocalStorageData('todoID') || [];
+      let todoID = getTodoIDArray();
 
-      if (localStorageID.length) {
-        if (localStorageID.includes(checkboxID)) {
+      if (todoID.length) {
+        if (todoID.includes(todoCheckbox.dataset.id)) {
           if (!todoCheckbox.checked) {
             todoCheckbox.checked = true;
           }
         }
         // else {
-        //     // Если нужен будет множественный выбор, то закомментировать блок else
-        //     if (!todoCheckbox.attributes.disabled) {
-        //         todoCheckbox.setAttribute('disabled', '');
-        //     }
+        //   // Если нужен будет множественный выбор, то закомментировать блок else
+        //   if (!todoCheckbox.attributes.disabled) {
+        //     todoCheckbox.setAttribute('disabled', '');
+        //   }
         // }
       }
     }
 
     function changeTodoCheckbox() {
-      let checkboxID = todoCheckbox.dataset.id;
-      let localStorageID = getLocalStorageData('todoID') || [];
+      const checkboxID = todoCheckbox.dataset.id;
+      let todoJson;
+
+      // Получаем данные
+      if (sessionStorage.getItem('typeBase') == 'remote') {
+        todoJson = getTodoJSON();
+      } else {
+        todoJson = JSON.parse(localStorage.getItem('todo'));
+      }
+
+      let todoID = todoJson.todoID ? todoJson.todoID : [];
 
       if (todoCheckbox.checked) {
-        if (!localStorageID.length) {
-          localStorageID.push(checkboxID);
-          setLocalStorageData('todoID', localStorageID);
-        } else {
+        if (todoID.length) {
           alerter(
             '<span trans="text+:Danger">Внимание</span>',
             '<div trans="text+:TodoIsAlreadyDisplayed;" style="text-indent: 0;">Список дел другого(их) пользователей уже выводится в расписание</div>',
@@ -279,14 +293,23 @@ if (todoIsActive()) {
             'slim',
           );
 
-          if (!localStorageID.includes(checkboxID)) {
-            localStorageID.push(checkboxID);
-            setLocalStorageData('todoID', localStorageID);
+          if (!todoID.includes(checkboxID)) {
+            todoID.push(checkboxID);
           }
+        } else {
+          todoID.push(checkboxID);
         }
       } else {
-        localStorageID.splice(localStorageID.indexOf(checkboxID), 1);
-        setLocalStorageData('todoID', localStorageID);
+        todoID.splice(todoID.indexOf(checkboxID), 1);
+      }
+
+      todoJson.todoID = todoID;
+
+      // Обновляем данные
+      if (sessionStorage.getItem('typeBase') == 'remote') {
+        saveTodoJSON(todoJson);
+      } else {
+        localStorage.setItem('todo', JSON.stringify(todoJson));
       }
     }
 
@@ -437,6 +460,7 @@ if (todoIsActive()) {
           todoForm.classList.remove('_sending');
         } else {
           showAlert('error');
+          console.log('449');
         }
       } else {
         showAlert('form');
@@ -452,6 +476,14 @@ if (todoIsActive()) {
 
       let todoJson = getTodoJSON();
 
+      let timerLoadTodoJSON = setTimeout(() => {
+        todoJson = getTodoJSON();
+        console.log('timerLoadTodoJSON');
+        console.log(todoJson.todo);
+      }, 2000);
+      clearInterval(timerLoadTodoJSON);
+
+      console.log(todoJson.todo);
       if (todoJson.todo) {
         let userJson = todoJson.todo[id];
 
@@ -549,6 +581,7 @@ if (todoIsActive()) {
         }
       } else {
         showAlert('error');
+        console.log('562');
       }
     }
 
@@ -577,6 +610,7 @@ if (todoIsActive()) {
         }
       } else {
         showAlert('error');
+        console.log('591');
       }
     }
 
@@ -598,6 +632,7 @@ if (todoIsActive()) {
         loadTodo(userId);
       } else {
         showAlert('error');
+        console.log('613');
       }
     }
 
@@ -612,10 +647,18 @@ if (todoIsActive()) {
         }
       } else {
         showAlert('error');
+        console.log('628');
       }
     }
 
     function todoEditItem(userId, data) {
+      // Запрет табуляции под окном редактирования
+      const todoTabindexItems = todo.querySelectorAll('[tabindex="0"]');
+
+      todoTabindexItems.forEach(todoTabindexItem => {
+        todoTabindexItem.setAttribute('tabindex', -1);
+      });
+
       // Генерируем окно редактирования дела
       let editPopupHtml = /* html */ `
       <div class="todo__edit todo-edit">
@@ -625,7 +668,7 @@ if (todoIsActive()) {
             <div class="todo-edit__options">
               <form action="#" class="todo-edit__form edit-form" id="todoEditForm">
                 <div class="edit-form__selects">
-                  <select name="editedDay" id="editedDayOfWeek" tabindex="11" class="edit-form__select _req">
+                  <select name="editedDay" id="editedDayOfWeek" tabindex="0" class="edit-form__select _req">
                     <option trans="text+:WeekDay;" value="">День</option>
                     <option trans="text+:Mon;" value="1">Пн</option>
                     <option trans="text+:Tue;" value="2">Вт</option>
@@ -635,13 +678,13 @@ if (todoIsActive()) {
                     <option trans="text+:Sat;" value="6">Сб</option>
                     <option trans="text+:Sun;" value="7">Вс</option>
                   </select>
-                  <select name="editedStart" id="editedStartTime" tabindex="12" class="edit-form__select _req">
+                  <select name="editedStart" id="editedStartTime" tabindex="0" class="edit-form__select _req">
                     <option trans="text+:Beginning" value="">Начало</option>
                   </select>
-                  <select name="editedEnd" id="editedEndTime" tabindex="13" class="edit-form__select _req">
+                  <select name="editedEnd" id="editedEndTime" tabindex="0" class="edit-form__select _req">
                     <option trans="text+:Fin;" value="">Конец</option>
                   </select>
-                  <select name="editedTodoType" id="editedTodoType" tabindex="14" class="edit-form__select _req">
+                  <select name="editedTodoType" id="editedTodoType" tabindex="0" class="edit-form__select _req">
                     <option trans="text+:TypeEmployment" value="">Тип</option>
                     <option trans="text+:Work_r;"  value="work">Работа рег.</option>
                     <option trans="text+:Work_s;" value="work_s">Работа раз.</option>
@@ -650,21 +693,21 @@ if (todoIsActive()) {
                   </select>
                 </div>
                 <div class="edit-form__textarea" data-symbols="">
-                  <textarea name="editedDescription" id="editedDescription" tabindex="15" class="_req" placeholder="Описание" maxlength=""></textarea>
+                  <textarea name="editedDescription" id="editedDescription" tabindex="0" class="_req" placeholder="Описание" maxlength=""></textarea>
                 </div>
                 <div class="edit-form__btns edit-buttons">
                   <div class="edit-buttons__left">
-                    <button class="edit-buttons__btn edit-buttons__submit" tabindex="16" type="submit">
+                    <button class="edit-buttons__btn edit-buttons__submit" tabindex="0" type="submit">
                       <i class="bi bi-save"></i>
                       <span trans="text+:Save">Сохранить</span>
                     </button> 
-                    <button class="edit-buttons__btn edit-buttons__reset" tabindex="17" type="reset">
+                    <button class="edit-buttons__btn edit-buttons__reset" tabindex="0" type="reset">
                       <i class="bi bi-arrow-repeat"></i>
                       <span trans="text+:ThrowOff">Сбросить</span>
                     </button>
                   </div>
                   <div class="edit-buttons__right">
-                    <button class="edit-buttons__btn edit-buttons__escape" tabindex="18" type="button">
+                    <button class="edit-buttons__btn edit-buttons__escape" tabindex="0" type="button">
                       <span trans="text+:Close">Закрыть</span>
                     </button>
                   </div>
@@ -674,7 +717,7 @@ if (todoIsActive()) {
           </div>
         </div>
       </div>
-    `;
+      `;
 
       editPopupHtml = parser
         .parseFromString(editPopupHtml, 'text/html')
@@ -837,6 +880,7 @@ if (todoIsActive()) {
             loadTodo(userId);
           } else {
             showAlert('error');
+            console.log('861');
           }
         } else {
           showAlert('form');
@@ -844,6 +888,11 @@ if (todoIsActive()) {
       }
 
       function closeEditPopup() {
+        // Обратно включаем табуляцию под окном редактирования
+        todoTabindexItems.forEach(todoTabindexItem => {
+          todoTabindexItem.setAttribute('tabindex', 0);
+        });
+
         // Анимация закрытия окна редактирования дела
         if (todoEdit.classList.contains('_open')) {
           todoEdit.classList.remove('_open');
@@ -1022,7 +1071,7 @@ if (todoIsActive()) {
     let checkedUsers = document.querySelectorAll(
       '.checkBusyBtn.bi-check-square-fill',
     );
-    let localStorageID = getLocalStorageData('todoID') || [];
+    let todoID = getTodoIDArray();
     let idArray = [];
     let finalArray = [];
 
@@ -1030,12 +1079,12 @@ if (todoIsActive()) {
       document.querySelector('#full').querySelector('#tableScheduleBodyFull'),
     );
 
-    if (checkedUsers.length && localStorageID.length) {
+    if (checkedUsers.length && todoID.length) {
       checkedUsers.forEach(user => {
         idArray.push(user.parentElement.attributes.id.value);
       });
 
-      finalArray = idArray.filter(element => localStorageID.includes(element));
+      finalArray = idArray.filter(element => todoID.includes(element));
 
       setTimeout(() => {
         loadTodoLayers(
@@ -1061,7 +1110,7 @@ if (todoIsActive()) {
 
 //<Наслоение дел>==============================================================================
 
-export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
+export async function loadTodoLayers(table, todoIDArray, todoTypes = 'any') {
   if (todoIsActive()) {
     let btnClose =
       table.querySelector('.btn-close') ||
@@ -1078,7 +1127,7 @@ export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
       .getElementById('onOffTask')
       .children[0].setAttribute('class', 'bi bi-eye-slash-fill');
 
-    for (let id of idArray) {
+    for (let id of todoIDArray) {
       // Генерируем контейнер для слоев
       let layersHtml = /* html */ `
       <div class="layers">
@@ -1224,6 +1273,7 @@ export async function loadTodoLayers(table, idArray, todoTypes = 'any') {
         }
       } else {
         showAlert('error');
+        console.log('1254');
       }
     }
   }
@@ -1247,11 +1297,14 @@ export function isLayersCanBeDisplayed(
   callback,
 ) {
   if (todoIsActive()) {
-    let localStorageID = getLocalStorageData('todoID') || [];
+    let todoID = getTodoIDArray();
     let call = false;
+    // console.log(todoID, todoID.length);
 
+    // debugger;
     for (let id of idArray) {
-      call = localStorageID.includes(id);
+      // console.log(id, call);
+      call = todoID.includes(id);
       if (!call) break;
     }
 
@@ -1260,6 +1313,20 @@ export function isLayersCanBeDisplayed(
 }
 
 //</Наслоение дел>==============================================================================
+
+function getTodoIDArray() {
+  let todoID;
+
+  if (sessionStorage.getItem('typeBase') == 'remote') {
+    const todoJson = getTodoJSON();
+    console.log(todoJson.todoID);
+    todoID = todoJson.todoID ? todoJson.todoID : [];
+  } else {
+    todoID = JSON.parse(localStorage.getItem('todo')).todoID;
+  }
+
+  return todoID;
+}
 
 function getTodoJSON() {
   return (
