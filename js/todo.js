@@ -511,9 +511,9 @@ if (todoIsActive()) {
                     +item.checked ? '_checked' : ''
                   }" 
                     data-id="${item.id}" 
-                    title="${+item.checked ? 'Выполнено' : 'Невыполнено'}"
+                    title="${+item.checked ? 'Отменено' : 'Действующее'}"
                   >
-                    <i class="bi bi-check-lg"></i>
+                    <i class="bi bi-x-lg"></i>
                   </div>
                   <div class="todo-item__content">
   

@@ -1,0 +1,1592 @@
+{
+	"main": {
+		"ru": "ДелуВремя! | Система составления расписания и работы со временем!",
+		"en": "SetTime! | The system of scheduling and working with time!",
+		"fr": "Trouve le temps! / Système de planification et de travail avec le temps!"
+	},
+	"clear": {
+		"ru": "Очистить",
+		"en": "Clear",
+		"fr": "Clair"
+	},
+	"fullscreen": {
+		"ru": "Весь день",
+		"en": "Fullscreen",
+		"fr": "Plein écran"
+	},
+	"legends": {
+		"ru": "Легенда",
+		"en": "Legend",
+		"fr": "Légende"
+	},
+	"cntQuery": {
+		"ru": "Количество людей в запросе: ",
+		"en": "Number of people in the request: ",
+		"fr": "Nombre de personnes par requête: "
+	},
+	"maxNOM": {
+		"ru": "Максимум совпадений по времени: ",
+		"en": "Maximum time matches: ",
+		"fr": "Maximum time matches:"
+	},
+	"d1": {
+		"ru": "Данные по выбранному времени",
+		"en": "Data on the selected time",
+		"fr": "Données sur l'heure sélectionnée"
+	},
+	"d2": {
+		"ru": "Список людей для которых это время не свободно: ",
+		"en": "List of people for whom this time is not free: ",
+		"fr": "Liste des personnes pour lesquelles ce temps n'est pas libre: "
+	},
+	"MatchTimeText": {
+		"ru": "Совпадающее время",
+		"en": "MatchTimeText",
+		"fr": "Temps coïncident"
+	},
+	"NotMatched": {
+		"ru": "Для следующих людей выбранный период времени не свободен: ",
+		"en": "For the following people, the selected time period is not free: ",
+		"fr": "Pour les personnes suivantes, la période sélectionnée n'est pas libre: "
+	},
+	"yes": {
+		"ru": "<span style=\"color:#0d6efd\">КОЛИЧЕСТВО СОВПАДЕНИЙ МАКСИМАЛЬНО!</span>",
+		"en": "<span style=\"color:#0d6efd\">THE MAXIMUM NUMBER OF MATCHES!</span>",
+		"fr": "<span style=\"color:#0d6efd\">LE NOMBRE DE CORRESPONDANCES MAXIMUM!</span>"
+	},
+	"no": {
+		"ru": "Количество совпадений не максимально.",
+		"en": "The number of matches is not the maximum.",
+		"fr": "Le nombre de correspondances n'est pas maximal."
+	},
+	"AboutTask6": {
+		"ru": "Обмен своими данными по свободному и занятому времени между пользователями системы.",
+		"en": "Exchange of their data on free and busy time between users of the system.",
+		"fr": "Partager vos données sur le temps libre et occupé entre les utilisateurs du système."
+	},
+	"HelpButton": {
+		"ru": "Помощь",
+		"en": "Guide",
+		"fr": "Guide"
+	},
+	"plusButtonBusyText": {
+		"ru": "Добавить ",
+		"en": "Add ",
+		"fr": "Ajouter "
+	},
+	"filterButtonStyle": {
+		"ru": "width:8em; height:29px; margin:5px 145px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"en": "width:5em; height:29px; margin:5px 55px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"fr": "width:5em; height:29px; margin:5px 55px 0 0; color:white; white-space: nowrap; background-color:cornflowerblue; border-color:white; font-weight:300; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;"
+	},
+	"HelpButtonStyle": {
+		"ru": "width:8em; margin:5px 0 0 0; font-size:0.9em; border-color:white; font-weight:300; background-color:deepskyblue; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"en": "width:5em; border-color:white; font-weight:300; background-color:deepskyblue; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"fr": "width:5em; border-color:white; font-weight:300; background-color:deepskyblue; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;"
+	},
+	"PlusButtonBusyStyle": {
+		"ru": "margin:5px 85px 0 0; font-weight:100; height:29px; width:90px; color:black; font-weight:300; background-color:#48c2a9; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"en": "margin:5px 35px 0 0; height:29px; width:50px; color:black; font-weight:300; background-color:#48c2a9; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;",
+		"fr": "margin:5px 35px 0 0; height:29px; width:50px; color:black; font-weight:300; background-color:#48c2a9; box-sizing: border-box; border-radius: 2px; border-width: 0px; font-weight: 100;"
+	},
+	"Setting": {
+		"ru": "НАСТРОЙКА СИСТЕМЫ",
+		"en": "SETTINGS OF SYSTEM",
+		"fr": "CONFIGURATION DU SYSTÈME"
+	},
+	"General": {
+		"ru": "&nbsp; Общие",
+		"en": "&nbsp; General",
+		"fr": "&nbsp; Général"
+	},
+	"Warning": {
+		"ru": "Предупреждение!",
+		"en": "Warning!",
+		"fr": "Général"
+	},
+	"AreSure": {
+		"ru": "Вы уверены что хотите удалить это время?",
+		"en": "Are you sure that you are going to delete this busy time??",
+		"fr": "Général"
+	},
+	"Lang": {
+		"ru": "Язык",
+		"en": "Language",
+		"fr": "Langue"
+	},
+	"Storage": {
+		"ru": "Хранилище",
+		"en": "Storage",
+		"fr": "Stockage"
+	},
+	"LcStor": {
+		"ru": " В локальном хранилище устройства",
+		"en": " In the device's local storage",
+		"fr": " Dans le stockage local de l'appareil"
+	},
+	"RtStor": {
+		"ru": " В удаленной базе данных",
+		"en": " In the remote database",
+		"fr": " Dans une base de données distante"
+	},
+	"List": {
+		"ru": "&nbsp; Список&nbsp; ",
+		"en": "&nbsp; List&nbsp; ",
+		"fr": "&nbsp; Listе&nbsp; "
+	},
+	"Schedule": {
+		"ru": "Расписание",
+		"en": "Schedule",
+		"fr": "Graphique"
+	},
+	"Tabs": {
+		"ru": "Показывать при старте",
+		"en": "Show at startup",
+		"fr": "Afficher au démarrage"
+	},
+	"ShSchedule": {
+		"ru": "Показывать сохранённое расписание при открытии",
+		"en": "Show saved schedule when loading",
+		"fr": "Afficher la planification enregistrée au démarrage"
+	},
+	"ScSchedule": {
+		"ru": "Расписание занятий в школе",
+		"en": "Schedule school",
+		"fr": "Analyse des données à l'école"
+	},
+	"NewSchedule": {
+		"ru": "Новое расписание",
+		"en": "New Schedule",
+		"fr": "Nouvelle diffusion"
+	},
+	"AutoSaveSc": {
+		"ru": "Автоматическое сохранение расписания",
+		"en": "Auto save schedule to storage",
+		"fr": "Sauvegarde Automatique"
+	},
+	"CheckSaveNumTab": {
+		"ru": "Автоcохранение",
+		"en": "Auto save",
+		"fr": "Auto Sauvegarde"
+	},
+	"FreeTime": {
+		"ru": " Свободноe время",
+		"en": " Free time  ",
+		"fr": " Temps Libre "
+	},
+	"FreeTimeBrief": {
+		"ru": " Свободноe",
+		"en": " Free  ",
+		"fr": " Libre "
+	},
+	"BusyTimeBrief": {
+		"ru": "Занятое",
+		"en": "Busy",
+		"fr": "Occupé"
+	},
+	"AddTime": {
+		"ru": "&nbsp; Время &nbsp; ",
+		"en": "&nbsp; Time &nbsp; ",
+		"fr": "&nbsp; Temps &nbsp;"
+	},
+	"ToCreateCurse": {
+		"ru": "Чтобы создать курсы",
+		"en": "To create a courses",
+		"fr": "Pour créer un cours"
+	},
+	"ToCreateGrade": {
+		"ru": "Чтобы создать уровни",
+		"en": "To create grades",
+		"fr": "Pour créer une évaluation"
+	},
+	"ImpFreetime": {
+		"ru": "Импортируйте свободное время",
+		"en": "Import freetime",
+		"fr": "Importer du temps libre"
+	},
+	"BusyTime": {
+		"ru": "Занятое время",
+		"en": "Busy time",
+		"fr": "Temps Occupé"
+	},
+	"ImpBusyTime": {
+		"ru": "Импортируйте время занятости",
+		"en": "Import busy time",
+		"fr": "Importer le temps occupé"
+	},
+	"ModalEnter": {
+		"ru": "Личный кабинет",
+		"en": "Personal cabinet",
+		"fr": "Cabinet personnel"
+	},
+	"Datamaintenance": {
+		"ru": "&nbsp; Обслуживание данных",
+		"en": "&nbsp; Data maintenance",
+		"fr": "&nbsp; Maintenance des données"
+	},
+	"RadioEnter": {
+		"ru": "Войти",
+		"en": "Enter",
+		"fr": "Entrée"
+	},
+	"RadioReg": {
+		"ru": "Регистрация",
+		"en": "Registration",
+		"fr": "Enregistrement"
+	},
+	"RadioRem": {
+		"ru": "Забыли пароль?",
+		"en": "Forgot your password?",
+		"fr": "Forgot your password"
+	},
+	"legend": {
+		"ru": "Легенда расписания",
+		"en": "Schedule legend",
+		"fr": "Légende du calendrier"
+	},
+	"legendMaxMatches": {
+		"ru": "&nbsp; Максимум совпадений (5 чел.)",
+		"en": "&nbsp; Maximum time matches (5 people)",
+		"fr": "&nbsp; Correspondances de temps maximum (5 personnes)"
+	},
+	"legendMatches": {
+		"ru": "&nbsp; Совпадение по времени (2 чел.)",
+		"en": "&nbsp; Time matches (2 people)",
+		"fr": "&nbsp; Correspondances de temps (2 personnes)"
+	},
+	"legendColorPalette": {
+		"ru": "Палитра цветов",
+		"en": "Color palette",
+		"fr": "Palette de couleurs"
+	},
+	"legendMatchesBusy": {
+		"ru": "&nbsp; Совпадение по времени",
+		"en": "&nbsp; Time matches",
+		"fr": "&nbsp; Correspondances de temps"
+	},
+	"FullScreenSchedule": {
+		"ru": "Расписание на полный экран ",
+		"en": "Full Screen Schedule",
+		"fr": "Calendrier en plein écran"
+	},
+	"FullScreenScheduleText": {
+		"ru": "Текст Расписание на полный экран ",
+		"en": "Text Full Screen Schedule",
+		"fr": "Texte Calendrier en plein écran"
+	},
+	"TeamDev": {
+		"ru": "Команда разработчиков",
+		"en": "Development team",
+		"fr": "Équipe de développement"
+	},
+	"FindTime": {
+		"ru": "ДелуВремя!",
+		"en": "SetTime!",
+		"fr": "Temps de recherche!"
+	},
+	"Mon": {
+		"ru": "Пн.",
+		"en": "Mon",
+		"fr": "Lun"
+	},
+	"Tue": {
+		"ru": "Вт.",
+		"en": "Tue",
+		"fr": "Mar"
+	},
+	"Wed": {
+		"ru": "Ср.",
+		"en": "Wed",
+		"fr": "Env"
+	},
+	"Thu": {
+		"ru": "Чт.",
+		"en": "Thu",
+		"fr": "Jeu"
+	},
+	"Fri": {
+		"ru": "Пт.",
+		"en": "Fri",
+		"fr": "Ven"
+	},
+	"Sat": {
+		"ru": "Сб.",
+		"en": "Sat",
+		"fr": "Sam"
+	},
+	"Sun": {
+		"ru": "Вс.",
+		"en": "Sun",
+		"fr": "Dim"
+	},
+	"MonFull": {
+		"ru": "Понедельник",
+		"en": "Monday",
+		"fr": "Lundi"
+	},
+	"TueFull": {
+		"ru": "Вторник",
+		"en": "Tuesday",
+		"fr": "Mardi"
+	},
+	"WedFull": {
+		"ru": "Среда",
+		"en": "Wednesday",
+		"fr": "Environnement"
+	},
+	"ThuFull": {
+		"ru": "Четверг",
+		"en": "Thursday",
+		"fr": "Jeudi"
+	},
+	"FriFull": {
+		"ru": "Пятница",
+		"en": "Friday",
+		"fr": "Vendredi"
+	},
+	"SatFull": {
+		"ru": "Суббота",
+		"en": "Saturday",
+		"fr": "C'est samedi"
+	},
+	"SunFull": {
+		"ru": "Воскресенье",
+		"en": "Sunday",
+		"fr": "Dimanche"
+	},
+	"TimeForStudy": {
+		"ru": "Найди время для учёбы, работы и жизни!",
+		"en": "Find time for study, work and life!",
+		"fr": "Trouvez le temps pour les cours, le travail et la vie!"
+	},
+	"UploadAtStartup": {
+		"ru": "Загрузка при запуске",
+		"en": "Upload at startup",
+		"fr": "Chargement au démarrage"
+	},
+	"ChooseLanguage": {
+		"ru": "Выберите язык",
+		"en": "Choose a language",
+		"fr": "Sélectionnez la langue"
+	},
+	"SortingLabel": {
+		"ru": "Сортировка: ",
+		"en": "Sort by: ",
+		"fr": "Trier par: "
+	},
+	"EmptinessOfUsersList": {
+		"ru": "&nbsp;&nbsp;&nbsp;&nbsp;<br>Данных нет!! <br><br>Добавьте данные по свободному времени, нажав кнопку с плюсом, или измените условия фильтра, нажав кнопку с воронкой.",
+		"en": "&nbsp;&nbsp;&nbsp;&nbsp;<br>There is no data.<br><br>Add free time data by clicking the plus button, or change the filter conditions by clicking the funnel button.",
+		"fr": "&nbsp;&nbsp;&nbsp;&nbsp;<br>Il n'y a pas de données dans la liste de temps libre. <br>Ajoutez des données de temps libre en cliquant sur le bouton plus ou modifiez les conditions de filtre en cliquant sur le bouton entonnoir."
+	},
+	"EmptinessOfBusinessList": {
+		"ru": "&nbsp;&nbsp;&nbsp;&nbsp;<br>Данных нет! <br><br>Добавьте данные по занятому времени, нажав кнопку с плюсом.<br>Данные по занятому времени Вы можете передать любому участнику системы 'ДелуВремя!'",
+		"en": "&nbsp;&nbsp;&nbsp;&nbsp;<brThere is no data! ><br><br>Add data on the occupied time by clicking the plus button.<br>You can transfer the data on the occupied time to any participant of the system 'SetTime!'",
+		"fr": "&nbsp;&nbsp;&nbsp;&nbsp;Il n'y a pas de données dans la liste des heures occupées! <br>Ajoutez les données de temps occupé en cliquant sur le bouton plus.<br>les Données sur le temps occupé, vous pouvez transmettre à n'importe quel membre du système 'Trouverle Temps!'"
+	},
+	"MatchTime": {
+		"ru": "Совпадение времени",
+		"en": "Coincidence of time",
+		"fr": "Coïncidence du temps "
+	},
+	"MatchTimeText": {
+		"ru": "В этот период свободное время совпало у следующих людей: ",
+		"en": "During this period , the following people had the same free time: ",
+		"fr": "Pendant cette période, le temps libre a coïncidé avec les personnes suivantes: "
+	},
+	"NameGradeCourse": {
+		"ru": "Имя  [Курс] [Уровень]",
+		"en": "Name [Course] [Grade]",
+		"fr": "IMI  [Cours] [Niveau]"
+	},
+	"Description": {
+		"ru": "Описание",
+		"en": "Description",
+		"fr": "Orthographe"
+	},
+	"CoursesDivTitle": {
+		"ru": "Курсы<br>",
+		"en": "Courses<br>",
+		"fr": "Cours<br>"
+	},
+	"GradesDivTitle": {
+		"ru": "Уровни<br>",
+		"en": "Grades<br>",
+		"fr": "Niveaux<br>"
+	},
+	"FilterTitle": {
+		"ru": "Фильтры",
+		"en": "Filters",
+		"fr": "Filtres"
+	},
+	"btnEsc": {
+		"ru": "&nbsp; Отмена",
+		"en": "&nbsp; Cancel",
+		"fr": "&nbsp; Annulation"
+	},
+	"btnSave": {
+		"ru": " Сохранить",
+		"en": " Save",
+		"fr": " Envoyer"
+	},
+	"btnSend": {
+		"ru": " Отправить",
+		"en": " Send",
+		"fr": " Enregistrer"
+	},
+	"btnImport": {
+		"ru": "&nbsp; Перенос в сетевое хранилище",
+		"en": "&nbsp; Remove to a remote database",
+		"fr": "&nbsp; Remove dans une base distante"
+	},
+	"TimeCode": {
+		"ru": "Код ",
+		"en": "Code ",
+		"fr": "Code "
+	},
+	"Level1": {
+		"ru": "Уровень 1",
+		"en": "Level 1",
+		"fr": "Niveau 1"
+	},
+	"Level2": {
+		"ru": "Уровень 2",
+		"en": "Level 2",
+		"fr": "Niveau 2"
+	},
+	"Name": {
+		"ru": "Имя ",
+		"en": "Name ",
+		"fr": "Nom "
+	},
+	"btnExport": {
+		"ru": "&nbsp; Экспорт ",
+		"en": "&nbsp; Export",
+		"fr": "&nbsp; Exporter"
+	},
+	"addData": {
+		"ru": "ДАННЫЕ ",
+		"en": "Data ",
+		"fr": "Données "
+	},
+	"Guide": {
+		"ru": "Руководство пользователя",
+		"en": "User's Guide ",
+		"fr": "Manuel d'utilisation "
+	},
+	"About": {
+		"ru": "&nbsp;Описание",
+		"en": "&nbsp;Description",
+		"fr": "&nbsp;Description"
+	},
+	"Setup": {
+		"ru": "&nbsp;Настройка",
+		"en": "&nbsp;Setting",
+		"fr": "&nbsp;Réglage"
+	},
+	"Work": {
+		"ru": "&nbsp;Работа",
+		"en": "Work",
+		"fr": "&nbsp;Travail"
+	},
+	"work": {
+		"ru": "&nbsp;Работа",
+		"en": "Work",
+		"fr": "&nbsp;Travail"
+	},
+	"alertHead": {
+		"ru": "Оповещение",
+		"en": "Alert",
+		"fr": "Alert"
+	},
+	"txtUnderConstraction": {
+		"ru": "Руководство ещё в стадии разработки. Подождите еще немного и получите полную информацию по настройке и работе с системой!",
+		"en": "A guide under construction. Wait a little longer! ",
+		"fr": "Un guide en construction. Attendez encore un peu!"
+	},
+	"Danger": {
+		"ru": "Внимание!",
+		"en": "Alert!",
+		"fr": "Alert!"
+	},
+	"Welcome": {
+		"ru": "Добро пожаловать!",
+		"en": "Welcome!",
+		"fr": "Bienvenue!"
+	},
+	"WelcomeVerify": {
+		"ru": "Пользователь ",
+		"en": "The user ",
+		"fr": "Utilisateur"
+	},
+	"WelcomeVerify2": {
+		"ru": " активирован!",
+		"en": " is activated!",
+		"fr": "activé!"
+	},
+	"WelcomeVerify3": {
+		"ru": "Войдите в систему и Вам будут доступны дополнительные функции.",
+		"en": "Log in and additional features will be available to you",
+		"fr": "Connectez-vous et vous aurez accès à des fonctionnalités supplémentaires."
+	},
+	"InviteText": {
+		"ru": "Вы получили приглашение от пользователя",
+		"en": "You have received an invitation from the user ",
+		"fr": "Vous avez reçu une invitation de l'utilisateur"
+	},
+	"InviteText2": {
+		"ru": " заполнить данные по Вашему свободному или занятому времени для составления расписания в системе <b>ДелуВремя!</b> <p>Введите пожалуйста свое имя и фамилию, отметьте в таблице время и нажмите кнопку <b class=\"text-primary\">'Отправить'</b>!<span style=\" font-weight:500\"> Спасибо!<span></p>",
+		"en": "fill in the data on your free or busy time for scheduling in the system <b>SetTime!</b> <p>Please enter your first and last name, mark the time in the table and click <b class=\"text-primary\">'Send'</b>!<span style=\" font-weight:500;\"> Thanks!<span></p>",
+		"fr": "remplissez les données sur Votre temps libre ou occupé pour la planification dans le système < B>trouver le Temps!</b> <p>veuillez Entrer votre prénom et votre nom, marquer l'heure dans le tableau et cliquer sur le bouton <B class=\"text-primary\">'Envoyer'</b>!<span style = \"font-weight:500;\"> Merci!<span></p>"
+	},
+	"AlertEmpty": {
+		"ru": "Прежде всего, отметьте людей флажком <img src='/img/check-square-fill.svg'> в левой части строки во вкладках <b>\"Cвободное время\"</b> и(или) <b>\"Занятое время\"</b>, а затем вернитесь на вкладку <b>\"Расписание\"</b>. На ней будет отмечено совпадения по времени.<p style=\"text-align: justify;\">Перед началом работы, пожалуйста, ознакомьтесь c <a href=\"guide.html\"> <b>\"Руководством пользователя\".</b></a>",
+		"en": "First of all, mark the people <img src='/img/check-square-fill.svg'> in the tabs <b>\"Free time\"</b> and(or) <b>\"Busy time\"</b> and then return to the tab <b>\"Schedule\"</b>. Coincidences in time will be marked on it.<p style=\"text-align: justify;\">Before getting started, please read <a href=\"guide.html \"> <b>\"User Manual\".</b></a>",
+		"fr": "Cochez d'abord les lignes <img src='/img/check-square-fill.svg'> dans les onglets <b>\"Temps Libre\"</b> et(ou) <b>\"Temps Occupé\"</b>, puis revenez à l'onglet <b>\"Horaire\" </b>. Elle sera marquée par des coïncidences dans le temps.<p style=\"text-align: justify;\">Avant de commencer, s'il vous plaît consulter <a href=\"guide.html\"> <b>\"Guide de l'utilisateur\".</b></a>"
+	},
+	"AlertChangeStorageHeader": {
+		"ru": "Смена типа хранилища",
+		"en": "Changing the storage type",
+		"fr": "Changer le type de stockage"
+	},
+	"AlertChangeStorageBody": {
+		"ru": "Тип базы данных будет изменён после перезагрузки.",
+		"en": "The database type will be changed after the reboot.",
+		"fr": "Le type de base de données sera modifié après le redémarrage."
+	},
+	"AlertErrorHeader": {
+		"ru": "Ошибка!",
+		"en": "Error!",
+		"fr": "Erreur!"
+	},
+	"AlertErrorBody1": {
+		"ru": "Информация введена не полностью. Введите курс, уровень и имя.",
+		"en": "The information is not fully entered. Enter the course, level and name.",
+		"fr": "L'information n'est pas entièrement saisie. Entrez le cours, le niveau et le nom."
+	},
+	"AlertErrorBody2": {
+		"ru": "Информация введена не полностью. Введите имя.",
+		"en": "The information is not fully entered. Enter a name.",
+		"fr": "L'information n'est pas entièrement saisie. Entrez un nom."
+	},
+	"AlertErrorBody3": {
+		"ru": "Неверный формат.",
+		"en": "Invalid format",
+		"fr": "Format incorrect"
+	},
+	"AlertAttention": {
+		"ru": "Внимание!",
+		"en": "Attention!",
+		"fr": "Attention!"
+	},
+	"AlertErrorlogin1": {
+		"ru": "Пустой логин.",
+		"en": "Login is empty",
+		"fr": "Connexion vide"
+	},
+	"AlertErrorlogin2": {
+		"ru": "Логин должен быть не менее 6 знаков.",
+		"en": "The login must be at least 6 characters.",
+		"fr": "Le login doit être d'au moins 6 caractères."
+	},
+	"AlertErrorlogin22": {
+		"ru": "В логине могут быть только буквы и цифры. Пробелы и другие символы использовать нельзя.",
+		"en": "The login can only contain letters and numbers. Spaces and other characters cannot be used.",
+		"fr": "Dans le login, il ne peut y avoir que des lettres et des chiffres. Vous ne pouvez pas utiliser d'espaces ni d'autres caractères."
+	},
+	"AlertErrorlogin3": {
+		"ru": "Пароль должен быть не менее 6 знаков.",
+		"en": "The password must be at least 6 characters.",
+		"fr": "Le mot de passe doit comporter au moins 6 caractères."
+	},
+	"AlertErrorlogin33": {
+		"ru": "В пароле могут быть только буквы и цифры. Пробелы и другие символы использовать нельзя.",
+		"en": "The password can only contain letters and numbers. Spaces and other characters cannot be used.",
+		"fr": "Le mot de passe ne peut contenir que des lettres et des chiffres. Vous ne pouvez pas utiliser d'espaces ni d'autres caractères."
+	},
+	"AlertErrorlogin4": {
+		"ru": "Не заполнено одно из полей с паролями",
+		"en": "One of the fields with passwords is empty",
+		"fr": "L'un des champs de mot de passe n'est pas rempli"
+	},
+	"AlertErrorlogin5": {
+		"ru": "Пароли не совпадают",
+		"en": "Passwords don't match",
+		"fr": "Les mots de passe ne correspondent pas"
+	},
+	"AlertErrorlogin6": {
+		"ru": "Пустой email",
+		"en": "Email is empty",
+		"fr": "Email vide"
+	},
+	"AlertAttentionBody1": {
+		"ru": "Введите или загрузите из хранилища данные по курсам",
+		"en": "Enter or download course data from the repository",
+		"fr": "Entrez ou téléchargez des données de cours à partir du référentiel"
+	},
+	"AlertAttentionBody2": {
+		"ru": "Введите или загрузите из хранилища данные по уровням",
+		"en": "Enter or download level data from the storage",
+		"fr": "Entrez ou chargez des données de niveau à partir de l'entrepôt"
+	},
+	"sendCodeError1": {
+		"ru": "Нет данных по коду времени! Cформируйте его, нажав на кнопку ",
+		"en": "There is no data on the time code! Form it by clicking on the button",
+		"fr": "Pas de données de code temporel! Formez - le en cliquant sur le bouton"
+	},
+	"sendCodeError2": {
+		"ru": "Нет данных по логину пользователя системы которому отправляем код времени. Введите его в поле ввода!",
+		"en": "There is no data on the login of the system user to whom we are sending the time code. Enter it in the input field!",
+		"fr": "Il n'y a pas de données sur le login de l'utilisateur du système auquel nous envoyons le code de temps. Entrez-le dans le champ de saisie!"
+	},
+	"sendCodeError3": {
+		"ru": "Не введен код времени. Импорт невозможен! Вставьте код в поле!",
+		"en": "The time code is not entered. Import is not possible! Paste the code into the field!",
+		"fr": "Aucun code temporel n'est entré. L'importation est impossible! Collez le code dans la boîte!"
+	},
+	"sendCodeError4": {
+		"ru": "Нет введено имя. Введите его!",
+		"en": "No name entered. Enter it!",
+		"fr": "Aucun nom entré. Entrez-le!"
+	},
+	"AboutSystem": {
+		"ru": "Информация о системе",
+		"en": "Information about the system ",
+		"fr": "Informations système"
+	},
+	"AboutTasks": {
+		"ru": "Задачи которые выполняет система",
+		"en": "Tasks that the system performs ",
+		"fr": "Tâches accomplies par le système"
+	},
+	"GuideInfo": {
+		"ru": "Информация",
+		"en": "Information",
+		"fr": "Information"
+	},
+	"GuideInfoBody1": {
+		"ru": "Сохраняет текущее расписание в памяти устройства.",
+		"en": "Saves the current schedule in the device memory.",
+		"fr": "Enregistre l'horaire actuel dans la mémoire de l'appareil."
+	},
+	"GuideInfoBody2": {
+		"ru": "Загружает расписание из памяти устройства. Если в настройках установлена опция &quot;Показывать загруженное расписание при открытии&quot;, то при открытии сразу будет показана сохранённая информация.",
+		"en": "Loads the schedule from the device memory. If the option &quot;Show downloaded schedule when opening&quot; is set in the settings, then the saved information will be shown immediately when opening.",
+		"fr": "Charge la planification à partir de la mémoire de l'appareil. Si l'option &quot;Afficher le calendrier Téléchargé lors de l'ouverture&quot; est sélectionnée dans les paramètres, les informations enregistrées seront immédiatement affichées lors de l'ouverture."
+	},
+	"GuideInfoBody3": {
+		"ru": "Открывает расписание на весь экран. С него также можно посмотреть совпадения по времени, загрузить и выгрузить из памяти, удалить и добавить информацию по времени. Данное представление можно выбрать в настройках для показа при открытии системы.",
+		"en": "Opens the schedule in full screen. You can also view time matches from it, load and unload from memory, delete and add time information. This view can be selected in the settings to be displayed when opening the system.",
+		"fr": "Ouvre le calendrier en plein écran. Il vous permet également de voir les correspondances temporelles, de charger et de décharger de la mémoire, de supprimer et d'ajouter des informations temporelles. Cette vue peut être sélectionnée dans les paramètres à afficher lors de l'ouverture du système."
+	},
+	"GuideInfoBody4": {
+		"ru": "Очищает таблицу расписания и снимает все отмеченные флаги в разделах &quot;Свободное время&quot; и &quot;Занятое время&quot;",
+		"en": "Clears the schedule table and removes all marked flags in the &quot;Free time&quot; and &quot;Busy time&quot; sections",
+		"fr": "Efface la feuille de temps et supprime toutes les cases cochées dans les sections &quot;temps Libre&quot; et &quot;temps Occupé&quot;"
+	},
+	"GuideInfoBody5": {
+		"ru": "Открывает окно в котором можно добавить данные в разделы &quot;Свободное время&quot; или &quot;Занятое время&quot;",
+		"en": "Clears the schedule table and removes all marked flags in the &quot;Free time&quot; and &quot;Busy time&quot; sections",
+		"fr": "Efface la feuille de temps et supprime toutes les cases cochées dans les sections temps Libre et temps Occupé"
+	},
+	"GuideInfoBody6": {
+		"ru": "Во вкладке &quot;Свободное время&quot; открывает окно в котором можно установить фильтр по уровням данных.",
+		"en": "In the &quot;Free Time&quot; tab, a window opens in which you can set a filter by data levels.",
+		"fr": "Dans l'onglet &quot;temps Libre&quot; ouvre une fenêtre dans laquelle vous pouvez définir un filtre sur les niveaux de données."
+	},
+	"AboutTask1": {
+		"ru": "Составление оптимального расписания.",
+		"en": "Making an optimal schedule. ",
+		"fr": "Établir un horaire optimal."
+	},
+	"AboutTask2": {
+		"ru": "Работа со свободным и занятым временем клиентов и сотрудников.",
+		"en": "Working with the free and busy time of clients and employees.",
+		"fr": "Travailler avec le temps libre et occupé des clients et des employés."
+	},
+	"AboutTask3": {
+		"ru": "Поиск одинакового свободного времени у нескольких клиентов для составления групп.",
+		"en": "Search for the same free time from several clients to form groups. ",
+		"fr": "Rechercher le même temps libre chez plusieurs clients pour composer des groupes."
+	},
+	"AboutTask4": {
+		"ru": "Поиск свободного времени у сотрудника и поиск помещения.",
+		"en": "Search for free time from an employee and search for premises.",
+		"fr": "Trouver du temps libre avec un employé et rechercher des locaux."
+	},
+	"AboutTask5": {
+		"ru": "Ведение личного расписания.",
+		"en": "Maintaining a personal schedule. ",
+		"fr": "Maintenir un horaire personnel."
+	},
+	"AboutPrinciple": {
+		"ru": "Принципы работы с системой",
+		"en": "Principles of working with the system",
+		"fr": "Principes de fonctionnement du système"
+	},
+	"AboutPrinciple0": {
+		"ru": "Система позволяет составить расписание для организаций и частных лиц с различными видами деятельности, но в примере показан алгоритм работы со временем для детской школы программирования.",
+		"en": "The system allows you to create a schedule for organizations and individuals with various types of activities, but the example shows an algorithm for working with time for a children's programming school.",
+		"fr": "Le système vous permet d'établir un calendrier pour les organisations et les particuliers avec différentes activités, mais l'exemple montre un algorithme de travail avec le temps pour l'école de programmation des enfants. "
+	},
+	"AboutPrinciple1-1": {
+		"ru": "<b>Ввод данных.</b> Вводим свободное или занятое время, нажав на кнопку ",
+		"en": "<b>Data entry.</b> Enter free or busy time by clicking on the button ",
+		"fr": "<b>Entrée de données.</b> Entrez le temps libre ou occupé en appuyant sur le bouton"
+	},
+	"AboutPrinciple1-2": {
+		"ru": " на любой вкладке системы (&quot;Расписание&quot;, &quot;Свободное время&quot;, &quot;Занятое время&quot;).",
+		"en": " on any tab of the system (&quot;Schedule&quot;, &quot;Free time&quot;, &quot;Busy time&quot;).",
+		"fr": " dans n'importe quel onglet du système (&quot;Horaire&quot;, &quot;temps Libre&quot;, &quot;temps Occupé&quot;). "
+	},
+	"AboutPrinciple2": {
+		"ru": "<b>Вкладка &quot;<i class=&quot;bi bi-clock text-orange&quot; style=&quot;color: orangered&quot;></i>Свободное время&quot;</b>. Это список учеников и преподавателей с указанием Фио, курса, уровня и данными по свободному времени. На вкладке можно отсортировать этот список по всем параметрам. Также при необходимости можно изменить график свободного времени или совсем удалить данные из списка. В режиме редактирования есть возможность импортировать код времени и переслать его другому участнику системы (например ученику отправить администратору своё свободное время).",
+		"en": "<b>Tab &quot;<i class=&quot;bi bi-clock text-orange&quot; style=&quot;color: orangered&quot;></i>Free time&quot;</b>. This is a list of students and teachers with their full name, course, level and free time data. On the tab, you can sort this list by all parameters. Also, if necessary, you can change the schedule of free time or completely delete data from the list. In the editing mode, it is possible to import the time code and forward it to another participant in the system (for example, a student can send his free time to the administrator). ",
+		"fr": "<b>Onglet &quot;<i class=&quot;bi bi-clock text-orange&quot; style=&quot;color: orangered&quot;></i>Temps Libre&quot; </b>. Il s'agit d'une liste d'étudiants et d'enseignants avec le nom, le cours, le niveau et les données sur le temps libre. Dans l'onglet, vous pouvez trier cette liste par tous les paramètres. En outre, si nécessaire, vous pouvez modifier le calendrier de temps libre ou supprimer complètement les données de la liste. En mode édition, il est possible d'importer le code temporel et de le transférer à un autre membre du système (par exemple, un étudiant envoie son temps libre à l'administrateur)."
+	},
+	"AboutPrinciple3": {
+		"ru": "<b>Вкладка  &quot;<i class= &quot;bi bi-clock text-success &quot;></i>Занятое время &quot;.</b> Это список учеников, преподавателей и классов с указанием Фио и данными по занятому времени. На вкладке можно отсортировать список по номерам и описанию. Также есть возможность отредактировать график занятого времени и удалить из списка. В режиме редактирования можно импортировать код занятого времени и переслать его другому участнику системы (например преподавателю отправить своё занятое время ученику).",
+		"en": " <b>Tab  &quot;<i class= &quot;bi bi-clock text-success &quot;></i>Busy time &quot;.</b> This is a list of students, teachers and classes with full names and data on the time occupied. On the tab, you can sort the list by numbers and description. It is also possible to edit the schedule of busy time and remove it from the list. In editing mode, you can import the busy time code and forward it to another participant in the system (for example, a teacher can send his busy time to a student).",
+		"fr": "<b>Onglet  &quot;<i class= &quot;bi bi-clock text-success &quot;></i>Temps Occupé &quot;.</b> il s'agit d'une liste des élèves, des enseignants et des classes avec le nom Et les données sur le temps occupé. Dans l'onglet, vous pouvez trier la liste par numéro et Description. Il est également possible de modifier le calendrier du temps occupé et de le supprimer de la liste. En mode édition, vous pouvez importer le code de temps occupé et le transférer à un autre membre du système (par exemple, un enseignant envoie son temps occupé à un élève). "
+	},
+	"AboutPrinciple4-1": {
+		"ru": " <b>Установка фильтра.</b> Во вкладке  &quot;Свободное время &quot;, нажав кнопку&nbsp;  ",
+		"en": " <b>Installing the filter.</b> In the  &quot;Free Time &quot; tab, by clicking&nbsp;",
+		"fr": " <b>Réglage du filtre.</b> dans l'onglet  &quot;Temps Libre &quot; en cliquant sur le bouton&nbsp;"
+	},
+	"AboutPrinciple4-2": {
+		"ru": " устанавливаем фильтр по курсам и уровням у которых мы хотим найти совпадения по времени. Курсы и уровни настраиваются в режиме  &quot;Настройка &quot;.",
+		"en": " we set a filter by the courses and levels at which we want to find time matches. Courses and levels are configured in the  &quot;Setup &quot; mode.",
+		"fr": " nous définissons le filtre sur les cours et les niveaux dans lesquels nous voulons trouver des correspondances dans le temps. Les cours et les niveaux sont configurés en mode  &quot;Configuration &quot;."
+	},
+	"AboutPrinciple5": {
+		"ru": "<b>Выбор записей во вкладках.</b> После установки фильтра мы отмечаем те записи из списков  &quot;Свободное время &quot; и  &quot;Занятое время &quot;, у которых будем искать общее свободное время для занятий, и переходим на вкладку  &quot;Расписание &quot;. ",
+		"en": "<b>Selecting entries in tabs.</b> After installing the filter, we mark those entries from the  &quot;Free time &quot; and  &quot;Busy time &quot; lists, from which we will look for total free time for classes, and go to the  &quot;Schedule &quot; tab. ",
+		"fr": "<b>Sélectionnez les entrées dans les onglets.</b> après avoir défini le filtre, nous sélectionnons les entrées de la liste  &quot;Temps Libre &quot; et &quot;Temps Occupé &quot; pour lesquelles nous rechercherons le temps libre total pour les cours, puis nous passons à l'onglet  &quot;Calendrier&quot;. "
+	},
+	"AboutPrinciple6": {
+		"ru": "<b>Вкладка  &quot;<i class= &quot;bi bi-table &quot;></i>Расписание&quot;.</b> При переходе на эту вкладку будут показаны совмещенные графики свободного и занятого времени для анализа. При совпадении в ячейке времени отмечается цветом и ставится цифра у скольких время совпало. Число на оранжевом фоне показывает максимальное количество совпадений свободного времени и это оптимальное время для формирования группы.",
+		"en": "<b>Tab &quot;<i class= &quot;bi bi-table &quot;></i>Schedule&quot;.</b> When switching to this tab, the combined schedules of free and busy time for analysis will be shown. If there is a match, the time cell is marked with a color and a number is put on how many times the time coincided. The number on the orange background shows the maximum number of free time matches and this is the optimal time for forming a group. ",
+		"fr": "<b>Onglet &quot;<i class=&quot;bi bi-table &quot;></i>Planification&quot;.</b> lorsque vous cliquez sur cet onglet, les graphiques combinés du temps libre et du temps occupé pour l'analyse seront affichés. Lorsque la correspondance dans la cellule de temps est marquée par une couleur et un chiffre est placé dans combien de temps a coïncidé. Le nombre sur un fond orange indique le nombre maximal de correspondances de temps libre et c'est le moment optimal pour former un groupe."
+	},
+	"AboutPrincipleExample": {
+		"ru": "<b style= &quot;color: #0a58ca; &quot;>Пример:</b> На скриншотах показан порядок действий при подборе оптимального времени и формирование группы по курсу JsFront с уровнем 4. У преподавателя и у 3-х учеников из списка оптимальное время для занятий вторник 17:30-19-00.",
+		"en": "<b style= &quot;color: #0a58ca; &quot;>Example:</b> The screenshots show the procedure for selecting the optimal time and forming a group for the JsFront course with level 4. The teacher and 3 students from the list have the optimal time for classes Tuesday 17:30-19-00.",
+		"fr": "<b style= &quot;color: #0a58ca; &quot;>Exemple:</b> les captures d'écran montrent la procédure à suivre lors de la sélection du moment optimal et la formation d'un groupe sur le cours JsFront avec le niveau 4. L'enseignant et les 3 élèves de la liste ont le temps optimal pour les cours mardi 17:30-19-00."
+	},
+	"AboutTechSpec": {
+		"ru": "Технические характеристики системы",
+		"en": "Technical characteristics of the system",
+		"fr": "Caractéristiques techniques du système"
+	},
+	"AboutTechSpec1": {
+		"ru": "Адаптированный дизайн под различные устройства.",
+		"en": "Adapted design for various devices.",
+		"fr": "Conception adaptée pour différents appareils."
+	},
+	"AboutTechSpec2": {
+		"ru": "Мультиязычный интерфейс",
+		"en": "Multilingual interface",
+		"fr": "Interface multilingue"
+	},
+	"AboutTechSpec3": {
+		"ru": "Хранение данных в хранилище устройства и в сети.",
+		"en": "Storing data in the device storage and on the network.",
+		"fr": "Stockage des données dans le stockage de l'appareil et sur le réseau."
+	},
+	"AboutTechSpec4": {
+		"ru": "Гибкая настройка интерфейса и данных помогут Вам настроить систему под себя.",
+		"en": "Flexible configuration of the interface and data will help you configure the system for yourself.",
+		"fr": "La configuration flexible de l'interface et des données vous aidera à configurer le système pour vous-même."
+	},
+	"AboutTechSpec5": {
+		"ru": "Обмен свободным и занятым временем между участниками системы.",
+		"en": "Exchange of free and busy time between the participants of the system.",
+		"fr": "Échange de temps libre et occupé entre les participants au système."
+	},
+	"AboutQuoteBacon": {
+		"ru": "<b>&quot;Выбрать время — значит сберечь время, а что сделано несвоевременно, сделано понапрасну.&quot;</b><br> <span class=&quot;text-dark&quot; style=&quot;font-size: 0.85em;font-weight: 700&quot;>(Фрэнсис Бэкон - Британский философ XVI века)</span>",
+		"en": "<b>&quot;Choosing time means saving time, and what is done untimely is done in vain.&quot;</b><br><span class=&quot;text—dark&quot; style=&quot;font-size: 0.85em;font-weight: 700&quot;>(Francis Bacon - British philosopher XVI centuries)</span>",
+		"fr": "<b> &quot;Choisir le temps, c'est gagner du temps, et ce qui n'est pas fait en temps opportun est fait en vain.&quot;</b> <br><span class=&quot;text-dark&quot; style=&quot;font-size: 0.85em;font-weight:700&quot;>(Francis bacon est un philosophe Britannique du XVIe siècle)</span> "
+	},
+	"SetupSystem": {
+		"ru": "Настройка системы",
+		"en": "System Setup",
+		"fr": "Configuration du système"
+	},
+	"Setup0-1": {
+		"ru": "Для перехода в настройку системы нажмите иконку",
+		"en": "To go to the system settings, click the icon",
+		"fr": "Pour accéder à la configuration du système, appuyez sur l'icône"
+	},
+	"Setup0-2": {
+		"ru": "в правом верхнем углу ",
+		"en": "in the upper right corner",
+		"fr": "en haut à droite"
+	},
+	"SetupInterface": {
+		"ru": "Настройки интерфейса",
+		"en": "Interface Settings",
+		"fr": "Paramètres de l'interface"
+	},
+	"SetupInterface1": {
+		"ru": "Выберите язык интерфейса. Выбор языка автоматически сохраняется и при следующем входе в систему интерфейс будет уже на этом языке.",
+		"en": "Select the interface language. The language selection is automatically saved and the next time you log in, the interface will already be in that language.",
+		"fr": "Sélectionnez la langue de l'interface. La sélection de la langue est automatiquement enregistrée et la prochaine fois que vous vous connectez, l'interface sera déjà dans cette langue."
+	},
+	"SetupInterface2": {
+		"ru": "Выберите вкладку или полноэкранное расписание и это будет открываться при старте программы. При установленном флаге автосохранения Ваш выбор будет автоматически сохраняться.",
+		"en": "Select a tab or a full-screen schedule and it will open when the program starts. If the autosave flag is set, your selection will be automatically saved.",
+		"fr": "Sélectionnez l'onglet ou le calendrier plein écran et cela ouvrira au démarrage du programme. Lorsque la case d'enregistrement automatique est cochée, Votre sélection est automatiquement enregistrée."
+	},
+	"SetupInterface3": {
+		"ru": "В разделе &quot;Расписание&quot; можно включить и отключить показ при старте сохраненного расписания.",
+		"en": "In the &quot;Schedule&quot; section, you can enable and disable the display when the saved schedule starts.",
+		"fr": "Dans la section Planification, vous pouvez activer ou désactiver l'affichage lorsque vous démarrez une planification enregistrée."
+	},
+	"SetupData": {
+		"ru": "Настройка данных",
+		"en": "Data Setup",
+		"fr": "Configuration des données"
+	},
+	"SetupData0": {
+		"ru": "Для гибкой настройки системы используются два уровня данных. В данной системе демонстрация её работы приведена с настойками под детскую школу программирования (курсы и уровень подготовки ребят). Вы можете настроить свои данные.",
+		"en": "Two data layers are used for flexible system configuration. In this system, a demonstration of its work is given with settings for a children's programming school (courses and the level of training of children). You can customize your data.",
+		"fr": "Deux couches de données sont utilisées pour la configuration flexible du système. Dans ce système, une démonstration de son travail est donnée avec des paramètres pour l'école de programmation des enfants (cours et niveau de formation des enfants). Vous pouvez personnaliser vos données."
+	},
+	"SetupData1": {
+		"ru": "1 уровень данных.",
+		"en": "1 data level.",
+		"fr": "1 couche de données."
+	},
+	"SetupData1-1": {
+		"ru": "Внесите в список, через запятую, первый уровень данных по которым можно разделить клиентов и сотрудников. Эти данные во вкладке &quot;Свободное время&quot; можно будет выбрать, установив фильтр или настроив сортировку. Например:",
+		"en": "Add to the list, separated by commas, the first level of data by which customers and employees can be divided. This data in the &quot;Free time&quot; tab can be selected by setting a filter or setting up sorting. For example:",
+		"fr": "Entrez dans la liste, séparés par des virgules, le premier niveau de données sur lequel vous pouvez séparer les clients et les employés. Vous pouvez sélectionner ces données dans l'onglet temps Libre en définissant un filtre ou en configurant le tri. Par exemple:"
+	},
+	"SetupData1-1-1": {
+		"ru": "<b>Школы, образовательные и развивающие органиции, репетиторы:</b> курсы и направления занятий, классы (1,2,3...), школьные предметы",
+		"en": "<b>Schools, educational and development organizations, tutors:</b> courses and areas of study, classes (1,2,3...), school subjects",
+		"fr": "<b>Écoles, organisations éducatives et de développement, tuteurs:</b> cours et directions de cours, classes (1,2,3...), matières scolaires"
+	},
+	"SetupData1-1-2": {
+		"ru": "<b>Салоны красоты, барбершопы:</b> специализация маcтеров",
+		"en": "<b>Beauty salons, barbershops:</b> specialization of masters",
+		"fr": "<b>Salons de beauté, barbiers: </b> spécialisation des maîtres"
+	},
+	"SetupData1-1-3": {
+		"ru": "<b>SPA-салоны, сауны:</b> список процедур",
+		"en": "<b>SPA salons, saunas:</b> list of procedures",
+		"fr": "<b>SPA-salons, saunas: </b> liste des traitements"
+	},
+	"SetupData1-1-4": {
+		"ru": "<b>Медицинские центры, косметологические кабинеты, частный прием врачей :</b> специализация врачей, перечень процедур",
+		"en": "<b>Medical centers, cosmetology offices, private reception of doctors :</b> specialization of doctors, list of procedures",
+		"fr": "<b>centres Médicaux, cabinets de cosmétologie, accueil privé des médecins :</b> spécialisation des médecins, liste des procédures"
+	},
+	"SetupData1-1-5": {
+		"ru": "<b>Авторемонтные мастерские:</b> специализация мастеров, услуги ",
+		"en": "<b>Car repair shops:</b> specialization of craftsmen, services",
+		"fr": "<b>ateliers de Réparation automobile: </b> spécialisation des artisans, services"
+	},
+	"SetupData2": {
+		"ru": "2 уровень данных.",
+		"en": "2 data level.",
+		"fr": "2 niveau de données."
+	},
+	"SetupData2-1": {
+		"ru": "При необходимости внесите в список, через запятую, второй уровень данных (уровень, возраст, опыт работы, номера кабинетов и т.д. Эти данные можно будет выбрать, установив фильтр во вкладке &quot;Свободное время&quot;. Например:",
+		"en": "If necessary, add to the list, separated by commas, the second level of data (level, age, work experience, office numbers, etc. This data can be selected by setting a filter in the &quot;Free Time&quot; tab. For example:",
+		"fr": "Si nécessaire, entrez dans la liste, séparés par des virgules, un deuxième niveau de données (niveau, âge, expérience professionnelle, numéros de cabinet, etc.). vous pouvez sélectionner ces données en définissant un filtre dans l'onglet temps Libre. Par exemple:"
+	},
+	"SetupData2-1-1": {
+		"ru": "<b>Школы, образовательные и развивающие организации, репетиторы:</b> грейды (1,2,3,4), возраст (8-10 лет, 11-13 лет), сколько лет занимаются (1год, 2 года, 3 года), номера классов",
+		"en": "<b>Schools, educational and development organizations, tutors:</b> grades (1,2,3,4), age (8-10 years, 11-13 years), how many years are engaged (1 year, 2 years, 3 years), class numbers",
+		"fr": "<b>Écoles, organisations éducatives et de développement, tuteurs:</b> grades (1,2,3,4), âge (8-10 ans, 11-13 ans), combien d'années sont engagées (1 an, 2 ans, 3 ans), numéros de classe"
+	},
+	"SetupData2-1-2": {
+		"ru": "<b>Салоны красоты, барбершопы:</b> номера рабочих мест",
+		"en": "<b>Beauty salons, barbershops:</b> workplace numbers",
+		"fr": "<b>salons de beauté, barbiers: </b> numéros d'emplois"
+	},
+	"SetupData2-1-3": {
+		"ru": "<b>SPA-салоны, сауны:</b> длительность выбранной услуги",
+		"en": "<b>SPA salons, saunas:</b> duration of the selected service",
+		"fr": "<b>salons SPA, saunas: </b> durée du service sélectionné"
+	},
+	"SetupData2-1-4": {
+		"ru": "<b>Медицинские центры, косметологические кабинеты, частный прием:</b> номера кабинетов, длительность процедуры",
+		"en": "<b>Medical centers, cosmetology offices, private reception:</b> room numbers, duration of the procedure",
+		"fr": "<b>centres Médicaux, cabinets de cosmétologie, réception privée:</b> chambres de cabinet, durée de la procédure"
+	},
+	"SetupData2-1-5": {
+		"ru": "<b>Авторемонтные мастерские:</b> номера рабочих боксов",
+		"en": "<b>Car repair shops:</b> working box numbers",
+		"fr": "<b>ateliers de Réparation automobile: </b> numéros des boîtes de travail"
+	},
+	"SetupButtons": {
+		"ru": "Кнопки работы с данными",
+		"en": "Buttons for working with data",
+		"fr": "Boutons de données"
+	},
+	"SetupButton1": {
+		"ru": "добавить к существующему списку данные которые указаны в поле.",
+		"en": "add the data specified in the field to the existing list.",
+		"fr": "ajouter à la liste existante les données qui sont spécifiées dans le champ."
+	},
+	"SetupButton2": {
+		"ru": "выгрузить из хранилища и показать данные уровня.",
+		"en": "unload from the storage and show the level data.",
+		"fr": "décharger du stockage et afficher les données de niveau."
+	},
+	"SetupButton3": {
+		"ru": "загрузить в хранилище данные указанные в поле и обновить данные по этому уровню.",
+		"en": "upload the data specified in the field to the storage and update the data for this level.",
+		"fr": "charger les données spécifiées dans le champ dans le coffre-fort et mettre à jour les données pour ce niveau."
+	},
+	"SetupButton4": {
+		"ru": "удалить все данные из хралилища по этому уровню.",
+		"en": "delete all data from the storage at this level.",
+		"fr": "supprimer toutes les données du magasin à ce niveau."
+	},
+	"SetupLogIn": {
+		"ru": "Регистрация и вход в личный кабинет",
+		"en": "Registration and login to your personal account",
+		"fr": "Inscription et connexion au compte personnel"
+	},
+	"SetupLogIn0": {
+		"ru": "В системе можно работать и без входа в личный кабинет. Все функции по выбору оптимального расписания и отправки своего времени будут работать. При таком варианте работы данные сохраняются в локальном устройстве (смартфон, планшет или персональный компьютер) на котором будет происходить работа в системе. ",
+		"en": "You can work in the system without logging into your personal account. All functions for choosing the optimal schedule and sending your time will work. In this case, the data is stored in a local device (smartphone, tablet or personal computer) on which the work in the system will take place.",
+		"fr": "Dans le système, vous pouvez travailler sans vous connecter à votre compte personnel. Toutes les fonctions pour choisir l'horaire optimal et envoyer votre temps fonctionneront. Dans ce mode de fonctionnement, les données sont stockées dans le périphérique local (Smartphone, tablette ou ordinateur personnel) sur lequel le travail sera effectué dans le système."
+	},
+	"SetupLogIn1": {
+		"ru": "При регистрации и входе в систему доступны следующие дополнительные функции: ",
+		"en": "The following additional functions are available when registering and logging in:",
+		"fr": "Les fonctionnalités supplémentaires suivantes sont disponibles lors de l'inscription et de la connexion:"
+	},
+	"SetupLogIn1-1": {
+		"ru": "Возможность выбора типа хранения данных: локально или в сети",
+		"en": "The ability to choose the type of data storage: locally or on the network",
+		"fr": "Possibilité de choisir le type de stockage: local ou réseau"
+	},
+	"SetupLogIn1-2": {
+		"ru": "При сетевой работе данные после входа в систему можно получить с любого устройства",
+		"en": "During network operation, data after logging in can be obtained from any device",
+		"fr": "Lorsque vous travaillez en réseau, les données de connexion peuvent être récupérées à partir de n'importe quel appareil"
+	},
+	"SetupLogIn1-3": {
+		"ru": "При сетевой работе можно организовать свою работу таким образом, что за ведение расписания сотрудников будет отвечать тайм-менеджер или администратор. Он будет составлять и поддерживать расписание в актуальном виде, а сотрудники будут видеть при подключении в систему свои графики работы.",
+		"en": "When working online, you can organize your work in such a way that a time manager or administrator will be responsible for maintaining the schedule of employees. He will compile and maintain the schedule in an up-to-date form, and employees will see their work schedules when they connect to the system.",
+		"fr": "Lorsque vous travaillez en réseau, vous pouvez organiser votre travail de manière à ce que le gestionnaire de temps ou l'administrateur soit responsable de la gestion de la planification des employés. Il établira et maintiendra le calendrier à jour, et les employés verront leurs horaires de travail lorsqu'ils se connecteront au système."
+	},
+	"SetupLogIn1-4": {
+		"ru": "При сетевой работе возможно переносить данные из локальной базы в удаленное хранилище и обратно в локальное",
+		"en": "When working on a network, it is possible to transfer data from a local database to a remote storage and back to a local one",
+		"fr": "Lorsque vous travaillez en réseau, vous pouvez transférer des données de la base de données locale vers le stockage distant et de nouveau vers le stockage local"
+	},
+	"SetupLogIn1-5": {
+		"ru": "После регистрации в системе можно обмениваться своим свободным или занятым временем между участниками системы. Отправить свое время может любой, даже не зарегистрированный пользователь, а получить данные можно только после регистрации.",
+		"en": "After registering in the system, you can exchange your free or busy time between the participants of the system. Anyone can send their time, even an unregistered user, and you can get the data only after registration.",
+		"fr": "After registering in the system, you can exchange your free or busy time between the participants of the system. Anyone can send their time, even an unregistered user, and you can get the data only after registration."
+	},
+	"SetupLogStatusIn": {
+		"ru": "Статусы входа в личный кабинет",
+		"en": "Login statuses to your personal account",
+		"fr": "Statuts de connexion au compte personnel"
+	},
+	"SetupLogStatusIn1": {
+		"ru": "Вход в систему не выполнен. Войдите в систему или зарегистрируйтесь! Данные будут храниться только в локальном хранилище!",
+		"en": "Login failed. Log in or register! The data will be stored only in the local storage!",
+		"fr": "Échec de la connexion. Connectez-vous ou inscrivez-vous! Les données ne seront stockées que dans le stockage local!"
+	},
+	"SetupLogStatusIn2": {
+		"ru": "Пользователь зарегистрирован в системе, но данные не подтверждены. Перейдите по ссылке в полученном письме и активизируйте доступ.",
+		"en": "The user is registered in the system, but the data is not confirmed. Click on the link in the received email and activate access.",
+		"fr": "L'utilisateur est connecté au système, mais les données ne sont pas confirmées. Cliquez sur le lien dans l'e-mail reçu et activez l'accès."
+	},
+	"SetupLogStatusIn3": {
+		"ru": "Вход в систему выполнен. Тестовый доступ к сетевым данным разрешён. В личном кабинете Вам будет сообщаться до какого числа предоставлен тестовый доступ.",
+		"en": "The login has been completed. Test access to network data is allowed. In your personal account, you will be informed up to what date the test access is granted.",
+		"fr": "Vous êtes connecté. L'accès de test aux données réseau est autorisé. Dans votre compte personnel, vous serez informé jusqu'à quel nombre d'accès de test est accordé."
+	},
+	"SetupLogStatusIn4": {
+		"ru": "Такой логин в системе есть, но доступ к сетевому хранилищу запрещен, так как закончился тестовый период. Продлите доступ в систему.",
+		"en": "There is such a login in the system, but access to the network storage is prohibited, since the test period has ended. Extend access to the system.",
+		"fr": "Il existe une telle connexion dans le système, mais l'accès au stockage réseau est interdit, car la période de test est terminée. Prolongez l'accès au système."
+	},
+	"SetupLogStatusIn5": {
+		"ru": "Вход в систему выполнен. Доступ к данным в сети разрешён. В личном кабинете Вам будет сообщаться до какого числа предоставлен доступ.",
+		"en": "The login has been completed. Access to data on the network is allowed. In your personal account, you will be informed up to what date access is granted.",
+		"fr": "The login has been completed. Access to data on the network is allowed. In your personal account, you will be informed up to what date access is granted."
+	},
+	"WorkExample": {
+		"ru": "Работа с системой на примерах",
+		"en": "Working with the system using examples",
+		"fr": "Utilisation du système dans des exemples"
+	},
+	"WorkExample0": {
+		"ru": "Эффективность работы с любой информационной системой зависит от полноты данных. Также и система ДелуВремя! будет полезна при наличии полных данных по свободному и занятому времени. Только тогда можно получить максимальный эффект и Ваше расписание будет оптимальным и удобным для всех! В данном разделе показан порядок действий для решения конкретных задач по работе со временем на примере детской школы программирования.",
+		"en": "The effectiveness of working with any information system depends on the completeness of the data. Also, the SetTime system! it will be useful if there is complete data on free and busy time. Only then can you get the maximum effect and your schedule will be optimal and convenient for everyone! This section shows the procedure for solving specific tasks for working with time on the example of a children's programming school.",
+		"fr": "L'efficacité de tout système d'information dépend de l'exhaustivité des données. Aussi le système Trouvez le Temps! sera utile si vous avez des données complètes sur le temps libre et occupé. Alors seulement, vous pouvez obtenir le maximum d'effet et Votre horaire sera optimal et pratique pour tout le monde! Cette section présente les étapes à suivre pour résoudre des problèmes spécifiques de travail au fil du temps à l'aide de l'exemple de l'école de programmation pour enfants."
+	},
+	"WorkTask": {
+		"ru": "Задача",
+		"en": "Task",
+		"fr": "Tâche"
+	},
+	"WorkTask1": {
+		"ru": " Для учеников (уровень 4) на курсе JsFront подобрать группу и оптимальное время.",
+		"en": " For students (level 4) on the Js Front course, choose a group and the optimal time.",
+		"fr": " Pour les étudiants (niveau 4) sur le cours Js Front choisir le groupe et le temps optimal."
+	},
+	"WorkTask2": {
+		"ru": " Для учеников на курсе PHP (уровень 3-4) подобрать группу и время с учетом расписания преподавателя.",
+		"en": " For students on the PHP course (level 3-4), choose a group and time, taking into account the teacher's schedule.",
+		"fr": " Pour les étudiants du cours PHP (niveau 3-4), choisissez le groupe et le temps en tenant compte du calendrier de l'enseignant."
+	},
+	"WorkTask3": {
+		"ru": " Сформировать группу для курса &quot;CoSpaces&quot; с уровнем 2. Найти преподавателя и свободный класс для группы.",
+		"en": " Form a group for the &quot;CoSpaces&quot; course with level 2. Find a teacher and a free class for the group.",
+		"fr": " Former un groupe pour le cours &quot;CoSpaces&quot; avec le niveau 2. Trouver un professeur et une classe gratuite pour le groupe."
+	},
+	"WorkTask4": {
+		"ru": " Ведение своего расписания и вывод его на полный экран смартфона для входе в систему.",
+		"en": " Maintaining your schedule and displaying it on the full screen of your smartphone to log in.",
+		"fr": " Gardez votre horaire et affichez-le en plein écran de votre Smartphone pour vous connecter."
+	},
+	"WorkTask5": {
+		"ru": " Отправить занятое или свободное время участнику системы.",
+		"en": " Send busy or free time to a system participant.",
+		"fr": " Envoyer du temps occupé ou libre au participant du système."
+	},
+	"WorkTask1-1": {
+		"ru": "Во вкладке &quot;Свободное время&quot; надо отметить ребят, для которых подбираем группу и время. Для этого устанавливаем фильтр",
+		"en": " In the &quot;Free time&quot; tab, it is necessary to mark the students for whom we select a group and time. To do this, install the filter",
+		"fr": "Dans l'onglet &quot;temps Libre&quot;, il est nécessaire de noter les gars pour lesquels nous sélectionnons le groupe et le temps. Pour ce faire, installez le filtre"
+	},
+	"WorkTask1-1-1": {
+		"ru": "по курсу JsFront и по уровню 4",
+		"en": "at the Js Front course and at level 4",
+		"fr": "au cours Js Front et au niveau 4"
+	},
+	"WorkTask1-2": {
+		"ru": "После применения фильтра отмечаем тех учеников, которые нам нужны (устанавливаем флажки слева от имени). В данном примере нам подходят все четверо. Все записи можно отметить, нажав на флажок в заголовке таблицы над первым столбцом слева",
+		"en": "After applying the filter, we mark the students we need (check the boxes to the left of the name). In this example, all four of us are suitable. All entries can be marked by clicking on the checkbox in the table header above the first column on the left",
+		"fr": "Après avoir appliqué le filtre, nous marquons les étudiants dont nous avons besoin (cochez les cases à gauche du nom). Dans cet exemple, nous sommes tous les quatre. Tous les enregistrements peuvent être marqués en cliquant sur la case à cocher dans l'en-tête de la table au-dessus de la première colonne à gauche"
+	},
+	"WorkTask1-3": {
+		"ru": "После этого переходим во вкладку &quot;Расписание&quot;. В этом разделе производится наложение графиков свободного времени каждого и отмечается цветом и цифрами количество совпадений. Оранжевым цветом отмечено максимальное совпадение по времени. У троих человек таких временных отрезков получилось два: вторник с 17:00 до 19:00 и четверг с 18:00 до 19:00. Так как занятие длится 1,5 часа, то подойдет время только вторника",
+		"en": "After that, go to the &quot;Schedule&quot; tab. In this section, the schedules of everyone's free time are superimposed and the number of matches is marked with color and numbers. The orange color indicates the maximum time match. Three people had two such time periods: Tuesday from 17:00 to 19:00 and Thursday from 18:00 to 19:00. Since the lesson lasts 1.5 hours, the time is only suitable for Tuesday",
+		"fr": "Après cela, allez dans l'onglet &quot;Calendrier&quot;. Dans cette section, les graphiques de temps libre de chacun sont superposés et le nombre de correspondances est indiqué en couleur et en chiffres. La couleur orange indique la correspondance temporelle maximale. Trois personnes ont eu deux périodes de temps: mardi de 17h00 à 19h00 et jeudi de 18h00 à 19h00. Puisque la leçon dure 1,5 heures, alors seulement le mardi sera approprié"
+	},
+	"WorkTask1-4": {
+		"ru": "Можно также разбить на группы по 2 человека во вторник и четверг",
+		"en": "It can also be divided into groups of 2 people on Tuesday and Thursday",
+		"fr": "Peut également être divisé en groupes de 2 personnes le mardi et le jeudi"
+	},
+	"WorkTask1Analis": {
+		"ru": "<b>Анализ:</b> У нас только один ученик не попадал в группу со временем: вторник 17:00-19:00. Предложили его родителям расмотреть расписание на это время и они согласились.",
+		"en": "<b>Analysis:</b> We have only one student who did not get into the group with the time: Tuesday 17:00-19:00. We offered his parents to consider the schedule for this time and they agreed.",
+		"fr": "<b> Analyse: </b> nous n'avons qu'un seul élève qui n'est pas entré dans le groupe avec le temps: mardi 17:00-19:00. Ils ont suggéré à ses parents d'examiner le calendrier pour cette période et ils ont accepté."
+	},
+	"WorkTask1Result": {
+		"ru": "<b> Результат:</b><span style=&quot;color: blue; font-weight: 600&quot;> Собрана группа на курс JsFront из 4-х человек во вторник 17:00-18:30.",
+		"en": "<b> Result:</b><span style=&quot;color: blue; font-weight: 600&quot;> A group of 4 people was assembled for the Js Front course on Tuesday 17:00-18:30.",
+		"fr": "<b> Résultat:</b> <span style=&quot;color: blue; font-weight: 600&quot;> un groupe de 4 personnes a été Réuni au cours Js Front mardi 17:00-18:30."
+	},
+	"WorkTask2-v1": {
+		"ru": "Вариант 1: По данным свободного времени преподавателя.",
+		"en": "Variant 1: According to the teacher's free time.",
+		"fr": "Option 1: Selon le temps libre de l'enseignant."
+	},
+	"WorkTask2-v1-1": {
+		"ru": "Также как в задаче 1 во вкладке &quot;Свободное время&quot; надо отметить ребят для которых подбираем группу и время. Также надо выбрать в фильтре",
+		"en": "Just like in task 1, in the &quot;Free Time&quot; tab, it is necessary to mark the guys for whom we select the group and time. You also need to select in the filter",
+		"fr": "Comme dans la tâche 1 dans l'onglet &quot;Temps Libre&quot;, il est nécessaire de noter les gars pour lesquels nous sélectionnons le groupe et le temps. Vous devez également sélectionner dans le filtre"
+	},
+	"WorkTask2-v1-1-1": {
+		"ru": "и преподавателей. Устанавливаем фильтр по курсу PHP и &quot;препод.&quot; и по уровню 3 и 4.",
+		"en": "and teachers. We set the filter according to the PHP course and the &quot;teacher&quot; and by level 3 and 4.",
+		"fr": "et des enseignants. Nous définissons le filtre sur le cours PHP et &quot;professeur&quot; et pour les niveaux 3 et 4."
+	},
+	"WorkTask2-v1-2": {
+		"ru": "Далее анализируем совпадения по времени, только с обязательным совпадение со свободным временем преподавателя.",
+		"en": "Next, we analyze the coincidences in time, only with a mandatory coincidence with the free time of the teacher.",
+		"fr": "Ensuite, nous analysons les coïncidences dans le temps, seulement avec une coïncidence obligatoire avec le temps libre de l'enseignant."
+	},
+	"WorkTask2-v2": {
+		"ru": "Вариант 2: По данным занятого времени преподавателя",
+		"en": "Variant 2: According to the teacher's busy time",
+		"fr": "Option 2: selon le temps occupé par l'enseignant"
+	},
+	"WorkTask2-v2-1": {
+		"ru": "Во вкладке &quot;Свободное время&quot; надо отметить ребят для которых подбираем группу и время. Для этого устанавливаем фильтр",
+		"en": "In the &quot;Free time&quot; tab, it is necessary to note the guys for whom we select a group and time. To do this, install the filter",
+		"fr": "Dans l'onglet &quot;Temps Libre&quot;, il est nécessaire de noter les gars pour lesquels nous sélectionnons le groupe et le temps. Pour ce faire, installez le filtre"
+	},
+	"WorkTask2-v2-1-2": {
+		"ru": "по курсу PHP и по уровню 3-4.",
+		"en": "according to the PHP course and level 3-4.",
+		"fr": "au cours de PHP et au niveau 3-4."
+	},
+	"WorkTask2-v2-2": {
+		"ru": "Во вкладке &quot;Занятое время&quot; выбираем преподавателя который ведёт этот курс, отметив его флагом слева от имени",
+		"en": "In the &quot;Busy time&quot; tab, select the teacher who teaches this course, marking him with a flag to the left of the name",
+		"fr": "Dans l'onglet &quot;Temps Occupé&quot;, sélectionnez l'enseignant qui dirige ce cours, en le cochant avec le drapeau à gauche du nom"
+	},
+	"WorkTask2-v2-3": {
+		"ru": "Переходим на вкладку &quot;Расписание&quot;. Также как и в задаче 1, происходит совмещение свободного времени учеников. Дополнительно накладывается занятое время у преподавателя (данные вкладки &quot;Занятое время&quot;). Если свободное время накладывается на занятое время преподавателя, то оно помечается красным. Если нет, то цвет не меняется. Оптимальный выбор это ячейки с оранжевым цветом и цифрой. В это время максимальное число учеников совпало по свободному времени и это время не занято у преподавателя.",
+		"en": "Go to the &quot;Schedule&quot; tab. Just like in task 1, students' free time is combined. Additionally, the teacher's busy time is superimposed (data from the &quot;Busy time&quot; tab). If the free time is superimposed on the teacher's busy time, then it is marked in red. If not, the color does not change. The optimal choice is a cell with an orange color and a number. At this time, the maximum number of students coincided in free time and this time is not occupied by the teacher.",
+		"fr": "Allez à l'onglet &quot;Calendrier&quot;. Comme dans la tâche 1, le temps libre des élèves est combiné. En outre, le temps occupé de l'enseignant est superposé (données de l'onglet &quot;Temps Occupé&quot;). Si le temps libre est superposé au temps occupé par l'enseignant, il est marqué en rouge. Sinon, la couleur ne change pas. Le choix optimal est une cellule avec une couleur orange et un chiffre. À ce moment-là, le nombre maximum d'élèves correspond au temps libre et ce temps n'est pas occupé par l'enseignant."
+	},
+	"WorkTask2Analis": {
+		"ru": "<b>Анализ:</b> Из 6-ти отмеченных учеников максимальное совпадение по свободному времени и незанятому времени преподавателя это среда 17:30-19:00 и пятница 17:30-19:30. Если сделаем тоже самое, но для двух оставшихся ребят, то у них найдем общее свободное время четверг 16:30-18:00.",
+		"en": "",
+		"fr": ""
+	},
+	"WorkTask2Result": {
+		"ru": "<b> Результат:</b><span style=&quot;color: blue; font-weight: 600&quot;> Собрана 1-я группа на курс PHP из 4-х человек в пятницу 18:00-19:30 и 2-я группа на этот же курс из 2-х человек в четверг 16:30-18:00.",
+		"en": "<b>Analysis:</b> Of the 6 marked students, the maximum coincidence in free time and unoccupied time of the teacher is Wednesday 17:30-19:00 and Friday 17:30-19:30. If we do the same, but for the two remaining guys, then we will find a common free time Thursday 16:30-18:00.",
+		"fr": "<b> Analyse: </b> Parmi les 6 élèves notés, la correspondance maximale entre le temps libre et le temps inoccupé de l'enseignant est le mercredi 17:30-19:00 et le vendredi 17:30-19:30. Si nous faisons la même chose, mais pour les deux autres gars, ils trouveront un temps libre commun jeudi 16:30-18: 00."
+	},
+	"WorkTask3": {
+		"ru": "Сформировать группу для курса &quot;CoSpaces&quot; с уровнем 2. Найти преподавателя и свободный класс для группы.",
+		"en": "",
+		"fr": ""
+	},
+	"WorkTask3-1": {
+		"ru": "Во вкладке &quot;Свободное время&quot; надо отметить ребят, для которых подбираем группу и время. Для этого устанавливаем фильтр",
+		"en": "Form a group for the &quot;CoSpaces&quot; course with level 2. Find a teacher and a free class for the group.",
+		"fr": "Former un groupe pour le cours &quot;CoSpaces&quot; avec le niveau 2. Trouver un professeur et une classe gratuite pour le groupe."
+	},
+	"WorkTask3-1-1": {
+		"ru": " по курсу CoSpaces и при необходимости отмечаем нужные записи после установки фильтра. См. <a href='#task1'>Задача 1</a>.",
+		"en": " according to the CoSpaces course and, if necessary, mark the necessary entries after installing the filter. See <a href='#task1'>Task 1</a>.",
+		"fr": " selon le cours CoSpaces et si nécessaire, nous marquons les entrées souhaitées après l'installation du filtre. Voir </a>Cible 1</a>."
+	},
+	"WorkTask3-2": {
+		"ru": "На вкладке &quot;Занятое время&quot; отмечаем занятое время преподавателя и затем по очереди занятое время классов. Например сначала &quot;Класс 1&quot; для проверки, а затем &quot;Класс 2&quot;. Все записи можно отметить, нажав на флажок в заголовке таблицы над первым столбцом слева.",
+		"en": "On the &quot;Busy time&quot; tab, we mark the teacher's busy time and then the busy class time in turn. For example, first &quot;Class 1&quot; to check, and then &quot;Class 2&quot;. All entries can be marked by clicking on the checkbox in the table header above the first column on the left.",
+		"fr": "Dans l'onglet &quot;temps Occupé&quot;, nous marquons le temps occupé de l'enseignant, puis à tour de rôle le temps occupé des classes. Par exemple, d'abord &quot;classe 1&quot; à vérifier, puis &quot;classe 2&quot;. Tous les enregistrements peuvent être marqués en cliquant sur la case à cocher dans l'en-tête de la table au-dessus de la première colonne à gauche."
+	},
+	"WorkTask3-3": {
+		"ru": "После заполнения вкладок со временем переходим во вкладку &quot;Расписание&quot;. В этом разделе производится наложение графиков свободного времени и занятого времени преподавателя и класса. Если свободное время накладывается на занятое время класса и (или) преподавателя, то оно помечается красным. Если нет, то цвет не меняется. Оптимальный выбор это ячейки с оранжевым цветом и цифрой. В это время максимальное число учеников совпало по свободному времени, и в это время и преподаватель не занят и класс.",
+		"en": "After filling in the tabs over time, go to the &quot;Schedule&quot; tab. In this section, the schedules of free time and occupied time of the teacher and class are superimposed. If the free time is superimposed on the occupied time of the class and (or) the teacher, then it is marked in red. If not, the color does not change. The optimal choice is a cell with an orange color and a number. At this time, the maximum number of students coincided in free time, and at this time both the teacher and the class are not busy.",
+		"fr": "Après avoir rempli les onglets avec le temps, allez dans l'onglet &quot;Calendrier&quot; t;. Dans cette section, vous superposez les horaires de temps libre et de temps occupé par l'enseignant et la classe. Si le temps libre est superposé au temps occupé par la classe et / ou l'enseignant, il est marqué en rouge. Sinon, la couleur ne change pas. Le choix optimal est une cellule avec une couleur orange et un chiffre. À ce moment-là, le nombre maximum d'élèves correspond au temps libre, et à ce moment-là, l'enseignant n'est pas occupé et la classe."
+	},
+	"WorkTask3Analis": {
+		"ru": "<b>Анализ:</b> У нас два класса. При выборе во вкладке &quot;Занятое время&quot; преподавателя и &quot;Класс 1&quot; у нас совсем не было свободного времени, ни у преподавателя, ни свободного класса. При выборе &quot;Класс 2&quot; определили, что такое время есть и оно показано оранжевым цветом. И оно нам подходит по длительности!",
+		"en": "<b>Analysis:</b> We have two classes. When selecting the teacher and &quot;Class 1&quot; in the &quot;Busy Time&quot; tab, we had no free time at all, neither the teacher nor the free class. When selecting &quot;Class 2&quot;, we determined that there is such a time and it is shown in orange. And it suits us in duration!",
+		"fr": "<b> Analyse:</b> nous Avons deux classes. Lorsque nous avons sélectionné dans l'onglet &quot;temps Occupé&quot; de l'enseignant et &quot;Classe 1&quot;, nous n'avions pas du tout de temps libre, ni de l'enseignant ni de la classe libre. Lorsque vous sélectionnez &quot;Classe 2&quot;, vous avez déterminé qu'il y a une telle heure et qu'elle est affichée en orange. Et il nous convient dans la durée!"
+	},
+	"WorkTask3Result": {
+		"ru": "<b> Результат:</b><span style=&quot;color: blue; font-weight: 600&quot;> Собрана группа на курсе &quot;CoSpaces&quot; с уровнем 2 с оптимальным временем: вторник 17:30-19:00 в классе №2 и определенным преподавателем.",
+		"en": "<b> Result:</b><span style=&quot;color: blue; font-weight: 600&quot;> A group was assembled on the course &quot;CoSpaces&quot; with level 2 with the optimal time: Tuesday 17:30-19:00 in class No. 2 and a certain teacher.",
+		"fr": "<b>Résultat:</b><span style=&quot;color:blue; font-weight:600&quot;> groupe Réuni sur le cours &quot;CoSpaces&quot; avec le niveau 2 avec l'heure optimale: mardi 17:30-19:00 dans la classe n ° 2 et déterminé par l'enseignant."
+	},
+	"WorkTask4": {
+		"ru": "Ведение личного расписания и вывод его на полный экран смартфона при входе в систему.",
+		"en": "Maintaining a personal schedule and displaying it on the full screen of the smartphone when logging in.",
+		"fr": "Gardez votre calendrier personnel et affichez-le en plein écran du Smartphone lorsque vous vous connectez."
+	},
+	"WorkTask4-1": {
+		"ru": "Отмечаем во вкладке &quot;Занятое время&quot; свое расписание и сохраняем данные.",
+		"en": "Note your schedule in the &quot;Busy Time&quot; tab and save the data.",
+		"fr": "Отмечаем во вкладке &quot;Занятое время&quot; свое расписание и сохраняем данные."
+	},
+	"WorkTask4-2-1": {
+		"ru": "Далее переходим в настройки системы, нажав на иконку",
+		"en": "Next, go to the system settings by clicking on the icon",
+		"fr": "Ensuite, allez dans les paramètres du système en cliquant sur l'icône"
+	},
+	"WorkTask4-2-2": {
+		"ru": "в верхнем правом углу экрана. В разделе &quot;Общие&quot; - &quot;Показывать при старте&quot; ставим &quot;Расписание полностью&quot; и в разделе &quot;Расписание&quot; включаем &quot;Показывать сохранённое расписание при открытии&quot;.",
+		"en": "in the upper right corner of the screen. In the &quot;General&quot; section - &quot;Show at start&quot; we set the &quot;Schedule in full&quot; and in the &quot;Schedule&quot; section we turn on &quot;Show saved schedule at opening&quot;.",
+		"fr": "dans le coin supérieur droit de l'écran. Dans la section &quot;Général&quot; - &quot;Afficher au démarrage&quot;, nous mettons&quot; Calendrier complet &quot;et dans la section&quot; Calendrier&quot;, nous incluons&quot;Afficher le calendrier enregistré lors de l'ouverture&quot;."
+	},
+	"WorkTask4-3": {
+		"ru": "Переходим во вкладку &quot;Расписание&quot; или в полноэкранном режиме",
+		"en": "Go to the &quot;Schedule&quot; tab or in full-screen mode",
+		"fr": "Allez dans l'onglet &quot;Calendrier&quot; ou en mode plein écran"
+	},
+	"WorkTask4-3-2": {
+		"ru": "и нажимаем кнопку",
+		"en": "and press the button",
+		"fr": "et appuyez sur le bouton"
+	},
+	"WorkTask4-3-3": {
+		"ru": "Данные сохранятся в локальном хранилище устройства и будут показываться сразу при старте (если вы настроили как в пункте 2) или их можно будет в любой момент загрузить из памяти и показать во вкладке &quot;Расписание&quot; или полноэкранном расписании, нажав кнопку",
+		"en": "The data will be saved in the device's local storage and will be displayed immediately at startup (if you configured it as in step 2) or they can be downloaded from memory at any time and shown in the &quotSchedule&quot tab or full-screen schedule by clicking",
+		"fr": "Les données seront stockées dans le stockage local de l'appareil et seront affichées immédiatement au démarrage (si vous avez configuré comme au point 2) ou vous pourrez les charger à tout moment à partir de la mémoire et les afficher dans l'onglet &quot;Calendrier&quot; ou dans la planification en plein écran en appuyant sur le bouton"
+	},
+	"WorkTask4Result": {
+		"ru": "<b> Результат:</b><span style=&quot;color: blue; font-weight: 600&quot;> Расписание сохранено в локальном хранилище устройства и появляется при старте приложения в полноэкранном режиме. Используйте его как быстрое напоминание о своих делах и для контроля времени.",
+		"en": "<b> Result:</b><span style=&quot;color: blue; font-weight: 600&quot;> The schedule is saved in the device's local storage and appears when the application starts in full-screen mode. Use it as a quick reminder of your business and to control the time.",
+		"fr": "<b>Résultat:</b><span style=&quot;color: blue; font-weight: 600&quot; > le Calendrier est enregistré dans le stockage local de l'appareil et apparaît lorsque l'application démarre en mode plein écran. Utilisez-le comme un rappel rapide de vos affaires et pour le contrôle du temps."
+	},
+	"WorkTask5": {
+		"ru": "Отправить занятое или свободное время пользователю системы.",
+		"en": "Send busy or free time to the system user.",
+		"fr": "Envoyer le temps occupé ou libre à l'utilisateur du système."
+	},
+	"WorkTask5-1": {
+		"ru": "Во вкладках &quot;Свободное время&quot; и &quot;Занятое время&quot; открываем редактирование, нажав на иконку <i class='bi bi-calendar3'></i> , и вводим или редактируем данные по времени. Тоже самое можно сделать и при вводе новой записи, нажимая кнопку",
+		"en": "In the &quot;Free time&quot; and &quot;Busy time&quot; tabs, open editing by clicking on the icon <i class=&quot;bi bi-calendar3&quot;></i>, and enter or edit time data. The same can be done when entering a new entry by pressing the button",
+		"fr": "Dans les onglets &quot;Temps Libre&quot; et &quot;Temps Occupé&quot;, ouvrez l'édition en cliquant sur l'icône <i class=&quot;bi bi-calendar3&quot;></i> , et entrez ou modifiez les données de temps. La même chose peut être faite lorsque vous entrez un nouvel enregistrement en appuyant sur le bouton"
+	},
+	"WorkTask5-1-2": {
+		"ru": "Нажав на кнопку",
+		"en": "By clicking on the button",
+		"fr": "En cliquant sur le bouton"
+	},
+	"WorkTask5-1-3": {
+		"ru": "откроется окно в котором мы увидим код времени который можно передать другому участнику системы и он сможет внести его в свои данные. Для этого нужно ввести логин пользователя системы или его email и нажать кнопку.",
+		"en": "a window will open in which we will see a time code that can be transferred to another participant in the system and he will be able to enter it into his data. To do this, enter the login of the system user or his email and click the button.",
+		"fr": "une fenêtre s'ouvrira dans laquelle nous verrons le code temporel qui peut être transmis à un autre participant du système et il sera en mesure de le faire dans ses données. Pour ce faire, entrez le nom d'utilisateur du système ou son email et cliquez sur le bouton."
+	},
+	"WorkTask5-1-4": {
+		"ru": "Также можно скопировать код времени и передать иным способом, например через мессенджеры.",
+		"en": "You can also copy the time code and transmit it in another way, for example through messengers.",
+		"fr": "Vous pouvez également copier le code temporel et le transmettre d'une autre manière, par exemple via des messageries instantanées."
+	},
+	"WorkTask5-2-1": {
+		"ru": "Мы можем импортировать код времени в систему, получив его от другого пользователя. Полученный код вносим в поле в окне редактирования времени и нажимаем кнопку импорта",
+		"en": "We can import the time code into the system by getting it from another user. The resulting code is entered into the field in the time editing window and click the import button",
+		"fr": "Nous pouvons importer le code temporel dans le système en l'obtenant d'un autre utilisateur. Le code résultant est entré dans le champ dans la fenêtre d'édition de l'heure et cliquez sur le bouton d'importation"
+	},
+	"WorkTask5-2-2": {
+		"ru": "Также можно внести данные от пользователя системы если перейти по ссылке в полученном письме. В таблице времени отметится занятое или свободное время которое зашифровано в коде.",
+		"en": "You can also enter data from the system user if you click on the link in the received email. The time table will mark the busy or free time that is encrypted in the code.",
+		"fr": "Vous pouvez également entrer des données de l'utilisateur du système si vous cliquez sur le lien dans l'e-mail reçu. La table de temps indique le temps occupé ou le temps libre qui est chiffré dans le code."
+	},
+	"WorkTask5Result": {
+		"ru": "<b> Результат:</b><span style=&quot;color: blue; font-weight: 600&quot;> Данные по свободному времени пользователя системы переданы другому участнику, а также импортированы в систему данные из полученного кода.",
+		"en": "<b> Result:</b><span style=&quot;color: blue; font-weight: 600&quot;> Data on the free time of the system user was transferred to another participant, and data from the received code was imported into the system.",
+		"fr": "<b>Résultat:</b><span style=&quot;color: blue; font-weight: 600&quot;> les données de temps libre de l'utilisateur du système ont été transférées à un autre participant et les données du code reçu ont été importées dans le système."
+	},
+	"InputCourseName": {
+		"ru": "Введите название курса с запятой в качестве разделителя",
+		"en": "Input a course name with a comma as a separator",
+		"fr": "Voir comment le cours est breveté comme séparateur"
+	},
+	"InputGradeName": {
+		"ru": "Введите название класса с запятой в качестве разделителя",
+		"en": "Input a grade name with a comma as a separator",
+		"fr": "Entrez le nom de la classe avec une virgule comme délimiteur"
+	},
+	"name": {
+		"ru": "Имя",
+		"en": "Name",
+		"fr": "Nom"
+	},
+	"login": {
+		"ru": "Логин",
+		"en": "login",
+		"fr": "login"
+	},
+	"password": {
+		"ru": "Пароль",
+		"en": "Password",
+		"fr": "Password"
+	},
+	"password2": {
+		"ru": "Подтвердите пароль",
+		"en": "Confirm your password",
+		"fr": "Passwordconfirmer le mot de passe"
+	},
+	"desc": {
+		"ru": "Описание",
+		"en": "Description",
+		"fr": "Orthographe"
+	},
+	"ImportInput": {
+		"ru": "Код времени",
+		"en": "Time code",
+		"fr": "Code temporel"
+	},
+	"EziText2": {
+		"ru": "Текст кнопки 2",
+		"en": "Button text 2",
+		"fr": "Texte du bouton 2"
+	},
+	"clickAdd": {
+		"ru": "&nbsp;Добавить &nbsp;",
+		"en": "&nbsp;Add &nbsp;",
+		"fr": "&nbsp;Il faut &nbsp;"
+	},
+	"clickLoad": {
+		"ru": " Загрузить ",
+		"en": " Load ",
+		"fr": " Il faut "
+	},
+	"clickDel": {
+		"ru": " Удалить ",
+		"en": " Delete ",
+		"fr": " Il faut "
+	},
+	"clickUpdate": {
+		"ru": " Обновить ",
+		"en": " Update ",
+		"fr": " Actualiser "
+	},
+	"MEnter": {
+		"ru": "Войти",
+		"en": "Log in",
+		"fr": "Entrée"
+	},
+	"MEnterOut": {
+		"ru": "Выйти",
+		"en": "Log out",
+		"fr": "Out"
+	},
+	"Close": {
+		"ru": "Закрыть",
+		"en": "Close",
+		"fr": "Fermer"
+	},
+	"Apply": {
+		"ru": "Применить",
+		"en": "Apply",
+		"fr": "Appliquer"
+	},
+	"Save": {
+		"ru": "Сохранить",
+		"en": "Save",
+		"fr": "Garde"
+	},
+	"Load": {
+		"ru": "Загрузить",
+		"en": "Load",
+		"fr": "Télécharger"
+	},
+	"ImportButton": {
+		"ru": "Импорт",
+		"en": "Import",
+		"fr": "Importer"
+	},
+	"FilterButton": {
+		"ru": "Фильтр",
+		"en": "Filter",
+		"fr": "Filtrer"
+	},
+	"EraseButton": {
+		"ru": "Очистить",
+		"en": "Clear",
+		"fr": "Nettoyer"
+	},
+	"PlusButton": {
+		"ru": "Добавить",
+		"en": "Add",
+		"fr": "Ajouter"
+	},
+	"ConfirmerOK": {
+		"ru": "Ok ru",
+		"en": "Ok en",
+		"fr": "Ok fr"
+	},
+	"ConfirmerEsc": {
+		"ru": "Отмена",
+		"en": "Esc",
+		"fr": "Escfr"
+	},
+	"HowYouDoing": {
+		"ru": "Как дела ?",
+		"en": "How are you doing ?",
+		"fr": "Comment ça Va?"
+	},
+	"HowOld": {
+		"ru": "Сколько вам лет ?",
+		"en": "How old are you ?",
+		"fr": "Quel âge as-tu?"
+	},
+	"FreeTab": {
+		"ru": "Вкладка Свободное время",
+		"en": "FreeTime tab",
+		"fr": "Onglet Temps Libre"
+	},
+	"BusyTab": {
+		"ru": "Вкладка Занятое время",
+		"en": "BusyTime tab",
+		"fr": "Onglet Temps Occupé"
+	},
+	"FullTab": {
+		"ru": "Расписание полностью",
+		"en": "Full-screen schedule",
+		"fr": "Calendrier plein écran"
+	},
+	"ScheduleTab": {
+		"ru": "Вкладка Расписание",
+		"en": "Schedule tab",
+		"fr": "Onglet Graphique"
+	},
+	"Course": {
+		"ru": "Курс",
+		"en": "Course",
+		"fr": "Cours"
+	},
+	"Any": {
+		"ru": "Любой",
+		"en": "Any",
+		"fr": "Tout"
+	},
+	"Grabe": {
+		"ru": "Уровень",
+		"en": "Grade",
+		"fr": "Niveau"
+	},
+	"NoStudent": {
+		"ru": "Ни один студент не выбран",
+		"en": "No student is chosen",
+		"fr": "Aucun étudiant n'est sélectionné"
+	},
+	"NameAscending": {
+		"ru": "&#8595; имена по возр",
+		"en": "&#8595; name asc",
+		"fr": "&#8595; c'est par vozr"
+	},
+	"NameDescending": {
+		"ru": "&#8593; имена по уб",
+		"en": "&#8593; name desc",
+		"fr": "&#8593; c'est par UB"
+	},
+	"NumAscending": {
+		"ru": "&#8595; номера по возр",
+		"en": "&#8595; num asc",
+		"fr": "&#8595; nombre par année"
+	},
+	"NumDescending": {
+		"ru": "&#8593; номера по уб",
+		"en": "&#8593; num desc",
+		"fr": "&#8593; nombre par UB"
+	},
+	"CourseAscending": {
+		"ru": "&#8595; курсы по возр",
+		"en": "&#8595; course asc",
+		"fr": "&#8595; cours sur l'eau"
+	},
+	"CourseDescending": {
+		"ru": "&#8593; курсы по уб",
+		"en": "&#8593; course desc",
+		"fr": "&#8593; cours sur UB"
+	},
+	"GradeAscending": {
+		"ru": "&#8595; уровни по возр",
+		"en": "&#8595; grade asc",
+		"fr": "&#8595; évaluation asc"
+	},
+	"GradeDescending": {
+		"ru": "&#8593; уровни по уб",
+		"en": "&#8593; grade desc",
+		"fr": "&#8593; classe par ordre décroissant"
+	},
+	"DescAscending": {
+		"ru": "&#8595; описания по возр",
+		"en": "&#8595; desc asc",
+		"fr": "&#8595; Description de l'article"
+	},
+	"DescDescending": {
+		"ru": "&#8593; описания по уб",
+		"en": "&#8593; desc desc",
+		"fr": "&#8593; par ordre décroissant"
+	},
+	"total": {
+		"ru": "Итого: ",
+		"en": "Total: ",
+		"fr": "Total: "
+	},
+	"person": {
+		"ru": "человек(а)",
+		"en": "person(s)",
+		"fr": "personne(s)"
+	},
+	"records": {
+		"ru": "записи(ей)",
+		"en": "record(s)",
+		"fr": "enregistrement(s)"
+	},
+	"scheduleA": {
+		"ru": "Вы первый раз запустили систему составления расписания и работы со временем - <b style='color:blue'>ДелуВремя!</b>",
+		"en": "This is the first time you have launched a system for scheduling and working with time - <b style='color:blue'>BusinessTime!</b>",
+		"fr": "Pour la première fois, vous avez lancé le système de planification et de travail avec le temps - <b style='color:blue'>Temps D'Affaires!</b>"
+	},
+	"ConnexionSystème": {
+		"ru": "Логин пользователя системы",
+		"en": "Login of the system user",
+		"fr": "Connexion utilisateur du système"
+	},
+	"ErrorGo": {
+		"ru": "Что-то пошло не так. Повторите вашу попытку позже",
+		"en": "Something went wrong. Try again later",
+		"fr": "Quelque chose a mal tourné. Réessayez plus tard"
+	},
+	"TodoIsAlreadyDisplayed": {
+		"ru": "Список дел другого(их) пользователей уже выводится в расписание",
+		"en": "The to-do list of the other (their) users is already displayed in the schedule",
+		"fr": "La liste des tâches de l'autre(leurs) utilisateurs est déjà affichée dans le calendrier"
+	},
+	"WeekDay": {
+		"ru": "День",
+		"en": "Day",
+		"fr": "Jour"
+	},
+	"Beginning": {
+		"ru": "Начало",
+		"en": "Start",
+		"fr": "Début"
+	},
+	"Fin": {
+		"ru": "Конец",
+		"en": "End",
+		"fr": "Fin"
+	},
+	"TypeEmployment": {
+		"ru": "Тип",
+		"en": "Type",
+		"fr": "Type"
+	},
+	"Personal": {
+		"ru": "Личное",
+		"en": "Personal",
+		"fr": "Personnel"
+	},
+	"Rest": {
+		"ru": "Отдых",
+		"en": "Rest",
+		"fr": "Détente"
+	},
+	"ThrowOff": {
+		"ru": "Сбросить",
+		"en": "Reset",
+		"fr": "Réinitialiser"
+	},
+	"FillRequired": {
+		"ru": "Заполните обязательные поля",
+		"en": "Fill in the required fields",
+		"fr": "Remplissez les champs obligatoires"
+	},
+	"EditingСase": {
+		"ru": "Редактирование дела",
+		"en": "Editing a case",
+		"fr": "Édition de l'affaire"
+	},
+	"DisplaySchedule": {
+		"ru": "Выводить список дел в расписание",
+		"en": "Display the to-do list in the schedule",
+		"fr": "Afficher la liste des tâches dans le calendrier"
+	},
+	"toDoList": {
+		"ru": "список дел",
+		"en": "to-do list",
+		"fr": "rôle"
+	},
+	"userWith": {
+		"ru": "Пользователь с таким же именем, курсом и уровнем уже существует. Либо измените данные, либо обновите уже существующего пользователя",
+		"en": "A user with the same name, course, and level already exists. Either change the data or update an existing user",
+		"fr": "Un utilisateur avec le même nom, le même cours et le même niveau existe déjà. Modifiez les données ou mettez à jour un utilisateur existant"
+	},
+	"start2Net": {
+		"ru": "&nbsp;&nbsp;Входить в сетевое хранилище при входе",
+		"en": "&nbsp;&nbsp;Log in to the network storage when logging in",
+		"fr": "&nbsp;&nbsp;Se connecter au NAS lors de la connexion"
+	}
+}

@@ -324,7 +324,15 @@
 
   css/todo.css - Правки стилей
 
-  js/todo.js: export функции getTodoIDArray
+  js/todo.js - export функции getTodoIDArray
 
   index.html - правки кода в конце файла + перевод кнопки открытия списка дел
+)
+
+15/04/24 (
+  css/todo.css - правки стилей
+
+  js/todo.js - изменил иконку у чекбокса дела
+
+  index.html - добавил padding для крестиков
 )
