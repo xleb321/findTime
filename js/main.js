@@ -93,6 +93,7 @@ const colorStudent = [
 let cndCoincid = 0; // Oleg
 let numberStudent = 0; // Oleg
 export const toDoOn = true; // Oleg
+export const showCanceledTodos = true; // Oleg
 
 function getRandomColor(min, max) {
   min = Math.ceil(0);
@@ -1205,8 +1206,7 @@ function loadStudentsTable() {
                 .querySelector('#staticBackdrop')
                 .querySelector('.modal-content').children[2].children[0],
               [item.id],
-              'free',
-              loadTodoLayers,
+              ['free'],
             );
           }, 200);
         }
@@ -1245,8 +1245,7 @@ function loadStudentsTable() {
                 .querySelector('#staticBackdrop')
                 .querySelector('.modal-content').children[2].children[0],
               [item.id],
-              'free',
-              loadTodoLayers,
+              ['free'],
             );
           }, 200);
         }
@@ -1961,8 +1960,6 @@ function loadBusinessTable() {
                 .querySelector('#staticBackdrop')
                 .querySelector('#btnTodo').dataset.id,
             ],
-            'any',
-            loadTodoLayers,
           );
         }, 200);
       }
@@ -2002,8 +1999,6 @@ function loadBusinessTable() {
                 .querySelector('#staticBackdrop')
                 .querySelector('#btnTodo').dataset.id,
             ],
-            'any',
-            loadTodoLayers,
           );
         }, 200);
       }

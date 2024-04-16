@@ -336,3 +336,11 @@
 
   index.html - добавил padding для крестиков
 )
+
+16/04/24 (
+  main.js - поменял аргументы функции isLayersCanBeDisplayed
+
+  js/todo.js - рефакторинг функции loadTodoLayers и isLayersCanBeDisplayed: скрыты/показаны отмененные дела
+
+  index.html - удалил лишние console.log
+)

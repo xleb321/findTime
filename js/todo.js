@@ -3,6 +3,7 @@ import { alerter } from './main.js';
 import { getDataFrom } from './extend.js';
 import { saveDataTo } from './main.js';
 import { toDoOn } from './main.js';
+import { showCanceledTodos } from './main.js';
 
 export function todoIsActive() {
   return toDoOn;
@@ -358,8 +359,6 @@ if (todoIsActive()) {
         isLayersCanBeDisplayed(
           btnTodo.closest('.modal-content').children[2].children[0],
           [userId],
-          'any',
-          loadTodoLayers,
         );
 
         closeTodoWindow();
@@ -456,7 +455,6 @@ if (todoIsActive()) {
           todoForm.classList.remove('_sending');
         } else {
           showAlert('error');
-          console.log('449');
         }
       } else {
         showAlert('form');
@@ -479,7 +477,6 @@ if (todoIsActive()) {
       }, 2000);
       clearInterval(timerLoadTodoJSON);
 
-      console.log(todoJson.todo);
       if (todoJson.todo) {
         let userJson = todoJson.todo[id];
 
@@ -577,7 +574,6 @@ if (todoIsActive()) {
         }
       } else {
         showAlert('error');
-        console.log('562');
       }
     }
 
@@ -606,7 +602,6 @@ if (todoIsActive()) {
         }
       } else {
         showAlert('error');
-        console.log('591');
       }
     }
 
@@ -628,7 +623,6 @@ if (todoIsActive()) {
         loadTodo(userId);
       } else {
         showAlert('error');
-        console.log('613');
       }
     }
 
@@ -643,7 +637,6 @@ if (todoIsActive()) {
         }
       } else {
         showAlert('error');
-        console.log('628');
       }
     }
 
@@ -876,7 +869,6 @@ if (todoIsActive()) {
             loadTodo(userId);
           } else {
             showAlert('error');
-            console.log('861');
           }
         } else {
           showAlert('form');
@@ -1106,11 +1098,12 @@ if (todoIsActive()) {
 
 //<Наслоение дел>==============================================================================
 
-export async function loadTodoLayers(table, todoIDArray, todoTypes = 'any') {
+export async function loadTodoLayers(table, todoIDArray, todoTypes = []) {
   if (todoIsActive()) {
     let btnClose =
       table.querySelector('.btn-close') ||
       table.closest('.modal-content').querySelector('.btn-close');
+
     btnClose.addEventListener('click', close);
 
     function close() {
@@ -1119,18 +1112,17 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = 'any') {
     }
 
     // Обнуляем стиль кнопки "Скрыть дела"
-    document
-      .getElementById('onOffTask')
-      .children[0].setAttribute('class', 'bi bi-eye-slash-fill');
+    document.querySelector('#onOffTask').children[0].className =
+      'bi bi-eye-slash-fill';
 
     for (let id of todoIDArray) {
       // Генерируем контейнер для слоев
       let layersHtml = /* html */ `
-      <div class="layers">
-        <div class="layers__body">
+        <div class="layers">
+          <div class="layers__body">
+          </div>
         </div>
-      </div>
-    `;
+      `;
 
       layersHtml = parser
         .parseFromString(layersHtml, 'text/html')
@@ -1152,15 +1144,22 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = 'any') {
         let userTodo = todoJson.todo[id];
 
         if (userTodo) {
-          // Вывод слоёв только свободного времени
-          if (todoTypes === 'free') {
-            userTodo = userTodo.filter(todo => todo.type === 'free');
+          // Фильтрация слоев по типам
+          // if (todoTypes === 'free') {
+          //   userTodo = userTodo.filter(todo => todo.type === 'free');
+          // }
+          if (todoTypes.length) {
+            userTodo = userTodo.filter(todo => todoTypes.includes(todo.type));
+          }
+
+          // Убираем отмененые дела
+          if (!showCanceledTodos) {
+            userTodo = userTodo.filter(todo => !+todo.checked);
           }
 
           // Высота 1й минуты (в px)
           const oneMinuteHeight =
-            table.querySelector('tbody').children[0].getBoundingClientRect()
-              .height / 30;
+            table.querySelector('tbody').children[0].offsetHeight / 30;
 
           userTodo.forEach((item, index) => {
             // Расчет высоты наслоения (в px)
@@ -1235,6 +1234,7 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = 'any') {
                 margin-left: ${marginLeftValue}%;
               "
               data-tippy-content="
+                ${+item.checked ? '<b>ОТМЕНЕНО</b><br>' : ''}
                 <span>${item.startTime} - ${item.endTime}</span>
                 <br>
                 <span style='word-break: break-all;'>${item.description}</span>
@@ -1258,6 +1258,7 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = 'any') {
           `;
           });
 
+          // Подсказка
           tippy('[data-tippy-content]', {
             allowHTML: true,
             theme: 'light-border',
@@ -1269,7 +1270,6 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = 'any') {
         }
       } else {
         showAlert('error');
-        console.log('1254');
       }
     }
   }
@@ -1286,25 +1286,17 @@ export function closeTodoLayers(table) {
   }
 }
 
-export function isLayersCanBeDisplayed(
-  table,
-  idArray,
-  todoType = 'any',
-  callback,
-) {
+export function isLayersCanBeDisplayed(table, todoIDArray, todoType = []) {
   if (todoIsActive()) {
     let todoID = getTodoIDArray();
     let call = false;
-    // console.log(todoID, todoID.length);
 
-    // debugger;
-    for (let id of idArray) {
-      // console.log(id, call);
+    for (let id of todoIDArray) {
       call = todoID.includes(id);
       if (!call) break;
     }
 
-    if (call) callback(table, idArray, todoType);
+    if (call) loadTodoLayers(table, todoIDArray, todoType);
   }
 }
 
@@ -1315,7 +1307,6 @@ export function getTodoIDArray() {
 
   if (sessionStorage.getItem('typeBase') == 'remote') {
     const todoJson = getTodoJSON();
-    console.log(todoJson.todoID);
     todoID = todoJson.todoID ? todoJson.todoID : [];
   } else {
     todoID = JSON.parse(localStorage.getItem('todo')).todoID;

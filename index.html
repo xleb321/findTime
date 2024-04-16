@@ -3210,16 +3210,12 @@
 
             if (todoID.length && fullTableTbody.children.length) {
               loadTodoLayers(fullTable, todoID).then(() => {
-                console.log('Работает')
-
                 let tableFullLayers = document.querySelector('#full').querySelectorAll('.layers');
 
                 tableFullLayers.forEach((layer) => {
                   layer.style.paddingTop = `24.11px`;
                 });
               })
-            } else {
-              console.log('NO DATA');
             }
           }, 200);
         }
