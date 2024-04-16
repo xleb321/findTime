@@ -340,7 +340,11 @@
 16/04/24 (
   main.js - поменял аргументы функции isLayersCanBeDisplayed
 
-  js/todo.js - рефакторинг функции loadTodoLayers и isLayersCanBeDisplayed: скрыты/показаны отмененные дела
+  css/todo.css - правки стилей для вывода стикеров
+
+  js/todo.js:
+    1. рефакторинг функции loadTodoLayers и isLayersCanBeDisplayed: скрыты/показаны отмененные дела
+    2. изменил расчет значений для вывода стикеров
 
   index.html - удалил лишние console.log
 )

@@ -12,7 +12,7 @@ export function todoIsActive() {
 // Настройка времени
 const timeSetting = {
   start: '08:00',
-  end: '20:00',
+  end: '20:30',
   step: '0:30',
 };
 
@@ -1120,6 +1120,7 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = []) {
       let layersHtml = /* html */ `
         <div class="layers">
           <div class="layers__body">
+            ${'<div class="layers__day"></div>'.repeat(7)}
           </div>
         </div>
       `;
@@ -1132,13 +1133,15 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = []) {
 
       table.style.position = 'relative';
 
-      let layersBody = table
-        .querySelector(`.layers[data-id="${id}"]`)
-        .querySelector('.layers__body');
+      const layersBody = table.querySelector(
+        `.layers[data-id="${id}"] .layers__body`,
+      );
+
+      const layersDays = layersBody.querySelectorAll('.layers__day');
 
       layersBody.style.paddingLeft = '9%';
 
-      let todoJson = getTodoJSON();
+      const todoJson = getTodoJSON();
 
       if (todoJson.todo) {
         let userTodo = todoJson.todo[id];
@@ -1160,102 +1163,81 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = []) {
           // Высота 1й минуты (в px)
           const oneMinuteHeight =
             table.querySelector('tbody').children[0].offsetHeight / 30;
+          const thirtyMinutesHeight =
+            table.querySelector('tbody').children[0].offsetHeight;
 
           userTodo.forEach((item, index) => {
             // Расчет высоты наслоения (в px)
-            let [endTimeHour, endTimeMinutes] = splitTimeString(item.endTime);
-            let [startTimeHour, startTimeMinutes] = splitTimeString(
-              item.startTime,
-            );
+            let [endHours, endMinutes] = splitTimeString(item.endTime);
+            let [startHours, startMinutes] = splitTimeString(item.startTime);
+            // let layerHeight =
+            //   ((endHours - startHours) * 60 + (endMinutes - startMinutes)) *
+            //     oneMinuteHeight -
+            //   4;
             let layerHeight =
-              ((endTimeHour - startTimeHour) * 60 +
-                (endTimeMinutes - startTimeMinutes)) *
-                oneMinuteHeight -
+              (((endHours - startHours) * 60 + (endMinutes - startMinutes)) /
+                30) *
+                thirtyMinutesHeight -
               4;
 
             // Расчет отступа сверху (значение top, в px)
-            let [firstTimeHour, firstTimeMinutes] = splitTimeString(
-              timeSetting.start,
-            );
+            let [firstHours, firstMinutes] = splitTimeString(timeSetting.start);
 
+            // let topValue =
+            //   ((startHours - firstHours) * 60 + (startMinutes - firstMinutes)) *
+            //   oneMinuteHeight;
             let topValue =
-              ((startTimeHour - firstTimeHour) * 60 +
-                (startTimeMinutes - firstTimeMinutes)) *
-              oneMinuteHeight;
+              (((startHours - firstHours) * 60 +
+                (startMinutes - firstMinutes)) /
+                30) *
+              thirtyMinutesHeight;
 
             // Переводим layerHeight и topValue в %
-            layerHeight = (layerHeight / table.offsetHeight) * 100;
-            topValue = (topValue / table.offsetHeight) * 100;
+            layerHeight = (layerHeight / layersDays[0].offsetHeight) * 100;
+            topValue = (topValue / layersDays[0].offsetHeight) * 100;
 
-            // Множитель для отступа слева (для margin-left)
-            let marginLeftValue = 12.99;
+            const colorsValue = colors[item.type];
 
-            // Расчет отступа слева (значение margin-left)
-            switch (item.day) {
-              case '1':
-                marginLeftValue = 0;
-                break;
-
-              case '2':
-                marginLeftValue *= 1;
-                break;
-
-              case '3':
-                marginLeftValue *= 2;
-                break;
-
-              case '4':
-                marginLeftValue *= 3;
-                break;
-
-              case '5':
-                marginLeftValue *= 4;
-                break;
-
-              case '6':
-                marginLeftValue *= 5;
-                break;
-
-              case '7':
-                marginLeftValue *= 6;
-                break;
-            }
-
-            let colorsValue = colors[item.type];
-
-            layersBody.innerHTML += /*html*/ `
-            <div class="layers__item layers-item ${
-              +item.checked ? '_checked' : ''
-            }" 
-              style="
-                z-index: ${index + 1};
-                height: ${layerHeight}%;
-                top: ${topValue}%;
-                margin-left: ${marginLeftValue}%;
-              "
-              data-tippy-content="
-                ${+item.checked ? '<b>ОТМЕНЕНО</b><br>' : ''}
-                <span>${item.startTime} - ${item.endTime}</span>
-                <br>
-                <span style='word-break: break-all;'>${item.description}</span>
-              "
-            >
-              <div class="layers-item__body"
+            const layersItemHtml = /*html*/ `
+              <div class="layers__item layers-item ${
+                +item.checked ? '_checked' : ''
+              }" 
                 style="
-                  background-color: ${colorsValue.color} !important; 
-                  box-shadow: 0 4px 0 ${colorsValue.dark} !important;
-                  border: 1.5px solid ${colorsValue.dark} !important; 
-                  border-bottom: none !important;
+                  z-index: ${index + 1};
+                  height: ${layerHeight}%;
+                  top: ${topValue}%;
+                "
+                data-tippy-content="
+                  ${+item.checked ? '<b>ОТМЕНЕНО</b><br>' : ''}
+                  <span>${item.startTime} - ${item.endTime}</span>
+                  <br>
+                  <span style='word-break: break-all;'>${
+                    item.description
+                  }</span>
                 "
               >
-                <div class="layers-item__time">
-                  <i class="bi bi-clock"></i>
-                  <span>${item.startTime}</span>
+                <div class="layers-item__body"
+                  style="
+                    background-color: ${colorsValue.color} !important; 
+                    box-shadow: 0 4px 0 ${colorsValue.dark} !important;
+                    border: 1.5px solid ${colorsValue.dark} !important; 
+                    border-bottom: none !important;
+                  "
+                >
+                  <div class="layers-item__time">
+                    <i class="bi bi-clock"></i>
+                    <span>${item.startTime}</span>
+                  </div>
+                  <div class="layers-item__description">${
+                    item.description
+                  }</div>
                 </div>
-                <div class="layers-item__description">${item.description}</div>
               </div>
-            </div>
-          `;
+            `;
+
+            const layersItemParent = layersDays[+item.day - 1];
+
+            layersItemParent.insertAdjacentHTML('beforeend', layersItemHtml);
           });
 
           // Подсказка

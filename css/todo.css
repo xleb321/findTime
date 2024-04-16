@@ -784,8 +784,8 @@
 .layers__body {
   min-height: 100%;
   padding-left: 9%;
+  display: flex;
 
-  position: relative;
   pointer-events: none;
 }
 
@@ -793,14 +793,20 @@
   pointer-events: auto;
 }
 
+.layers__day {
+  flex: 1 1 auto;
+  padding: 0 !important;
+  position: relative;
+}
+
 .layers__item {
-  width: 13%;
+  width: 100%;
+  padding: 2px !important;
   /* height: 175px; */
 
   position: absolute;
   /* top: 178px; */
   /* margin-left: 13%; */
-  padding: 2px !important;
 
   /* background-color: rgb(255, 251, 216) !important;
     box-shadow: 0 4px 0 rgb(224, 191, 94) !important;
