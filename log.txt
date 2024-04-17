@@ -338,7 +338,7 @@
 )
 
 16/04/24 (
-  main.js - поменял аргументы функции isLayersCanBeDisplayed
+  js/main.js - поменял аргументы функции isLayersCanBeDisplayed
 
   css/todo.css - правки стилей для вывода стикеров
 
@@ -347,4 +347,12 @@
     2. изменил расчет значений для вывода стикеров
 
   index.html - удалил лишние console.log
+)
+
+17/04/24 (
+  js/main.js - поменял аргументы функции isLayersCanBeDisplayed
+
+  css/todo.css - правки стилей для вывода стикеров
+
+  js/todo.js - доработал отступ слева для layers__body + рефакторинг
 )

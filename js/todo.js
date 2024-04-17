@@ -1100,9 +1100,10 @@ if (todoIsActive()) {
 
 export async function loadTodoLayers(table, todoIDArray, todoTypes = []) {
   if (todoIsActive()) {
-    let btnClose =
+    const btnClose =
       table.querySelector('.btn-close') ||
       table.closest('.modal-content').querySelector('.btn-close');
+    const tableBody = table.querySelector('tbody');
 
     btnClose.addEventListener('click', close);
 
@@ -1139,7 +1140,14 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = []) {
 
       const layersDays = layersBody.querySelectorAll('.layers__day');
 
-      layersBody.style.paddingLeft = '9%';
+      // Отступ слева
+      layersBody.style.paddingLeft =
+        table.querySelector('td').offsetWidth + 'px';
+
+      window.onresize = function () {
+        layersBody.style.paddingLeft =
+          table.querySelector('td').offsetWidth + 'px';
+      };
 
       const todoJson = getTodoJSON();
 
@@ -1161,40 +1169,27 @@ export async function loadTodoLayers(table, todoIDArray, todoTypes = []) {
           }
 
           // Высота 1й минуты (в px)
-          const oneMinuteHeight =
-            table.querySelector('tbody').children[0].offsetHeight / 30;
-          const thirtyMinutesHeight =
-            table.querySelector('tbody').children[0].offsetHeight;
+          const oneMinuteHeight = tableBody.children[0].offsetHeight / 30;
 
           userTodo.forEach((item, index) => {
             // Расчет высоты наслоения (в px)
             let [endHours, endMinutes] = splitTimeString(item.endTime);
             let [startHours, startMinutes] = splitTimeString(item.startTime);
-            // let layerHeight =
-            //   ((endHours - startHours) * 60 + (endMinutes - startMinutes)) *
-            //     oneMinuteHeight -
-            //   4;
             let layerHeight =
-              (((endHours - startHours) * 60 + (endMinutes - startMinutes)) /
-                30) *
-                thirtyMinutesHeight -
+              ((endHours - startHours) * 60 + (endMinutes - startMinutes)) *
+                oneMinuteHeight -
               4;
 
             // Расчет отступа сверху (значение top, в px)
             let [firstHours, firstMinutes] = splitTimeString(timeSetting.start);
 
-            // let topValue =
-            //   ((startHours - firstHours) * 60 + (startMinutes - firstMinutes)) *
-            //   oneMinuteHeight;
             let topValue =
-              (((startHours - firstHours) * 60 +
-                (startMinutes - firstMinutes)) /
-                30) *
-              thirtyMinutesHeight;
+              ((startHours - firstHours) * 60 + (startMinutes - firstMinutes)) *
+              oneMinuteHeight;
 
             // Переводим layerHeight и topValue в %
-            layerHeight = (layerHeight / layersDays[0].offsetHeight) * 100;
-            topValue = (topValue / layersDays[0].offsetHeight) * 100;
+            layerHeight = (layerHeight / tableBody.offsetHeight) * 100;
+            topValue = (topValue / tableBody.offsetHeight) * 100;
 
             const colorsValue = colors[item.type];
 

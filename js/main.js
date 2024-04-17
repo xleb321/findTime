@@ -93,7 +93,7 @@ const colorStudent = [
 let cndCoincid = 0; // Oleg
 let numberStudent = 0; // Oleg
 export const toDoOn = true; // Oleg
-export const showCanceledTodos = true; // Oleg
+export const showCanceledTodos = false; // Oleg
 
 function getRandomColor(min, max) {
   min = Math.ceil(0);
@@ -1196,15 +1196,9 @@ function loadStudentsTable() {
 
         if (todoIsActive()) {
           setTimeout(() => {
-            closeTodoLayers(
-              document
-                .querySelector('#staticBackdrop')
-                .querySelector('.modal-content').children[2].children[0],
-            );
+            closeTodoLayers(document.querySelector('#tableUser'));
             isLayersCanBeDisplayed(
-              document
-                .querySelector('#staticBackdrop')
-                .querySelector('.modal-content').children[2].children[0],
+              document.querySelector('#tableUser'),
               [item.id],
               ['free'],
             );
@@ -1235,15 +1229,9 @@ function loadStudentsTable() {
 
         if (todoIsActive()) {
           setTimeout(() => {
-            closeTodoLayers(
-              document
-                .querySelector('#staticBackdrop')
-                .querySelector('.modal-content').children[2].children[0],
-            );
+            closeTodoLayers(document.querySelector('#tableUser'));
             isLayersCanBeDisplayed(
-              document
-                .querySelector('#staticBackdrop')
-                .querySelector('.modal-content').children[2].children[0],
+              document.querySelector('#tableUser'),
               [item.id],
               ['free'],
             );
@@ -1946,21 +1934,10 @@ function loadBusinessTable() {
 
       if (todoIsActive()) {
         setTimeout(() => {
-          closeTodoLayers(
-            document
-              .querySelector('#staticBackdrop')
-              .querySelector('.modal-content').children[2].children[0],
-          );
-          isLayersCanBeDisplayed(
-            document
-              .querySelector('#staticBackdrop')
-              .querySelector('.modal-content').children[2].children[0],
-            [
-              document
-                .querySelector('#staticBackdrop')
-                .querySelector('#btnTodo').dataset.id,
-            ],
-          );
+          closeTodoLayers(document.querySelector('#tableUser'));
+          isLayersCanBeDisplayed(document.querySelector('#tableUser'), [
+            document.querySelector('#btnTodo').dataset.id,
+          ]);
         }, 200);
       }
 
@@ -1985,21 +1962,10 @@ function loadBusinessTable() {
 
       if (todoIsActive()) {
         setTimeout(() => {
-          closeTodoLayers(
-            document
-              .querySelector('#staticBackdrop')
-              .querySelector('.modal-content').children[2].children[0],
-          );
-          isLayersCanBeDisplayed(
-            document
-              .querySelector('#staticBackdrop')
-              .querySelector('.modal-content').children[2].children[0],
-            [
-              document
-                .querySelector('#staticBackdrop')
-                .querySelector('#btnTodo').dataset.id,
-            ],
-          );
+          closeTodoLayers(document.querySelector('#tableUser'));
+          isLayersCanBeDisplayed(document.querySelector('#tableUser'), [
+            document.querySelector('#btnTodo').dataset.id,
+          ]);
         }, 200);
       }
 

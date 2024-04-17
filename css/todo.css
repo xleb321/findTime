@@ -777,13 +777,19 @@
   left: 0;
   width: 100%;
   height: 100%;
+  border: none !important;
 
   pointer-events: none;
 }
 
 .layers__body {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
   min-height: 100%;
-  padding-left: 9%;
   display: flex;
 
   pointer-events: none;
@@ -801,7 +807,7 @@
 
 .layers__item {
   width: 100%;
-  padding: 2px !important;
+  padding: 1px 2px 2px !important;
   /* height: 175px; */
 
   position: absolute;
